@@ -1,7 +1,7 @@
 LATEXMK=./latexmk/latexmk
 
 # Various dependencies
-MAIN=thesis_masters
+MAIN=thesis_phd
 MAIN_PDF=$(MAIN).pdf
 MAIN_TEX=$(MAIN).tex
 HELPER_FILES= makefile mnthesis.cls

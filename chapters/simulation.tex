@@ -29,7 +29,7 @@ While \genie employs several cross section models, only few are important for th
 Free parameters in \genie will be discussed further in chapter \ref{systs_chapter}.  For now, it is important to note that \genie includes a reweighting feature or all free parameters in the models it includes.  For any given event, a weight can be determined by calculating the cross section with a modification of one of the free parameters.  The weights are calculated simply by taking the ratio of this modified cross section to the original cross section.
 
 
-\section{\geant -- Daughter Propagation}
+\section{\geant -- Interaction Product Propagation}
 
 \geant is a popular software suite for simulating the passage of particles through matter.  In the \nova simulation chain, \genie produces daughter particles leaving the nucleus, then \geant simulates the passage of those particles through matter.  \geant is thus responsible for the energy deposition, interaction and decay of those particles within the detector and surrounding materials.
 
@@ -37,12 +37,29 @@ This propagation relies on a detailed representation of the detector geometry wh
 
 The models which govern interaction, energy deposition and decay of particles in GEANT is highly configurable through so-called \textit{physics lists}.  \nova simulation uses the QGSP\_BERT\_HP physics list by default; although other physics lists have been used to study systematic effects, namely FTF\_BIC, QGSP\_BIC\_HP and QGSC\_BERT.  QGS refers to the quark-gluon string model for hadronic interactions above 20 GeV. \cite{kaidalov1982pomeron}  QGSC uses the Chiral Invariant Phase Space (CHIPS) model for nuclear de-excitation. \cite{kossov2002chiral}  QGSP, on the other hand, uses the G4Precompound model for nuclear de-excitation.  BERT implies that the Bertini cascade model is used for hadronic interactions below 10 GeV. \cite{bertini1971news,guthrie1968calculation}  The low energy parametrized (LEP) model is used for intermediate energies in all cases.  BIC refers to the Binary cascade model, which can be used for interactions below 10 GeV in place of BERT. \cite{folger2004binary}  FTF is uses the FRITOF description of string excitation and fragmentation to model interactions in the high energy regime instead of the quark-gluon string model. \cite{andersson1993fritiof}  HP represents the \geant high precision neutron simulation.
 
-Daughter particles are propagated through detector.  \geant handles propagation of particles, decays, hadronic interactions, electromagnetic interactions, knock ons, etc.
+The \geant simulation process propagates particles by stepping them through their trajectories.  For each particle at each step, the software selects the next action from a variety of possibilities, e.g. decay, interact with various components of the medium, or simply move forward and deposit some energy.  \geant employs an adaptive stepping procedure which takes larger steps when appropriate in order to improve computing performance.  The states of the particles at each of these steps forms the output of \geant which is utilized within the \nova simulation chain.  For each particle, a list is recorded which stores the position and energy deposition for each of the steps.
 
-\section{Photon Transport}
+From the \geant particle trajectories, the energy depositions are converted into light output in each cell.  The energy depositions of each particle in each cell are summed to produce a fiber and liquid scintillator (FLS) hit.  The units of these FLS hits are arbitrary, but they do take into account an important scintillator effect known as Birks suppression. \cite{birks1951scintillations}  This effect is must be handled before the energy depositions are summed across steps in order to correctly handle rapid changes in particle energy deposition, particularly at the end of their trajectories.
 
-Photons are transported from the point of energy deposition to the  readout.  Ray tracing.  Attenuation.
+Birks suppression is caused by a local saturation of scintillation centers in the neighborhood of a swift charged particle.  In other words, the light output per unit of deposited energy is diminished as the deposited energy increased since there are a finite number of scintillation centers in the vicinity of the particle.  Without Birks suppression, one might expect the light output per unit length, $\frac{dL}{dX}$ of the scintillator to be directly proportional to the energy deposition per unit length, $\frac{dE}{dX}$:
+\begin{equation}
+\frac{dL}{dX} = L_0  \frac{dE}{dX}
+\end{equation}
+Here, $L_0$ is a constant which depends on the scintillator.  Birks law modifies this expression to include the suppression of light output as the energy deposition increases.
+\begin{equation}
+\frac{dL}{dX} = L_0  \frac{\frac{dE}{dX}}{1+ k_B \frac{dE}{dX}}
+\end{equation}
+Birks constant, $k_B$, is the coefficient which governs the suppression and is also dependent on the type of scintillator.  The form used by \nova includes corrections introduced by Chou \cite{chou1952nature} employ a third parameter, $k_C$, and a quadratic term:
+\begin{equation}
+\frac{dL}{dX} = L_0  \frac{\frac{dE}{dX}}{1+ k_B \frac{dE}{dX} + k_C \frac{dE}{dX}^2}
+\end{equation}
+This leaves three parameters to be tuned in the simulation, $L_0$, $k_B$, and $k_C$.  $L_0$ can simply be absorbed into the photon collection step, to be discussed in section \ref{photoncoll}.  The Birks and Chou parameters, $k_B$ and $k_C$, have been tuned using muon and protons from selected \numu CC QE interactions in the ND.  Here, the data and MC distributions of energy deposited per plane were used to produce a $\chi^2$ surface in the space of $k_B$ and $k_C$.  The optimal values were chosen as the minimum point in that surface.
 
+
+\section{Photon Collection}
+\label{photoncoll}
+
+The next step in the simulation chain is to convert light depositions into photon signals which arrive at the APD.  Since \nova cells are closed, it is impossible to make direct measurements of the light collection and transport efficiency \textit{in situ}.  To overcome this lack of information, a toy ray-tracing model has been used to obtain a 
 
 \section{Electronic Readout}
 

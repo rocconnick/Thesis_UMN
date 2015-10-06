@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-The \nova simulation chain involves many components to deliver an accurate representation; starting with protons on the \numi target and running all the way through APD readout in the \nova detectors.  FLUKA and FLUGG are used to simulate the flux in the NuMI beamline.  \cite{fluka}  Neutrino interactions are simulated using \genie. \cite{genie}  \geant is used to propagate products of the neutrino interactions through a detailed model of the \nova~detectors. \cite{geant}  Custom NOvA simulation software converts energy depositions into electronic signals.
+The \nova Monte Carlo (MC) simulation chain involves many components to deliver an accurate representation; starting with protons on the \numi target and running all the way through APD readout in the \nova detectors.  FLUKA and FLUGG are used to simulate the flux in the NuMI beamline.  \cite{fluka}  Neutrino interactions are simulated using \genie. \cite{genie}  \geant is used to propagate products of the neutrino interactions through a detailed model of the \nova~detectors. \cite{geant}  Custom NOvA simulation software converts energy depositions into electronic signals.
 
 
 \section{Beam Simulation}
@@ -59,7 +59,9 @@ This leaves three parameters to be tuned in the simulation, $L_0$, $k_B$, and $k
 \section{Photon Collection}
 \label{photoncoll}
 
-The next step in the simulation chain is to convert light depositions into photon signals which arrive at the APD.  Since \nova cells are closed, it is impossible to make direct measurements of the light collection and transport efficiency \textit{in situ}.  To overcome this lack of information, a toy ray-tracing model has been used to obtain a 
+The next step in the simulation chain is to convert light depositions into discrete photons which arrive at the APD.  Since \nova cells are closed, it is impossible to make direct measurements of the light collection and transport efficiency \textit{in situ}.  To overcome this lack of information, a toy ray-tracing model has been used to produce light collection templates.  Some basic assumptions about the scintillator, fiber and cells are used in this model.  The characteristic scintillator emission time is assumed to be 9 ns.  Bench measurements specify a reflectivity of 87.7\% for the cell walls and an index of refraction of 1.46 for the mineral oil.  Photons are captured in fiber with a characteristic length of 30.66 cm, which is tuned based on studies of cosmic ray muon attenuation curves to provide the best data/MC agreement.  The ray tracing model produces a two dimensional collection rate  distribution as a function of energy deposition and position along the fiber relative to where the energy was deposited.  From this template distribution, the number of photons collected is modeled for each particle energy deposition produced by \geant.  Since the ends of the cells are not reflective, the template distributions are truncated at the point which the cell ends.
+
+Once the number of collected photons is is determined, the next step is propagate each of those photons through the fiber.  The collected photons are divided in two to be sent in either direction along the fiber.  An attenuation curve is used to determine the mean number of photons which would arrive as a function of the position of capture.  Finally, the quantum efficiency of the APD is applied to produce the final number of photon signals.
 
 \section{Electronic Readout}
 

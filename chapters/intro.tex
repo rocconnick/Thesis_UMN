@@ -1,3 +1,4 @@
+%!TEX root = ../thesis_phd.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % intro.tex: Introduction to the thesis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5,8 +6,31 @@
 \label{intro_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Overview}
 
-\section{The Neutrino Hypothesis}
+The goal of this thesis is to further the understanding a family of fundamental particles of arguably the most mysterious family of fundamental particles called neutrinos.  Neutrinos are neutral particles of relatively small mass which interact only through the weak and gravitational forces, ignoring the effects of the strong and electromagnetic forces.  Since they only couple to the subdominant forces, neutrino interactions are astonishingly rare; a neutrino traveling through a light year of lead has less than a 50\% chance of interacting.  From the perspective of particle physicists, the low probability of observing neutrino interactions has made their characterization an extremely elusive task.  
+
+Neutrinos undergo a curious phenomenon called oscillation, or the ability for members of the neutrino family to transform into other members.  The \nova experiment has built two detectors separated by a distance of nearly 1,000 km in order to observe neutrino oscillations.  This thesis aims to better measure the frequencies at which neutrino oscillate, particularly by improving the method by which neutrinos are identified within \nova detectors.  
+
+The data output from \nova detectors can be interpreted roughly as top and side view images of neutrino interactions.  In that sense, identification of neutrino interactions in \nova detectors can be seen as an image classification task.  The image classification community has made great strides through convolutional neural network classifiers.  Implementing that technique for interaction classification in \nova will be the central thrust of this thesis.  
+
+
+\section{The Standard Model}
+
+High energy particle physics seeks to answer the age-old question of what makes up the universe.  The Greek atomist theories are among the earliest attempts at answering this question.  Democritus is well known for putting forth the theory that all matter was made up of indivisible particles called  
+
+\begin{figure}[b!]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/figures/sm.png}
+  \end{center}
+  \caption{Diagram which enumerates all of the fundamental particles in the standard model.}
+  \label{oscilloscope}
+\end{figure}
+
+
+\section{History}
+
+\subsection{The Neutrino Hypothesis}
 
 Mankind's first glimpse at the neutrino came in the early part of the 20th century along with studies of nuclear beta decay.  Discovered in 1896 by Henri Bequerel, beta decay was characterized by the mysterious ``beta rays" that were emitted by various types of radioactive material.  \cite{becquerelBeta}  By 1900, however, Becquerel had categorized beta rays as electrons, suggesting that beta decay involved a heavy atom emitting a relatively light, but fast moving electron.\footnote{
 We now know beta decay to involve a neutron within a nucleus decaying into a proton, electron and electron antineutrino, as follows: 
@@ -17,7 +41,7 @@ James Chadwick measured the energy spectrum of beta decay electrons in 1914 and 
 
 As a solution to this problem, in 1930 Wolfgang Pauli proposed that this decay could in fact be a three-body decay involving a third particle, which he then called a neutron, electrically neutral and also considerably lighter than a nucleus. \cite{pauliNeuProp}  Two years later the actual neutron we refer to today was discovered by Chadwick \cite{chadwickNeutron} and in 1934 Enrico Fermi proposed that Pauli's particle be called a ``neutrino." \cite{fermiNeuName} 
 
-\section{Neutrino Discovery -- Methods and Observations}
+\subsection{Neutrino Discovery -- Methods and Observations}
 \label{discovery}
 
 
@@ -55,7 +79,7 @@ D_S \rightarrow \tau + \nu_\tau
 \end{equation}
 Similar to the Brookhaven muon neutrino experiment, DONUT used an array of steel absorbers beyond the beam dump, but additionally implemented a set of deflecting magnets to steer muons and other light particles out of the beamline.  Downstream of the absorbers was a detector comprised of alternating layers two types of tracker modules: emulsion cloud chambers (ECC) and scintillating fiber trackers (SFT).  The ECC were assembled with sheets of photographic emulsion that would become exposed along the track of a fast moving charged particles.  This detection scheme provided precise spatial resolution for tracks required for identification of taus by a characteristic kink in their track 2 mm from the $\nu_\tau$ interaction point.  Interleaved between the ECC, the SFT was comprised of scintillating fibers that would produce light in the presence of charged particle radiation and transmit that light to image intensifiers for digitization.  The SFT was used to identify regions containing activity within the ECC for analysis.  In 2001 the DONUT collaboration published the results of this analysis; their paper reported the observation of four interactions compatible with \eqref{tauCCMinus} and \eqref{tauCCPlus} above an expected background of 0.34 events.  \cite{nuTau}
 
-\section{The Solar Neutrino Problem}
+\subsection{The Solar Neutrino Problem}
 
 In the 1960's Ray Davis and others set out to determine the flux of neutrinos incident upon the earth as a result of nuclear fusion within the sun.  Davis and his collaborators designed and built a detector based on a beta process  that converts chlorine atoms to argon atoms , namely: 
 \begin{equation}\label{nuChlorCap}

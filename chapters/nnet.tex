@@ -16,6 +16,7 @@ This thesis applies a supervised learning strategy for both classification of si
 
 An artificial neural network is a common tool used in classification and regression.  This class of algorithms draws inspiration from biological neurons.  Nervous systems of organisms are built up from a repeated structure of cells, called \textit{neurons}, which are connected to each other in order to transmit signals.  An example of a neuron can be seen in figure \ref{neuron}.  The base of a neuron is formed by a branching tree of \textit{dendrites} which receive signals from other neurons.  Signals are integrated and amplified in the cell body, then retransmitted through a long shaft, or \textit{axon}, to other neurons.  Intelligence is achieved by connecting many neurons which form a response to a given stimulus.
 
+
 \begin{figure}[t]
   \begin{center}
     \includegraphics[width=\textwidth]{figures/figures/neuron.png}
@@ -26,6 +27,12 @@ An artificial neural network is a common tool used in classification and regress
 \end{figure}
 
 
+
+
+
+
+
+
 Artificial neural networks are designed to offer a crude approximation of a biological nervous system.  The basic unit of a neural network is called a \textit{node}.  Each is a function which computes an output value from a set of inputs.  Nodes are arranged into \textit{layers}, as seen in figure \ref{nnet}.  In graph theory terms, a neural network is a \textit{feedforward graph}, implying that information is passed forward to subsequent layers, but not backward.
 
 
@@ -34,9 +41,18 @@ In a \textit{fully connected} layer, all nodes in a given layer receive input fr
 z^{i,j} = \sum_{i=1}^{N_{(j-1)}} w_{k}^{i,j} z^{i,(j-1)}
 \end{equation}
 
+
+
+
+
+
+
+
+
 First layer? 
 
 Feedforward graph. \cite{reed1999neural}
+
 
 Each node is connected to nodes in the previous layers.
 

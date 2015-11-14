@@ -6,69 +6,54 @@
 \label{nnet_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The field of machine learning is concerned with algorithms which can learn to make predictions from data.  Typically this involves some form of function approximation.  If the goal is to predict the output of a continuous function, the task is referred to as regression.  The task of separating examples into groups is called classification.
+The field of machine learning is concerned with algorithms which can learn to make predictions from data.  Typically this involves some form of multivariate function approximation.  In other words, given some set of input variables, predict some set of output variables.  If the goal is to predict one or more outputs of a continuous function, the task is referred to as regression.  The task of separating examples into groups is called classification.
 
 It is also common to separate machine learning approaches into two categories: supervised and unsupervised.  The supervised approach involves training an algorithm using a collection of examples for which the function output is known.  In unsupervised learning, algorithms can work to extract meaningful output from data where the function output is not known.
 
-This thesis applies a supervised learning strategy for both classification of signal events and regression to approximate the energy of those events.
+This approach in this thesis applies a supervised learning strategy for both classification of signal events and regression to approximate the energy of those events.
 
 \section{Artificial Neural Networks}
 
-An artificial neural network is a common tool used in classification and regression.  This class of algorithms draws inspiration from biological neurons.  Nervous systems of organisms are built up from a repeated structure of cells, called \textit{neurons}, which are connected to each other in order to transmit signals.  An example of a neuron can be seen in figure \ref{neuron}.  The base of a neuron is formed by a branching tree of \textit{dendrites} which receive signals from other neurons.  Signals are integrated and amplified in the cell body, then retransmitted through a long shaft, or \textit{axon}, to other neurons.  Intelligence is achieved by connecting many neurons which form a response to a given stimulus.
+An artificial neural network is a common tool used in classification and regression.  This class of algorithms draws inspiration from biological neurons.  Nervous systems of organisms are built up from a repeated structure of cells, called \textit{neurons}, which are connected to each other in order to transmit signals.  An example of a neuron can be seen in figure \ref{neuron}.  The base of a neuron is formed by a branching tree of \textit{dendrites} which receive signals from other neurons.  Signals are integrated and amplified in the cell body, then retransmitted through a long shaft, or \textit{axon}, to other neurons.  Intelligence is achieved by connecting many neurons which produce a wide variety of responses based on given stimuli.
 
 
 \begin{figure}[t]
   \begin{center}
-    \includegraphics[width=\textwidth]{figures/figures/neuron.png}
+    \includegraphics[width=0.7\textwidth]{figures/figures/neuron.png}
   \end{center}
   \caption[A basic rendering of a biological neuron]{A basic rendering of a biological neuron.  Signals are received through the branching dendrites to the left of the image.  The cell body integrates and retransmits signals to other cells through the axon, which runs horizontally from left to right in the figure.  Biological nervous systems are based upon a repeated structure of neurons to carry signals over long distances.}
 
   \label{neuron}
 \end{figure}
 
+Artificial neural networks are designed to crudely approximate the structure of a biological nervous system \cite{reed1999neural}.  The basic unit of a neural network is called a \textit{node}.  Each is a function which computes an output value from a set of inputs.  Nodes are arranged into \textit{layers}, as seen in figure \ref{nnet}.  In graph theory terms, a neural network is a \textit{feedforward graph}, implying that information is passed forward to subsequent layers, but not backward.  Input variables to the classification or regression problem are passed through \textit{input layer}, and the .  Any number of downstream \textit{hidden layers} can be trained to perfrom the classification or regression task.  The predicted output is then extracted from the final \textit{output layer}.
 
+Each node in a layer typically receives input from all nodes in the previous layer, although more sparesely connected networks have been investigated.  The response to each input is characterized by a set of weights, $\mathbf{w}^{i,j}$, for node $i$ in layer $j$.  Each layer produces a vector of outputs, $\mathbf{a}^{j}$, so the response in for the $i$th node in layer $j$ is the inner product between the weight vector of the node and the outputs of the previous layer in addition to a bias term, $b^{i,j}$:
 
-
-
-
-
-
-Artificial neural networks are designed to offer a crude approximation of a biological nervous system.  The basic unit of a neural network is called a \textit{node}.  Each is a function which computes an output value from a set of inputs.  Nodes are arranged into \textit{layers}, as seen in figure \ref{nnet}.  In graph theory terms, a neural network is a \textit{feedforward graph}, implying that information is passed forward to subsequent layers, but not backward.
-
-
-In a \textit{fully connected} layer, all nodes in a given layer receive input from all nodes in the previous layer.  The response to each input is characterized by a set of weights; for node $i$ in layer $j$, the vector $w_{k}^{i,j}$ has an entry corresponding to each node $k$ in the previous layer.  Node response can thus be defined recursively:
 \begin{equation}
-z^{i,j} = \sum_{i=1}^{N_{(j-1)}} w_{k}^{i,j} z^{i,(j-1)}
+z^{i,j} = \mathbf{w}^{i,j} \circ \mathbf{a}^{j-1} + b^{i,j}
 \end{equation}
 
+The node response is commonly passed through some nonlinearity, $g(x)$ to produce the output to be passed to the next layer, thus the element in $\mathbf{a}^{j}$ for the $i$th node is:
 
+\begin{equation}
+a^{i, j} = g(z^{i,j})
+\end{equation}
 
+Common choices for the nonlinearities are the sigmoid function, hyperbolic tangent or rectified linear unit.
 
+\begin{align}
+g(x) &= \frac{1}{1+e^x}  \tag{Sigmoid}\\
+g(x) &= \frac{e^x-e^{-x}}{e^x+e^{-x}} \tag{Hyperbolic Tangent} \\
+g(x) &= \max(0,x) \tag{Rectified Linear Unit}  \\
+\end{align}
 
+The input layer to the neural network depends on the problem at hand.  Basic applications of neural networks involve some number of input variables ranging from a few to a few hundred.  In some cases, the inputs are a set of engineered features extracted from some raw data, while other cases input raw data directly into a network.  The capacity for a network to learn to solve a particular problem increases with the number of hidden layers.  For practial reasons which will be discussed in section \ref{deeplearning}, diminishng returns are typically seen with more than a few hidden layers unless special techniques are applied.
 
-
-
-
-First layer? 
-
-Feedforward graph. \cite{reed1999neural}
-
-
-Each node is connected to nodes in the previous layers.
-
-Node is represented by a vector of weights which determine response to input vector.
-
-
-Output is result of nonlinearity
-
-Layer structure, or architecture, is arbitrary.  Multilayer networks are popular.
-
-
-Inputs can be anything.  Many cases involve input features which are engineered for a particular problem specification.  In the case of image processing, it is not uncommon to use all pixels from an image as the input layer.
 
 \begin{figure}[t]
   \begin{center}
-    \includegraphics[width=0.6\textwidth]{figures/figures/basicNN.png}
+    \includegraphics[width=0.5\textwidth]{figures/figures/basicNN.png}
   \end{center}
   \caption[Visualization of a simple neural network ]{Visualization of a simple neural network.  This network has an input layer (green) with two nodes, a hidden layer (blue) with five nodes, and an output layer (yellow) with one node.}
 
@@ -79,13 +64,15 @@ Inputs can be anything.  Many cases involve input features which are engineered 
 \section{Supervised Learning -- Backpropagation}
 
 
-Minimize objective function
+While neural networks were first proposed in the 1950s, practical applications were out of reach until a supervised learning strategy called backpropagation was introduced by Werbos in 1974 \cite{werbos1974beyond}.  As a supervised algorithm, backpropagation presents the network with a set of training examples with a known output.  The aim of the algorithm is to minimize the error between the predicted and target outputs.  First, the predicted output is calculated for a set of training examples are calculated in a feedforward pass.  An objective function is used to quantify the error between the target and predicted outputs.  Minimizing the objective function through an iterative process thus trains the network to predict the desired outputs.
+
 
 Gradient in each layer is propagated through to previous layer through chain rule.
 
 
 
-\section{Neural Network Enhancements}
+\section{Deep Learning}
+\label{deeplearning}
 
 Convolution\cite{lecun1995comparison,lecun2010convolutional,krizhevsky2012imagenet} ... scan a filter... position independent... many filters of a particular size per layer... filters trained through backpropagation
 

@@ -8,9 +8,12 @@
 
 The field of machine learning is concerned with algorithms which can learn to make predictions from data.  Typically this involves some form of multivariate function approximation.  In other words, given some set of input variables, predict some set of output variables.  If the goal is to predict one or more outputs of a continuous function, the task is referred to as regression.  The task of separating examples into groups is called classification.
 
+
 It is also common to separate machine learning approaches into two categories: supervised and unsupervised.  The supervised approach involves training an algorithm using a collection of examples for which the function output is known.  In unsupervised learning, algorithms can work to extract meaningful output from data where the function output is not known.
 
-This approach in this thesis applies a supervised learning strategy for both classification of signal events and regression to approximate the energy of those events.
+The approach presented in this thesis applies a supervised learning strategy for both classification of signal events and regression to approximate the energy of those events.
+
+
 
 \section{Artificial Neural Networks}
 
@@ -26,7 +29,7 @@ An artificial neural network is a common tool used in classification and regress
   \label{neuron}
 \end{figure}
 
-Artificial neural networks are designed to crudely approximate the structure of a biological nervous system \cite{reed1999neural}.  The basic unit of a neural network is called a \textit{node}.  Each is a function which computes an output value from a set of inputs.  Nodes are arranged into \textit{layers}, as seen in figure \ref{nnet}.  In graph theory terms, a neural network is a \textit{feedforward graph}, implying that information is passed forward to subsequent layers, but not backward.  Input variables to the classification or regression problem are passed through \textit{input layer}, and the .  Any number of downstream \textit{hidden layers} can be trained to perfrom the classification or regression task.  The predicted output is then extracted from the final \textit{output layer}.
+Artificial neural networks are designed to crudely approximate the structure of a biological nervous system \cite{reed1999neural}.  The basic unit of a neural network is called a \textit{node}.  Each is a function which computes an output value from a set of inputs.  Nodes are arranged into \textit{layers}, as seen in figure \ref{nnet}.  In graph theory terms, a neural network is a \textit{feedforward graph}, implying that information is passed forward to subsequent layers, but not backward.  Input variables to the classification or regression problem are passed through \textit{input layer}, and the .  Any number of downstream \textit{hidden layers} can be trained to perfrom the classification or regression task.  The predicted output is then extracted from the final \textit{output layer}.  For multivariate regression, the output is a vector of decimal values.  For multi-class classification, the output is ususally a vector of as many values as there are classes, each ranging between zero and one.  The  magnitude of the each value is interpreted as how well the inputs represent that particular class.
 
 Each node in a layer typically receives input from all nodes in the previous layer, although more sparesely connected networks have been investigated.  The response to each input is characterized by a set of weights, $\mathbf{w}^{i,j}$, for node $i$ in layer $j$.  Each layer produces a vector of outputs, $\mathbf{a}^{j}$, so the response in for the $i$th node in layer $j$ is the inner product between the weight vector of the node and the outputs of the previous layer in addition to a bias term, $b^{i,j}$:
 
@@ -34,18 +37,18 @@ Each node in a layer typically receives input from all nodes in the previous lay
 z^{i,j} = \mathbf{w}^{i,j} \circ \mathbf{a}^{j-1} + b^{i,j}
 \end{equation}
 
-The node response is commonly passed through some nonlinearity, $g(x)$ to produce the output to be passed to the next layer, thus the element in $\mathbf{a}^{j}$ for the $i$th node is:
+The node response is commonly passed through some nonlinearity, $f(x)$ to produce the output to be passed to the next layer, thus the element in $\mathbf{a}^{j}$ for the $i$th node is:
 
 \begin{equation}
-a^{i, j} = g(z^{i,j})
+a^{i, j} = f(z^{i,j})
 \end{equation}
 
 Common choices for the nonlinearities are the sigmoid function, hyperbolic tangent or rectified linear unit.
 
 \begin{align}
-g(x) &= \frac{1}{1+e^x}  \tag{Sigmoid}\\
-g(x) &= \frac{e^x-e^{-x}}{e^x+e^{-x}} \tag{Hyperbolic Tangent} \\
-g(x) &= \max(0,x) \tag{Rectified Linear Unit}  \\
+f(x) &= \frac{1}{1+e^x}  \tag{Sigmoid}\\
+f(x) &= \frac{e^x-e^{-x}}{e^x+e^{-x}} \tag{Hyperbolic Tangent} \\
+f(x) &= \max(0,x) \tag{Rectified Linear Unit}  \\
 \end{align}
 
 The input layer to the neural network depends on the problem at hand.  Basic applications of neural networks involve some number of input variables ranging from a few to a few hundred.  In some cases, the inputs are a set of engineered features extracted from some raw data, while other cases input raw data directly into a network.  The capacity for a network to learn to solve a particular problem increases with the number of hidden layers.  For practial reasons which will be discussed in section \ref{deeplearning}, diminishng returns are typically seen with more than a few hidden layers unless special techniques are applied.
@@ -63,11 +66,50 @@ The input layer to the neural network depends on the problem at hand.  Basic app
 
 \section{Supervised Learning -- Backpropagation}
 
+While neural networks were first proposed in the 1950s, practical applications were out of reach until a supervised learning strategy called backpropagation was introduced by Werbos in 1974 \cite{werbos1974beyond}.  Backpropagation is a supervised learning algorithm; the network is presented with a set of training examples with a known output as an iterative process to learn optimal weight parameters.  The major step forward in the backpropagation is a clever application of the chain rule to differentialle nonlinearities, thus allowing steepest descent algorithms to be applied in training.  Backpropagation itself does not specify which variant of steepest descent should be applied, it merely provides a mechanism to calculate the partial derivative for each weight parameter.  At the core of backpropagation is a simple, but clever, application of the chain rule to find the derivative at an arbitrary node upstream of the output in a feedforward network.
 
-While neural networks were first proposed in the 1950s, practical applications were out of reach until a supervised learning strategy called backpropagation was introduced by Werbos in 1974 \cite{werbos1974beyond}.  As a supervised algorithm, backpropagation presents the network with a set of training examples with a known output.  The aim of the algorithm is to minimize the error between the predicted and target outputs.  First, the predicted output is calculated for a set of training examples are calculated in a feedforward pass.  An objective function is used to quantify the error between the target and predicted outputs.  Minimizing the objective function through an iterative process thus trains the network to predict the desired outputs.
+First, the predicted output is calculated for a set of training examples are calculated in a feedforward pass.  An objective function is used to quantify the error between the target and predicted outputs.  Minimizing the objective function through an iterative process thus trains the network to predict the target outputs.  In regression problems, the objective function is commonly some mean-square error on the Euclidean distance between the target outputs and predicted outputs.  A simple implementation, for a network with outputs $m$ and training examples $p$ is
+\begin{equation}
+E = \frac12 \sum_p \sum_m (t_{mp} - y_{mp})^2
+\label{rmse}
+\end{equation}
+where $t_{mp}$ and $y_{mp}$ respectively correspond to the target and predicted output of the network.  The factor of $\frac12$ is simply present for cancellation after taking the derivative.  Classification problems commonly use another form of the objective function called the cross-entropy.  For output classes $m$, and again training examples $p$, target $t$ and prediction $y$, the cross entropy is:
+\begin{equation}
+E = \sum_p \sum_m t_{mp} \ln(y_{mp}) + (1-t_{mp})\ln(1-y_{mp})
+\end{equation}
 
+Backpropagation can be applied to any feedforward network of nodes with differentiable nonlinearities.  A layered structure is not a required.  Therefore, the process can be described by idexing $w_{ij}$ as the weight \textit{from} node $j$ to node $i$.  A feedforward network implies $j>i$ is not allowed.  The forward pass thus defines the inner product for each node, $a_i$, as a function of the weights and upstream nodes
+\begin{equation}
+a_i = \sum_{j<i} w_{ij} y_j.
+\end{equation}
+Above, $y_i$ is the result of the nonlinearity for each node
+\begin{equation}
+y_i = f(a_i).
+\end{equation}
 
-Gradient in each layer is propagated through to previous layer through chain rule.
+Backpropagation finds a partial derivative for each weight by summing over a batch of training examples.  The overall partial derivatives for the weight to node $i$ from weight $j$ is the sum of the gradients from training examples $p$:
+\begin{equation}
+\frac{\partial E}{\partial w_{ij}} = \sum_p \frac{\partial E_p}{\partial w_{ij}}
+\end{equation}
+The partial derivative for a particular training example can be written in terms of the upstream node outputs $a_k$
+\begin{equation}
+\frac{\partial E_p}{\partial w_{ij}} =
+\sum_k \frac{\partial E_p}{\partial a_k} \frac{\partial a_k}{\partial w_{ij}} =
+\sum_k \delta_{kp} \frac{\partial a_k}{\partial w_{ij}},
+\end{equation}
+with $\delta_{kp}$ defined for convenience.
+\begin{equation}
+\delta_{kp} = \frac{\partial E_p}{\partial a_{kp}} = \frac{\partial E_p}{\partial y_{kp}}\frac{\partial y_{kp}}{a_{kp}}.
+\end{equation}
+The second term is just the derivative of the nonlinearity, $f$
+\begin{equation}
+\frac{\partial y_{kp}}{a_{kp}} = f'(a_{kp}).
+\end{equation}
+Gradient in each layer is propagated through to previous layer through chain rule.  For output nodes using the mean-square error, equation \ref{rmse} gives:
+\begin{equation}
+\delta_{kp} = -(t_{pk} - y_{pk})f'(a_{kp}).
+\end{equation}
+
 
 
 

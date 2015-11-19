@@ -97,7 +97,7 @@ The partial derivative for a particular training example can be written in terms
 \sum_k \frac{\partial E_p}{\partial a_k} \frac{\partial a_k}{\partial w_{ij}} =
 \sum_k \delta_{kp} \frac{\partial a_k}{\partial w_{ij}},
 \end{equation}
-with $\delta_{kp}$ defined for convenience.
+with $\delta_{kp}$ defined for convenience:
 \begin{equation}
 \delta_{kp} = \frac{\partial E_p}{\partial a_{kp}} = \frac{\partial E_p}{\partial y_{kp}}\frac{\partial y_{kp}}{a_{kp}}.
 \end{equation}
@@ -105,12 +105,29 @@ The second term is just the derivative of the nonlinearity, $f$
 \begin{equation}
 \frac{\partial y_{kp}}{a_{kp}} = f'(a_{kp}).
 \end{equation}
-Gradient in each layer is propagated through to previous layer through chain rule.  For output nodes using the mean-square error, equation \ref{rmse} gives:
+
+The output nodes have no dependence on upstream nodes.  For the mean-square error mean-square objective function, for instance, we have:
 \begin{equation}
 \delta_{kp} = -(t_{pk} - y_{pk})f'(a_{kp}).
 \end{equation}
+The partial derivative of the cross-entropy objective, on the other hand, is:
+\begin{equation}
+\delta_{kp} = \bigg(\frac{t_{pk}}{y_{pk}}- \frac{1-t_{pk}}{1-y_{pk}}\bigg)f'(a_{kp}).
+\end{equation}
 
-
+The derivative of the objective function with respect to the weights in the hidden layers depends on downstream layers, so the chain rule must be applied.  The derivative for the $k$th hidden node relative to the $p$th training example is
+\begin{equation}
+\delta_{kp} = \frac{\partial E_p}{\partial a_{kp}} = \sum_l \frac{\partial E_p}{\partial a_{lp}}\frac{\partial y_{lp}}{a_{kp}}.
+\end{equation}
+The first factor in the sum is simply $\delta_{lp}$.  The second factor is zero if node $k$ does not connect to node $l$, otherwise it simply the product of the node connection weight and the slope of the nonlinearity for that node, evaluated for that training sample:
+\begin{equation}
+\frac{\partial a_{lp}}{a_{kp}} = f'_{lp} w_{lk}
+\end{equation}
+Thus, for hidden nodes, we have:
+\begin{equation}
+\delta_{kp} = f'_{kp} \sum_l w_{lk}\delta_{lp}
+\end{equation}
+For a batch of training examples, the derivative is averaged over the batch entire batch.  The neat recursive arrangement of hidden node deriviative calculation leads to straightforward implementation.
 
 
 \section{Deep Learning}

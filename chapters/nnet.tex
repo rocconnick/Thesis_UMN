@@ -66,11 +66,18 @@ The input layer to the neural network depends on the problem at hand.  Basic app
 
 \section{Supervised Learning -- Backpropagation}
 
-While neural networks were first proposed in the 1950s, practical applications were out of reach until a supervised learning strategy called backpropagation was introduced by Werbos in 1974 \cite{werbos1974beyond}.  Backpropagation is a supervised learning algorithm; the network is presented with a set of training examples with a known output as an iterative process to learn optimal weight parameters.  The major step forward in the backpropagation is a clever application of the chain rule to differentialle nonlinearities, thus allowing steepest descent algorithms to be applied in training.  Backpropagation itself does not specify which variant of steepest descent should be applied, it merely provides a mechanism to calculate the partial derivative for each weight parameter.  At the core of backpropagation is a simple, but clever, application of the chain rule to find the derivative at an arbitrary node upstream of the output in a feedforward network.
+While neural networks were first proposed in the 1950s, practical applications were out of reach until a supervised learning strategy called backpropagation was introduced by Werbos in 1974 \cite{werbos1974beyond}.  Backpropagation is a supervised learning algorithm; the network is presented with a set of training examples with a known output as an iterative process to learn optimal weight parameters.  The major step forward in the backpropagation is a clever application of the chain rule to differentiable nonlinearities, thus allowing steepest descent stochastic gradient descent (SGD) to be used for training.
 
-First, the predicted output is calculated for a set of training examples are calculated in a feedforward pass.  An objective function is used to quantify the error between the target and predicted outputs.  Minimizing the objective function through an iterative process thus trains the network to predict the target outputs.  In regression problems, the objective function is commonly some mean-square error on the Euclidean distance between the target outputs and predicted outputs.  A simple implementation, for a network with outputs $m$ and training examples $p$ is
+SGD is a common optimization technique.  If there is some objective function to be optimized, SGD seeks optimal parameters using the gradient that function.  Over many iterations, a function can be approximately minimized by adjusting the parameters opposite the gradient of the objective function at a given iteration step.  This gives the update rule for the weights $w$
 \begin{equation}
-E = \frac12 \sum_p \sum_m (t_{mp} - y_{mp})^2
+w \coloneqq w - \eta \nabla E(w).
+\end{equation}
+The parameter $\eta$ is referred to as the \textit{learning rate}, which governs the step size.  Generally, $\eta$ is set to some value between 0 and 1, although there is no straightforward way to determine a value which will give the quickest or optimal convergence.  Large values for the learning rate may speed up convergence, but might also cause the algorithm to repeatedly step over the minimum location in the surface given by the objective function.
+
+There are many variants of SGD which are popular.  Backpropagation itself does not specify which variant of SGD should be applied, it merely provides a mechanism to calculate the partial derivative with respect to each weight parameter.  At the core of backpropagation is a simple, but clever, application of the chain rule to find the derivative at an arbitrary node upstream of the output in a feedforward network.
+
+First, the predicted output is calculated for a set of training examples are calculated in a feedforward pass.  An objective function is chosen to quantify the error between the target and predicted outputs.  Minimizing the objective function through an iterative process thus trains the network to predict the target outputs.  In regression problems, the objective function is commonly some mean-square error on the Euclidean distance between the target outputs and predicted outputs.  A simple implementation, for a network with outputs $m$ and training examples $p$ is
+\begin{equation} E = \frac12 \sum_p \sum_m (t_{mp} - y_{mp})^2
 \label{rmse}
 \end{equation}
 where $t_{mp}$ and $y_{mp}$ respectively correspond to the target and predicted output of the network.  The factor of $\frac12$ is simply present for cancellation after taking the derivative.  Classification problems commonly use another form of the objective function called the cross-entropy.  For output classes $m$, and again training examples $p$, target $t$ and prediction $y$, the cross entropy is:
@@ -127,11 +134,14 @@ Thus, for hidden nodes, we have:
 \begin{equation}
 \delta_{kp} = f'_{kp} \sum_l w_{lk}\delta_{lp}
 \end{equation}
-For a batch of training examples, the derivative is averaged over the batch entire batch.  The neat recursive arrangement of hidden node deriviative calculation leads to straightforward implementation.
+
+Backpropagation drove a major shift in the field of neural networks.  Prior to the innovation of backpropagation, researchers focused their time on the theoretical capacity of networks of binary hidden units.  Armed with backpropagation, research could be devoted to applications, but now using differentiable hidden units trained with SGD.
 
 
 \section{Deep Learning}
 \label{deeplearning}
+
+From a theoretical perspective, deep neural networks -- those with many layers -- offer increased capacity for problem solving by forming higher order nonlinear functions.  There are technical difficulties involved in the training of deeper networks, however.  The increase in complexity for larger networks can lead to serious constraints around the requisite computing power.  Further, backpropagated derivatives can become small in upstream layers, causing very little learning to occur in those layers.  For decades, these constraints required applications to be developed around a small set of features extracted from raw data rather then the raw data itself.  Engineering of those features is commonly a meticulous process involving considerable domain knowledge.  Recent innovations in network architecture and training strategy have led to major advances in performance, particularly in the field of computer vision and recognition.  Applications of neural networks now commonly involve deep architectures with many inputs.  In the case of image processing problems, it is not uncommon to use upwards of several thousand input channels and tens of layers.  \cite{lecun2015deep}
 
 Convolution\cite{lecun1995comparison,lecun2010convolutional,krizhevsky2012imagenet} ... scan a filter... position independent... many filters of a particular size per layer... filters trained through backpropagation
 

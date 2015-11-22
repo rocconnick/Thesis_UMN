@@ -165,16 +165,19 @@ For convolution layers, the sequence $g$ to be the image and $f$ is called a fil
 With a large number of input pixels and many convolutional filters, the number of weights which must be learned can grow dramatically.
 Pooling \cite{lecun2010convolutional} is a powerful technique for down-sample the number of parameters and thus reduce the complexity of the network.
 In so-called \textit{max pooling}, down-sampling is achieved by taking the maximum value of each filter output in $n \times m$ sub-regions of the image.
-An alternative to max pooling is \textit{average pooling}, where the average value is used instead of the maximum.  arPooling can down-sample the total number of pixels by taking .
-In so-called , the maximum value 
-Pooling can be is used to reduce dimensionality.  Image is downsampled by extracting a result from sub-regions of the image.  Two methods are commonly used, max pooling and average pooling.  Early results used non-overlapping pooling regions, although more recent efforts have seen good results from overlapping pooling regions \cite{krizhevsky2012imagenet}.
+An alternative to max pooling is \textit{average pooling}, where the average value is used instead of the maximum.  Pooling regions can be non-overlapping \cite{lecun2010convolutional}, or be allowed  to overlap \cite{szegedy2014going,krizhevsky2012imagenet}.
+Pooling has also been used to combine the output of semantically similar feature maps by taking the maximum (or average) output over a group of feature maps\cite{lecun2015deep}.
+Semantic similarity is imposed during training through the bottleneck of information flowing backwards through the pooling layers.  Layers which pool over feature maps are referred to as \textit{maxout} layers.
 
+\subsection{Network-in-Network}
+
+The Network-in-Network approach \cite{lin2013network} has been used to augment the learning capacity of convolution layers.  Rather  Convolutional filters have been augmented 
 
 
 
 Network-in-network\cite{lin2013network} .... inception module \cite{szegedy2014going}
 
-Dropout... regularization technique. \cite{hinton2014dropout}
+\cite{hinton2014dropout}
 
 
 

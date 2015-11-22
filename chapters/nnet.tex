@@ -142,7 +142,10 @@ Backpropagation drove a major shift in the field of neural networks.  Prior to t
 \section{Deep Learning}
 \label{deeplearning}
 
-From a theoretical perspective, deep neural networks -- those with many layers -- offer increased capacity for problem solving by forming higher order nonlinear functions.  There are technical difficulties involved in the training of deeper networks, however.  The increase in complexity for larger networks can lead to serious constraints around the requisite computing power.  Further, backpropagated derivatives can become small in upstream layers, causing very little learning to occur in those layers.  For decades, these constraints required applications to be developed around a small set of features extracted from raw data rather then the raw data itself.  Engineering of those features is commonly a meticulous process involving considerable domain knowledge.  Recent innovations in network architecture and training strategy have led to major advances in performance, particularly in the field of computer vision and recognition.  Applications of neural networks now commonly involve deep architectures with many inputs.  In the case of image processing problems, it is not uncommon to use upwards of several thousand raw pixels as input and tens of hidden layers.  \cite{lecun2015deep}
+From a theoretical perspective, deep neural networks -- those with many layers -- offer increased capacity for problem solving by forming higher order nonlinear functions.  There are technical difficulties involved in the training of deeper networks, however.  The increase in complexity for larger networks can lead to serious constraints around the requisite computing power.  Further, backpropagated derivatives can become small in upstream layers, causing very little learning to occur in those layers.  For decades, these constraints required applications to be developed around a small set of features extracted from raw data rather then the raw data itself.  Engineering of those features is commonly a meticulous process involving considerable domain knowledge.  Recent innovations in network architecture and training strategy have led to major advances in performance, particularly in the field of computer vision and recognition.
+Applications of neural networks now commonly involve deep architectures with many inputs.
+In the case of image processing problems, it is not uncommon to use upwards of several thousand raw pixels as input and tens of hidden layers \cite{lecun2015deep}.
+This section is not a complete survey of deep learning techniques, which are many, but merely a description of the techniques used in this thesis.
 
 \subsection{Convolution Layers}
 
@@ -169,16 +172,62 @@ An alternative to max pooling is \textit{average pooling}, where the average val
 Pooling has also been used to combine the output of semantically similar feature maps by taking the maximum (or average) output over a group of feature maps\cite{lecun2015deep}.
 Semantic similarity is imposed during training through the bottleneck of information flowing backwards through the pooling layers.  Layers which pool over feature maps are referred to as \textit{maxout} layers.
 
-\subsection{Network-in-Network}
+\subsection{Network-in-Network and \googlenet}
 
-The Network-in-Network approach \cite{lin2013network} has been used to augment the learning capacity of convolution layers.  Rather  Convolutional filters have been augmented 
+The Network-in-Network (NIN) \cite{lin2013network} approach has been used to augment the learning capacity of convolution layers while also reducing dimensionality.
+Rather than using maxout feature pooling to reduce dimensionality, the NIN approach recombines features using a weighted sum of filter outputs with a \relu nonlinearity to recombine filter outputs into a new set of features.
+While NIN layers could be used with more output filters than input filters, they are more commonly used with fewer.
+In that case, the NIN layers can be seen as synthesizing output across filters to produce a higher level, but more compact representation of the input filters.
+
+\begin{figure}[t]
+\begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=0.9\textwidth]{figures/figures/inceptionnaive.pdf}
+               \caption{Basic version of the inception module concept, which includes $1\times1$, $3\times3$, and $5\times5$ filters trained side-by-side.}
+                 \label{basicinception}
+        \end{subfigure}
+        ~
+\begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=0.9\textwidth]{figures/figures/inceptionmodule.pdf}
+               \caption{Final design of exception module which uses $1\times1$ convolutions with NIN filter recombination to reduce dimensionality.}
+                \label{fullinception}
+
+        \end{subfigure}
+        \caption{Inception module architecture.}
+        \label{inception}
+\end{figure}
 
 
+The NIN approach has been used heavily in a leading network architecture known as \googlenet \cite{szegedy2014going}.
+The \googlenet architecture is built up from a repeated structure dubbed the \textit{inception module}, as seen in figure \ref{inception}.
+In the inception module, all $1\times1$ convolution layers are combined with a NIN recombination layer to reduce dimensionality.
+Prior to more expensive $3\times3$ and $5\times5$ convolutions, the input filters are reduced down to 96 and 16 filters, respectively.
+The $3\times3$ and $5\times5$ respectively include 128 and 32 filters, which are concatenated with the output of 64 $1\times1$ filters and another 32 $1\times1$ filters which follow $3\times3$ max pooling.  The full \googlenet, seen in figure \ref{googlenet} includes nine repetitions of the inception module.
 
-Network-in-network\cite{lin2013network} .... inception module \cite{szegedy2014going}
+Another important feature of \googlenet is the use of multiple softmax outputs to better train early layers \cite{szegedy2014going}.
+\googlenet includes two extra outputs at upstream points in the network to propagate information backwards during training.
+In the final classification result, these outputs are ignored, but during training they provide a less attenuated version of the error.
+At any point in the network, the gradient used for training is the average of the gradient from each of the downstream softmax outputs.
 
-\cite{hinton2014dropout}
+\begin{figure}[t]
+  \begin{center}
+    \includegraphics[height=\textheight]{figures/figures/inceptionoverall.pdf}
+  \end{center}
+  \caption[Complete \googlenet architecture]{Complete \googlenet archtecture, with 9 inception modules and upstream softmax outputs.}
+  \label{googlenet}
+\end{figure}
 
+\subsection{Dropout Regularization}
+
+Regularization refers to the prevention of overfitting during network training, that is, ensuring that the trained model generalized well beyond the training sample.
+A common regularization technique is to include penalty terms in the cost function which proportional to the square or absolute value of the weights, thus constraining them them to remain small during training.
+Keeping the weights small prevents the model from responding too strongly to any one input feature.
+
+Recently, the technique of constraining weights has given way to a new technique called \textit{dropout} \cite{hinton2014dropout}.
+Dropout a subset of of the weights in a layer to zero for a given training iteration.  On each iteration, each weight is set to zero with probability $r$, so a new different sample of weights is excluded at each iteration.
+The inner product of the weights with the input, $z$ is scaled up by a factor of $1-r$ to roughly maintain the overall scale of the value passed through the nonlinearity.
+Dropout with $r\approx 0.5$ proves to be a very robust regularizer and has quickly become the most popular technique used in the field \cite{lecun2015deep}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

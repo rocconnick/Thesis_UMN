@@ -175,7 +175,7 @@ Semantic similarity is imposed during training through the bottleneck of informa
 \subsection{Network-in-Network and \googlenet}
 
 The Network-in-Network (NIN) \cite{lin2013network} approach has been used to augment the learning capacity of convolution layers while also reducing dimensionality.
-Rather than using maxout feature pooling to reduce dimensionality, the NIN approach recombines features using a weighted sum of filter outputs with a \relu nonlinearity to recombine filter outputs into a new set of features.
+Rather than using maxout feature pooling to reduce dimensionality, the NIN approach recombines features using a weighted sum of filter outputs with a \relu nonlinearity to produce a new set of features.
 While NIN layers could be used with more output filters than input filters, they are more commonly used with fewer.
 In that case, the NIN layers can be seen as synthesizing output across filters to produce a higher level, but more compact representation of the input filters.
 

@@ -43,13 +43,23 @@ The node response is commonly passed through some nonlinearity, $f(x)$ to produc
 a^{i, j} = f(z^{i,j})
 \end{equation}
 
-Common choices for the nonlinearities are the sigmoid function, hyperbolic tangent ($\tanh$) or rectified linear unit (\relu).
+Common choices for the nonlinearities are the sigmoid function, hyperbolic tangent ($\tanh$),rectified linear unit (\relu) or softmax.
 \begin{align}
 f(x) &= \frac{1}{1+e^x}  \tag{Sigmoid}\\
 f(x) &= \frac{e^x-e^{-x}}{e^x+e^{-x}} \tag{$\tanh$} \\
 f(x) &= \max(0,x) \tag{\relu}  \\
+f(x) &= \frac{e^{x_i}}{\sum_{k} e^{x_k}} \tag{Softmax}  \\
 \end{align}
-The sigmoid and $\tanh$ are attractive because they are bounded, smooth and well behaved.  Rectified linear units are more analogous to the thresholded linear response of a biological neuron.  The negative component of range of the $\tanh$ is thus poorly motivated based on biological neurons, which do not produce a negative response.  Even still, tanh nonlinearities have been observed to produce good results.  \relu is additionally attractive since it does not involve the exponential function, which is expensive to evaluate from a computational standpoint.  Meanwhile, the unbounded derivative of \relu can lead to problems during gradient-based training, discussed in section \label{backprop}.  This trouble is commonly averted bu imposing an artificial bound on the derivative of the \relu.
+The index in softmax enumerates the outputs of the other nodes in the same layer.
+The softmax is thus normalized such that the sum of outputs from that layer is equal to one.
+This feature makes the softmax a popular choice for output nodes in classification tasks since it provides a convenient pseudo-probabilistic interpretation of the output values.
+
+Sigmoid and $\tanh$ are attractive because they are bounded, differentiable.  Rectified linear units are more analogous to the thresholded linear response of a biological neuron.  The negative component of range of the $\tanh$ is thus poorly motivated based on biological neurons, which do not produce a negative response.
+Even still, tanh nonlinearities have been observed to produce good results.
+\relu is additionally attractive since it does not involve the exponential function, which is expensive to evaluate from a computational standpoint.
+Meanwhile, the unbounded derivative of \relu can lead to problems during gradient-based training, discussed in section \label{backprop}.
+This trouble is commonly averted bu imposing an artificial bound on the derivative of the \relu.
+It should also be noted that while the \relu is not differentiable at zero, it is differentiable arbitrarily close to zero, which is sufficient for training.
 
 The input layer to the neural network depends on the problem at hand.  Basic applications of neural networks involve some number of input variables ranging from a few to a few hundred.  In some cases, the inputs are a set of engineered features extracted from some raw data, while other cases input raw data directly into a network.  The capacity for a network to learn to solve a particular problem increases with the number of hidden layers.  For practial reasons which will be discussed in section \ref{deeplearning}, diminishng returns are typically seen with more than a few hidden layers unless special techniques are applied.
 

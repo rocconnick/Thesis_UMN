@@ -68,7 +68,7 @@ Once the number of collected photons is is determined, the next step is propagat
 \section{Electronic Readout}
 
 
-Ultimately, simulation of cell hits recorded by the detector is based on a digitization of the photoelectron (PE) response of the APD.  This digitization is broken down into many steps.  First, analog traces are created for each cell which had photons arriving at the APD.  The dual correlated sampling (DCS) algorithm is then applied to the traces in order to trigger hits in the same way that they would be in real data.
+Ultimately, simulation of cell hits recorded by the detector is based on a digitization of the photo-electron (PE) response of the APD.  This digitization is broken down into many steps.  First, analog traces are created for each cell which had photons arriving at the APD.  The dual correlated sampling (DCS) algorithm is then applied to the traces in order to trigger hits in the same way that they would be in real data.
 
 The analog traces for each APD pixel are represented as a series of analog-to-digital converter (ADC) samples spaced at 62.5 ns.  Each sample is determined by scaling the number of PE relative to the PE value which is known to saturate the ADC scale from bench measurements.  That ADC value is then shaped corresponding to the rise time, $R$, and fall time, $F$, of a CR-RC amplifier:
 \begin{equation}

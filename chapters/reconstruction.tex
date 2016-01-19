@@ -43,7 +43,52 @@ Since cosmic rays cross the detector quickly, hits along each track are displaye
 
 \section{Slicing}
 
-The first task in reconstructing \nova data is to resolve individual particle interactions
+Reconstructing events in \nova first requires resolving activity within the
+continuous readout windows.
+In other words, the continuous readout of noise and physics activity must be
+separated into groups of hits which correspond to individual particle
+interactions.
+This task is referred to as \textit{slicing}.
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/figures/dbscan.png}
+\end{center}
+\caption{Depiction of clustering with the DBSCAN algorithm.}{Depiction of
+clustering with the DBSCAN algorithm.  The red points,
+for instance point A, are
+considered to be \textit{core} points since they have as many or more neighbors
+than the minimum required to form a cluster.  The yellow points, including B
+and C, are called
+\textit{edge} points since they have fewer neighbors than the minimum required
+to make a cluster, but included in the cluster with the red points since they
+are below the neighbor distance threshold.  The blue point is not part of the
+cluster since its distance from all other points exceeds the neighbor threshold.
+}
+\label{dbscan}
+\end{figure}
+
+Slicing in \nova is achieved through an implementation of the DBSCAN algorithm
+\cite{ester1996density}.
+The algorithm evaluates the distance between every pair of points based on
+a distance metric which suits the problem at hand.
+If the distance between a pair of points is below a threshold, $\epsilon$, the
+points are added to the same cluster.
+Clusters can be disregarded if they do not inude a minimum number of hits,
+which can be optimized based on the amount of noise in the data.
+A depiction of how points are clustered can be seen in figure \ref{dbscan}.
+
+The distance metric used for slicing in \nova is based on the time, $t$, and
+spatial position, $\vec{r}$, of hits
+\begin{equation}
+L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
+     \bigg( \frac{\Delta \vec{r}}{D} \bigg)^2,
+\end{equation}
+
+where $c$ is the speed of light.  The parameters $T$ and $D$ are configurable
+length scales which dictate the relative weight of separation in time and
+space.
+
 
 \section{Tracking}
 

@@ -83,12 +83,15 @@ the subsequent attenuation fits to be obtained, for instance cells on the edges
 of the detector and those adjacent to dead cells.  Such cells are calibrated
 with alternative samples with hits in adjacent cells.
 
+
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.7\textwidth]{figures/dummy/dummy.jpg}
+\includegraphics[width=0.8\textwidth]{figures/plots/reco/calib_tricell}
 \end{center}
-\caption{NEED TO GET THE RIGHT PLOT HERE... attenuation PE/path length vs. W.}
-\label{calib_atten}
+\caption{Depiction of a tri-cell hit used for calibration.  The precence of
+activity in the two adjacent cells helps ensure an accurate estimate of
+path length traversed by a muon through a cell.}
+\label{calib_tricell}
 \end{figure}
 
 For each reference hit, the ADC value is converted to PE based on a scale
@@ -123,22 +126,58 @@ The deficit of light is empirically well described by an $x^4$ form
 \end{equation}
 where free parameters $x_R$ and $x_L$ indicate the start of the roll-off
 region on either side and $\alpha_R, \alpha_L$  determine the scale.
+These fits are often not robust, however, so they are not used.
+Alternatively, an interpolation method called LOWESS \cite{cleveland1981lowess}
+is used to correct the residuals from the exponential form.
+In addition to picking up the roll-off behavior, the LOWESS fits also serve to
+correct other significant deviations observed in the data far from the ends of
+the cells.
+These deviations are believed to be caused by any peculiar positioning of the
+fiber within a cell which could affect light collection.
+The curve produced by LOWESS at any point is the weighted mean of the
+deviations,
+\begin{equation}
+  w_i=\left(1-\left|{x-x_i\over\sigma}\right|^3\right)^3
+\end{equation}
+where the smoothing length scale $\sigma$ is 30cm.
+Examples of the final fits with LOWESS corrections can be seen in figure
+\ref{calib_atten}.
 
-From the attenuation fits, a hit at any position can be corrected to a
-baseline value.
-The centers of the cells are all pinned to the same baseline, which effectively
-removes cell-to-cell variations.
+\begin{figure*}
+  \includegraphics[width=.5\linewidth]{figures/plots/reco/calib_totfit_data_inX_151_051}
+  \includegraphics[width=.5\linewidth]{figures/plots/reco/calib_totfit_data_inX_419_219}
+  \caption[]{Example of a good Near (left) and Far (right) detector fit,
+  showing attenuation fits with LOWESS corrections.}\label{calib_atten}
+\end{figure*}
+
+The attenuation fits determine the mean response to cosmic ray muons is
+can be determined for a hit at any position in the detector.
+Thus, the calibrated response for any hit is the ratio of its PE to result of
+the fit at that position.  At this point, the energy in absolute units is
+still unknown, but the effects of attenuation and cell-by-cell variations
+have been mitigated.
 
 \subsection{Absolute Energy Calibration}
 
-This is the next step!
+The absolute energy calibration is responsible for converting the corrected
+PE value described in the previous section into a value which corresponds
+to meaningful physical units.
+Muon tracks which stop inside the detector form a reference sample with well
+understood energy deposition characteristics.
+Near the end of particle tracks, the energy deposition per unit length
+(\dedx) is well described by the Bethe-Bloch formula \cite{pdg}.
+The formula predicts a stable minimum in \dedx near the track end,
+which for muons in organic materials covers a wide range of several hundred cm.
+This stable region is demonstrated in figure \ref{calib_dEdX}.
+For \nova, the region between 100 and 200 cm from the track endpoint is used
+to determine the absolute energy scale.
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figures/plots/reco/calib_dEdX.png}
 \end{center}
 \caption{2D histogram depicting deposited energy per path length (dE/dX) for
-cell hits after attenuation and cell-to-cell correction.  Color scale
+cell hits after attenuation and cell-to-cell correction.  The color scale
 indicates the number of measurements in each bin.  The rise in energy at the
 end of muon track (left) is well described by the Bethe-Bloch formula \cite{pdg}.}
 \label{calib_dEdX}
@@ -150,7 +189,8 @@ end of muon track (left) is well described by the Bethe-Bloch formula \cite{pdg}
 
 We use siamese googlenet, two googlenets side-by-side
 
-We train first for all event types
+Train on neutrinos, then add cosmics and fine tune.
+
 
 
 

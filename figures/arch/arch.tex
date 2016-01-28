@@ -1,0 +1,131 @@
+\documentclass[crop,tikz, border=1cm]{standalone}% 'crop' is the default for v1.0, before it was 'preview'
+
+%\documentclass{standalone}
+\usepackage{tikz}
+
+
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+%%%% %%%% %%%%
+
+
+\xdefinecolor{myred}{RGB}{179, 51, 51}
+
+\xdefinecolor{myblue}{RGB}{56, 117, 215}
+\xdefinecolor{mygreen}{RGB}{69, 125, 50}
+
+\xdefinecolor{myteal}{RGB}{64, 165, 178}
+\xdefinecolor{mybrown}{RGB}{86, 45, 20}
+
+
+
+\begin{document}
+
+
+
+\tikzstyle{block} = [rectangle, draw, fill=myred,
+    text width=2cm, text centered, rounded corners, minimum height=1cm, minimum width = 1cm, text=white]
+\tikzstyle{blocksm} = [rectangle, draw, fill=myred,
+    text width=1cm, text centered, rounded corners, minimum height=1cm, minimum width = 1cm, text=white]
+
+\tikzstyle{blockspilt} = [rectangle split,rectangle split parts=3, draw, fill=myred,
+    text width=2cm, text centered, rounded corners, minimum height=1cm, minimum width = 1cm, text=white]
+
+
+\tikzstyle{line}=[draw, <->, thick]
+\tikzstyle{lin}=[draw, -, thick]
+
+\tikzstyle{dot} = [minimum size=0.00pt,inner sep=0pt]
+\tikzstyle{cloud} = [draw, ellipse,fill=myblue,
+    minimum height=2em, text=white]
+\tikzstyle{cloudgr} = [draw, ellipse,fill=mygreen,
+    minimum height=2em, text=white]
+
+\tikzstyle{dia} = [draw, trapezium,, fill=myblue, text width=1.35cm, text centered, rounded corners, minimum height = 1cm, text=white]
+
+\pagestyle{empty}
+\centering
+\begin{tikzpicture}[]
+    % Place nodes
+
+    \node [dot] (anchor){};
+
+    \node [block, text width=3.0cm, fill=mygreen, left of=anchor, left=0.0cm] (xview) {X View};
+    \node [block, text width=3.0cm, above of=xview, above=0.0cm, fill=myred] (conv1_x) {Convolution \\ $7\times7$, stride 2};
+    \path [lin] (xview) -- (conv1_x);
+
+    \node [block, text width=3.0cm, above of=conv1_x, above=0.0cm, fill=myblue] (pool1_x) {Max Pooling \\ $3\times3$, stride 2};
+    \path [lin] (conv1_x) -- (pool1_x);
+
+    \node [cloud, above = 0.25cm, above of=pool1_x, fill=mybrown] (lrn1_x) {LRN};
+    \path [lin] (pool1_x) -- (lrn1_x);
+
+    \node [block, text width=3.0cm, above of=lrn1_x, above=-0.5cm, fill=myred] (reduce1_x) {Convolution \\ $1\times1$};
+    \path [lin] (lrn1_x) -- (reduce1_x);
+
+    \node [block, text width=3.0cm, above of=reduce1_x, above=0.0cm, fill=myred] (conv2_x) {Convolution \\ $3\times3$};
+    \path [lin] (reduce1_x) -- (conv2_x);
+
+    \node [cloud, above = 0.25cm, above of=conv2_x, fill=mybrown] (lrn2_x) {LRN};
+    \path [lin] (conv2_x) -- (lrn2_x);
+
+    \node [block, text width=3.0cm, above of=lrn2_x, above=-0.5cm, fill=myblue] (pool2_x) {Max Pooling \\ $3\times3$, stride 2};
+    \path [lin] (lrn2_x) -- (pool2_x);
+
+    \node [dia, above = 0.5cm, above of=pool2_x, fill=teal] (inc3a_x){Inception Module};
+    \path [lin] (pool2_x) -- (inc3a_x);
+
+    \node [dia, above = 0.5cm, above of=inc3a_x, fill=teal] (inc3b_x){Inception Module};
+    \path [lin] (inc3a_x) -- (inc3b_x);
+
+    \node [block, text width=3.0cm, above of=inc3b_x, above=0.0cm, fill=myblue] (pool3_x) {Max Pooling \\ $3\times3$, stride 2};
+    \path [lin] (inc3b_x) -- (pool3_x);
+
+    \node [dia, above = 0.5cm, above of=pool3_x, fill=teal] (inc4a_x){Inception Module};
+    \path [lin] (pool3_x) -- (inc4a_x);
+
+    \node [block, text width=3.0cm, fill=mygreen, right of=anchor, right=0.0cm] (yview) {X View};
+    \node [block, text width=3.0cm, above of=yview, above=0.0cm, fill=myred] (conv1_y) {Convolution \\ $7\times7$, stride 2};
+    \path [lin] (yview) -- (conv1_y);
+
+    \node [block, text width=3.0cm, above of=conv1_y, above=0.0cm, fill=myblue] (pool1_y) {Max Pooling \\ $3\times3$, stride 2};
+    \path [lin] (conv1_y) -- (pool1_y);
+
+    \node [cloud, above = 0.25cm, above of=pool1_y, fill=mybrown] (lrn1_y) {LRN};
+    \path [lin] (pool1_y) -- (lrn1_y);
+
+    \node [block, text width=3.0cm, above of=lrn1_y, above=-0.5cm, fill=myred] (reduce1_y) {Convolution \\ $1\times1$};
+    \path [lin] (lrn1_y) -- (reduce1_y);
+
+    \node [block, text width=3.0cm, above of=reduce1_y, above=0.0cm, fill=myred] (conv2_y) {Convolution \\ $3\times3$};
+    \path [lin] (reduce1_y) -- (conv2_y);
+
+    \node [cloud, above = 0.25cm, above of=conv2_y, fill=mybrown] (lrn2_y) {LRN};
+    \path [lin] (conv2_y) -- (lrn2_y);
+
+    \node [block, text width=3.0cm, above of=lrn2_y, above=-0.5cm, fill=myblue] (pool2_y) {Max Pooling \\ $3\times3$, stride 2};
+    \path [lin] (lrn2_y) -- (pool2_y);
+
+    \node [dia, above = 0.5cm, above of=pool2_y, fill=teal] (inc3a_y){Inception Module};
+    \path [lin] (pool2_y) -- (inc3a_y);
+
+    \node [dia, above = 0.5cm, above of=inc3a_y, fill=teal] (inc3b_y){Inception Module};
+    \path [lin] (inc3a_y) -- (inc3b_y);
+
+    \node [block, text width=3.0cm, above of=inc3b_y, above=0.0cm, fill=myblue] (pool3_y) {Max Pooling \\ $3\times3$, stride 2};
+    \path [lin] (inc3b_y) -- (pool3_y);
+
+    \node [dia, above = 0.5cm, above of=pool3_y, fill=teal] (inc4a_y){Inception Module};
+    \path [lin] (pool3_y) -- (inc4a_y);
+
+    \node [dia, above = 16cm, above of=anchor, fill=teal] (inc5b){Inception Module};
+    \path [lin] (inc4a_y) -- (inc5b);
+    \path [lin] (inc4a_x) -- (inc5b);
+
+    \node [block, text width=3.0cm, above of=inc5b, above=0.0cm, fill=myblue] (pool5) {Avg Pooling \\ $6\times5$};
+    \path [lin] (inc5b) -- (pool5);
+
+    \node [cloud, above of=pool5, above=0.0cm, fill=mygreen] (output) {Softmax Output};
+    \path [lin] (pool5) -- (output);
+\end{tikzpicture}
+\end{document}

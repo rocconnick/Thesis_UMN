@@ -162,7 +162,9 @@ Use of convolution layers has led to top results in the field of computer vision
 \begin{equation}
 (f*g)_i = \sum_{j = -\infty}^{\infty} f_j g_{i-j}.
 \end{equation}
-For convolution layers, the sequence $g$ to be the image and $f$ is called a filter.  Instead of ranging from $-\inf$ to $\inf$, the filter is restricted to have non-zero values over a finite range corresponding to an $n \times n$ pixel sub-region of the image.  The square sub-region of the image is ``unrolled'' into a one dimensional vector in order to support the convolution.  The filter weights, $f_j$, are can be learned through backpropagation to learn features within the image.  The output of a convolution layer has each pixel replaced with the output of $f$ convolved over the surrounding $n\times n$ sub-region.  A convolution layer can have many such filters, leading to multiple representations which are sensitive to different features.  A visualization of such an architecture can be seen in figure \ref{convnet}.
+For convolution layers, the sequence $g$ to be the image and $f$ is called a filter.
+The filters in a convolutional architecture are restricted to have non-zero values over a finite range corresponding to an $n \times n$ pixel sub-region of the image.
+The square sub-region of the image is ``unrolled'' into a one dimensional vector in order to support the convolution.  The filter weights, $f_j$, are can be learned through backpropagation to learn features within the image.  The output of a convolution layer has each pixel replaced with the output of $f$ convolved over the surrounding $n\times n$ sub-region.  A convolution layer can have many such filters, leading to multiple representations which are sensitive to different features.  A visualization of such an architecture can be seen in figure \ref{convnet}.
 
 \begin{figure}[t]
   \begin{center}

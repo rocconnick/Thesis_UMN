@@ -158,7 +158,7 @@ This section is not a complete survey of techniques used in deep learning, which
 
 \subsection{Convolution Layers}
 
-Use of convolution layers has led to top results in the field of computer vision \cite{lecun2010convolutional,krizhevsky2012imagenet}.  These layers are inspired by studies of the visual cortex of animals  \cite{lecun2015deep}, in which groupings of neurons scan over small sub-regions of the visual field.  Independent treatment of sub-regions can allow the networks at large to detect learned features in a position-independent fashion.  In other words, classification of an image can be achieved even if the subject appears in a different location within the frame.  In an artificial neural network, this is achieved using a  discrete convolution operation.  The convolution of discrete sequences $f$ and $g$ is defined as
+Use of convolution layers has led to top results in the field of computer vision \cite{lecun2010convolutional,krizhevsky2012imagenet}.  This technique is inspired by studies of the visual cortex of animals  \cite{lecun2015deep}, in which groupings of neurons scan over small sub-regions of the visual field.  Independent treatment of sub-regions can allow the networks at large to detect learned features in a position-independent fashion.  In other words, classification of an image can be achieved even if the subject appears in a different location within the frame.  In an artificial neural network, this is achieved using a  discrete convolution operation.  The convolution of discrete sequences $f$ and $g$ is defined as
 \begin{equation}
 (f*g)_i = \sum_{j = -\infty}^{\infty} f_j g_{i-j}.
 \end{equation}

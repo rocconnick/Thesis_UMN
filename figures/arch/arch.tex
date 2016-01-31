@@ -84,7 +84,7 @@
     \node [dia, above = 0.5cm, above of=pool3_x, fill=teal] (inc4a_x){Inception Module};
     \path [lin] (pool3_x) -- (inc4a_x);
 
-    \node [block, text width=3.0cm, fill=mygreen, right of=anchor, right=0.0cm] (yview) {X View};
+    \node [block, text width=3.0cm, fill=mygreen, right of=anchor, right=0.0cm] (yview) {Y View};
     \node [block, text width=3.0cm, above of=yview, above=0.0cm, fill=myred] (conv1_y) {Convolution \\ $7\times7$, stride 2};
     \path [lin] (yview) -- (conv1_y);
 

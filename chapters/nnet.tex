@@ -229,12 +229,12 @@ At any point in the network, the gradient used for training is the average of th
 
 \subsection{Dropout Regularization}
 
-Regularization refers to the prevention of overfitting during network training, that is, ensuring that the trained model generalized well beyond the training sample.
+Regularization refers to the prevention of overfitting during network training, that is, ensuring that the trained model can reasonably generalize beyond the training sample.
 A common regularization technique is to include penalty terms in the cost function which proportional to the square or absolute value of the weights, thus constraining them them to remain small during training.
 Keeping the weights small prevents the model from responding too strongly to any one input feature.
 
-Recently, the technique of constraining weights has given way to a new technique called \textit{dropout} \cite{hinton2014dropout}.
-Dropout a subset of of the weights in a layer to zero for a given training iteration.  On each iteration, each weight is set to zero with probability $r$, so a new different sample of weights is excluded at each iteration.
+Recently, a new regularization technique called \textit{dropout} \cite{hinton2014dropout} has gained in popularity.
+Dropout sets a subset of of the weights in a layer to zero for a given training iteration.  On each iteration, each weight is set to zero with probability $r$, so a new different sample of weights is excluded at each iteration.
 The inner product of the weights with the input, $z$ is scaled up by a factor of $1-r$ to roughly maintain the overall scale of the value passed through the nonlinearity.
 Dropout with $r\approx 0.5$ proves to be a very robust regularizer and has quickly become the most popular technique used in the field \cite{lecun2015deep}.
 

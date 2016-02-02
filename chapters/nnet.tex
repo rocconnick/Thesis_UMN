@@ -212,7 +212,7 @@ In that case, the NIN layers can be seen as synthesizing output across filters t
 
 The NIN approach has been used heavily in a leading network architecture known as \googlenet \cite{szegedy2014going}.
 The \googlenet architecture is built up from a repeated structure dubbed the \textit{inception module}, as seen in figure \ref{inception}.
-In the inception module, all $1\times1$ convolution layers are combined with a NIN recombination layer to reduce dimensionality.
+In the inception module, all $1\times1$ convolution layers are used for NIN recombination to reduce dimensionality.
 Prior to more expensive $3\times3$ and $5\times5$ convolutions, the input filters are reduced down to 96 and 16 filters, respectively.
 The $3\times3$ and $5\times5$ respectively include 128 and 32 filters, which are concatenated with the output of 64 $1\times1$ filters and another 32 $1\times1$ filters which follow $3\times3$ max pooling.  The full \googlenet, seen in figure \ref{googlenet} includes nine repetitions of the inception module.
 

@@ -101,14 +101,37 @@ or entire neutrino interaction with all daughter particles.
 
 \section{Tracking}
 
-Once particle interactions have been resolvde
+Once interactions have been resolved, individual particle trajectories can be
+isolated.
+Cosmic ray interactions are typically characterized by a single particle
+trajectory, but neutrino interactions can involve several particles with
+distinct trajectories.
+Isolating and fitting those trajectories is commonly referred to as
+\textit{tracking}.
 
-\subsection{Least-squares Regression}
+This analysis applies the results of two different tracking algorithms.
+The first is a simple, least-squares based approach called \textit{CosmicTrack};
+the second, KalmanTrack, is based on Kalman filtering and optimized to identify
+muons in \numu CC interactions.
 
-We fit lines to regions of tracks.
+\subsection{CosmicTrack -- Least-squares Regression}
+
+CosmicTrack was designed to quickly reconstruct the long, mostly vertical tracks
+which are produced by the vast majority of cosmic rays which are visible in
+\nova.
+The approach is to simply fit lines to the activity each view ($x$ and $y$)
+of the detector.
+Fitting is to restricted to hits within a particular slice, and precisely one
+track is reconstructed for each slice.
+Hits which are far from the track in each view are iteratively removed to
+improve robustness against noise hits.
+The tracks found in either view are then interleaved in a plane-by-plane fashion
+in order to form 3D tracks from the separate 2D tracks.
+CosmicTrack assumes particles to be downgoing, so the start point of the track
+is always deemed to be the highest position of the track within the detector.
 
 
-\subsection{Kalman Filtering}
+\subsection{KalmanTrack -- Kalman Filtering}
 
 We expand tracks from pairs based on chi-square.
 

@@ -78,6 +78,7 @@ If the distance between a pair of points is below a threshold, $\epsilon$, the
 points are added to the same cluster.
 Clusters can be disregarded if they do not inude a minimum number of hits,
 which can be optimized based on the amount of noise in the data.
+Boundaries between clusters are effectively formed in low density regions.
 A depiction of how points are clustered can be seen in figure \ref{dbscan}.
 
 The distance metric used for slicing in \nova is based on the time, $t$, and

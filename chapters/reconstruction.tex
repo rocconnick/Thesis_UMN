@@ -37,7 +37,10 @@ Since cosmic rays cross the detector quickly, hits along each track are displaye
 \begin{center}
 \includegraphics[width=\textwidth]{figures/evd/evd_14db.pdf}
 \end{center}
-\caption{An example \nova event display.  The top projection is an $x$ vs. $z$ view, the bottom is $y$ vs. $z$.  Hits are colored by the at which they were recorded relative to the start of the readout window; the color scale is visible in the bottom center pane.}
+\caption{An example \nova event display.}{
+The top projection is an $x$ vs. $z$ view, the bottom is $y$ vs. $z$.
+Hits are colored by the at which they were recorded relative to the start of
+the readout window; the color scale is visible in the bottom center pane.}
 \label{eventDisplay14}
 \end{figure}
 
@@ -54,8 +57,7 @@ This task is referred to as \textit{slicing}.
 \begin{center}
 \includegraphics[width=0.7\textwidth]{figures/figures/dbscan.png}
 \end{center}
-\caption{Depiction of clustering with the DBSCAN algorithm.}{Depiction of
-clustering with the DBSCAN algorithm.
+\caption{Depiction of clustering with the DBSCAN algorithm.}{
 The open circles around each point are drawn with a radius to represent the
 neighbor distance threshold.
 The red points, for instance point A, are
@@ -110,6 +112,17 @@ distinct trajectories.
 Isolating and fitting those trajectories is commonly referred to as
 \textit{tracking}.
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/figures/tracking.jpg}
+\end{center}
+\caption{Illustration of the tracking concept in \nova.}{The \textit{CosmicTrack} algorithm forms tracks
+ based on a linear regression approach.  The \textit{KalmanTrack} algorithm,
+ inspired by the Kalman filtering technique, expands tracks based on the
+ $\chi^2$ of a piecewise linear fit.}
+\label{tracking}
+\end{figure}
+
 This analysis applies the results of two different tracking algorithms.
 The first is a simple, least-squares based approach called \textit{CosmicTrack};
 the second, KalmanTrack, is based on Kalman filtering and optimized to identify
@@ -134,7 +147,46 @@ is always deemed to be the highest position of the track within the detector.
 
 \subsection{KalmanTrack -- Kalman Filtering}
 
-We expand tracks from pairs based on chi-square.
+\textit{KalmanTrack} is an algorithm inspired by the Kalman filtering
+technique.
+In a similar fashion to CosmicTrack, tracks are first found separately for
+vertical ($X$) and horizontal ($Y$) views, then merged.
+Track seeds are formed for pairs of hits which fall within a
+three plane window in the given view.
+Starting with the most downstream (in the plane dimension, running along the
+beam direction) seed, the seeds are expanded upstream
+As the track is expanded, the hit positions are fit with piecewise linear
+segments to allow deviations resulting from multiple scattering.
+A hit is added to the track if it does not change the $\chi^2$ of
+the track fit by more than eight units.
+Tracks are terminated when they cross more than three planes without picking up
+any additional hits.
+If the track traverses a cell with a dead readout channel, that plane
+is not included in the missed plane total.
+The procedure is then repeated in the other direction in order to
+pick up any hits which may have been missed.
+Since tracks emanating from a neutrino interaction vertex are generally
+directed downstream; thus working from the downstream side allows the longest
+track to be found first.
+In a vast majority of cases, the muon track in a \numu CC interaction
+is the longest track.
+As such, the KalmanTrack procedure is well suited for \numu CC interactions.
+
+Once tracks have been found in either view, they must be stitched together
+to form 3D tracks.  Tracks are paired based on a score which describes how
+they coincide in the $Z$-dimension, i.e. plane extent.
+For a each track in the $X$-view with start $z_{x1}$ and end $z_{x2}$, a score
+is calculated for each overlapping track in the $Y$-view with start
+$z_{y1}$ and end $z_{y2}$:
+\begin{equation}
+\text{score} = \frac{|z_{x1}  - z_{y1} | + |z_{x2} - z_{y2}|}{\min(z_{x2}, z_{y2}) - \max(z_{x1},z_{y1} )}.
+\end{equation}
+The quantity in the numerator describes the proximity of the start and end
+points, while the denominator represents the extent of the track overlap.
+The pair of tracks with the lowest score is matched and removed from the pool
+of 2D tracks, then the pair with the next lowest score is matched, and so on.
+Unmatched 2D tracks are also recorded and labeled as such for downstream
+reconstruction and analysis.
 
 \section{Calibration}
 

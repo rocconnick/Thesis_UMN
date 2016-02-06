@@ -198,7 +198,7 @@ effects: attenuation
 of light in the wavelength shifting fiber, cell-to-cell variations, and
 conversion conversion from ADC scale to physical energy units.
 
-\subsection{Attenuaiton and Cell-to-cell Corerection}
+\subsection{Attenuaiton and Cell-to-cell Corerection Procedure}
 
 The attenuation correction is based upon cosmic ray muons since they are
 abundant and their energy deposition properties are well understood.  A
@@ -289,7 +289,7 @@ the fit at that position.  At this point, the energy in absolute units is
 still unknown, but the effects of attenuation and cell-by-cell variations
 have been mitigated.
 
-\subsection{Absolute Energy Calibration}
+\subsection{Absolute Energy Calibration Procedure}
 
 The absolute energy calibration is responsible for converting the corrected
 PE value described in the previous section into a value which corresponds
@@ -314,6 +314,23 @@ indicates the number of measurements in each bin.  The rise in energy at the
 end of muon track (left) is well described by the Bethe-Bloch formula \cite{pdg}.}
 \label{calib_dEdX}
 \end{figure}
+
+\subsection{Calibrated Energy Depositions for Hits}
+
+The calibration procedure provides an estimation of the actual deposited
+energy as a function of recorded ADC and the location of the hit within
+the detector.
+Accurately locating a hit in the $X$-view or $Y$-view, however, requires
+an estimation of the unmeasured coordinate from the other view.
+For a hit in the $X$-view, the unknown $Y$ position (and vice versa) of the hit
+is essential in applying the attenuation correction.
+Estimation of the unmeasured coordinate must rely on reconstruction,
+namely slices and tracks.
+For slices, the unmeasured coordinate is determined to be the mean position
+of all hits in the slice from the other view.
+For tracks, the unmeasured coordinate can be inferred by interpolating the
+track trajectory through the plane in question.
+Tracks, as a result, allow for much more precisely calibrated energy deposition.
 
 \section{Image Formation}
 

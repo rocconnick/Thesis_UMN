@@ -56,7 +56,7 @@ This feature makes the softmax a popular choice for output nodes in classificati
 Sigmoid and $\tanh$ are attractive because they are bounded, differentiable.  Rectified linear units are more analogous to the thresholded linear response of a biological neuron.  The negative component of range of the $\tanh$ is thus poorly motivated based on biological neurons, which do not produce a negative response.
 Even still, tanh nonlinearities have been observed to produce good results.
 \relu is additionally attractive since it does not involve the exponential function, which is expensive to evaluate from a computational standpoint.
-Meanwhile, the unbounded derivative of \relu can lead to problems during gradient-based training, discussed in section \label{backprop}.
+Meanwhile, the unbounded derivative of \relu can lead to problems during gradient-based training, discussed in section \ref{backprop}.
 This trouble is commonly averted bu imposing an artificial bound on the derivative of the \relu.
 It should also be noted that while the \relu is not differentiable at zero, it is differentiable arbitrarily close to zero, which is sufficient for training.
 

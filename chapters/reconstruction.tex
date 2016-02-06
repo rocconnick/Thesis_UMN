@@ -147,8 +147,8 @@ is always deemed to be the highest position of the track within the detector.
 
 \subsection{KalmanTrack -- Kalman Filtering}
 
-\textit{KalmanTrack} is an algorithm inspired by the Kalman filtering
-technique.
+\textit{KalmanTrack} \cite{raddatz2016thesis} is an algorithm inspired by
+the Kalman filtering technique \cite{kalman1960new}.
 In a similar fashion to CosmicTrack, tracks are first found separately for
 vertical ($X$) and horizontal ($Y$) views, then merged.
 Track seeds are formed for pairs of hits which fall within a
@@ -331,6 +331,100 @@ of all hits in the slice from the other view.
 For tracks, the unmeasured coordinate can be inferred by interpolating the
 track trajectory through the plane in question.
 Tracks, as a result, allow for much more precisely calibrated energy deposition.
+
+\section{Muon Identification}
+
+To estimate the energy of a \numu CC interaction, it is beneficial to identify
+the track produced by the outgoing muon \cite{lein2015thesis}.
+Muon identification is applied to the collection of tracks which are output
+from the \textit{KalmanTrack} algorithm.
+Muon tracks are identified using a k-Nearest Neighbor (kNN)
+\cite{altman1992introduction} classification
+algorithm with four features extracted from tracks as input
+\cite{raddatz2016thesis}.
+The kNN algorithm populates an $n$ dimensional hyperspace with labeled
+examples (tracks in this case, labeled as muon or not-muon) where $n$
+corresponds to the number of input features.
+For each test example to be evaluated, some number, $k$, of nearest neighbors
+in the hyperspace
+are located.  Proximity is ascertained using the \textit{L2} norm in
+$\mathbb{R}_n$.
+The output of the algorithm is the fraction of the $k$ neighbors which belong
+to the desired class, in this case tracks which were truly produced by muons.
+For muon identification in \nova, $k = 80$.
+The library of examples which populates the hyperspace is taken from
+\nova simulation.
+
+The inputs which form the kNN hyperspace are track length, scattering
+log-likelihood, $dE/dx$ (energy deposition per unit
+path length) log-likelihood, and non-hadronic plane fraction
+\cite{raddatz2016thesis}.
+The track length is path length traversed by the track taken from
+summing between interpolated trajectory points.
+Log-likelihoods for both scattering and $dE/dx$ are constructed using
+probability distributions taken from simulation for both muons and
+charged pions.
+The non-hadronic plane fraction is the fraction of track which remains
+after an algorithm has identified and removed a region of the track
+which is contaminated from overlap with the hadronic shower
+\cite{sachdev2015thesis}.
+
+\section{Energy Estimation}
+
+Estimation of the energy of selected \numu CC interactions is crucial to
+the measurement of oscillation parameters \thetatth and \deltamtht; the
+distribution of estimated energy is fit in order to
+produce likelihood contours.
+The fitting process will be described in detail in the \ref{analysis_chapter}.
+For this analysis, the neutrino energy is estimated by splitting
+apart activity from the identified track and hadronic shower, estimating
+the energy of those components, then summing the two components
+\cite{lein2015thesis}.
+The energy estimation procedure is tuned on events with muon identification
+kNN output greater than 0.75.
+
+\begin{figure*}
+  \includegraphics[width=.5\linewidth]{figures/plots/reco/numu_energy_muon_fit.pdf}
+  \includegraphics[width=.5\linewidth]{figures/plots/reco/numu_energy_had_fit.pdf}
+  \caption{Muon (right) and hadronic (left) energy fits.}{For muon energy, the
+  2D distribution of true muon energy and reconstructed track length is fit.
+  For hadronic energy, the 2D distribution of calorimetric energy and true
+  hadronic energy is fit.  In both cases, the fit function is a piecewise
+  linear spline with four segments.  The fit is drawn as a solid red line,
+  and the spline join points illustrated by the vertical dashed red line.}
+  \label{energy_fits}
+\end{figure*}
+
+The muon track energy is obtained from a fit to the 2D distribution
+of muon track length and true muon energy from simulation.
+For muons in \nova, the track length is more tightly correlated with
+true muon energy than than the sum of calibrated energy depositions.
+The functional form for the fit is piecewise linear spline with four segments,
+as seen in figure \ref{energy_fits}.
+The offset, four slopes and three join points are all free parameters in the
+fit.
+
+
+The energy of the hadronic shower is estimated from any hits which are not on
+the muon track.
+The calorimetric energy (sum of hit energy depositions) is obtained
+using the slice method for calibration, i.e. average position of all hits
+from the other view.
+Hadronic energy which overlaps with the muon track
+\cite{sachdev2015thesis} is also added to the calorimetric energy sum.
+A fit to 2D distribution of calorimetric energy and true hadronic energy
+from simulation is used to determine the hadronic energy contribution.
+The hadronic energy is taken as the true neutrino energy minus the muon energy,
+effectively absorbing any contribution from the Fermi momentum of the
+nucleus involved in the neutrino interaction.
+Fitting in this manner also accounts for the non-active material (PVC and glue)
+in the detector.
+Just as in the muon track case, the functional form for the fit is piecewise
+linear spline with four segments,
+as seen in figure \ref{energy_fits}.
+The offset, four slope values and three join points are all free parameters in
+the fit.
+
 
 \section{Image Formation}
 

@@ -121,13 +121,72 @@ disk into memory during training.
 A comparison original continuous scale and discrete scale can be seen in figure
 \ref{pixelmapadc}.
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[height=0.9\textheight]{figures/arch/arch.pdf}
+\end{center}
+\caption{Depiction of the convolutional neural network architecture used
+for event classification.}{Starting with the input at the bottom,
+the network has separate branches for the \xview and \yview.
+Each branch undergoes successive convolution, pooling, and
+local response normalization (LRN).  Inception modules are used in downstream layers.
+The two views are merged and passed through a final inception module, and
+pooled.  The output of the network comes from softmax units.
+}
+\label{arch}
+\end{figure}
+
+
 \section{Architecture}
 
+The network architecture used in for this analysis is primarily based on
+the \googlenet architecture \cite{szegedy2014going} introduced in section
+\ref{googlenet_section}.
+Initial experiments were performed with a full implementation of \googlenet
+for each view, with only the final fully-connected layers merged.
+It was observed during training, however,
+that the classification of the second intermediate
+loss unit showed equivalent classification accuracy to the final loss unit.
+The architecture was then pruned and restructured in order to reduce
+the total number of operations, and thus the amount of computation required
+for training and evaluation.
+No degradation was observed in the classification results with the pruned
+architecture.
+A depiction of the architecture can be seen in figure \ref{arch}.
 
-We use siamese googlenet, two googlenets side-by-side
+Input from the \xview and \yview is handled separately in two branches of the
+network which are only merged in the final few layers.
+Early in the network, images are subjected to $7\times7$ convolution and
+$3\times3$ pooling, both with a stride of two.
+Using stride two in these early layers scales the images down by a factor of
+four.
+Local response normalization (LRN) \cite{krizhevsky2012imagenet} is used
+to smooth the filtered images.  Two more convolution operations, $1\times1$
+and $3\times3$ are used, then another pass of smoothing with LRN, and
+$3\times3$ pooling with stride two.  The $1\times1$ convolution serves
+as dimensionality reduction in the number of filters.
+A pair of inception modules is then used, then another $3\times3$ pooling layer
+with stride two and another inception module.  The filter outputs for each view
+are then concatenated and passed through another inception module.  A final
+pass of average pooling is employed before a softmax layer, which serves as
+the output of the network.
 
-Train on neutrinos, then add cosmics and fine tune.
 
+In the interest of time, the architecture presented here has only been coarsely
+optimized, leaving plenty of room for further study.
+It seems quite likely that a significantly more compact network could perform
+equally as well.
+Classification results could also perhaps be improved through fine tuning of
+the architecture.
+Eliminating the aggressive downsampling with stride two in the early layers
+could significantly increase the level of detail which is available in the
+inception modules.
+Merging views earlier in the architecture could provide higher levels of
+abstraction and greatly reduce the number of operations required.
+The effect of LRN should be studied by removing those layers and
+comparing results.
+
+\clearpage
 
 \section{Regularization}
 
@@ -147,7 +206,6 @@ Symmetry about in the cell dimension is not perfect; the beam axis is directed
 $3^{\circ}$ above detector horizon and attenuation in the optical fiber
 causes thresholding to become more significant for hits further from
 the readout electronics.
-%% Should we reference the conclusions from the LEM paper here?
 These effects are small, however, and their presence in fact aids in
 enhancing variation of the training sample and deweighting precise details
 of the Monte Carlo simulation.

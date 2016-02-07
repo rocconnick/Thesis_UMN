@@ -34,6 +34,20 @@ network trained on events, treated as images, from \nova simulation and data.
 In this approach, the feature extraction units which lead to classification
 are trained as convolutional filters in a deep architecture.
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/dummy/dummy.jpg}
+\end{center}
+\caption{Example images formed from \nova slices.}{
+These are the images.  The region of interest is determined by the minimum hit
+plane position (furthest upstream) and the median cell position of all activity
+in the 100 plane window spanned by the image.
+The pixel intensity is proportional to the calibrated energy deposition
+of each cell hit.}
+\label{pixelmap}
+\end{figure}
+
+
 \section{\nova Events as Images}
 
 Naively, completely removing reconstruction from the classification pipeline
@@ -56,20 +70,6 @@ between the hit location and readout electronics.
 This calibration is important in order to enhance the uniformity of the
 event images, leaving behind the effects of attenuation and cell-to-cell
 variations would add unnecessary diversity to the training sample.
-
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{figures/dummy/dummy.jpg}
-\end{center}
-\caption{Example images formed from \nova slices.}{
-These are the images.  The region of interest is determined by the minimum hit
-plane position (furthest upstream) and the median cell position of all activity
-in the 100 plane window spanned by the image.
-The pixel intensity is proportional to the calibrated energy deposition
-of each cell hit.}
-\label{pixelmap}
-\end{figure}
-
 
 Rather than using the readout of the entire detector, it is sensible to use
 the reconstructed slices discussed in section \ref{slicer_section}.

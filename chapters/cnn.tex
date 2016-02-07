@@ -1,0 +1,52 @@
+%!TEX root = ../thesis_phd.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% cnn.tex:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Convolutional Neural Network Event Classifier}
+\label{cnn_chapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+At the core of any particle physics analysis is the selection of signal events,
+that is, the events which represent the physical process under study.
+Traditionally, features are extracted from event reconstruction and passed
+to a machine learning alrorithm, e.g. k-nearest neighbor, neural network, or
+decision tree.
+While this apporach is generally successful, those classifiers can often
+be fooled by reconstruction failures.
+Even the most robust reconstruction failures will fall victim to
+more pathological event topologies.
+Some examples include overlapping particle activity which cannot be resolved
+and particles which don't travel far enough to make a recongizable track.
+
+An approach which relies on less reconstruction is thus desirable.
+In the case of \nova, this means building a classifier which recieves
+the raw detector output as input, so as to cut out the reconstruction as a
+middleman.
+
+Since \nova detector output is essentially a pair of images with discrete
+pixels, it pays to draw inspiration from the computer vision community.
+The recent advances in image classification
+\cite{krizhevsky2012imagenet,lecun2015deep,szegedy2014going}
+discussed in chapter \ref{nnet_chapter} lend themselves well to the task at
+hand.
+
+\section{\nova Events as Images}
+
+
+
+\section{Architecture}
+
+We use siamese googlenet, two googlenets side-by-side
+
+Train on neutrinos, then add cosmics and fine tune.
+
+
+\section{Regularization}
+
+
+\section{Training}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

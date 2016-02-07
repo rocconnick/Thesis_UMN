@@ -190,6 +190,15 @@ comparing results.
 
 \section{Regularization}
 
+A few regularization techniques were applied in order to enhance the ability
+of the network to generalize beyond the training sample.
+To keep the network weights small, weight decay term was included in the loss
+function equal to $2\times 10^{-4}$ times the squared \textit{L2} norm of the
+weight vector.
+The softmax output layer was also subjected to dropout
+\cite{hinton2014dropout}, described in section \ref{regularization_section},
+with a probability of 0.4.
+
 Perhaps the most robust defense against over training is more training
 data.
 In the absence of infinitely large and variegated training samples, however,

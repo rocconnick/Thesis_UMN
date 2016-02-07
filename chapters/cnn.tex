@@ -131,7 +131,26 @@ Train on neutrinos, then add cosmics and fine tune.
 
 \section{Regularization}
 
-
+Perhaps the most robust defense against over training is more training
+data.
+In the absence of infinitely large and variegated training samples, however,
+we can augment our sample by deliberately randomly changing the input image.
+Two techniques were employed in order to add variation to the dataset.
+First, Gaussian noise was applied to all pixel intensities with
+a standard deviation of 1\%.
+Since no Monte Carlo simulation is perfect, adding noise has the added benefit
+of training the network to rely less heavily on the simulated intensity
+in each pixel.
+Second, events were randomly selected to be reflected in the cell dimension,
+which is roughly transvese to the beam direction.
+Symmetry about in the cell dimension is not perfect; the beam axis is directed
+$3^{\circ}$ above detector horizon and attenuation in the optical fiber
+causes thresholding to become more significant for hits further from
+the readout electronics.
+%% Should we reference the conclusions from the LEM paper here?
+These effects are small, however, and their presence in fact aids in
+enhancing variation of the training sample and deweighting precise details
+of the Monte Carlo simulation.
 
 
 \section{Training}

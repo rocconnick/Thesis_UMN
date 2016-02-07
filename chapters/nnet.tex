@@ -184,6 +184,7 @@ Pooling has also been used to combine the output of semantically similar feature
 Semantic similarity is imposed during training through the bottleneck of information flowing backwards through the pooling layers.  Layers which pool over feature maps are referred to as \textit{maxout} layers.
 
 \subsection{Network-in-Network and \googlenet}
+\label{googlenet_section}
 
 The Network-in-Network (NIN) \cite{lin2013network} approach has been used to augment the learning capacity of convolution layers while also reducing dimensionality.
 Rather than using maxout feature pooling to reduce dimensionality, the NIN approach recombines features using a weighted sum of filter outputs with a \relu nonlinearity to produce a new set of features.

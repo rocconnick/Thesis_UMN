@@ -29,12 +29,100 @@ The recent advances in image classification
 \cite{krizhevsky2012imagenet,lecun2015deep,szegedy2014going}
 discussed in chapter \ref{nnet_chapter} lend themselves well to the task at
 hand.
+The implementation discussed in this chapter involves a convolutional neural
+network trained on events, treated as images, from \nova simulation and data.
+In this approach, the feature extraction units which lead to classification
+are trained as convolutional filters in a deep architecture.
 
 \section{\nova Events as Images}
 
+Naively, completely removing reconstruction from the classification pipeline
+would mean taking the entire detector readout for a given time window
+as input.  The $X$ and $Y$ view could each be treated as an image and passed
+to a convolutional neural network.
+The neural network, with the positional independence afforded by convolution,
+could arguably learn to find neutrino events regardless of where they lie
+within the detector.
+Sadly, this naive approach falls down for a few reasons.
+First, while the ND with roughly 20,000 pixels would produce images of a
+manageable scale, the FD with nearly 350,000 pixels is far to large.
+Scaling the images down to an acceptable scale would eliminate considerable
+detail.
+Additionally, calibration of hit energy depositions is not straightforward
+when looking at the entire detector.
+As discussed in section \ref{calib_atten_section}, calibrated energy deposition
+from a hit requires an estimate of distance along the fiber path
+between the hit location and readout electronics.
+This calibration is important in order to enhance the uniformity of the
+event images, leaving behind the effects of attenuation and cell-to-cell
+variations would add unnecessary diversity to the training sample.
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/dummy/dummy.jpg}
+\end{center}
+\caption{Example images formed from \nova slices.}{
+These are the images.  The region of interest is determined by the minimum hit
+plane position (furthest upstream) and the median cell position of all activity
+in the 100 plane window spanned by the image.
+The pixel intensity is proportional to the calibrated energy deposition
+of each cell hit.}
+\label{pixelmap}
+\end{figure}
+
+
+Rather than using the readout of the entire detector, it is sensible to use
+the reconstructed slices discussed in section \ref{slicer_section}.
+The performance of DBSCAN in isolating cosmic rays and neutrino interactions
+is robust and efficient enough \cite{baird2015thesis} that relying on this
+simple reconstruction step will not significantly impact classification
+results.
+In the case of slices, the distance from the readout electronics is determined
+by the mean position of all activity in the opposite view.
+
+Each slice is transformed into an image by locating a region of interest to
+capture activity.  The images are 80 cells wide and 100 cells deep in either
+view.
+The upstream side of the image is the first plane with a hit
+in the slice.  In either view, the center of the image is defined by the
+median cell position among all hits within the 100 plane window spanned by the
+image.
+The size and placement of this window ensures that the majority of beam events
+are well contained, including \numu CC interactions which are
+characteristically extensive as a result of long muon tracks.
+Example images can be seen in figure \ref{pixelmap}.
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/dummy/dummy.jpg}
+\end{center}
+\caption{Comparison of continuous hit intensity scale and discretized scale.}{
+Data volume is reduced by converting the continuous intensity scale of cell
+hit energy depositions into a scale with 256 discrete values.
+The discrete scale can be represented with eight bits, offering a significant
+savings over a floating point representation.
+}
+\label{pixelmapadc}
+\end{figure}
+
+
+Pixel intensity is proportional to the calibrated energy deposition
+in each cell.
+Images are thus interpretable as gray-scale with the shade of
+each pixel corresponding to the amount of energy recorded in that cell.
+In order to optimize data storage and transfer in the training stage,
+the pixel intensities are converted to a scale of 256 discrete values
+from the double precision floating point representation calibration result.
+This conversion offers a factor of eight savings (eight bit versus 64 bit) in
+savings over a floating point representation
+without significantly compromising the representational capacity.
+The importance of this savings is especially visible in reading data from
+disk into memory during training.
+A comparison original continuous scale and discrete scale can be seen in figure
+\ref{pixelmapadc}.
 
 \section{Architecture}
+
 
 We use siamese googlenet, two googlenets side-by-side
 
@@ -42,6 +130,8 @@ Train on neutrinos, then add cosmics and fine tune.
 
 
 \section{Regularization}
+
+
 
 
 \section{Training}

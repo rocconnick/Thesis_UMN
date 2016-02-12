@@ -300,10 +300,17 @@ after the next two sets of 50,000 iterations, then again after four sets of
 25,000 iterations, and then after each subsequent 10,000
 iterations.
 
-After 640,000 iterations, an error was observed in the architecture.
+Training was interrupted after 640,000 iterations due to the observation
+of an error observed in the architecture.
 Rather than having the intended 15 nodes in the softmax output layer,
 the architecture had accidentally been configured with 1,000 nodes in that
 layer.
+Since learning occurs much more quickly in downstream layers relative to
+upstream filters, a common practice
+for image recognitions competitions \cite{krizhevsky2012imagenet} is to
+fine-tune downstream layers using pre-trained filters.
+That fine-tuning approach was used in this case to make use of the training
+which had already taken place.
 The architecture was modified to have the correct number of nodes, and training
 was resumed by reloading trained weights from all layers but the output.
 Upon resuming training, the learning rate was set to 0.002, roughly equal to
@@ -312,8 +319,26 @@ The decrease schedule, however, was started from the beginning rather
 than reverting to the once every 10,000 iteration schedule
 that would have been employed beyond iteration 640,000.
 
-After 970,000 total iterations, XXXXX events from cosmic ray data were added
-to the training example.
+After 970,000 total iterations, 1.9 million events from cosmic ray data were
+added to the training example.
+The events were required to pass a preselection based on track
+containment and angle of the reconstructed track from the CosmicTrack algorithm
+described in section \ref{cosmictrack_section}.
+The cosmic ray preselection will be described in chapter
+\ref{cosmicveto_section}.
+With this enhanced training sample, the network was trained for another
+990,000 iterations.
+A separate version of the network was trained for 990,000 iterations
+using cosmic ray data from the beginning, but was outperformed by the
+other network in terms of overall accuracy.
+In particular, the network originally trained on a beam-only training set
+allowed for more pure \nue CC selection.
+
+
+
+
+
+
 
 
 

@@ -35,18 +35,69 @@ In this approach, the feature extraction units which lead to classification
 are trained as convolutional filters in a deep architecture.
 
 \begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{figures/dummy/dummy.jpg}
-\end{center}
+
+\begin{subfigure}[c]{\textwidth}
+\centering
+\begin{subfigure}[c]{0.47\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype2_caltype2_event274_x.pdf}
+\vspace{-20pt}
+\caption*{\xview}
+\end{subfigure}
+\begin{subfigure}[c]{0.47\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype2_caltype2_event274_y.pdf}
+\vspace{-20pt}
+\caption*{\yview}
+\end{subfigure}
+\vspace{-10pt}
+\caption{\numu CC interaction.}
+\label{pixnumu}
+\end{subfigure}
+
+\begin{subfigure}[c]{\textwidth}
+\centering
+\begin{subfigure}[c]{0.47\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype6_caltype6_event155_x.pdf}
+\vspace{-20pt}
+\caption*{\xview}
+\end{subfigure}
+\begin{subfigure}[c]{0.47\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype6_caltype6_event155_x.pdf}
+\vspace{-20pt}
+\caption*{\yview}
+\end{subfigure}
+\vspace{-10pt}
+\caption{\nue CC interaction.}
+\label{pixnue}
+\end{subfigure}
+
+\begin{subfigure}[c]{\textwidth}
+\centering
+\begin{subfigure}[c]{0.47\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype13_caltype6_event144_x.pdf}
+\vspace{-20pt}
+\caption*{\xview}
+\end{subfigure}
+\begin{subfigure}[c]{0.47\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype13_caltype6_event144_x.pdf}
+\vspace{-20pt}
+\caption*{\yview}
+\end{subfigure}
+\vspace{-10pt}
+\caption{NC interaction.}
+\label{pixnc}
+\end{subfigure}
+
+
 \caption{Example images formed from \nova slices.}{
-These are the images.  The region of interest is determined by the minimum hit
-plane position (furthest upstream) and the median cell position of all activity
+Images such as these are passed as input to the convolutional neural network.
+The region of interest is determined by the furthest plane upstream with
+activity and the median cell position of all activity
 in the 100 plane window spanned by the image.
 The pixel intensity is proportional to the calibrated energy deposition
 of each cell hit.}
 \label{pixelmap}
 \end{figure}
-
+\clearpage
 
 \section{\nova Events as Images}
 
@@ -95,6 +146,7 @@ Example images can be seen in figure \ref{pixelmap}.
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.7\textwidth]{figures/dummy/dummy.jpg}
+
 \end{center}
 \caption{Comparison of continuous hit intensity scale and discretized scale.}{
 Data volume is reduced by converting the continuous intensity scale of cell
@@ -223,7 +275,47 @@ of the Monte Carlo simulation.
 \section{Training}
 
 Training was performed using the Caffe framework \cite{jia2014caffe}
-using NVIDIA Tesla K20 and K40 graphics processing units.
+using NVIDIA Tesla K20 and K40 graphics processing units (GPU).
+Weight updates were
+performed using the basic stochastic gradient descent (SGD)
+\cite{reed1999neural} procedure described in chapter \ref{nnet_chapter}.
+
+The first training set consisted of ... gotta go on
+
+Due to GPU memory constraints, a mini-batch training scheme was employed.
+In mini-batch training, gradients used in weight updates are averaged over
+small sub-samples of the training dataset rather than the entire sample.
+After calculating the gradient for a batch, it is flushed from memory
+and the next batch is loaded.
+Batches are reused after each full pass over the training dataset
+A batch size of 32 was used to train the network.
+Each pass over a mini-batch is referred to as an \textit{iteration};
+a full pass over the dataset is called an \textit{epoch}.
+
+The initial learning rate was set to 0.01.
+During the training, the learning rate was decreased by a factor of 0.96
+according to a prescribed schedule.
+The learning rate was decreased after the first 100,000 iterations, again
+after the next two sets of 50,000 iterations, then again after four sets of
+25,000 iterations, and then after each subsequent 10,000
+iterations.
+
+After 640,000 iterations, an error was observed in the architecture.
+Rather than having the intended 15 nodes in the softmax output layer,
+the architecture had accidentally been configured with 1,000 nodes in that
+layer.
+The architecture was modified to have the correct number of nodes, and training
+was resumed by reloading trained weights from all layers but the output.
+Upon resuming training, the learning rate was set to 0.002, roughly equal to
+the learning rate reached after 640,000 iterations.
+The decrease schedule, however, was started from the beginning rather
+than reverting to the once every 10,000 iteration schedule
+that would have been employed beyond iteration 640,000.
+
+After 970,000 total iterations, XXXXX events from cosmic ray data were added
+to the training example.
+
+
 
 
 

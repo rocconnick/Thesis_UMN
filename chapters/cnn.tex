@@ -279,6 +279,20 @@ Weight updates were
 performed using the basic stochastic gradient descent (SGD)
 \cite{reed1999neural} procedure described in chapter \ref{nnet_chapter}.
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/cnn/traindist.pdf}
+\end{center}
+\caption{Histogram depicting class distribution for training dataset}{
+  Training events are taken from \nova MC.  Events are simulated with the
+  \numi energy spectrum and flavor distribution, ignoring oscillation.
+  Samples of \nue and \nutau events are enhanced by respectively interchanging the \nue and \nutau components with the \numu components.
+  Cosmic rays were only included in the sample during the fine-tuning phase of
+  the training.
+}
+\label{traindist}
+\end{figure}
+
 The training sample was taken from \nova Monte Carlo simulation.
 Events are simulated with an energy, interaction, flux distribution
 corresponding to the \numi beam spectrum convoluted with \genie
@@ -328,21 +342,8 @@ Each pass over a mini-batch is referred to as an \textit{iteration};
 a full pass over the dataset is called an \textit{epoch}.
 
 
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=\textwidth]{figures/cnn/traindist.pdf}
-\end{center}
-\caption{Histogram depicting class distribution for training dataset}{
-  Training events are taken from \nova MC.  Events are simulated with the
-  \numi energy spectrum and flavor distribution, ignoring oscillation.
-  Samples of \nue and \nutau events are enhanced by respectively interchanging the \nue and \nutau components with the \numu components.
-  Cosmic rays were only included in the sample during the fine-tuning phase of
-  the training.
-}
-\label{traindist}
-\end{figure}
 
-\begin{table}
+\begin{table}[t]
 \begin{center}
 \begin{tabular}[t]{|c|c|c|}
 \hline
@@ -413,16 +414,45 @@ allowed for more pure \nue CC selection.
 
 
 
-\section{Performance}
+\section{Training Results}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.85\textwidth]{figures/cnn/numu_pid_dist.pdf}
+\end{center}
+\caption{Histogram of the \nue classifier output}{
+The survived \numu signal can be seen as as strong peak at the right.
+Both \nue, and NC interactions all enter as a background
+in \numu disappearance analysis.
+Clear separation in the classifier can be seen between the signal and backgrounds.
+}
+\label{numupid}
+\end{figure}
+
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.85\textwidth]{figures/cnn/nue_pid_dist.pdf}
+\end{center}
+\caption{Histogram of the \numu classifier output}{
+The appeared \nue signal can be seen as as strong peak at the right.
+Survived \numu, beam \nue, and NC interactions all enter as a background
+in \nue appearance analysis.
+Clear separation in the classifier can be seen between the signal and backgrounds.
+}
+\label{nuepid}
+\end{figure}
+
 
 The trained network serves as a good classifier for $\nu$ oscillation analysis
 involving both \numu disappearance and \nue appearance.
 Classifier outputs \nue, \numu, and \nutau are formed by summing across the
 softmax outputs for QE, RES, DIS, and Other subclasses.
 The performance of this classifier has been demonstrated to outperform
-all other classification approaches developed for \nova.
-
-
+all other classification approaches developed for the \nova oscillation
+analyses.
+The \numu and \nue classifier outputs can be seen in figures \ref{numupid} and
+\ref{nuepid} respectively.
 
 
 

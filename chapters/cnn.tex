@@ -391,7 +391,7 @@ The architecture was modified to have the correct number of nodes, and training
 was resumed by reloading trained weights from all layers but the output.
 This method for resolving the error was justified by an approach
 commonly used for image classification competitions known as
-\textit{fine-tuning}.
+\textit{fine-tuning} \cite{krizhevsky2012imagenet}.
 Since learning occurs much more quickly in downstream layers relative to
 upstream filters, downstream layers can be quickly fine-tuned based on
 filters which have been trained in advance.

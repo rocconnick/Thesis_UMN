@@ -35,7 +35,6 @@ In this approach, the feature extraction units which lead to classification
 are trained as convolutional filters in a deep architecture.
 
 \begin{figure}[t]
-
 \begin{subfigure}[c]{\textwidth}
 \centering
 \begin{subfigure}[c]{0.47\textwidth}
@@ -413,7 +412,6 @@ In particular, the network originally trained on a beam-only training set
 allowed for more pure \nue CC selection.
 
 
-
 \section{Training Results}
 
 \begin{figure}[t]
@@ -455,10 +453,87 @@ The \numu and \nue classifier outputs can be seen in figures \ref{numupid} and
 \ref{nuepid} respectively.
 
 
+\section{Filter Visualization}
+
+Since convolution and pooling layers preserve the spatial orientation of
+information within an image, visualizing filters and filter output for
+particular images can provide insight with regard to the network operation.
+As observed in many convolutional neural network examples,
+early layers in the network respond to low-level characteristics
+in an image \cite{lecun2015deep}.
+The filters and example output from the first convolution layer in the \yview
+branch can be seen in figure \ref{convexamples}.
+Downstream layers in the network start to pick up higher level concepts,
+like the presence of track-like or shower-like activity.
+Output from the first inception module in the \yview branch can be seen
+in figure \ref{inceptionexamples}.
 
 
+\begin{figure}[t]
+\begin{center}
+
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/conv1y.pdf}
+\caption*{$7\times7$ Convolutional Filter}
+\end{subfigure}
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype2_caltype2_event274_y.pdf}
+\caption*{Filter outputs for \numu CC event (fig. \ref{pixnumu})}
+\end{subfigure}
+
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype6_caltype6_event155_y.pdf}
+\vspace{-20pt}
+\caption*{Filter outputs for \nue CC event (fig. \ref{pixnue})}
+\end{subfigure}
+\begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype13_caltype6_event144_y.pdf}
+\caption*{Filter outputs for NC event (fig. \ref{pixnc})}
+\end{subfigure}
+\caption{$7\times7$ convolutional filter and example outputs}{The image at top
+left shows the 64 trained $7\times7$ filters from the first layer in the \yview
+branch of the network.  Also shown is the output for each of the three example
+event images from figure \ref{pixelmap}.}
+\label{convexamples}
+\end{center}
+\end{figure}
 
 
+\begin{figure}
+  \vspace{-25pt}
+  \begin{center}
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \includegraphics[width=0.55\textwidth,viewport=10 13 135 97, clip=true]{figures/cnn/featurePlotNuMuDIS}
+    \caption*{\numu CC DIS event with with significant hadronic activity}
+  \end{subfigure}%
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \includegraphics[width=0.55\textwidth,viewport=10 13 135 97, clip=true]{figures/cnn/featurePlotNuMuQE}
+    \caption*{\numu CC QE event with with little hadronic activity}
+
+  \end{subfigure}%
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \includegraphics[width=0.55\textwidth,viewport=10 13 135 97, clip=true]{figures/cnn/featurePlotNC}
+    \caption*{NC event with with solely hadronic activity}
+
+  \end{subfigure}%
+\end{center}
+  \caption{Inception module filter output}
+  {
+    Input images and corresponding filter output from two particular
+    filters in the first inception module in the \yview branch of the
+    network.
+    In each pane, the input image at left and filter outputs are at right.
+    The top filter in each pane appears to responding to hadronic activity,
+    while the bottom filter appears to correspond to more track-like activity.
+
+  }
+  \label{inceptionexamples}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

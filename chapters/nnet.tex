@@ -154,11 +154,26 @@ Backpropagation drove a major shift in the field of neural networks.  Prior to t
 From a theoretical perspective, deep neural networks -- those with many layers -- offer increased capacity for problem solving by forming higher order nonlinear functions.  There are technical difficulties involved in the training of deeper networks, however.  The increase in complexity for larger networks can lead to serious constraints around the requisite computing power.  Further, backpropagated derivatives can become small in upstream layers, causing very little learning to occur in those layers.  For decades, these constraints required applications to be developed around a small set of features extracted from raw data rather then the raw data itself.  Engineering of those features is commonly a meticulous process involving considerable domain knowledge.  Recent innovations in network architecture and training strategy have led to major advances in performance, particularly in the field of computer vision and recognition.
 Applications of neural networks now commonly involve deep architectures with many inputs.
 In the case of image processing problems, it is not uncommon to use upwards of several thousand raw pixels as input and tens of hidden layers \cite{lecun2015deep}.
+
+Colvolutional neural networks have been highly successful in the field of
+computer vision for classification and many other tasks
+\cite{lecun2010convolutional,krizhevsky2012imagenet}.
+The technique is inspired by studies of the visual cortex of animals
+\cite{lecun2015deep}, in which groupings of neurons scan over small sub-regions
+of the visual field.
+Independent treatment of sub-regions can allow the network as a whole to detect
+learned features in a position-independent fashion.
+In other words, classification of an image should be possible even if the
+subject appears in a different location within the frame.
+
+
 This section is not a complete survey of techniques used in deep learning, which are many, but merely a description of the techniques used in this thesis.
 
 \subsection{Convolution Layers}
 
-Use of convolution layers has led to top results in the field of computer vision \cite{lecun2010convolutional,krizhevsky2012imagenet}.  This technique is inspired by studies of the visual cortex of animals  \cite{lecun2015deep}, in which groupings of neurons scan over small sub-regions of the visual field.  Independent treatment of sub-regions can allow the networks at large to detect learned features in a position-independent fashion.  In other words, classification of an image can be achieved even if the subject appears in a different location within the frame.  In an artificial neural network, this is achieved using a  discrete convolution operation.  The convolution of discrete sequences $f$ and $g$ is defined as
+Convolution layers \cite{lecun2015deep} produce many alternative representations
+of the input image, each serving to extract some learned feature.
+This is achieved using a  discrete convolution operation.  The convolution of discrete sequences $f$ and $g$ is defined as
 \begin{equation}
 (f*g)_i = \sum_{j = -\infty}^{\infty} f_j g_{i-j}.
 \end{equation}

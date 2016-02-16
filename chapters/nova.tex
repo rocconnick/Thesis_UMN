@@ -65,7 +65,27 @@ Rather than being placed directly in the \numi beam line, the \nova detectors ar
         \caption{}
 \end{figure}
 
- The \nova detectors are designed to allow fine-grained reconstruction of electromagnetic and hadronic showers; consequently to provide identification of \numu and \nue CC interactions, as well as to tell them apart from NC interactions.  To achieve this goal, the detector topology is a repeated structure of unit cells which are much smaller than the electromagnetic and strong interaction lengths of the composite materials.  Charged particles produce light as they traverse the cells, which enables detection.  Cells are long, but arranged in alternating horizontal and vertical planes to provide measurements of Cartesian coordinates.  The detectors are designed to be functionally identical to each other; they are built with the same materials and geometry to constrain systematic uncertainties due to variation in detector efficiency.
+ The \nova detectors are designed to allow fine-grained reconstruction of electromagnetic and hadronic showers.
+ Such a detailed view can allow identification of \numu and \nue CC
+ interactions, and help to tell them apart from NC interactions.  To achieve this goal, the detector topology is a repeated structure of unit cells which are much smaller than the electromagnetic and strong interaction lengths of the composite materials.  Charged particles produce light as they traverse the cells, which enables detection.  Cells are long, but arranged in alternating horizontal and vertical planes to provide measurements of Cartesian coordinates.
+ Example event topologies can be seen in figure \ref{eventtopnue}.
+ The detectors are designed to be functionally identical to each other; they are built with the same materials and geometry to constrain systematic uncertainties due to variation in detector efficiency.
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/figures/event_topology_nue.pdf}
+\end{center}
+\caption{Event topologies in \nova}{Shown are three example event topologies in
+\nova.  The top pane shows a \numu CC interaction with a long muon track and
+visible activity from a proton.  An electron shower from a \nue CC interaction
+is visible in the middle pane.  The third pane shows a NC interaction
+with a neutral pion decaying to two photons, which forms the dominant
+background in \nova's \nue appearance search.The electromagnetic
+radiation length in \nova is relatively long compared to the size of a cell,
+which aids in distingusing such events.}
+\label{eventtopnue}
+\end{figure}
+
 
 \subsection{Cell Structure}
 
@@ -92,6 +112,8 @@ At the end of the cells, photons trapped in the WLS fiber are converted to photo
 The \nova data concentrator module (DCM) is responsible for collecting data from up to 64 APD/FEB pairs.   A DCM is a device mounted on the detector with an embedded CPU running Linux and custom \nova DAQ software.  Input and output is transmitted using a standard CAT5e link network link.  Output from a DCM is transmitted to a buffer farm over 200 compute nodes.  These nodes are arranged to store data in a circular ring buffer, or in other words, when new data arrives, the oldest data is overwritten.  The buffer farm is capable of storing FD data for upwards of several minutes, during which time any subset of the buffered data can be written to disk and stored permanently.  Trigger decisions are issued through the custom \nova global trigger software, which can receive external triggers as well as data-driven triggers based analysis of data stored in the buffer farm.  This thesis primarily external triggers.  Neutrino data is recorded in the ND and FD by the so-called \numi trigger, which records 550 $\mu$s of data centered around the 10 $\mu$s \numi beam spill.  FD Cosmic ray data -- used for calibration and background estimation -- is recorded using a 10 Hz minimum bias trigger, commonly referred to as the cosmic trigger.   Cosmic events in the ND are a commodity since the detector is underground; a minimum bias trigger at any sampling rate simply does not record enough activity.  In place such a trigger, an simple activity based data-driven trigger is used to collect cosmic ray data in the ND.  This trigger reads out data whenever certain number of hits are recorded above a certain threshold.
 
 Data is written to computer hard disks at the respective ND and FD sites.  Each site is capable of storing many days worth of data.  Ultimately, the data is transfered to Fermilab for permanent storage, where it is archived on tape and made available for offline reconstruction and physics analysis.
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

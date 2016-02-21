@@ -28,7 +28,7 @@ and $y$ (horizontal) views.
 The goal with this approach is to sidestep pathological failures incurred in each reconstruction and feature engineering step, thus allowing more of those pathological events to be more correctly classified.
 
 The \nova \textit{event display} provides a visualization of the raw detector readout which serves as the input to reconstruction.
-An example event display is shown in figure \ref{eventDisplay14}.
+An example event display is shown in Figure \ref{eventDisplay14}.
 The data corresponds to 550 $\mu s$ of Far Detector (FD) readout, with hits colored according to their time recorded relative to the start of the readout window.
 Visible activity displayed falls into two primary groups: randomly distributed electronic noise and correlated activity from cosmic rays.
 Since cosmic rays cross the detector quickly, hits along each track are displayed as a uniform color.
@@ -82,7 +82,7 @@ points are added to the same cluster.
 Clusters can be disregarded if they do not inude a minimum number of hits,
 which can be optimized based on the amount of noise in the data.
 Boundaries between clusters are effectively formed in low density regions.
-A depiction of how points are clustered can be seen in figure \ref{dbscan}.
+A depiction of how points are clustered can be seen in Figure \ref{dbscan}.
 
 The distance metric used for slicing in \nova is based on the time, $t$, and
 spatial position, $\vec{r}$, of hits
@@ -303,7 +303,7 @@ Near the end of particle tracks, the energy deposition per unit length
 (\dedx) is well described by the Bethe-Bloch formula \cite{pdg}.
 The formula predicts a stable minimum in \dedx near the track end,
 which for muons in organic materials covers a wide range of several hundred cm.
-This stable region is demonstrated in figure \ref{calib_dEdX}.
+This stable region is demonstrated in Figure \ref{calib_dEdX}.
 For \nova, the region between 100 and 200 cm from the track endpoint is used
 to determine the absolute energy scale.
 
@@ -405,7 +405,7 @@ of muon track length and true muon energy from simulation.
 For muons in \nova, the track length is more tightly correlated with
 true muon energy than than the sum of calibrated energy depositions.
 The functional form for the fit is piecewise linear spline with four segments,
-as seen in figure \ref{energy_fits}.
+as seen in Figure \ref{energy_fits}.
 The offset, four slopes and three join points are all free parameters in the
 fit.
 
@@ -426,7 +426,7 @@ Fitting in this manner also accounts for the non-active material (PVC and glue)
 in the detector.
 Just as in the muon track case, the functional form for the fit is piecewise
 linear spline with four segments,
-as seen in figure \ref{energy_fits}.
+as seen in Figure \ref{energy_fits}.
 The offset, four slope values and three join points are all free parameters in
 the fit.
 

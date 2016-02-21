@@ -16,7 +16,7 @@ The approach presented in this thesis applies a supervised learning strategy for
 
 \section{Artificial Neural Networks}
 
-An artificial neural network is a common tool used in classification and regression.  This class of algorithms draws inspiration from biological neurons.  Nervous systems of organisms are built up from a repeated structure of cells, called \textit{neurons}, which are connected to each other in order to transmit signals.  An example of a neuron can be seen in figure \ref{neuron}.  The base of a neuron is formed by a branching tree of \textit{dendrites} which receive signals from other neurons.  Signals are integrated and amplified in the cell body, then retransmitted through a long shaft, or \textit{axon}, to other neurons.  Intelligence is achieved by connecting many neurons which produce a wide variety of responses based on given stimuli.
+An artificial neural network is a common tool used in classification and regression.  This class of algorithms draws inspiration from biological neurons.  Nervous systems of organisms are built up from a repeated structure of cells, called \textit{neurons}, which are connected to each other in order to transmit signals.  An example of a neuron can be seen in Figure \ref{neuron}.  The base of a neuron is formed by a branching tree of \textit{dendrites} which receive signals from other neurons.  Signals are integrated and amplified in the cell body, then retransmitted through a long shaft, or \textit{axon}, to other neurons.  Intelligence is achieved by connecting many neurons which produce a wide variety of responses based on given stimuli.
 
 
 \begin{figure}[t]
@@ -28,7 +28,7 @@ An artificial neural network is a common tool used in classification and regress
   \label{neuron}
 \end{figure}
 
-Artificial neural networks are designed to crudely approximate the structure of a biological nervous system \cite{reed1999neural}.  The basic unit of a neural network is called a \textit{node}.  Each is a function which computes an output value from a set of inputs.  Nodes are arranged into \textit{layers}, as seen in figure \ref{nnet}.  In graph theory terms, a neural network is a \textit{feedforward graph}, implying that information is passed forward to subsequent layers, but not backward.  Input variables to the classification or regression problem are passed through \textit{input layer}, and the .  Any number of downstream \textit{hidden layers} can be trained to perfrom the classification or regression task.  The predicted output is then extracted from the final \textit{output layer}.  For multivariate regression, the output is a vector of decimal values.  For multi-class classification, the output is ususally a vector of as many values as there are classes, each ranging between zero and one.  The  magnitude of the each value is interpreted as how well the inputs represent that particular class.
+Artificial neural networks are designed to crudely approximate the structure of a biological nervous system \cite{reed1999neural}.  The basic unit of a neural network is called a \textit{node}.  Each is a function which computes an output value from a set of inputs.  Nodes are arranged into \textit{layers}, as seen in Figure \ref{nnet}.  In graph theory terms, a neural network is a \textit{feedforward graph}, implying that information is passed forward to subsequent layers, but not backward.  Input variables to the classification or regression problem are passed through \textit{input layer}, and the .  Any number of downstream \textit{hidden layers} can be trained to perfrom the classification or regression task.  The predicted output is then extracted from the final \textit{output layer}.  For multivariate regression, the output is a vector of decimal values.  For multi-class classification, the output is ususally a vector of as many values as there are classes, each ranging between zero and one.  The  magnitude of the each value is interpreted as how well the inputs represent that particular class.
 
 Each node in a layer typically receives input from all nodes in the previous layer, although more sparesely connected networks have been investigated.  The response to each input is characterized by a set of weights, $\mathbf{w}^{i,j}$, for node $i$ in layer $j$.  Each layer produces a vector of outputs, $\mathbf{a}^{j}$, so the response in for the $i$th node in layer $j$ is the inner product between the weight vector of the node and the outputs of the previous layer in addition to a bias term, $b^{i,j}$:
 
@@ -179,7 +179,7 @@ This is achieved using a  discrete convolution operation.  The convolution of di
 \end{equation}
 For convolution layers, the sequence $g$ to be the image and $f$ is called a filter.
 The filters in a convolutional architecture are restricted to have non-zero values over a finite range corresponding to an $n \times n$ pixel sub-region of the image.
-The square sub-region of the image is ``unrolled'' into a one dimensional vector in order to support the convolution.  The filter weights, $f_j$, are can be learned through backpropagation to learn features within the image.  The output of a convolution layer has each pixel replaced with the output of $f$ convolved over the surrounding $n\times n$ sub-region.  A convolution layer can have many such filters, leading to multiple representations which are sensitive to different features.  A visualization of such an architecture can be seen in figure \ref{convnet}.
+The square sub-region of the image is ``unrolled'' into a one dimensional vector in order to support the convolution.  The filter weights, $f_j$, are can be learned through backpropagation to learn features within the image.  The output of a convolution layer has each pixel replaced with the output of $f$ convolved over the surrounding $n\times n$ sub-region.  A convolution layer can have many such filters, leading to multiple representations which are sensitive to different features.  A visualization of such an architecture can be seen in Figure \ref{convnet}.
 
 \begin{figure}[t]
   \begin{center}
@@ -227,10 +227,10 @@ In that case, the NIN layers can be seen as synthesizing output across filters t
 
 
 The NIN approach has been used heavily in a leading network architecture known as \googlenet \cite{szegedy2014going}.
-The \googlenet architecture is built up from a repeated structure dubbed the \textit{inception module}, as seen in figure \ref{inception}.
+The \googlenet architecture is built up from a repeated structure dubbed the \textit{inception module}, as seen in Figure \ref{inception}.
 In the inception module, all $1\times1$ convolution layers are used for NIN recombination to reduce dimensionality.
 Prior to more expensive $3\times3$ and $5\times5$ convolutions, the input filters are reduced down to 96 and 16 filters, respectively.
-The $3\times3$ and $5\times5$ respectively include 128 and 32 filters, which are concatenated with the output of 64 $1\times1$ filters and another 32 $1\times1$ filters which follow $3\times3$ max pooling.  The full \googlenet, seen in figure \ref{googlenet} includes nine repetitions of the inception module.
+The $3\times3$ and $5\times5$ respectively include 128 and 32 filters, which are concatenated with the output of 64 $1\times1$ filters and another 32 $1\times1$ filters which follow $3\times3$ max pooling.  The full \googlenet, seen in Figure \ref{googlenet} includes nine repetitions of the inception module.
 
 Another important feature of \googlenet is the use of multiple softmax outputs to better train early layers \cite{szegedy2014going}.
 \googlenet includes two extra outputs at upstream points in the network to propagate information backwards during training.

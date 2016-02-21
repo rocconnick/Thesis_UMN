@@ -156,7 +156,7 @@ If a track enters the muon catcher, the height of the track
 at the first muon catcher plane is required to be less than the height of
 the muon catcher ($Z = 55$ cm) to ensure that it did not leave and re-enter
 the detector.
-The track projection is also required to span at least five cells in the 
+The track projection is also required to span at least five cells in the
 forward direction nine cells in the backward direction.
 Finally, the hadronic cluster (all hits in the slice not on the muon track)
 is required to have calorimetric energy less than 30 MeV.
@@ -171,53 +171,69 @@ the convolutional neural network classifier and some additional requirements
 to handle cosmic ray events which would remain in the sample otherwise.
 
 The convolutional neural network discriminant is formed by the sum of the four
-softmax units corresponding to \numu CC (QE, RES, DIS, other).
-Events are rejected if the discriminant is less than 0.5.
-Figure \ref{cvnout} shows the distribution of the discriminant for
+softmax outputs corresponding to \numu CC (QE, RES, DIS, other).
+Events are rejected if the softmax output is less than 0.5.
+Figure \ref{cvnnumu} shows the distribution of the discriminant for
 signal and background.
 
 
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/n1_cvnnumu.pdf}
+\end{center}
+\caption{Distribution of softmax output from convolutional neural network for signal and backgrounds}{
+The convolutional neural network output serves as the primary discriminant for
+rejecting background.
+The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
+magenta shows the oscillated spectrum.
+The red and green distributions show the cosmic-ray and beam backgrounds,
+respectively.  Events are rejected if they fall to the left of the vertical
+dashed red line.
+}
+\label{cvnnumu}
+\end{figure}
+
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/n1_cosStartY.pdf}
+\end{center}
+\caption{Distribution of CosmicTrack start $Y$ position for signal and backgrounds}{
+The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
+magenta shows the oscillated spectrum.
+The red and green distributions show the cosmic-ray and beam backgrounds,
+respectively.  Events are rejected if they fall to the right of the vertical
+dashed red line.
+}
+\label{cosStartY}
+\end{figure}
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.9\textwidth]{figures/selection/n1_cosbakdist.pdf}
 \end{center}
 \caption{Distribution of cosmic track backward projected distance for signal and backgrounds}{
-The convolutional neural network output serves as the primary discriminant for
-rejecting background.
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
 magenta shows the oscillated spectrum.
 The red and green distributions show the cosmic-ray and beam backgrounds,
-respectively.
+respectively.  Events are rejected if they fall to the left of the vertical
+dashed red line.
 }
 \label{cosbakdist}
 \end{figure}
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection/n1_cosStartY.pdf}
-\end{center}
-\caption{Distribution of softmax output from convolutional neural network for signal and backgrounds}{
-The convolutional neural network output serves as the primary discriminant for
-rejecting background.
-The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
-magenta shows the oscillated spectrum.
-The red and green distributions show the cosmic-ray and beam backgrounds,
-respectively.
-}
-\label{cosStartY}
-\end{figure}
+
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.9\textwidth]{figures/selection/n1_pngptp.pdf}
 \end{center}
-\caption{Distribution of softmax output from convolutional neural network for signal and backgrounds}{
-The convolutional neural network output serves as the primary discriminant for
-rejecting background.
+\caption{Distribution of transverse momentum estimated from slice mean position
+for signal and backgrounds}{
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
 magenta shows the oscillated spectrum.
 The red and green distributions show the cosmic-ray and beam backgrounds,
-respectively.
+respectively.  Events are rejected if they fall to the right of the vertical
+dashed red line.
 }
 \label{pngptp}
 \end{figure}
@@ -225,13 +241,13 @@ respectively.
 \begin{center}
 \includegraphics[width=0.9\textwidth]{figures/selection/n1_tranMom.pdf}
 \end{center}
-\caption{Distribution of softmax output from convolutional neural network for signal and backgrounds}{
-The convolutional neural network output serves as the primary discriminant for
-rejecting background.
+\caption{Distribution of transverse momentum estimated from reconstructed prongs
+ for signal and backgrounds}{
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
 magenta shows the oscillated spectrum.
 The red and green distributions show the cosmic-ray and beam backgrounds,
-respectively.
+respectively.  Events are rejected if they fall to the right of the vertical
+dashed red line.
 }
 \label{tranMom}
 \end{figure}

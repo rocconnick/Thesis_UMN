@@ -175,6 +175,24 @@ softmax outputs corresponding to \numu CC (QE, RES, DIS, other).
 Events are rejected if the softmax output is less than 0.5.
 Figure \ref{cvnnumu} shows the distribution of the discriminant for
 signal and background.
+A fair amount of cosmic-ray background slips past the softmax requirement.
+The vast majority of these events are near the top of the detector
+and can be rejected by requiring the CosmicTrack start $Y$ position to be less
+than 600 cm, as seen in figure \ref{cosStartY}.
+Additional cosmic background can be rejected using the transverse momentum
+of the event.
+Two measures of transverse momentum are used, one which is based
+on the reconstructed slices and another based on the reconstructed prongs
+described in \cite{niner2015thesis}.
+In the slice method, a unit vector is formed in the direction running
+from the start of the KalmanTrack to the energy centroid of the slice;
+the transverse momentum fraction reconstructed as the sine of the angle
+between that vector and the beam axis.
+The prong method is similar, except that the the momentum vector
+is formed as the energy weighted sum of all reconstructed prongs
+for that slice.
+Both of these transverse momentum measures, seen in figures \ref{tranMom} and
+\ref{pngptp}, are required to be less than 0.8.
 
 
 

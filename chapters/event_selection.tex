@@ -28,8 +28,8 @@ parameters, in particular \thetatth, which governs the amplitude of oscillation.
 This analysis, however, makes no attempt at including escaping events.
 
 Two primary backgrounds which must be suppressed for this analysis.
-The first is the vastly dominant cosmic ray background; the FD not underground
-and is exposed to cosmic rays at a rate exceeding 100 kHz.
+The first is the vastly dominant cosmic-ray background; the FD not underground
+and is exposed to cosmic rays at a rate in excess of 100 kHz.
 The second is source of background is events from the \numi beam which are
 not \numu CC interactions.
 NC interactions are the trickiest beam background to reject due to their
@@ -38,8 +38,208 @@ can produce a relatively long track.
 Both appeared and survived \nue in the beam are relatively rare and tend
 not to fake \numu CC signal.
 
+The event classifier described in section \ref{cnn_chapter} serves as to resolve
+both cosmic-ray and beam-induced backgrounds.
+Additional selection cuts described in this chapter serve to ensure
+reconstruction quality and containment.
+A handful of extra cuts are required to further reject cosmic background.
+
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.95\textwidth]{figures/selection/cosmicmuons.png}
+\end{center}
+\caption{Comparison of track topologies for cosmic-ray and neutrino events}{
+Cosmic-ray muon tracks (left) will tend to touch at least one detector face.
+Neutrino interactions (right) which occur within the detector will tend to
+be well contained.
+Cosmic-ray tracks which touch two detector faces can be rejected without
+appreciable signal loss.
+}
+
+\label{cosmictracks}
+\end{figure}
+
+
 
 \section{Cosmic Ray Preselection}
 \label{cosmicveto_section}
+
+The vast abundance of cosmic ray activity in the FD necessitates the
+use of an initial preselection upstream of heavier reconstruction
+algorithms.
+Running the entire reconstruction chain over all cosmic-ray activity would
+simply be too computationally expensive.
+Instead, an initial preselection has been applied based on the output
+of the slicing and CosmicTrack algorithms described in chapter
+\ref{reconstruction_chapter}.
+The preselection rejects roughly 90\% of cosmic ray activity while preserving
+nearly all contained \numu CC signal.
+
+A large majority of cosmic-ray activity consists of muons which traverse the
+detector, as depicted in figure \ref{cosmictracks}.
+If the muon tracks are well reconstructed, this activity can easily be rejected
+by identifying tracks which touch two faces of the detector.
+Proximity to the detector faces is determined by measuring the distance
+between the track start and stop points as projected along the track
+direction.
+The track projections method is depicted in figure \ref{trackproj}.
+This measure is only reliable when the simple CosmicTrack fit has succeeded,
+however.
+The fit result is checked by assessing the fraction of hits in the slice
+which were included in the track fit, with high values indicating a
+successful fit.
+Thus, the event is rejected if both projected distances are less than 35 cm and
+the hit fraction is greater than 0.8.
+
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/backdist.png}
+\end{center}
+\caption{Illustration of track distance projection}{
+The proximity of a track endpoint to the edge of the detector is determined
+by measuring the distance projected along the track direction.
+}
+\label{trackproj}
+\end{figure}
+
+The cosmic-ray preselection also requires events to have at least 20 hits
+and fewer than 400.  Events outside of that range are typically of an
+interaction energy which carries little oscillation sensitivity.  An additional
+selection variable is constructed from the track direction cosines relative to
+the beam, $c_{beam}$, and vertical, $c_y$:
+\begin{equation}
+a = |c_{beam}| * (c_y + 1)
+\end{equation}
+Tracks from the CosmicTrack algorithm are constructed as downgoing, so $c_y$ is
+always negative.  Thus, the variable $a$ is large, the track is generally
+directed along the beam axis and not highly vertical.
+Events with $a$ greater than 0.2 will pass the preselection.
+
+\section{Reconstruction Quality}
+
+Events of which have not been well reconstructed can cause problems
+in energy estimation.
+In particular, identification of the muon track within a \numu CC interaction requires the KalmanTrack algorithm to have reconstructed a 3D track.
+Events with very little activity are also not especially intelligible.
+As such, the reconstruction quality selection requires a reconstructed track
+from the CosmicTrack algorithm as well as a 3D track from the KalmanTrack
+algorithm.
+The quality selection also requires events to have at least 20 hits
+spanning at least 4 contiguous planes.
+
+\section{Containment}
+
+\subsection{Far Detector Containment}
+
+Containment in the FD is based on the distance of the slice and track
+endpoints from the edges of the detector.
+Slices are required to be at within the detector with a buffer of two
+planes upstream and downstream as well as two cells in both views.
+Track containment is based on projected distances in a similar fashion
+to the cosmic-ray preselection, however the distances are measured in
+the number of cells spanned by the projection rather than the distance itself.
+The track from KalmanTrack is required to have a projected span of at least
+11 cells in the forward and backward direction, and at least one cell
+for the track from CosmicTrack.
+
+\subsection{Near Detector Containment}
+
+Containment in the ND is more complicated than the FD due to the consideration
+of the Muon Catcher and its truncated height.
+Slices are rejected if they start in the first two planes of the detector or
+end within the last two planes.
+Tracks from KalmanTrack is required to start in active region by requiring that
+the start $Z$ position is within 1175 cm from the front of the detector.
+If a track enters the muon catcher, the height of the track
+at the first muon catcher plane is required to be less than the height of
+the muon catcher ($Z = 55$ cm) to ensure that it did not leave and re-enter
+the detector.
+The track projection is also required to span at least five cells in the 
+forward direction nine cells in the backward direction.
+Finally, the hadronic cluster (all hits in the slice not on the muon track)
+is required to have calorimetric energy less than 30 MeV.
+
+
+\section{Background Rejection}
+
+The selections above ensure events are of sufficient quality for analysis
+and reduce level of cosmic-ray activity to an acceptable level.
+The primary rejection of NC and cosmic-ray events is handled by
+the convolutional neural network classifier and some additional requirements
+to handle cosmic ray events which would remain in the sample otherwise.
+
+The convolutional neural network discriminant is formed by the sum of the four
+softmax units corresponding to \numu CC (QE, RES, DIS, other).
+Events are rejected if the discriminant is less than 0.5.
+Figure \ref{cvnout} shows the distribution of the discriminant for
+signal and background.
+
+
+
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/n1_cosbakdist.pdf}
+\end{center}
+\caption{Distribution of cosmic track backward projected distance for signal and backgrounds}{
+The convolutional neural network output serves as the primary discriminant for
+rejecting background.
+The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
+magenta shows the oscillated spectrum.
+The red and green distributions show the cosmic-ray and beam backgrounds,
+respectively.
+}
+\label{cosbakdist}
+\end{figure}
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/n1_cosStartY.pdf}
+\end{center}
+\caption{Distribution of softmax output from convolutional neural network for signal and backgrounds}{
+The convolutional neural network output serves as the primary discriminant for
+rejecting background.
+The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
+magenta shows the oscillated spectrum.
+The red and green distributions show the cosmic-ray and beam backgrounds,
+respectively.
+}
+\label{cosStartY}
+\end{figure}
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/n1_pngptp.pdf}
+\end{center}
+\caption{Distribution of softmax output from convolutional neural network for signal and backgrounds}{
+The convolutional neural network output serves as the primary discriminant for
+rejecting background.
+The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
+magenta shows the oscillated spectrum.
+The red and green distributions show the cosmic-ray and beam backgrounds,
+respectively.
+}
+\label{pngptp}
+\end{figure}
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/n1_tranMom.pdf}
+\end{center}
+\caption{Distribution of softmax output from convolutional neural network for signal and backgrounds}{
+The convolutional neural network output serves as the primary discriminant for
+rejecting background.
+The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
+magenta shows the oscillated spectrum.
+The red and green distributions show the cosmic-ray and beam backgrounds,
+respectively.
+}
+\label{tranMom}
+\end{figure}
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

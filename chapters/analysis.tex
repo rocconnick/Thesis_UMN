@@ -28,6 +28,7 @@ The fitting procedure is described in Section \ref{fitting_section}.
 \section{Extrapolation}
 \label{extrap_section}
 
+\subsection{\numu Signal Prediction}
 
 Naively, one might expect that the ratio of the FD spectrum to the ND spectrum
 could be directly interpreted as an oscillation probability.
@@ -82,15 +83,61 @@ vs. true energy in each detector, referred to as the \textit{reco-true matrix}.
 These histograms can be used to reweight between the reconstructed
 and true spectra in either detector.
 
-Ultimately, the extrapolation from ND to FD is performed in bins of true energy.
-First, the ND data spectrum is reweighted using the ND reco-true matrix
+Ultimately, extrapolation from ND to FD is performed in bins of true energy.
+First, the ND data spectrum is reweighted (bin-by-bin)
+using the ND reco-true matrix
 to reproduce the observed ND spectrum in bins of true energy.
-That spectrum is then reweighted in terms of FD/ND true energy ratios to
+Each bin in that spectrum is then reweighted in terms of FD/ND true energy
+ratios to
 produce an FD prediction in bins of true energy.
 Oscillation probabilities are applied to the FD true bins.
-The oscillated true prediction is then reweighted in using the FD reco-true
+The bins in the
+oscillated true prediction are then reweighted in using the FD reco-true
 matrix to produce the final FD prediction in bins of true energy.
+A schematic view of the extrapolation procedure can be seen in Figure
+\ref{extrap_fig}.
 
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/dummy/dummy}
+  \end{subfigure}
+
+\end{center}
+\caption{Schematic view of the extrapolation}{
+Stuff about the diagram
+}
+\label{extrap_fig}
+\end{figure}
+
+\subsection{Background Prediction}
+
+Only the \numu and $\bar{\nu}_\mu$ components are given the full extrapolation
+treatment.
+The beam-induced background components -- NC, \nue, $\bar{\nu}_e$, \nutau and
+$\bar{\nu}_\tau$ -- are all taken directly from the MC prediction.
+Since these components are small, taking these components does not incur
+a significant error.
+In practice, this means that the ND MC prediction for each background component
+is subtracted from the ND data prior to extrapolation.
+Once the extrapolated FD prediction has been generated, each predicted MC
+background component is added.
+
+
+Cosmic-ray background is estimated using selected events from the out-of-time
+sideband in FD data.
+While each \numi beam spill spans only 10 $\mu$s, the functional readout window
+spans 450 $\mu$s.
+The excess data which surrounds the beam spill forms the out-of-time sideband.
+Sideband data is convenient for this purpose because it trivially
+matches the exposure of the in-time data using a simple factor $f$:
+\begin{equation}
+f = \frac{10~\mu\text{s}}{ 450~\mu\text{s} - 10~\mu\text{s}} = \frac{1}{44}
+\end{equation}
+Similar to the FD beam-induced background prediction, the cosmic-ray
+background prediction is added directly to the extrapolated FD signal
+prediction.
 
 
 \section{Fitting}

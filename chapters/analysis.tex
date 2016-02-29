@@ -7,17 +7,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A measurement of parameters \deltamtht and \thetatth is obtained from
-a likelihood fit to the FD data, namely the estimated energy spectrum.
+a likelihood fit to the FD data, namely the reconstructed energy spectrum.
 Performing such a fit requires a prediction of the FD spectrum which can be
 varied in terms of the oscillation parameters.
 A naive approach would be to generate a FD prediction straight from
 FD Monte Carlo (MC) simulation.
 That approach, however, would be quite sensitive to systematic errors,
-in particular due to uncertiantes in the \numi flux and neutrino
+in particular due to uncertainties  in the \numi flux and neutrino
 cross sections.
 \nova's two-detector design is aimed precisely at mitigating the effects of
 such uncertainties; the ND can be used to determine the expected
-spectrum at the FD in a way which mostly cancels the large uncertanties the
+spectrum at the FD in a way which mostly cancels the large uncertainties the
 the MC prediction.
 The procedure of generating the FD prediction in terms of the observed
 ND spectrum, referred to as \textit{extrapolation}, is described in Section
@@ -28,20 +28,66 @@ The fitting procedure is described in Section \ref{fitting_section}.
 \section{Extrapolation}
 \label{extrap_section}
 
-\nova has been designed with two detectors
 
-Effects cause FD and ND to differ
+Naively, one might expect that the ratio of the FD spectrum to the ND spectrum
+could be directly interpreted as an oscillation probability.
+This naive approach is complicated by two factors.
+First, the ND and FD spectra are independently shaped by various geometric
+and other systematic effects.
+Second, the imperfect resolution of the energy estimator causes
+distortion of the measured spectra which is inconsistent across detectors.
+The extrapolation procedure aims to mitigate both of these factors.
 
-  angle subtended
+Geometric effects form the majority of the discrepancy between the
+ND and FD spectra.
+Foremost, the ND is a small detector.
+The energy spectrum observed by ND is thus shaped by the topologies
+of events which can be contained within the detector.
+As a result, the ND spectrum is biased towards events with
+smaller hadronic showers and shorter muon tracks, although the steel planes
+of the muon catcher helps to mitigate the latter problem.
+Additionally, even though the ND is considerably smaller than the FD,
+it subtends a much larger solid angle relative to the \numi source.
+As a result, it sees pions decaying over a wider range of off-axis angle
+and thus a broader energy spectrum than the FD.
 
-  Shape of detector
+The geometric effects which shape the ND and FD spectra is well modeled
+by the MC simulation.
+Selection effects induced by the detector size are handled by simulating
+with an accurately sized detector.
+The beam acceptance issue is covered well by the beam simulation described in
+Section \ref{beam_sim_section}; uncertainties in the beam situation are
+treated as a systematic error.
+The discrepancy between the FD and ND spectra is shown in Figure
+\ref{ratioNDFD}.
+
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/dummy/dummy}
+  \end{subfigure}
+
+\end{center}
+\caption{FD spectrum, ND spectrum, ratio}{
+Need FD and ND spectra, as well as ratio of the two.  Reco?  True?
+}
+\label{ratioNDFD}
+\end{figure}
+
+The extrapolation procedure also aims to capture the smearing effect of
+imperfect energy energy resolution independently in each detector.
+This is accomplished by forming a 2D histogram of reconstructed energy
+vs. true energy in each detector.
+These histograms can be used to reweight between the reconstructed
+and true spectra in either detector.
 
 
 
 \section{Fitting}
 \label{fitting_section}
 
-binned maximum likelihood 
+binned maximum likelihood
 
 three flavor model
 

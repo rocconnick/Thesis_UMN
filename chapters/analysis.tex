@@ -78,9 +78,18 @@ Need FD and ND spectra, as well as ratio of the two.  Reco?  True?
 The extrapolation procedure also aims to capture the smearing effect of
 imperfect energy energy resolution independently in each detector.
 This is accomplished by forming a 2D histogram of reconstructed energy
-vs. true energy in each detector.
+vs. true energy in each detector, referred to as the \textit{reco-true matrix}.
 These histograms can be used to reweight between the reconstructed
 and true spectra in either detector.
+
+Ultimately, the extrapolation from ND to FD is performed in bins of true energy.
+First, the ND data spectrum is reweighted using the ND reco-true matrix
+to reproduce the observed ND spectrum in bins of true energy.
+That spectrum is then reweighted in terms of FD/ND true energy ratios to
+produce an FD prediction in bins of true energy.
+Oscillation probabilities are applied to the FD true bins.
+The oscillated true prediction is then reweighted in using the FD reco-true
+matrix to produce the final FD prediction in bins of true energy.
 
 
 

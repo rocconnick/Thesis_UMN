@@ -45,7 +45,7 @@ reconstruction quality and containment.
 A handful of extra cuts are required to further reject cosmic background.
 
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.95\textwidth]{figures/selection/cosmicmuons.png}
 \end{center}
@@ -93,7 +93,7 @@ Thus, the event is rejected if both projected distances are less than 35 cm and
 the hit fraction is greater than 0.8.
 
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.9\textwidth]{figures/selection/backdist.png}
 \end{center}
@@ -196,7 +196,7 @@ Both of these transverse momentum measures, seen in figures \ref{tranMom} and
 
 
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.9\textwidth]{figures/selection/n1_cvnnumu.pdf}
 \end{center}
@@ -206,14 +206,17 @@ rejecting background.
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
 magenta shows the oscillated spectrum.
 The red and green distributions show the cosmic-ray and beam backgrounds,
-respectively.  Events are rejected if they fall to the left of the vertical
+respectively.
+Selection applied to these distributions include all FD analysis cuts
+with the exception of the cut on the variable shown here.
+Events are rejected if they fall to the left of the vertical
 dashed red line.
 }
 \label{cvnnumu}
 \end{figure}
 
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.9\textwidth]{figures/selection/n1_cosStartY.pdf}
 \end{center}
@@ -221,44 +224,185 @@ dashed red line.
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
 magenta shows the oscillated spectrum.
 The red and green distributions show the cosmic-ray and beam backgrounds,
-respectively.  Events are rejected if they fall to the right of the vertical
+respectively.
+Selection applied to these distributions include all FD analysis cuts
+with the exception of the cut on the variable shown here.
+Events are rejected if they fall to the right of the vertical
 dashed red line.
 }
 \label{cosStartY}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection/n1_pngptp.pdf}
+\includegraphics[width=0.9\textwidth]{figures/selection/n1_tranMom.pdf}
 \end{center}
 \caption{Distribution of transverse momentum estimated from slice mean position
 for signal and backgrounds}{
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
 magenta shows the oscillated spectrum.
 The red and green distributions show the cosmic-ray and beam backgrounds,
-respectively.  Events are rejected if they fall to the right of the vertical
+respectively.
+Selection applied to these distributions include all FD analysis cuts
+with the exception of the cut on the variable shown here.
+Events are rejected if they fall to the right of the vertical
 dashed red line.
 }
 \label{pngptp}
 \end{figure}
-\begin{figure}[t]
+
+\begin{figure}
 \begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection/n1_tranMom.pdf}
+\includegraphics[width=0.9\textwidth]{figures/selection/n1_pngptp.pdf}
 \end{center}
 \caption{Distribution of transverse momentum estimated from reconstructed prongs
  for signal and backgrounds}{
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
 magenta shows the oscillated spectrum.
 The red and green distributions show the cosmic-ray and beam backgrounds,
-respectively.  Events are rejected if they fall to the right of the vertical
+respectively.
+Selection applied to these distributions include all FD analysis cuts
+with the exception of the cut on the variable shown here.
+Events are rejected if they fall to the right of the vertical
 dashed red line.
 }
 \label{tranMom}
 \end{figure}
 
 
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.7\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/selection/myflow_sig_osc.pdf}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.7\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/selection/myflow_sig_eff_osc.pdf}
+  \end{subfigure}
+
+\end{center}
+\caption{Selected \numu CC signal event spectrum and efficiency}{
+The top pane shows the reconstructed neutrino energy spectrum
+for selected \numu CC signal events from FD MC simulation.
+Truth containment is the sample of events which deposit
+no energy outside of the detector, this serves as the denomniator
+for the efficiency ratio shown in the bottom pane.
+Each subsequent spectrum adds an additional selection cut to the sample.
+}
+\label{cut_flow_sig}
+\end{figure}
 
 
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.7\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/selection/myflow_bkg_osc.pdf}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.7\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/selection/myflow_bkg_eff_osc.pdf}
+  \end{subfigure}
+
+\end{center}
+\caption{Selected $\nu$ background event spectrum and efficiency}{
+The top pane shows the reconstructed neutrino energy spectrum
+for selected background events from FD MC simulation.
+Truth containment is the sample of events which deposit
+no energy outside of the detector, this serves as the denomniator
+for the efficiency ratio shown in the bottom pane.
+Each subsequent spectrum adds an additional selection cut to the sample.
+}
+\label{cut_flow_bkg}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.7\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/selection/cosmic_sig_osc.pdf}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.7\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/selection/cosmic_sig_eff_osc.pdf}
+  \end{subfigure}
+
+\end{center}
+\caption{Comparison of \numu CC signal event spectrum and efficiency to
+existing approach}{
+The top pane shows the reconstructed neutrino energy spectrum
+for selected \numu CC signal events from FD MC simulation.
+Truth containment is the sample of events which deposit
+no energy outside of the detector, this serves as the denomniator
+for the efficiency ratio shown in the bottom pane.
+Each subsequent spectrum adds an additional selection cut to the sample.
+
+The two smallest distributions, CNN + Cuts and Muon ID + BDT, compare
+the CNN approach to the existing approach used in \cite{nova2016numu}.
+The existing approach relied on the Muon ID described in
+Section \ref{remid_section}, along with a boosted decision tree
+\cite{friedman2002stochastic} to reject cosmic background.
+The CNN selection presented here improves the selection efficiency compared to
+compared to the existing approach in the low energy bins which are most
+sensitive to neutrino oscillation.
+
+}
+\label{cut_flow_comp_sig}
+\end{figure}
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.7\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/selection/cosmic_bkg_osc.pdf}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.7\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/selection/cosmic_bkg_eff_osc.pdf}
+  \end{subfigure}
+
+\end{center}
+\caption{Comparison of $\nu$ background event spectrum and efficiency to
+existing approach}{
+The top pane shows the reconstructed neutrino energy spectrum
+for selected background events from FD MC simulation.
+Truth containment is the sample of events which deposit
+no energy outside of the detector, this serves as the denomniator
+for the efficiency ratio shown in the bottom pane.
+Each subsequent spectrum adds an additional selection cut to the sample.
+
+The two smallest distributions, CNN + Cuts and Muon ID + BDT, compare
+the CNN approach to the existing approach used in \cite{nova2016numu}.
+The existing approach relied on the Muon ID described in
+Section \ref{remid_section}, along with a boosted decision tree
+\cite{friedman2002stochastic} to reject cosmic background.
+The CNN selection presented here improves the background rejection efficiency
+compared to the existing approach.
+}
+\label{cut_flow_comp_sig}
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/contoursfhc1cosmic.pdf}
+\end{center}
+\caption{Sensitivity comparison between existing analysis approach and CNN
+technique}{
+The contours shown above are expected 90\% confidence limits for \deltamtht
+and \thetatth using \nova MC simulation.
+No systematic errors are included.
+The red contour uses the selection described in \cite{nova2016numu}, the black
+is the CNN approach, and the blue is the result of a perfect selection where
+events are selected by MC truth.
+}
+\label{tranMom}
+\end{figure}
 
 
 

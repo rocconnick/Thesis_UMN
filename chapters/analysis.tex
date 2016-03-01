@@ -24,11 +24,52 @@ ND spectrum, referred to as \textit{extrapolation}, is described in Section
 \ref{extrap_section}.
 The fitting procedure is described in Section \ref{fitting_section}.
 
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/plots/extrap/fd_nd_spec.pdf}
+  \end{subfigure}
 
-\section{Extrapolation}
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/plots/extrap/fd_nd_ratio.pdf}
+  \end{subfigure}
+
+\end{center}
+\caption{MC Prediction for ND and FD}{
+The observed ND and FD event energy specta display different characteristics
+primarily due to geometric effects.
+The small size of the ND a bias towards containment of lower energy events.
+Also, proximity to the \numi source causes the ND to observe a wider
+range of solid angle, effectively broadening the energy peak.
+The top pane shows the overlaid ND and FD spectra taken from MC, with each
+histogram scaled to unit area to highlight shape differences.
+The bottom pane shows the ratio of the two spectra.
+Note that the ratio is not used in the extrapolation procedure; instead,
+the ratio of the true spectra is used to transfer from ND to FD.
+}
+\label{ratioNDFD}
+\end{figure}
+
+\section{Prediction and Extrapolation}
 \label{extrap_section}
 
-\subsection{\numu Signal Prediction}
+The FD prediction is built from signal and background components.
+In total, the prediction is built up from \numu CC signal, beam-induced
+background components, and cosmic-ray background.
+As the dominant component, the \numu CC signal is extrapolated from
+ND data to take the observed spectrum into account.
+Beam backgrounds, on the other hand, are taken straight from MC simulation.
+The cosmic cosmic-ray background component is taken from data recorded
+in the absence of the \numi beam signal, referred to as the
+\textit{out-of-time sideband}.
+
+\subsection{Exposure}
+
+Need something here!
+
+\subsection{\numu CC Signal Extrapolation}
 
 Naively, one might expect that the ratio of the FD spectrum to the ND spectrum
 could be directly interpreted as an oscillation probability.
@@ -52,6 +93,7 @@ it subtends a much larger solid angle relative to the \numi source.
 As a result, it sees pions decaying over a wider range of off-axis angle
 and thus a broader energy spectrum than the FD.
 
+
 The geometric effects which shape the ND and FD spectra is well modeled
 by the MC simulation.
 Selection effects induced by the detector size are handled by simulating
@@ -62,19 +104,6 @@ treated as a systematic error.
 The discrepancy between the FD and ND spectra is shown in Figure
 \ref{ratioNDFD}.
 
-\begin{figure}
-\begin{center}
-  \begin{subfigure}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{figures/dummy/dummy}
-  \end{subfigure}
-
-\end{center}
-\caption{FD spectrum, ND spectrum, ratio}{
-Need FD and ND spectra, as well as ratio of the two.  Reco?  True?
-}
-\label{ratioNDFD}
-\end{figure}
 
 The extrapolation procedure also aims to capture the smearing effect of
 imperfect energy energy resolution independently in each detector.
@@ -99,14 +128,22 @@ A schematic view of the extrapolation procedure can be seen in Figure
 
 \begin{figure}
 \begin{center}
-  \begin{subfigure}[b]{0.45\textwidth}
+  \begin{subfigure}[b]{\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/dummy/dummy}
+    \includegraphics[height=0.45\textwidth, angle=-90]{figures/figures/extrap_schematic.png}
   \end{subfigure}
-
 \end{center}
 \caption{Schematic view of the extrapolation}{
-Stuff about the diagram
+Extrapolation of \numu CC signal is performed in bin-by-bin.
+The reconstructed ND energy spectrum is first reweighted to true energy
+using the ND reco-true matrix.
+Reweighted ND true energy is then transferred to the FD spectrum using the
+F/N ratio.
+Oscillation probabilities are applied to true energy bins,
+then a prediction in reconstructed energy is produced using the
+FD true-reco matrix.
+Selected event spectra shown here do not correspond to those
+involved in this analysis, graphic only serves as a schematic overview.
 }
 \label{extrap_fig}
 \end{figure}
@@ -138,6 +175,110 @@ f = \frac{10~\mu\text{s}}{ 450~\mu\text{s} - 10~\mu\text{s}} = \frac{1}{44}
 Similar to the FD beam-induced background prediction, the cosmic-ray
 background prediction is added directly to the extrapolated FD signal
 prediction.
+
+
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/plots/extrap/NDRecoToTrue.pdf}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/plots/extrap/FDTrueToReco.pdf}
+  \end{subfigure}
+
+\end{center}
+\caption{ND and FD reco-true reco-true matrices}{
+The ND and FD reco-true matrices are used to spectra between
+reconstructed and true energy.
+The ND reco-true matrix, top, is used to convert the ND data reconstructed
+energy spectrum to a reweighted true energy representation.
+The FD reco-true spectrum is used to convert a predicted FD extrapolated
+true energy spectrum to a reconstructed energy spectrum.
+}
+\label{extrapRecoTrue}
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/plots/extrap/NDReco.pdf}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/plots/extrap/NDTrue.pdf}
+  \end{subfigure}
+
+\end{center}
+\caption{ND spectra: reconstructed, data, true and reweighted}{
+The reconstructed energy spectrum in ND data (top, black) is used to adjust the
+MC prediction (bottom and top, red).
+The MC prediction is reweighted bin-by-bin based on the reco-true matrix
+(Figure \ref{extrapRecoTrue}) to produce the reweighted prediction, blue.
+}
+\label{extrapNDDataRecoTrue}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/plots/extrap/FDTrue.pdf}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.8\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/plots/extrap/FDReco.pdf}
+  \end{subfigure}
+
+
+\end{center}
+\caption{FD prediction: reconstructed, true and reweighted}{
+The red spectra in both the top and bottom pane show the straight FD MC
+prediction in bins of true and  reconstructed energy, respectively.
+In the top pane, the blue spectrum is constructed by applying
+the FD/ND ratio to the ND true energy spectrum shown in Figure
+\ref{extrapNDDataRecoTrue}.
+The corresponding blue spectrum in the bottom pane has been reweighted
+based on the reco-true matrix in Figure \ref{extrapRecoTrue} to produce the
+final FD prediction.
+In this case, no oscillation probabilities have been applied to the true bins,
+thus showing the predicted spectrum for the case that neutrino oscillation
+did not occur.
+}
+\label{extrapFDRecoTrue}
+\end{figure}
+
+\subsection{Detector Configurations}
+
+The \nova FD installation procedure and Data Acquisition (DAQ) system were
+designed with an ability to provide readout of a partial detector.
+It is not uncommon for the detector to operate in a configuration where
+one or more \textit{blocks} (as described in section \ref{cell_section}),
+of the detector are left out of the readout.
+Much of the data used in this analysis was recorded while the \nova FD
+was still under construction, meaning that absent blocks are common
+in the data.
+
+An accurate FD prediction thus relies on an accurate representation
+of the detector configurations in the MC simulation.
+This is achieved enumerating the detector configurations
+used in the data and aggregating the exposure (POT) recorded
+in each configuration.
+The FD MC sample is then constructed by proportionally allocating
+the appropriate exposure to each detector configuration.
+
+
+
+
+
+
 
 
 \section{Fitting}

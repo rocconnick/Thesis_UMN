@@ -13,9 +13,32 @@ The \nova Monte Carlo (MC) simulation chain involves many components to deliver 
 \section{Beam Simulation}
 \label{beam_sim_section}
 
-Stuff here.  \textit{Gotta figure out what.}
 
-Kanika says there's a docdb about setting up fluka/flugg. 
+A detailed representation of the \numi target facility forms the basis
+of beam simulation.
+The geometry of the target hall is encoded in the \geant geometry format
+to capture the positions and compositions of the target, collimator,
+focusing horns, and decay pipe.
+The FLUKA \cite{fluka} particle simulation package is used to track the
+ancestry of hadrons through the target and their decay downstream.
+An interface between FLUKA and the \geant geometry is provided
+by  FLUGG \cite{campanella1999first}.
+In this framework, neutrinos produced in the beam can be traced back
+through the hadronization chain to the primary proton which interacted in the
+target.
+Such precision allows detailed studies to estimate uncertainties based
+on particle production and interaction models.
+The FLUKA/FLUGG simulation has been cross checked by an independent
+\geant simulation (based on the same geometry) and shown to produce
+comparable results.
+Comparisons have also been made to data both from the NA49
+\cite{gazdzicki2004report} and MIPP \cite{paley2014measurement}
+experiments in order to estimate systematic errors.
+
+The output of the beam simulation is a representation of the \numi flux
+in terms of flavor and momentum which can be passed to downstream simulation
+components.
+
 
 \section{\genie -- Neutrino Interaction Simulation}
 \label{genie_section}
@@ -25,6 +48,7 @@ Kanika says there's a docdb about setting up fluka/flugg.
 Nuclear structure is at the core of neutrino interaction simulation, for which \genie uses  Relativistic Fermi Gas model of Bodek and Ritchie.  \cite{bodekritchie}  At low energies, this gives a reasonable approximation of nuclear binding energies and struck nucleon momentum.  At higher energies, it provides a model for shadowing and other effects.
 
 A principal component in neutrino event generation is interaction cross sections.  In order to generate events across such a wide range of energies, \genie must stitch together a variety of cross section models.  \genie calculates a total cross section by integrating over the differential cross sections from the various models.  The total cross section is combined with the flux (from FLUKA and FLUGG simulations in this case) and detector geometry to produce the overall energy spectrum of interacting neutrinos.  Since this step is relatively computationally expensive, \genie computes the energy spectra separately and stores the interpolated result as interpolates splines.  For each generated event, the energy splines are sampled to select the interaction energy, but the differential cross sections are used to sample the remaining kinematics.
+
 
 
 While \genie employs several cross section models, only few are important for this work.  The selected \numu CC events in \nova are dominated by just three interaction modes: Quasi-Eleastic scattering (QE),  baryon resonance production (RES) and deep inelastic scattering (DIS).  QE events dominate the low energy tail of the energy spectrum, while DIS events account for most of the high energy tail.  The QE model in \genie is an implementation of the Llewellyn-Smith model \cite{LlewellynSmith} with a dipole form factor.  In that implementation, the axial vector mass is the sole free parameter.  RES events are generated using from the Rein-Segal model \cite{rein1981neutrino}, which employs the Feynman-Kislinger-Ravndal (FKR) model of baryon resonances \cite{feynman1971current}.  FKR parameterizes resonance wavefuctions as excited states of a 3-quark system in a relativistic harmonic oscillator potential.  The \genie implementation of Rein-Segal neglects interference between resonances as well as outgoing lepton masses.  Similar to the QE model, this RES implementation leaves the axial vector mass.  For DIS interactions, \genie uses a leading order model with corrections from Bodek and Yang \cite{bodek2003higher} to better describe the low $Q^2$ region.  This crossover energy region where DIS interactions begin to dominate is of principal importance to \nova since it accounts for most of the events on the high side of the energy peak.  \genie calculates DIS cross sections at the parton level, or in other words, the cross section involves all sea and valence quarks.  This implementation of DIS involves many free parameters, although most of them have small effects on the \numu CC event selection in \nova.

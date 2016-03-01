@@ -171,12 +171,12 @@ disk into memory during training.
 A comparison original continuous scale and discrete scale can be seen in figure
 \ref{pixelmapadc}.
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/arch/arch.pdf}
 \end{center}
 \caption{Diagram of the convolutional neural network architecture used
-for event classification.}{Starting with the input at the bottom,
+for event classification}{Starting with the input at the bottom,
 the network has separate branches for the \xview and \yview.
 Each branch undergoes successive convolution, pooling, and
 local response normalization (LRN).  Inception modules are used in downstream layers.
@@ -278,7 +278,7 @@ Weight updates were
 performed using the basic stochastic gradient descent (SGD)
 \cite{reed1999neural} procedure described in chapter \ref{nnet_chapter}.
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{figures/cnn/traindist.pdf}
 \end{center}
@@ -342,7 +342,7 @@ a full pass over the dataset is called an \textit{epoch}.
 
 
 
-\begin{table}[t]
+\begin{table}
 \begin{center}
 \begin{tabular}[t]{|c|c|c|}
 \hline
@@ -474,7 +474,7 @@ in Figure \ref{inceptionexamples}.
 
 \begin{subfigure}[b]{0.49\textwidth}
 \includegraphics[width=\textwidth]{figures/cnn/conv1y.pdf}
-\caption*{$7\times7$ Convolutional Filter}
+\caption*{$7\times7$ Convolutional Filters}
 \end{subfigure}
 \begin{subfigure}[b]{0.49\textwidth}
 \includegraphics[width=\textwidth]{figures/cnn/feat1_truetype2_caltype2_event274_y.pdf}
@@ -490,12 +490,13 @@ in Figure \ref{inceptionexamples}.
 \includegraphics[width=\textwidth]{figures/cnn/feat1_truetype13_caltype6_event144_y.pdf}
 \caption*{Filter outputs for NC event (fig. \ref{pixnc})}
 \end{subfigure}
+\end{center}
+
 \caption{$7\times7$ convolutional filter and example outputs}{The image at top
 left shows the 64 trained $7\times7$ filters from the first layer in the \yview
 branch of the network.  Also shown is the output for each of the three example
 event images from Figure \ref{pixelmap}.}
 \label{convexamples}
-\end{center}
 \end{figure}
 
 

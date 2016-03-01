@@ -254,7 +254,7 @@ Keeping the weights small prevents the model from responding too strongly to any
 
 Recently, a new regularization technique called \textit{dropout} \cite{hinton2014dropout} has gained in popularity.
 Dropout sets a subset of of the weights in a layer to zero for a given training iteration.  On each iteration, each weight is set to zero with probability $r$, so a new different sample of weights is excluded at each iteration.
-The inner product of the weights with the input, $z$ is scaled up by a factor of $1-r$ to roughly maintain the overall scale of the value passed through the nonlinearity.
+The inner product of the weights with the input is scaled up by a factor of $1-r$ to roughly maintain the overall scale of the value passed through the nonlinearity.
 Dropout with $r\approx 0.5$ proves to be a very robust regularizer and has quickly become the most popular technique used in the field \cite{lecun2015deep}.
 
 

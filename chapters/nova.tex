@@ -115,6 +115,22 @@ The \nova data concentrator module (DCM) is responsible for collecting data from
 Data is written to computer hard disks at the respective ND and FD sites.  Each site is capable of storing many days worth of data.  Ultimately, the data is transfered to Fermilab for permanent storage, where it is archived on tape and made available for offline reconstruction and physics analysis.
 
 
+\subsection{Exposure}
+
+
+In order to scale distributions of selected events, careful tracking
+of exposure is necessary.
+The important measures of exposure for \nova are livetime,
+protons-on-target (POT), and detector mass.
+Livetime is used for scaling constant processes
+like cosmic rays and electronic noise.
+Exposure to neutrinos, however, is prortional to the number decayed pions
+in the \numi beam.
+The number of pions depends on the number of protons delivered to the target,
+which is tracked spill-by-spill and recorded in a database.
+\nova detectors can also be operated in configurations which leave blocks
+out of the readout, so careful tracking of active detector mass is also
+necessary for accurate normalization.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

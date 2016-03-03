@@ -107,5 +107,70 @@ Noise is added to the ADC traces by a Gaussian-Markov model representing the cur
 
 It is interesting to note that this method does not provide a definite link between simulated hits and simulated particles.  Energy depositions of particles produce photons which are propagated to APD to produce a trace.  That trace, however, can also include contributions from other particles, hence the broken link.  Hits thus can only be approximately connected to particular energy depositions by considering the time of the energy deposition relative to the hit in question.
 
+\section{Oscillated Spectra}
+\label{osc_weight_section}
+
+Several parts of this work will rely on presenting an
+\textit{oscillated spectrum} using the FD MC prediction.
+In all of those cases, $\nu$ events are weighted by an oscillation
+probability determined based on the interaction energy recorded in MC truth
+\footnote{In MC simulation, it is possible to record detailed information
+regarding physics activity and detector response.  This collection
+of recorded information is colloquially called \texit{MC truth}.
+In \nova simulation, stored information includes, but is not limited to,
+interaction kinematics from \genie, step-by-step particle trajectory and energy
+deposition from \geant, and APD light signals. }.
+The oscillation parameters used in this weighting are taken from
+\cite{pdg, nova2016nue,nova2016numu, bassin2000crust}.
+A complete listing of the parameters used can be seen in Table
+\ref{osc_par_table}.
+
+
+
+\begin{table}
+%\renewcommand{\arraystretch}{1.5}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parameter} & \textbf{Value}\tabularnewline
+\hline
+\hline
+$\Delta m_{32}^{2}$ [$10^{-3}$ eV$^2$] & $2.37$ \tabularnewline
+\hline
+$\Delta m_{21}^{2}$ [$10^{-5}$ eV$^2$] & $7.53$ \tabularnewline
+\hline
+$\sin^2(2\theta_{12})$ & 0.846 \tabularnewline
+\hline
+$\sin^2(2\theta_{13})$ & 0.086 \tabularnewline
+\hline
+$\sin^2(2\theta_{23})$ & 0.5 \tabularnewline
+\hline
+$\delta_{CP} / \pi$ & 0 \tabularnewline
+\hline
+L [km] & 810 \tabularnewline
+\hline
+$\rho$ [g/cm$^3$] & 2.84 \tabularnewline
+\hline
+Hierarchy Assumption& Normal \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+\caption{Oscillation parameters used to weight MC prediction}
+{
+The values of $\Delta m_{21}^{2}$ and $\sin^2(2\theta_{12})$ match the values
+from the Particle Data Group. The value of $\sin^2(2\theta_{13})$
+was chosen to match \cite{nova2016nue}.
+For simplicity, $\delta_{CP}$ was set to 0, although it has little impact on
+\numu CC disappearance.
+$L$ is the distance the neutrinos travel between the ND and FD.
+The density of the earth, $\rho$, is necessary for the matter effects
+discussed in Section \ref{osc_in_matter_section}.
+The value for $\rho$ was taken from \cite{bassin2000crust}.
+The hierarchy assumption used makes no difference to \numu CC disappearance;
+for simplicity, the normal assumption was used.
+}
+\label{osc_par_table}
+\end{table}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

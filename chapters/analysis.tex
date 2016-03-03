@@ -66,7 +66,7 @@ in the absence of the \numi beam signal, referred to as the
 \textit{out-of-time sideband}.
 
 \subsection{\numu CC Signal Extrapolation}
-
+\label{sig_extrap_section}
 Naively, one might expect that the ratio of the FD spectrum to the ND spectrum
 could be directly interpreted as an oscillation probability.
 This naive approach is complicated by two factors.
@@ -270,21 +270,38 @@ in each configuration.
 The FD MC sample is then constructed by proportionally allocating
 the appropriate exposure to each detector configuration.
 
-
-
-
-
-
-
-
 \section{Fitting}
 \label{fitting_section}
 
-binned maximum likelihood
+A binned maximum-likelihood procedure is used to measure oscillation parameters
+\deltamtht and \thetatth by compariing the extrapolated FD prediction to the
+observed FD data.
 
-three flavor model
+The prediction becomes a function of the oscillation parameters
+through by applying oscillation probabilities to the FD true energy spectrum
+as described in Section \ref{sig_extrap_section}.
+Oscillation probabilites are calculated using the full three-flavor formulation.
+With the exception of \deltamtht and \thetatth, which are used in the fit,
+the values for all other oscillation parameters are identical to those
+described in section \ref{osc_weight_section}.
+The result of the fit is a two dimensional confidence interval
+in the variables $|\Delta m^2_{32}$ and $\sin^2(\theta_{23})$.
 
-number of bins
+The likelihood function used is the log-likelihood for Poisson distrbuted
+data \cite{pdg}:
+\begin{equation}
+\chi^2 = 2 \sum_i e_i - o_i + o_i + \ln \bigg (\frac{o_i}{e_i} \bigg),
+\end{equation}
+where the sum runs over bins $i$, $e_i$ is the predicted number of events
+in that bin, and $o_i$ is the observed number of events in FD data.
+Note that maximizing the likelihood actually corresponds to minimizing
+$\chi^2$.
+Confidence levels can be drawn in the two dimensional dimensional space
+based on $\Delta \chi^2$ relative to the minimum value.
+The critical $\Delta \chi^2$ for 68\% and 90\% confidence intervals
+in the case of both 1D and 2D contours are found in \cite{pdg}.
+
+
 
 systematic errors and constraints on unmeasured oscillation parameters
 are included in the fit with a penalty term

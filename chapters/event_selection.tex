@@ -478,6 +478,10 @@ compared to the existing approach.
 technique}{
 The contours shown above are expected 90\% confidence limits for \deltamtht
 and \thetatth using \nova MC simulation.
+Confidence intervals are formed using the procedure described in Section
+\ref{fitting_section}, although it should be noted that no extrapolation
+is used here; A ``fake data'' scaled oscillated from the FD MC prediction
+is fit to the FD MC prediction.
 No systematic errors are included.
 The red contour uses the selection described in \cite{nova2016numu}, the black
 is the CNN approach, and the blue is the result of a perfect selection where
@@ -485,6 +489,7 @@ is the CNN approach, and the blue is the result of a perfect selection where
 Contours were generated with oscillation probabilities applied
 based on the true energy of selected events and oscillation parameters
 from described in \ref{osc_weight_section}.
+
 }
 \label{contour_improvement}
 \end{figure}

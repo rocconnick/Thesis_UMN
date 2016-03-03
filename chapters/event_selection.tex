@@ -191,7 +191,7 @@ between that vector and the beam axis.
 The prong method is similar, except that the the momentum vector
 is formed as the energy weighted sum of all reconstructed prongs
 for that slice.
-Both of these transverse momentum measures, seen in figures \ref{tranMom} and
+Both of these transverse momentum measures, seen in Figures \ref{tranMom} and
 \ref{pngptp}, are required to be less than 0.8.
 
 
@@ -204,7 +204,8 @@ Both of these transverse momentum measures, seen in figures \ref{tranMom} and
 The convolutional neural network output serves as the primary discriminant for
 rejecting background.
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
-magenta shows the oscillated spectrum.
+magenta shows the oscillated spectrum (weighted according to Section
+\ref{osc_weight_section}).
 The red and green distributions show the cosmic-ray and beam backgrounds,
 respectively.
 Selection applied to these distributions include all FD analysis cuts
@@ -222,7 +223,8 @@ dashed red line.
 \end{center}
 \caption{Distribution of CosmicTrack start $Y$ position for signal and backgrounds}{
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
-magenta shows the oscillated spectrum.
+magenta shows the oscillated spectrum (weighted according to Section
+\ref{osc_weight_section}).
 The red and green distributions show the cosmic-ray and beam backgrounds,
 respectively.
 Selection applied to these distributions include all FD analysis cuts
@@ -240,7 +242,8 @@ dashed red line.
 \caption{Distribution of transverse momentum estimated from slice mean position
 for signal and backgrounds}{
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
-magenta shows the oscillated spectrum.
+magenta shows the oscillated spectrum (weighted according to Section
+\ref{osc_weight_section}).
 The red and green distributions show the cosmic-ray and beam backgrounds,
 respectively.
 Selection applied to these distributions include all FD analysis cuts
@@ -258,7 +261,8 @@ dashed red line.
 \caption{Distribution of transverse momentum estimated from reconstructed prongs
  for signal and backgrounds}{
 The blue distribution shows \numu CC signal from the unoscillated beam spectrum,
-magenta shows the oscillated spectrum.
+magenta shows the oscillated spectrum (weighted according to Section
+\ref{osc_weight_section}).
 The red and green distributions show the cosmic-ray and beam backgrounds,
 respectively.
 Selection applied to these distributions include all FD analysis cuts
@@ -268,6 +272,76 @@ dashed red line.
 }
 \label{tranMom}
 \end{figure}
+
+
+\section{Selected Spectrum}
+
+The figures at the end of this chapter give many representations of the selected
+events which will ultimately be used for analysis.
+Figure \ref{final_selection} shows FD MC prediction for
+the reconstructed energy spectrum for the final selected energy spectrum.
+Beyond that, two perspectives can be used to interpret the selection:
+the selected spectrum itself and the efficiency of the selection.
+In each bin, efficiency is the ratio of the selected events
+to the total events which could have been selected.
+The distribution denominator in this ratio -- events which could have been
+selected -- is taken to be the sample of events with are contained
+in the detector based on MC truth.
+Simulated events are deemed to be contained if all true simulated energy
+depositions are contained within the detector volume.
+Figures \ref{cut_flow_sig}, \ref{cut_flow_bkg}, \ref{cut_flow_comp_sig}, and
+\ref{cut_flow_comp_bkg} all include both MC prediction for the selected
+FD spectrum and the efficiency ratio.
+In the spectrum, the true contained events is shown as a black distribution,
+which serves as the denominator for the efficiency distribution.
+
+Figure \ref{cut_flow_sig} shows distriutions for true signal
+evnets for the samples
+remaining after cuts (quality, containment, CNN classifier, CosmicTrack start
+$Y$, and the two transverse momentum cuts) are successively applied.
+Figure \ref{cut_flow_bkg} shows the same plots for the true background events.
+For the CNN classifier, the signal efficiency is generally higher (~70\%)
+for events with higher energy.
+The CosmicTrack Start $Y$ cut leads to a flat reduction in signal efficiency
+as a function of energy, which is to be expected since it simply reduces
+the effective detector volume.
+Transverse momentum, on the other hand, impacts low-energy events more
+significantly since small reconstruction is more difficult for events
+with less activity.
+Cutting on the CNN classifier output reduces the background rate significantly,
+as seen in figure \ref{cut_flow_bkg}.
+
+Figures \ref{cut_flow_comp_sig} and \ref{cut_flow_comp_bkg} show
+schematically similar plots, but the final two samples
+are the result of different selections rather than applied separately.
+The \textit{CNN + Cuts} sample uses the selection described here,
+while \textit{Muon ID + BDT} uses the selection described in
+\cite{nova2016numu}.
+That alternative selection uses the precence of an identified muon
+to select \numu CC events, as well as a boosted decision tree (BDT)
+\cite{friedman2002stochastic} to reject cosmic-ray background.
+The CNN approach provides improved efficiency in the low energy region
+which is especially sensitivty to neutrino oscillation.
+Losses in the high energy region are driven mainly by the CosmicTrack
+start $Y$ cut.
+Senitivity enhancement achieved by the CNN approach is quantified
+in Figure \ref{contour_improvement}.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection/numuE.pdf}
+\end{center}
+\caption{Final selected spectrum for \numu CC signal and backgrounds }{
+The FD MC prediction of the final selected spectrum resulting from all cuts
+described in this chapter.
+The \numu CC signal distribution has had oscillation probabilities applied
+based on the true energy of selected events and oscillation parameters
+from described in \ref{osc_weight_section}.
+}
+\label{final_selection}
+\end{figure}
+
 
 
 \begin{figure}
@@ -287,9 +361,12 @@ dashed red line.
 The top pane shows the reconstructed neutrino energy spectrum
 for selected \numu CC signal events from FD MC simulation.
 Truth containment is the sample of events which deposit
-no energy outside of the detector, this serves as the denomniator
+no energy outside of the detector, this serves as the denominator
 for the efficiency ratio shown in the bottom pane.
 Each subsequent spectrum adds an additional selection cut to the sample.
+The \numu CC signal distribution has had oscillation probabilities applied
+based on the true energy of selected events and oscillation parameters
+from described by \ref{osc_weight_section}.
 }
 \label{cut_flow_sig}
 \end{figure}
@@ -312,7 +389,7 @@ Each subsequent spectrum adds an additional selection cut to the sample.
 The top pane shows the reconstructed neutrino energy spectrum
 for selected background events from FD MC simulation.
 Truth containment is the sample of events which deposit
-no energy outside of the detector, this serves as the denomniator
+no energy outside of the detector, this serves as the denominator
 for the efficiency ratio shown in the bottom pane.
 Each subsequent spectrum adds an additional selection cut to the sample.
 }
@@ -337,11 +414,15 @@ existing approach}{
 The top pane shows the reconstructed neutrino energy spectrum
 for selected \numu CC signal events from FD MC simulation.
 Truth containment is the sample of events which deposit
-no energy outside of the detector, this serves as the denomniator
+no energy outside of the detector, this serves as the denominator
 for the efficiency ratio shown in the bottom pane.
 Each subsequent spectrum adds an additional selection cut to the sample.
+The \numu CC signal distribution has had oscillation probabilities applied
+based on the true energy of selected events and oscillation parameters
+from described in \ref{osc_weight_section}.
 
-The two smallest distributions, CNN + Cuts and Muon ID + BDT, compare
+The two smallest distributions, \textit{CNN + Cuts} and
+\textit{Muon ID + BDT}, compare
 the CNN approach to the existing approach used in \cite{nova2016numu}.
 The existing approach relied on the Muon ID described in
 Section \ref{remid_section}, along with a boosted decision tree
@@ -371,11 +452,12 @@ existing approach}{
 The top pane shows the reconstructed neutrino energy spectrum
 for selected background events from FD MC simulation.
 Truth containment is the sample of events which deposit
-no energy outside of the detector, this serves as the denomniator
+no energy outside of the detector, this serves as the denominator
 for the efficiency ratio shown in the bottom pane.
 Each subsequent spectrum adds an additional selection cut to the sample.
 
-The two smallest distributions, CNN + Cuts and Muon ID + BDT, compare
+The two smallest distributions, \textit{CNN + Cuts} and
+\textit{Muon ID + BDT}, compare
 the CNN approach to the existing approach used in \cite{nova2016numu}.
 The existing approach relied on the Muon ID described in
 Section \ref{remid_section}, along with a boosted decision tree
@@ -383,7 +465,7 @@ Section \ref{remid_section}, along with a boosted decision tree
 The CNN selection presented here improves the background rejection efficiency
 compared to the existing approach.
 }
-\label{cut_flow_comp_sig}
+\label{cut_flow_comp_bkg}
 \end{figure}
 
 
@@ -399,11 +481,13 @@ and \thetatth using \nova MC simulation.
 No systematic errors are included.
 The red contour uses the selection described in \cite{nova2016numu}, the black
 is the CNN approach, and the blue is the result of a perfect selection where
-events are selected by MC truth.
+\numu CC events are selected by MC truth.
+Contours were generated with oscillation probabilities applied
+based on the true energy of selected events and oscillation parameters
+from described in \ref{osc_weight_section}.
 }
-\label{tranMom}
+\label{contour_improvement}
 \end{figure}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

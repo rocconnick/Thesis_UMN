@@ -271,23 +271,28 @@ The FD MC sample is then constructed by proportionally allocating
 the appropriate exposure to each detector configuration.
 
 \section{Fitting}
+
 \label{fitting_section}
 
+\subsection{Maximum-likelihood Fitting}
+\label{bayesian_fitting_section}
+
 A binned maximum-likelihood procedure is used to measure oscillation parameters
-\deltamtht and \thetatth by compariing the extrapolated FD prediction to the
+\deltamtht and \thetatth by comparing the extrapolated FD prediction to the
 observed FD data.
 
 The prediction becomes a function of the oscillation parameters
 through by applying oscillation probabilities to the FD true energy spectrum
 as described in Section \ref{sig_extrap_section}.
-Oscillation probabilites are calculated using the full three-flavor formulation.
+Oscillation probabilities are calculated using the full three-flavor
+formulation.
 With the exception of \deltamtht and \thetatth, which are used in the fit,
 the values for all other oscillation parameters are identical to those
 described in section \ref{osc_weight_section}.
 The result of the fit is a two dimensional confidence interval
 in the variables $|\Delta m^2_{32}$ and $\sin^2(\theta_{23})$.
 
-The likelihood function used is the log-likelihood for Poisson distrbuted
+The likelihood function used is the log-likelihood for Poisson distributed
 data \cite{pdg}:
 \begin{equation}
 \chi^2 = 2 \sum_i e_i - o_i + o_i + \ln \bigg (\frac{o_i}{e_i} \bigg),
@@ -301,16 +306,49 @@ based on $\Delta \chi^2$ relative to the minimum value.
 The critical $\Delta \chi^2$ for 68\% and 90\% confidence intervals
 in the case of both 1D and 2D contours are found in \cite{pdg}.
 
+Systematic errors are included in the fit by adding a term to the likelihood
+function as follows \cite{pdg}:
+\begin{equation}
+\chi^2 = 2 \sum_i e_i - o_i + o_i + \ln \bigg (\frac{o_i}{e_i} \bigg)
++ \sum_j \frac{s_j^2}{\sigma_j^2}.
+\end{equation}
+The sum over $j$ is over systematic contributions.  Each systematic error
+is allowed to shift each bin, with $\sigma_j$ reflecting our prior
+knowledge of the allowed freedom in that systematic shift.
+The value $s_j$ is determined by a process known as \textit{marginalization}.
+At each grid point for \deltamtht and \thetatth, the fitter is allowed to scan
+over values of the systematic shift; $s_j$ is taken the value of the shift
+which minimizes $\chi^2$.
+The sum over $j$ provides a penalty for large shifts, which disfavors values
+which deviate strongly from our prior knowledge of the systematic parameter.
+The result of the marginalization process is to generally produce a better fit
+at each grid point, effectively reducing the depth of the $\chi^2$ surface.
+A shallower surface results in larger confidence intervals which fits
+the intuition that systematic errors reduce the confidence in a measurement.
+
+\subsection{The Feldman-Cousins Procedure}
+\label{feldman_cousins_section}
+
+An alternative fitting strategy is employed based on \cite{feldman1998unified}.
+This approach uses a Frequentist approach which is concerned with proper
+\textit{coverage}; that is, the notion that a 90\% confidence interval
+should include the true values in 90\% of trials if the experiment
+were to be repeated.
+At each grid point, a large number of pseudo-experiments are generated.
+Each pseudo-experiment is based on the oscillated MC prediction, but with
+Poisson distributed fluctuations in the signal and Gaussian fluctuations
+for each systematic error.
+The $\chi^2$ is determined for each pseudo-experiment
+and 90th percentile forms the critical value at each grid point.
+When fitting the final data, the $\chi^2$ is compared to the grid points.
+Points in the data grid where the $\chi^2$ exceeds the critical value at that
+point grid are excluded from the contour, while which fall below are included.
+In each pseudo-experiment, values of the systematic shift are chosen from their
+true distribution, rather than assuming a Gaussian shape.
+This method ensures proper coverage by construction, even in the presence
+of large deviations from Gaussian behavior.
 
 
-systematic errors and constraints on unmeasured oscillation parameters
-are included in the fit with a penalty term
-
-constraints on osc. params taken from PDG
-
-The allowed region is calculated using the FC technique.
-
-Also describe binned maximum likelihood.
 
 
 

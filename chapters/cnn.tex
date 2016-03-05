@@ -9,16 +9,18 @@
 At the core of any particle physics analysis is the selection of signal events,
 that is, the events which represent the physical process under study.
 Traditionally, features are extracted from event reconstruction and passed
-to a machine learning alrorithm, e.g. k-nearest neighbor, neural network, or
-decision tree.
+to a machine learning alrorithm \cite{lecun2015deep}, e.g. k-nearest neighbor
+\cite{altman1992introduction}, neural network \cite{reed1999neural},
+or decision tree \cite{friedman2002stochastic}.
 While this apporach is generally successful, those classifiers can often
-be fooled by reconstruction failures.
+be fooled by reconstruction failures \cite{lecun2015deep}.
 Even the most robust reconstruction failures will fall victim to
 more pathological event topologies.
 Some examples include overlapping particle activity which cannot be resolved
 and particles which don't travel far enough to make a recongizable track.
 
-An approach which relies on less reconstruction is thus desirable.
+An approach which relies on less reconstruction is thus desirable
+\cite{backhouse2015library}.
 In the case of \nova, this means building a classifier which recieves
 the raw detector output as input, so as to cut out the reconstruction as a
 middleman.
@@ -27,76 +29,12 @@ Since \nova detector output is essentially a pair of images with discrete
 pixels, it pays to draw inspiration from the computer vision community.
 The recent advances in image classification
 \cite{krizhevsky2012imagenet,lecun2015deep,szegedy2014going}
-discussed in chapter \ref{nnet_chapter} lend themselves well to the task at
+discussed in Chapter \ref{nnet_chapter} lend themselves well to the task at
 hand.
 The implementation discussed in this chapter involves a convolutional neural
 network trained on events, treated as images, from \nova simulation and data.
 In this approach, the feature extraction units which lead to classification
 are trained as convolutional filters in a deep architecture.
-
-\begin{figure}[t]
-\begin{subfigure}[c]{\textwidth}
-\centering
-\begin{subfigure}[c]{0.47\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/view_truetype2_caltype2_event274_x.pdf}
-\vspace{-20pt}
-\caption*{\xview}
-\end{subfigure}
-\begin{subfigure}[c]{0.47\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/view_truetype2_caltype2_event274_y.pdf}
-\vspace{-20pt}
-\caption*{\yview}
-\end{subfigure}
-\vspace{-10pt}
-\caption{\numu CC interaction.}
-\label{pixnumu}
-\end{subfigure}
-
-\begin{subfigure}[c]{\textwidth}
-\centering
-\begin{subfigure}[c]{0.47\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/view_truetype6_caltype6_event155_x.pdf}
-\vspace{-20pt}
-\caption*{\xview}
-\end{subfigure}
-\begin{subfigure}[c]{0.47\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/view_truetype6_caltype6_event155_y.pdf}
-\vspace{-20pt}
-\caption*{\yview}
-\end{subfigure}
-\vspace{-10pt}
-\caption{\nue CC interaction.}
-\label{pixnue}
-\end{subfigure}
-
-\begin{subfigure}[c]{\textwidth}
-\centering
-\begin{subfigure}[c]{0.47\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/view_truetype13_caltype6_event144_x.pdf}
-\vspace{-20pt}
-\caption*{\xview}
-\end{subfigure}
-\begin{subfigure}[c]{0.47\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/view_truetype13_caltype6_event144_y.pdf}
-\vspace{-20pt}
-\caption*{\yview}
-\end{subfigure}
-\vspace{-10pt}
-\caption{NC interaction.}
-\label{pixnc}
-\end{subfigure}
-
-
-\caption{Example images formed from \nova slices.}{
-Images such as these are passed as input to the convolutional neural network.
-The region of interest is determined by the furthest plane upstream with
-activity and the median cell position of all activity
-in the 100 plane window spanned by the image.
-The pixel intensity is proportional to the calibrated energy deposition
-of each cell hit.}
-\label{pixelmap}
-\end{figure}
-\clearpage
 
 \section{\nova Events as Images}
 
@@ -121,11 +59,96 @@ This calibration is important in order to enhance the uniformity of the
 event images, leaving behind the effects of attenuation and cell-to-cell
 variations would add unnecessary diversity to the training sample.
 
+
+\begin{figure}
+\begin{center}
+\vspace{-40pt}
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype2_caltype2_event274_x.pdf}
+\vspace{-20pt}
+\caption*{\xview}
+\end{subfigure}
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype2_caltype2_event274_y.pdf}
+\vspace{-20pt}
+\caption*{\yview}
+\end{subfigure}
+\vspace{-10pt}
+\end{center}
+\caption{Image formed from a \numu CC interaction}{
+Images such as this one are passed as input to the convolutional neural network.
+The top and bottom panes show the \xview and \yview, respectively.
+The region of interest is determined by the furthest plane upstream with
+activity and the median cell position of all activity
+in the 100 plane window spanned by the image.
+The pixel intensity is proportional to the calibrated energy deposition
+of each cell hit.
+This particular image consists of a long muon track and a hadronic shower.}
+\label{pixnumu}
+
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\vspace{-40pt}
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype6_caltype6_event155_x.pdf}
+\vspace{-20pt}
+\caption*{\xview}
+\end{subfigure}
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype6_caltype6_event155_y.pdf}
+\vspace{-20pt}
+\caption*{\yview}
+\end{subfigure}
+\vspace{-10pt}
+\end{center}
+\caption{Image formed from a \nue CC interaction}{
+Images such as this one are passed as input to the convolutional neural network.
+The top and bottom panes show the \xview and \yview, respectively.
+The region of interest is determined by the furthest plane upstream with
+activity and the median cell position of all activity
+in the 100 plane window spanned by the image.
+The pixel intensity is proportional to the calibrated energy deposition
+of each cell hit.
+This particular image consists of a long muon track and a hadronic shower.}
+\label{pixnue}
+
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\vspace{-40pt}
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype13_caltype6_event144_x.pdf}
+\vspace{-20pt}
+\caption*{\xview}
+\end{subfigure}
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/cnn/view_truetype13_caltype6_event144_y.pdf}
+\vspace{-20pt}
+\caption*{\yview}
+\end{subfigure}
+\vspace{-10pt}
+\end{center}
+\caption{Image formed from an NC interaction}{
+Images such as this one are passed as input to the convolutional neural network.
+The top and bottom panes show the \xview and \yview, respectively.
+The region of interest is determined by the furthest plane upstream with
+activity and the median cell position of all activity
+in the 100 plane window spanned by the image.
+The pixel intensity is proportional to the calibrated energy deposition
+of each cell hit.
+This particular image consists of a hadronic shower including a neutral
+pion which decays to two photons.}
+\label{pixnc}
+\end{figure}
+
 Rather than using the readout of the entire detector, it is sensible to use
 the reconstructed slices discussed in section \ref{slicer_section}.
 The performance of DBSCAN in isolating cosmic rays and neutrino interactions
 is robust and efficient enough \cite{baird2015thesis} that relying on this
-simple reconstruction step will not significantly impact classification
+simple reconstruction step will does significantly impact classification
 results.
 In the case of slices, the distance from the readout electronics is determined
 by the mean position of all activity in the opposite view.
@@ -140,9 +163,10 @@ image.
 The size and placement of this window ensures that the majority of beam events
 are well contained, including \numu CC interactions which are
 characteristically extensive as a result of long muon tracks.
-Example images can be seen in Figure \ref{pixelmap}.
+Example images can be seen in Figures \ref{pixnumu}, \ref{pixnue},
+and \ref{pixnc}.
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.85\textwidth]{figures/cnn/discrete_intensity.pdf}
 \end{center}
@@ -156,8 +180,8 @@ savings over a floating point representation.
 \end{figure}
 
 
-Pixel intensity is proportional to the calibrated energy deposition
-in each cell.
+Pixel intensity in the image is proportional to the calibrated
+energy deposition in each cell.
 Images are thus interpretable as gray-scale with the shade of
 each pixel corresponding to the amount of energy recorded in that cell.
 In order to optimize data storage and transfer in the training stage,
@@ -236,7 +260,6 @@ abstraction and greatly reduce the number of operations required.
 The effect of LRN should be studied by removing those layers and
 comparing results.
 
-\clearpage
 
 \section{Regularization}
 
@@ -276,7 +299,7 @@ Training was performed using the Caffe framework \cite{jia2014caffe}
 using NVIDIA Tesla K20 and K40 graphics processing units (GPU).
 Weight updates were
 performed using the basic stochastic gradient descent (SGD)
-\cite{reed1999neural} procedure described in chapter \ref{nnet_chapter}.
+\cite{reed1999neural} procedure described in Chapter \ref{nnet_chapter}.
 
 \begin{figure}
 \begin{center}
@@ -382,8 +405,8 @@ after the next two sets of 50,000 iterations, then again after four sets of
 25,000 iterations, and subsequently after each 10,000
 iterations.
 
-Training was interrupted after 640,000 iterations due to the observation
-of an error observed in the architecture.
+Training was interrupted after 640,000 iterations after an error
+was discovered in the architecture.
 Rather than having the intended 15 nodes in the softmax output layer,
 the architecture had accidentally been configured with 1,000 nodes in that
 layer.
@@ -414,7 +437,7 @@ allowed for more pure \nue CC selection.
 
 \section{Training Results}
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.85\textwidth]{figures/cnn/numu_pid_dist.pdf}
 \end{center}
@@ -428,7 +451,7 @@ Clear separation in the classifier can be seen between the signal and background
 \end{figure}
 
 
-\begin{figure}[t]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.85\textwidth]{figures/cnn/nue_pid_dist.pdf}
 \end{center}
@@ -451,6 +474,8 @@ all other classification approaches developed for the \nova oscillation
 analyses.
 The \numu and \nue classifier outputs can be seen in figures \ref{numupid} and
 \ref{nuepid} respectively.
+The application to \numu disappearance will be discussed in detail throughout
+the rest of this thesis.
 
 
 \section{Filter Visualization}
@@ -461,43 +486,66 @@ particular images can provide insight with regard to the network operation.
 As observed in many convolutional neural network examples,
 early layers in the network respond to low-level characteristics
 in an image \cite{lecun2015deep}.
-The filters and example output from the first convolution layer in the \yview
-branch can be seen in Figure \ref{convexamples}.
+The $7\times7$ convolutional filters trained in the first layer can be seen
+in Figure \ref{7x7conv}.
+The output of those filters can be seen in Figures \ref{7x7numu}, \ref{7x7nue},
+and \ref{7x7nc}.
 Downstream layers in the network start to pick up higher level concepts,
 like the presence of track-like or shower-like activity.
 Output from the first inception module in the \yview branch can be seen
 in Figure \ref{inceptionexamples}.
 
 
-\begin{figure}[t]
-\begin{center}
 
-\begin{subfigure}[b]{0.49\textwidth}
+\begin{figure}
 \includegraphics[width=\textwidth]{figures/cnn/conv1y.pdf}
-\caption*{$7\times7$ Convolutional Filters}
-\end{subfigure}
-\begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype2_caltype2_event274_y.pdf}
-\caption*{Filter outputs for \numu CC event (fig. \ref{pixnumu})}
-\end{subfigure}
-
-\begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype6_caltype6_event155_y.pdf}
-\vspace{-20pt}
-\caption*{Filter outputs for \nue CC event (fig. \ref{pixnue})}
-\end{subfigure}
-\begin{subfigure}[b]{0.49\textwidth}
-\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype13_caltype6_event144_y.pdf}
-\caption*{Filter outputs for NC event (fig. \ref{pixnc})}
-\end{subfigure}
-\end{center}
-
-\caption{$7\times7$ convolutional filter and example outputs}{The image at top
-left shows the 64 trained $7\times7$ filters from the first layer in the \yview
-branch of the network.  Also shown is the output for each of the three example
-event images from Figure \ref{pixelmap}.}
-\label{convexamples}
+\caption{$7\times7$ Convolutional Filters}{
+The first layer of the network used for classification performs 64 different
+$7\times7$ convolution operations for both the \xview and \yview.
+Each entry in the grid above shows one of those trained filters from the
+first layer of the \yview branch of the network.
+}
+\label{7x7conv}
 \end{figure}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype2_caltype2_event274_y.pdf}
+\caption{$7\times7$ convolutional filter outputs for a \numu CC event}{
+Convolutional filters produce many alternative representations of an image.
+Each entry in the grid shows the the output in the corresponding location
+of the grid in figure \ref{7x7conv}.
+The input image for these filtered representations was the \yview image
+of the \numu CC event from Figure \ref{pixnumu}
+}
+\label{7x7numu}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype6_caltype6_event155_y.pdf}
+\caption{$7\times7$ convolutional filter outputs for a \nue CC event}{
+Convolutional filters produce many alternative representations of an image.
+Each entry in the grid shows the the output in the corresponding location
+of the grid in figure \ref{7x7conv}.
+The input image for these filtered representations was the \yview image
+of the \nue CC event from Figure \ref{pixnue}
+}
+\label{7x7nue}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype13_caltype6_event144_y.pdf}
+\caption{$7\times7$ convolutional filter outputs for an NC event}{
+Convolutional filters produce many alternative representations of an image.
+Each entry in the grid shows the the output in the corresponding location
+of the grid in figure \ref{7x7conv}.
+The input image for these filtered representations was the \yview image
+of the NC event from Figure \ref{pixnc}
+}
+\label{7x7nc}
+\end{figure}
+
 
 
 \begin{figure}

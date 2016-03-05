@@ -79,7 +79,7 @@ The algorithm evaluates the distance between every pair of points based on
 a distance metric which suits the problem at hand.
 If the distance between a pair of points is below a threshold, $\epsilon$, the
 points are added to the same cluster.
-Clusters can be disregarded if they do not inude a minimum number of hits,
+Clusters can be disregarded if they do not include a minimum number of hits,
 which can be optimized based on the amount of noise in the data.
 Boundaries between clusters are effectively formed in low density regions.
 A depiction of how points are clustered can be seen in Figure \ref{dbscan}.
@@ -91,13 +91,21 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
      \bigg( \frac{\Delta \vec{r}}{D} \bigg)^2,
 \end{equation}
 
-where $c$ is the speed of light.  The parameters $T$ and $D$ are configurable
+where $c$ is the speed of light.  The parameters $T$ and $D$ represent
 length scales which dictate the relative weight of separation in time and
 space.
+$T$ is taken to be the timing resolution  of the two hits
+in the pair summed in quadrature.
+Timing resolution for hits is estimated based on the pulse height.
+In the FD,
+the timing resolution is roughly 10 ns, while the ND timing resolution
+is roughly 5 ns.
+$D$ is configurable and set to 100 cm for the FD and 75 cm for the ND
+\cite{baird2015thesis}.
 
 The slicing algorithm for \nova has been tuned such that it provides good
 separation between cosmic rays while leaving entire neutrino interactions
-in tact.  Certain delayed activity, such as Michel electrons (from muon decay)
+intact.  Certain delayed activity, such as Michel electrons (from muon decay)
 and neutron activity is prone to being excluded from a slice.
 Generally, however, a slice in \nova data is treated as a potential cosmic ray
 or entire neutrino interaction with all daughter particles.
@@ -126,8 +134,9 @@ Isolating and fitting those trajectories is commonly referred to as
 
 This analysis applies the results of two different tracking algorithms.
 The first is a simple, least-squares based approach called \textit{CosmicTrack};
-the second, KalmanTrack, is based on Kalman filtering and optimized to identify
-muons in \numu CC interactions.
+the second, \textit{KalmanTrack}, is based on Kalman filtering
+\cite{kalman1960new} and optimized to
+identify muons in \numu CC interactions \cite{raddatz2016thesis}.
 
 \subsection{CosmicTrack -- Least-squares Regression}
 \label{cosmictrack_section}
@@ -194,7 +203,7 @@ reconstruction and analysis.
 \section{Calibration}
 
 An important input to many reconstruction efforts is an accurate estimate of
-the energy deposited in a cell.  Calibration procedures aim provide an the
+the energy deposited in a cell.  Calibration procedures aim to provide an the
 estimation of energy deposition based on the recorded ADC value and position
 of a particular cell hit.  The \nova calibration accounts for three primary
 effects: attenuation
@@ -212,11 +221,14 @@ tracks are required to cross at least ten planes to ensure that path length
 (distance traversed by the muon within each cell) can accurately be estimated.
 Hits on selected tracks are only used for calibration if they satisfy the
 so-called tri-cell criterion; that is, that there are also hits present in
-adjacent planes.  This criterion also helps ensure that a reasonable path
-length estimate is obtained.  Certain cells fail to produce enough its to allow
+adjacent planes.
+The tri-cell criterion is schematically depicted in Figure \ref{calib_tricell}.
+This requirement helps ensure that a reasonable path
+length estimate can be obtained.
+Certain cells fail to produce enough its to allow
 the subsequent attenuation fits to be obtained, for instance cells on the edges
 of the detector and those adjacent to dead cells.  Such cells are calibrated
-with alternative samples with hits in adjacent cells.
+with by enriching the sample with hits which have neighbors in adjacent planes.
 
 
 \begin{figure}[t]
@@ -278,12 +290,13 @@ where the smoothing length scale $\sigma$ is 30cm.
 Examples of the final fits with LOWESS corrections can be seen in figure
 \ref{calib_atten}.
 
-\begin{figure*}
-  \includegraphics[width=.5\linewidth]{figures/plots/reco/calib_totfit_data_inX_151_051}
-  \includegraphics[width=.5\linewidth]{figures/plots/reco/calib_totfit_data_inX_419_219}
+\begin{figure}
+  \includegraphics[width=0.9\textwidth]{figures/plots/reco/calib_totfit_data_inX_151_051}
+
+  \includegraphics[width=0.9\textwidth]{figures/plots/reco/calib_totfit_data_inX_419_219}
   \caption[]{Example of a good Near (left) and Far (right) detector fit,
   showing attenuation fits with LOWESS corrections.}\label{calib_atten}
-\end{figure*}
+\end{figure}
 
 The attenuation fits determine the mean response to cosmic ray muons is
 can be determined for a hit at any position in the detector.
@@ -309,7 +322,7 @@ to determine the absolute energy scale.
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.8\textwidth]{figures/plots/reco/calib_dEdX.png}
+\includegraphics[width=\textwidth]{figures/plots/reco/calib_dEdX.png}
 \end{center}
 \caption{2D histogram depicting deposited energy per path length (dE/dX) for
 cell hits after attenuation and cell-to-cell correction.  The color scale
@@ -388,24 +401,34 @@ the energy of those components, then summing the two components
 The energy estimation procedure is tuned on events with muon identification
 kNN output greater than 0.75.
 
-\begin{figure*}
-  \includegraphics[width=.5\linewidth]{figures/plots/reco/numu_energy_muon_fit.pdf}
-  \includegraphics[width=.5\linewidth]{figures/plots/reco/numu_energy_had_fit.pdf}
-  \caption{Muon (right) and hadronic (left) energy fits.}{For muon energy, the
+\begin{figure}
+  \includegraphics[width=\textwidth]{figures/plots/reco/numu_energy_muon_fit.pdf}
+  \caption{Muon energy fit}{For muon energy, the
   2D distribution of true muon energy and reconstructed track length is fit.
-  For hadronic energy, the 2D distribution of calorimetric energy and true
-  hadronic energy is fit.  In both cases, the fit function is a piecewise
+  The fit function is a piecewise
   linear spline with four segments.  The fit is drawn as a solid red line,
   and the spline join points illustrated by the vertical dashed red line.}
-  \label{energy_fits}
-\end{figure*}
+  \label{muon_energy_fit}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{figures/plots/reco/numu_energy_had_fit.pdf}
+  \caption{Hadronic energy fit}{For hadronic energy, the 2D distribution of calorimetric energy and true
+  hadronic energy is fit.  In both cases, the fit function is a piecewise
+  linear spline with four segments.  The fit is drawn as a solid red line,
+  and the spline join points illustrated by the vertical dashed red line.
+  The vertical discontinuities around 1 GeV and 1.5 GeV are the result
+  of a change in the bin horizontal bin width at those points.}
+  \label{had_energy_fit}
+\end{figure}
+
 
 The muon track energy is obtained from a fit to the 2D distribution
 of muon track length and true muon energy from simulation.
 For muons in \nova, the track length is more tightly correlated with
 true muon energy than than the sum of calibrated energy depositions.
 The functional form for the fit is piecewise linear spline with four segments,
-as seen in Figure \ref{energy_fits}.
+as seen in Figure \ref{muon_energy_fit}.
 The offset, four slopes and three join points are all free parameters in the
 fit.
 
@@ -413,8 +436,8 @@ fit.
 The energy of the hadronic shower is estimated from any hits which are not on
 the muon track.
 The calorimetric energy (sum of hit energy depositions) is obtained
-using the slice method for calibration, i.e. average position of all hits
-from the other view.
+using the slice method for calibration, namely using average position of all
+hits from the other view.
 Hadronic energy which overlaps with the muon track
 \cite{sachdev2015thesis} is also added to the calorimetric energy sum.
 A fit to 2D distribution of calorimetric energy and true hadronic energy
@@ -426,7 +449,7 @@ Fitting in this manner also accounts for the non-active material (PVC and glue)
 in the detector.
 Just as in the muon track case, the functional form for the fit is piecewise
 linear spline with four segments,
-as seen in Figure \ref{energy_fits}.
+as seen in Figure \ref{had_energy_fit}.
 The offset, four slope values and three join points are all free parameters in
 the fit.
 

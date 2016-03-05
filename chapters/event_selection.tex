@@ -427,7 +427,7 @@ The \numu CC signal distribution has had oscillation probabilities applied
 based on the true energy of selected events and oscillation parameters
 from described in \ref{osc_weight_section}.
 
-The two smallest distributions, \textit{CNN + Cuts} and
+The two most selective spectra, \textit{CNN + Cuts} and
 \textit{Muon ID + BDT}, compare
 the CNN approach to the existing approach used in \cite{nova2016numu}.
 The existing approach relied on the Muon ID described in
@@ -466,7 +466,7 @@ no energy outside of the detector, this serves as the denominator
 for the efficiency ratio shown in the bottom pane.
 Each subsequent spectrum adds an additional selection cut to the sample.
 
-The two smallest distributions, \textit{CNN + Cuts} and
+The two most selective spectra, \textit{CNN + Cuts} and
 \textit{Muon ID + BDT}, compare
 the CNN approach to the existing approach used in \cite{nova2016numu}.
 The existing approach relied on the Muon ID described in
@@ -510,71 +510,23 @@ from described in \ref{osc_weight_section}.
 
 With the ND selection in place, we can compare the ND MC prediction
 to the ND data.
-This gives us our first glimpse at data from true neutrino interactions.
+This gives us our first glimpse at detector data induced
+by real neutrino interactions.
 
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection_nd/cvnmu_NumuContainND_CVN.pdf}
-\end{center}
-\caption{CNN  distribution for selected ND sample}{
-words
-}
-\label{nd_selected_cvnmu}
-\end{figure}
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection_nd/hadE_NumuContainND_CVN.pdf}
-\end{center}
-\caption{hadE distribution for selected ND sample}{
-words
-}
-\label{nd_selected_hadE}
-\end{figure}
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection_nd/hadNHit_NumuContainND_CVN.pdf}
-\end{center}
-\caption{hadNH distribution for selected ND sample}{
-words
-}
-\label{nd_selected_hadNHit}
-\end{figure}
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection_nd/numuE_NumuContainND_CVN.pdf}
-\end{center}
-\caption{numuE distribution for selected ND sample}{
-words
-}
-\label{nd_selected_numuE}
-\end{figure}
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection_nd/remid_NumuContainND_CVN.pdf}
-\end{center}
-\caption{remid distribution for selected ND sample}{
-words
-}
-\label{nd_selected_remid}
-\end{figure}
 
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.9\textwidth]{figures/selection_nd/slcNHit_NumuContainND_CVN.pdf}
 \end{center}
-\caption{slcNH distribution for selected ND sample}{
-words
+\caption{Slice $N_{Hit}$ distribution for selected ND sample}{
+Comparing ND data to the ND MC prediction provides a window on simulation
+performance.  The MC prediction is shown in red, with the background
+component shown in blue.
+The selected ND data are shown as black points.
+Slice $N_{Hit}$ is the number of hits in the reconstructed slice,
+as described in Section \ref{slicer_section}.
+The data show a slight shift toward smaller clusters.
 }
 \label{nd_selected_slcNHit}
 \end{figure}
@@ -582,15 +534,100 @@ words
 
 \begin{figure}
 \begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection_nd/remid_NumuContainND_CVN.pdf}
+\end{center}
+\caption{Muon ID distribution for selected ND sample}{
+Comparing ND data to the ND MC prediction provides a window on simulation
+performance.  The MC prediction is shown in red, with the background
+component shown in blue.
+The selected ND data are shown as black points.
+The Muon ID variable is the output of a kNN based on track length and
+likelihood estimates for observed energy deposition and multiple scattering,
+as described in Section \ref{remid_section}.}
+\label{nd_selected_remid}
+\end{figure}
+
+\begin{figure}
+\begin{center}
 \includegraphics[width=0.9\textwidth]{figures/selection_nd/trkLength_NumuContainND_CVN.pdf}
 \end{center}
-\caption{trkLe distribution for selected ND sample}{
-words
+\caption{Muon track length distribution for selected ND sample}{
+Comparing ND data to the ND MC prediction provides a window on simulation
+performance.  The MC prediction is shown in red, with the background
+component shown in blue.
+The selected ND data are shown as black points.
+The muon track length is the length of the track from KalmanTrack (Section
+\ref{kalmantrack_section})
+with the highest muon ID score (Section \ref{remid_section}).
 }
 \label{nd_selected_trkLen}
 \end{figure}
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection_nd/cvnmu_NumuContainND_CVN.pdf}
+\end{center}
+\caption{CNN classifier output distribution for selected ND sample}{
+Comparing ND data to the ND MC prediction provides a window on simulation
+performance.  The MC prediction is shown in red, with the background
+component shown in blue.
+The selected ND data are shown as black points.
+The CNN classifier shows a slight enhancement in the signal region, similar
+to the Muon ID varaible shown in Figure \ref{nd_selected_remid}.}
+\label{nd_selected_cvnmu}
+\end{figure}
 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection_nd/hadNHit_NumuContainND_CVN.pdf}
+\end{center}
+\caption{Hadronic cluster $N_{Hit}$ distribution for selected ND sample}{
+Comparing ND data to the ND MC prediction provides a window on simulation
+performance.  The MC prediction is shown in red, with the background
+component shown in blue.
+The selected ND data are shown as black points.
+This distribution shows the number of hits in the hadronic cluster, that is,
+all hits in the slice which are not on the selected muon track,
+as described in Section \ref{energy_section}.
+The data show a trend toward fewer hits in the hadronic cluster, which is
+consistent with \cite{nova2016numu}.}
+\label{nd_selected_hadNHit}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection_nd/hadE_NumuContainND_CVN.pdf}
+\end{center}
+\caption{Hadronic energy distribution for selected ND sample}{
+Comparing ND data to the ND MC prediction provides a window on simulation
+performance.  The MC prediction is shown in red, with the background
+component shown in blue.
+The selected ND data are shown as black points.
+Hadronic energy is the result of the spline fit to the calorimetric energy
+of the hadronic cluster as described in Section \ref{energy_section}.
+The data show a shift toward lower hadronic energy, similar to that observed in
+from \cite{nova2016numu}.}
+\label{nd_selected_hadE}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/selection_nd/numuE_NumuContainND_CVN.pdf}
+\end{center}
+\caption{Reconstructed energy distribution for selected ND sample}{
+Comparing ND data to the ND MC prediction provides a window on simulation
+performance.  The MC prediction is shown in red, with the background
+component shown in blue.
+The selected ND data are shown as black points.
+Reconstructed energy is the sum of muon track energy and hadronic energy,
+as described in section \ref{energy_section}.
+The data show a shift toward lower energy, consistent with the
+observation in \cite{nova2016numu}.
+}
+\label{nd_selected_numuE}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

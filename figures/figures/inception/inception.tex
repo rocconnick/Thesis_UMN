@@ -1,0 +1,93 @@
+%!TEX program = xelatex
+% Compile with XeLaTeX
+
+\documentclass[crop,tikz, border=1cm]{standalone}% 'crop' is the default for v1.0, before it was 'preview'
+
+\usepackage{fontspec}
+\setsansfont{Helvetica Neue}
+
+
+%\documentclass{standalone}
+\usepackage{tikz}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+%%%% %%%% %%%%
+
+
+\xdefinecolor{myred}{RGB}{179, 51, 51}
+
+\xdefinecolor{myblue}{RGB}{56, 117, 215}
+\xdefinecolor{mygreen}{RGB}{69, 125, 50}
+
+\xdefinecolor{myteal}{RGB}{64, 165, 178}
+\xdefinecolor{mybrown}{RGB}{86, 45, 20}
+
+
+
+\begin{document}
+
+
+
+\tikzstyle{block} = [rectangle, draw, fill=myred,
+    text width=2cm, text centered, rounded corners, minimum height=1cm, minimum width = 1cm, text=white]
+\tikzstyle{blocksm} = [rectangle, draw, fill=myred,
+    text width=1cm, text centered, rounded corners, minimum height=1cm, minimum width = 1cm, text=white]
+
+\tikzstyle{blockspilt} = [rectangle split,rectangle split parts=3, draw, fill=myred,
+    text width=2cm, text centered, rounded corners, minimum height=1cm, minimum width = 1cm, text=white]
+
+
+\tikzstyle{line}=[draw, -, thick]
+\tikzstyle{lin}=[draw, -, thick]
+
+\tikzstyle{dot} = [minimum size=0.00pt,inner sep=0pt]
+\tikzstyle{cloud} = [draw, ellipse,fill=myblue,
+    minimum height=2em, text=white]
+\tikzstyle{cloudgr} = [draw, ellipse,fill=mygreen,
+    minimum height=2em, text=white]
+
+\tikzstyle{dia} = [draw, trapezium,, fill=myblue, text width=1.35cm, text centered, rounded corners, minimum height = 1cm, text=white]
+
+\pagestyle{empty}
+\centering
+\begin{tikzpicture}[]
+    % Place nodes
+    \node [dot] (anchor){};
+
+    \node [block, text width=3.0cm, fill=mygreen] (prev) {Previous Layer};
+
+    \node [block, text width=3.0cm, above of=prev, above=1.0cm, fill=myred] (1x1-3) {1$\times$1 Convolution};
+    \node [block, text width=3.0cm, above of=1x1-3, above=0.0cm, fill=myred] (3x3) {3$\times$3 Convolution};
+
+    \node [block, text width=3.0cm, right of=1x1-3, right=1.0cm, fill=myred] (1x1-5) {1$\times$1 Convolution};
+    \node [block, text width=3.0cm, above of=1x1-5, above=0.0cm, fill=myred] (5x5) {5$\times$5 Convolution};
+
+    \node [block, text width=3.0cm, right of=1x1-5, right=1.0cm, fill=myblue] (3x3p) {3$\times$3 Pooling};
+    \node [block, text width=3.0cm, above of=3x3p, above=0.0cm, fill=myred] (1x1p) {1$\times$1 Convolution};
+
+    \node [block, text width=3.0cm, above of=1x1-3, above=0.0cm, left of=1x1-3, left=1.0cm, fill=myred] (1x1) {1$\times$1 Convolution};
+
+    \node [block, text width=3.0cm, above of=1x1-3, above=2.0cm, fill=mygreen] (cat) {Filter\\ Concatenation};
+
+
+    \path [line] (prev) -- (1x1);
+    \path [line] (prev) -- (1x1-3);
+    \path [line] (prev) -- (1x1-5);
+    \path [line] (prev) -- (3x3p);
+
+    \path [line]  (1x1-3) -- (3x3);
+    \path [line]  (1x1-5) -- (5x5);
+    \path [line]  (3x3p) --(1x1p);
+
+
+    \path [line] (1x1) -- (cat);
+    \path [line] (3x3) -- (cat);
+    \path [line] (5x5) -- (cat);
+    \path [line] (1x1p) -- (cat);
+
+
+\end{tikzpicture}
+\end{document}

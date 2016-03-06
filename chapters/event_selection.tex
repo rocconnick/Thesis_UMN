@@ -274,10 +274,11 @@ dashed red line.
 \end{figure}
 
 
-\section{Selected Spectrum}
+\section{FD Selected Sample}
+\label{fd_selection_section}
 
-The figures at the end of this chapter give many representations of the selected
-events which will ultimately be used for analysis.
+The figures at the end of this chapter give many representations on the
+FD selected sample.
 Figure \ref{final_selection} shows FD MC prediction for
 the reconstructed energy spectrum for the final selected energy spectrum.
 Beyond that, two perspectives can be used to interpret the selection:
@@ -503,7 +504,7 @@ from described in \ref{osc_weight_section}.
 }
 \label{contour_improvement}
 \end{figure}
-
+\clearpage
 
 \section{ND Selected Sample}
 \label{nd_selection_section}
@@ -513,7 +514,34 @@ to the ND data.
 This gives us our first glimpse at detector data induced
 by real neutrino interactions.
 
+The agreement between the MC prediction and the data is generally good.
+Reconstructed slices (described in section \ref{slicer_section})
+show a slight bias in the data toward smaller clusters, as seen in
+Figure~\ref{nd_selected_slcNHit}.
+The Muon ID data, shown in Figure~\ref{nd_selected_remid}, display
+a slight excess in the most signal-like bins relative to the MC prediction.
+That excess in signal translates to a normalization enhancement in the
+muon track length (Section \ref{kalmantrack_section})
+distribution in Figure~\ref{nd_selected_trkLen}.
+The singal excess is also visible in the distribution of CNN softmax output
+seen in Figure~\ref{nd_selected_cvnmu}.
+The shift in Slice \nhit is driven primarily by a discrepancy
+in the number of hits in the hadronic cluster (as described in
+Section~\ref{energy_section}), which can be seen in Figure~\ref{nd_selected_hadNHit}.
+Calorimetric hadronic energy picks up that same shift toward lower energy
+relative to the MC prediction.
+Since the hadronic energy enters directly into reconstructed neutrino energy,
+seen in Figure~\ref{nd_selected_numuE}, a shift is seen there as well.
 
+These discrepancies can be troubling from the perspective of oscillation
+analysis.
+The extrapolation procedure described in Section~\ref{extrap_section}
+will pick up the normalization and shape discrepancies and propagate them
+to the FD prediction, but that will be incorrect if the discrepancies
+are not correlated to the FD observation.
+Thus, we must include systematic errors which account for the discrepancies
+between the ND MC prediction and ND data.
+The discussion of systematic errors will come in Chapter~\ref{systs_chapter}.
 
 \begin{figure}
 \begin{center}

@@ -280,8 +280,7 @@ the appropriate exposure to each detector configuration.
 A binned maximum-likelihood procedure is used to measure oscillation parameters
 \deltamtht and \thetatth by comparing the extrapolated FD prediction to the
 observed FD data.
-
-The prediction becomes a function of the oscillation parameters
+The prediction is cast as a function of the oscillation parameters
 through by applying oscillation probabilities to the FD true energy spectrum
 as described in Section \ref{sig_extrap_section}.
 Oscillation probabilities are calculated using the full three-flavor
@@ -290,7 +289,7 @@ With the exception of \deltamtht and \thetatth, which are used in the fit,
 the values for all other oscillation parameters are identical to those
 described in section \ref{osc_weight_section}.
 The result of the fit is a two dimensional confidence interval
-in the variables $|\Delta m^2_{32}$ and $\sin^2(\theta_{23})$.
+for the parameters $|\Delta m^2_{32}|$ and $\sin^2(\theta_{23})$.
 
 The likelihood function used is the log-likelihood for Poisson distributed
 data \cite{pdg}:
@@ -323,7 +322,7 @@ The sum over $j$ provides a penalty for large shifts, which disfavors values
 which deviate strongly from our prior knowledge of the systematic parameter.
 The result of the marginalization process is to generally produce a better fit
 at each grid point, effectively reducing the depth of the $\chi^2$ surface.
-A shallower surface results in larger confidence intervals which fits
+A shallower surface results in larger confidence intervals, which fits with
 the intuition that systematic errors reduce the confidence in a measurement.
 
 \subsection{The Feldman-Cousins Procedure}
@@ -336,8 +335,7 @@ should include the true values in 90\% of trials if the experiment
 were to be repeated.
 At each grid point, a large number of pseudo-experiments are generated.
 Each pseudo-experiment is based on the oscillated MC prediction, but with
-Poisson distributed fluctuations in the signal and Gaussian fluctuations
-for each systematic error.
+Poisson distributed fluctuations in each bin.
 The $\chi^2$ is determined for each pseudo-experiment
 and 90th percentile forms the critical value at each grid point.
 When fitting the final data, the $\chi^2$ is compared to the grid points.

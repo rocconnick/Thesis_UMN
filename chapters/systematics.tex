@@ -1,9 +1,220 @@
+%!TEX root = ../thesis_phd.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% oscillation_analysis.tex: Analysis of Neutrino Oscillations:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% systematics.tex: systematic errors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Systematic Errors}
 \label{systs_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The extrapolated prediction depends on our knowledge of particle propagation
+and detector propagation, mainly through MC simulation.
+Such dependencies introduce systematic errors when that knowledge is incomplete.
+The design of \nova and its reconstruction chain is aimed at mitigating
+systematic errors.
+For instance, a two detector design helps
+cancel flux and cross section uncertainties; estimating muon energy
+from range helps eliminate some dependence on precise calibration.
+Despite these efforts, the degree to which systematic errors are mitigated
+must be tested and and their effect must be incorporated into the
+analysis framework.
+
+
+\section{Treatment of Systematic Errors}
+
+Systematic errors are incorporated by allowing
+event records to be altered before they are handled by the
+selection and analysis framework.
+This process allows the analysis framework to see the analysis as each
+event were different in some systematic fashion.
+Each event can also be assigned an alternate weight based
+on entries in the event record, such as MC truth information or
+the output of the reconstruction algorithms.
+For each systematic error, alternate versions of the FD prediction
+are generated corresponding to $\pm 1\sigma, \pm2\sigma,$ and
+$\pm3\sigma$ shifts.
+
+The event records which are allowed to be shifted are populated by
+the output of the reconstruction algorithms,
+not the raw hit-by-hit detector readout itself.
+Meanwhile, many of the systematic effects must be assessed by altering the
+hit-by-hit detector readout.
+In these cases, alternative MC samples are generated which
+correspond to some systematic change in the behavior of the
+simulation and/or reconstruction.
+The effect of that systematic change is then
+and parametrized in terms of some entry in the event record which
+captures the behavior.
+
+For each systematic error, the shape of the
+$\pm 1\sigma, \pm2\sigma,$ and
+$\pm3\sigma$ shifts is interpolated using a cubic spline
+\cite{atkinson1978introduction}.
+The interpolation gives the fitter a smooth profile for marginalization.
+In the Feldman-Cousins procedure \cite{feldman1998unified} (described
+in Section~\ref{feldman_cousins_section}) that shape
+is used for sampling the errors in the pseudo-experiments.
+
+\section{Flux Uncertainties}
+\label{flux_syst_section}
+
+Come back to this one.
+
+
+\section{Cross Section Uncertainties}
+
+\genie includes a built in utility for reweighting events based on
+uncertainties the free parameters of its cross section models
+\cite{genie}.
+For each free parameter, event weights are determined by recalculating the
+cross section with that parameter altered;
+the weight is taken to be the ratio of the altered cross section
+to the altered one.
+At analysis time, selected events in the ND and FD MC predictions can be
+reweighted on an event-by-event basis.
+
+There are 67 parameters which can be adjusted independently which are listed
+in Table~\ref{genie_reweight_knobs}.
+In particular, certain parameters are matched with shape-only
+and/or normalization-only counterparts.
+The shape-only and normalization-only parameters, listed in Table
+ are excluded 
+
+
+ \begin{longtable}{|p{0.4\textwidth}|p{0.6\textwidth}|}
+\hline
+Parameter & Description \\
+\hline \hline
+\endfirsthead
+
+\multicolumn{2}{l}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+Parameter & Description \\
+\hline \hline
+\endhead
+
+\hline \hline \multicolumn{2}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+
+   \hline
+ ReweightAGKY\_pT1pi & AGKY transverse momentum in single pion states \\ \hline
+ ReweightAGKY\_xF1pi & AGKY Feynman x for single pion states \\ \hline
+ ReweightAhtBY & Higher-twist parameter ($A_{HT}$) in Bodek-Yang model \\ \hline
+ ReweightAhtBYshape & Higher-twist parameter ($A_{HT}$) in Bodek-Yang model, shape only \\ \hline
+ ReweightBR1eta & Branching ratio for single-$\eta$ resonance decays \\ \hline
+ ReweightBR1gamma & Branching ratio for radiative resonance decays \\ \hline
+ ReweightBhtBY & Higher-twist parameter ($B_{HT}$) in Bodek-Yang model \\ \hline
+ ReweightBhtBYshape & Highter-twist parameter ($B_{HT}$) in Bodek-Yang model, shape only \\ \hline
+ ReweightCCQEMomDistroFGtoSF & CCQE Nucleon Momentum Distribution \\ \hline
+ ReweightCCQEPauliSupViaKF & CCQE Pauli suppression (changes Fermi level $k_F$) \\ \hline
+ ReweightCV1uBY & $C_{V1u}$  valence GRV98 PDF correction in Bodek-Yang Model \\ \hline
+ ReweightCV1uBYshape & $C_{V1u}$  valence GRV98 PDF correction in Bodek-Yang Model, shape only \\ \hline
+ ReweightCV2uBY & $C_{V2u}$  valence GRV98 PDF correction in Bodek-Yang Model \\ \hline
+ ReweightCV2uBYshape & $C_{V2u}$  valence GRV98 PDF correction in Bodek-Yang Model, shape only \\ \hline
+ ReweightDISNuclMod & DIS nuclear modification (shadowing, anti-shadowing, EMC) \\ \hline
+ ReweightEtaNCEL & Strange axial form factor for NC elastic  \\ \hline
+ ReweightFormZone & Formation zone \\ \hline
+ ReweightFrAbs\_N & Nucleon absorption probability \\ \hline
+ ReweightFrAbs\_pi &Pion absorption probability \\ \hline
+ ReweightFrCEx\_N & Nucleon charge exchange probability \\ \hline
+ ReweightFrCEx\_pi & Pion charge exchange probability \\ \hline
+ ReweightFrElas\_N & Nucleon elastic reaction probability \\ \hline
+ ReweightFrElas\_pi & Pion elastic reaction probabbility \\ \hline
+ ReweightFrInel\_N & Nucleon inelastic reaction probability \\ \hline
+ ReweightFrInel\_pi &Pion inelastic reaction probability \\ \hline
+ ReweightFrPiProd\_N &Nucleon-pion production probability  \\ \hline
+ ReweightFrPiProd\_pi &Pion-pion production probability \\ \hline
+ ReweightMFP\_N & Nucleon mean free path \\ \hline
+ ReweightMFP\_pi & Pion mean free path \\ \hline
+ ReweightMaCCQE & Axial mass for CC quasi-elastic \\ \hline
+ ReweightMaCCQEshape & Axial mass for CC quasi-elastic, shape only \\ \hline
+ ReweightMaCCRES & Axial mass for CC resonance production \\ \hline
+ ReweightMaCCRESshape & Axial mass for CC resonance production, shape only \\ \hline
+ ReweightMaCOHpi & Axial mass for CC coherent pion production \\ \hline
+ ReweightMaNCEL & Axial mass for NC elastic \\ \hline
+ ReweightMaNCRES & Axial mass for NC resonance production \\ \hline
+ ReweightMaNCRESshape & Axial mass for NC resonance production, shape only \\ \hline
+ ReweightMvCCRES & Vector mass for CC quasi-elastic \\ \hline
+ ReweightMvCCRESshape & Vector mass for CC quasi-elastic, shape only \\ \hline
+ ReweightMvNCRES & Vector mass for CC resonance production \\ \hline
+ ReweightMvNCRESshape & Vector mass for CC resonance production, shape only \\ \hline
+ ReweightNC & NC scale... not implemented in same fashion as others, considered broken \\ \hline
+ ReweightNormCCQE & CCQE normalization \\ \hline
+ ReweightNormCCQEenu & CCQE normalization \\ \hline
+ ReweightNormCCRES & CC resonance production, normalization \\ \hline
+ ReweightNormDISCC & CC DIS production, normalization  \\ \hline
+ ReweightNormNCRES & NC resonance production, normalization  \\ \hline
+ ReweightR0COHpi & Nuclear size parameter controlling pion absorption  in Rein-Sehgal model  \\ \hline
+ ReweightRnubarnuCC & $\nu\bar{\nu} $ CC ratio\\ \hline
+ ReweightRvbarnCC1pi & Non resonance background in $ \bar{\nu} n CC 1\pi$ interactions \\ \hline
+ ReweightRvbarnCC2pi & Non resonance background in $ \bar{\nu} n CC 2\pi$ interactions \\ \hline
+ ReweightRvbarnNC1pi & Non resonance background in $ \bar{\nu} n NC 1\pi$ interactions \\ \hline
+ ReweightRvbarnNC2pi & Non resonance background in $ \bar{\nu} n NC 2\pi$ interactions \\ \hline
+ ReweightRvbarpCC1pi & Non resonance background in $ \bar{\nu} p CC 1\pi$ interactions \\ \hline
+ ReweightRvbarpCC2pi & Non resonance background in $ \bar{\nu} p CC2\pi$ interactions \\ \hline
+ ReweightRvbarpNC1pi & Non resonance background in $ \bar{\nu} p NC1\pi$ interactions \\ \hline
+ ReweightRvbarpNC2pi & Non resonance background in $ \bar{\nu} p NC2\pi$ interactions \\ \hline
+ ReweightRvnCC1pi & Non resonance background in $\nu n CC1\pi$ interactions \\ \hline
+ ReweightRvnCC2pi & Non resonance background in $\nu n CC2\pi$ interactions \\ \hline
+ ReweightRvnNC1pi & Non resonance background in $\nu n NC1\pi$ interactions \\ \hline
+ ReweightRvnNC2pi & Non resonance background in $\nu n NC2\pi$ interactions  \\ \hline
+ ReweightRvpCC1pi & Non resonance background in $\nu p CC1\pi$ interactions \\ \hline
+ ReweightRvpCC2pi & Non resonance background in $\nu p CC2\pi$ interactions  \\ \hline
+ ReweightRvpNC1pi & Non resonance background in $\nu p NC1\pi$ interactions \\ \hline
+ ReweightRvpNC2pi & Non resonance background in $\nu p NC2\pi$ interactions \\ \hline
+ ReweightTheta\_Delta2Npi & Pion angular distribution in Rein-Sehgal \\ \hline
+ ReweightVecCCQEshape & Choice of CCQE vector form factors (BBA05/Dipole), shape only  \\ \hline
+\caption{ All reweightable free parameters in \genie }{
+\genie includes a built-in utility for reweighting events to account
+for cross section uncertainties.
+Free parameters are adjusted in order to calculate an alternative
+cross section; weights are formed by the ratio of the alternative cross
+section to the original cross section.
+This table shows the complete list of parameters which can be reweighted.
+}
+\label{genie_reweight_knobs}
+\end{longtable}
+
+
+
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Redundant Parameter} & \textbf{Counterpart} \\ \hline
+MaCCQEshape &  MACCQE \\ \hline
+MaCCRESshape &  MaCCRES \\ \hline
+MvCCRESshape &  MvCCRES \\ \hline
+MaNCRESshape &  MaNCRes  \\ \hline
+MvNCRESshape &  MvNCRes \\ \hline
+AhtBYshape &  AhtBY \\ \hline
+BhtBYshape &  BhtBY \\ \hline
+CV1uBYshape &  Cv1uBY\\ \hline
+CV2uBYshape &  CV2uBY \\ \hline
+NormCCQE &  MaCCQE\\ \hline
+NormCCQEenu &  MaCCQE\\ \hline
+NormCCRES &  MaCCRES \\ \hline
+NormNCRES &  MaNCRes\\ \hline
+\end{tabular}
+\end{center}
+\caption{Redundant knobs in \genie Reweight}{
+Certain parameters in \genie are paired with shape-only or normalization-only
+counterparts.
+These counterparts are excluded in this analysis since they are redundant.
+This table shows the list of parameters which are excluded and the parameter
+with which they are redundant.
+}
+\label{redundant_genie_knobs}
+\end{table}
+
+
 
 
 

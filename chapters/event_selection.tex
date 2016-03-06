@@ -28,8 +28,9 @@ parameters, in particular \thetatth, which governs the amplitude of oscillation.
 This analysis, however, makes no attempt at including escaping events.
 
 Two primary backgrounds must be suppressed for this analysis.
-The first is the vastly dominant cosmic-ray background; the FD not underground
-and is exposed to cosmic rays at a rate in excess of 100 kHz.
+The first is the vastly dominant cosmic-ray background; the FD is
+on the surface of the earth rather than underground
+and is thus exposed to cosmic rays at a rate in excess of 100 kHz \cite{tdr}.
 The second is source of background is events from the \numi beam which are
 not \numu CC interactions.
 NC interactions are the trickiest beam background to reject due to their
@@ -38,7 +39,7 @@ can produce a relatively long track.
 Both appeared and survived \nue in the beam are relatively rare and tend
 not to fake \numu CC signal.
 
-The event classifier described in section \ref{cnn_chapter} serves as to resolve
+The event classifier described in Chapter \ref{cnn_chapter} serves as to resolve
 both cosmic-ray and beam-induced backgrounds.
 Additional selection cuts described in this chapter serve to ensure
 reconstruction quality and containment.
@@ -62,10 +63,10 @@ appreciable signal loss.
 
 
 
-\section{Cosmic Ray Preselection}
+\section{Cosmic-Ray Preselection}
 \label{cosmicveto_section}
 
-The vast abundance of cosmic ray activity in the FD necessitates the
+The vast abundance of cosmic-ray activity in the FD necessitates the
 use of an initial preselection upstream of heavier reconstruction
 algorithms.
 Running the entire reconstruction chain over all cosmic-ray activity would
@@ -73,7 +74,7 @@ simply be too computationally expensive.
 Instead, an initial preselection has been applied based on the output
 of the slicing and CosmicTrack algorithms described in chapter
 \ref{reconstruction_chapter}.
-The preselection rejects roughly 90\% of cosmic ray activity while preserving
+The preselection rejects roughly 90\% of cosmic-ray activity while preserving
 nearly all contained \numu CC signal.
 
 A large majority of cosmic-ray activity consists of muons which traverse the
@@ -89,13 +90,14 @@ however.
 The fit result is checked by assessing the fraction of hits in the slice
 which were included in the track fit, with high values indicating a
 successful fit.
-Thus, the event is rejected if both projected distances are less than 35 cm and
+As such, the event is rejected if both projected distances are less
+than 35 cm and
 the hit fraction is greater than 0.8.
 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.9\textwidth]{figures/selection/backdist.png}
+\includegraphics[width=0.7\textwidth]{figures/selection/backdist.png}
 \end{center}
 \caption{Illustration of track distance projection}{
 The proximity of a track endpoint to the edge of the detector is determined
@@ -121,13 +123,29 @@ Events with $a$ greater than 0.2 will pass the preselection.
 
 Events of which have not been well reconstructed can cause problems
 in energy estimation.
-In particular, identification of the muon track within a \numu CC interaction requires the KalmanTrack algorithm to have reconstructed a 3D track.
+In particular, identification of the muon track within a \numu CC interaction
+requires the KalmanTrack algorithm to have reconstructed a 3D track.
 Events with very little activity are also not especially intelligible.
 As such, the reconstruction quality selection requires a reconstructed track
 from the CosmicTrack algorithm as well as a 3D track from the KalmanTrack
 algorithm.
 The quality selection also requires events to have at least 20 hits
 spanning at least 4 contiguous planes.
+
+\section{Muon Track Designation}
+
+As described in Section \ref{energy_section}, reconstructed neutrino
+energy depends on the identification of a muon track.
+This distinction is made by the Muon ID algorithm described in Section
+\ref{remid_section}.
+Tracks reconstructed by the KalmanTrack algorithm
+(Section \ref{kalmantrack_section}) are each assigned a Muon ID
+score.
+The track with the highest Muon ID score is dubbed the muon track
+and treated with particular selection requirements.
+All remaining activity in the slice is grouped into a hadronic
+cluster, which also receives particular selection requirements.
+
 
 \section{Containment}
 
@@ -140,7 +158,7 @@ planes upstream and downstream as well as two cells in both views.
 Track containment is based on projected distances in a similar fashion
 to the cosmic-ray preselection, however the distances are measured in
 the number of cells spanned by the projection rather than the distance itself.
-The track from KalmanTrack is required to have a projected span of at least
+The muon track is required to have a projected span of at least
 11 cells in the forward and backward direction, and at least one cell
 for the track from CosmicTrack.
 
@@ -150,7 +168,7 @@ Containment in the ND is more complicated than the FD due to the consideration
 of the Muon Catcher and its truncated height.
 Slices are rejected if they start in the first two planes of the detector or
 end within the last two planes.
-Tracks from KalmanTrack is required to start in active region by requiring that
+The muon track is required to start in active region by requiring that
 the start $Z$ position is within 1175 cm from the front of the detector.
 If a track enters the muon catcher, the height of the track
 at the first muon catcher plane is required to be less than the height of
@@ -168,7 +186,7 @@ The selections above ensure events are of sufficient quality for analysis
 and reduce level of cosmic-ray activity to an acceptable level.
 The primary rejection of NC and cosmic-ray events is handled by
 the convolutional neural network classifier and some additional requirements
-to handle cosmic ray events which would remain in the sample otherwise.
+to handle cosmic-ray events which would remain in the sample otherwise.
 
 The convolutional neural network discriminant is formed by the sum of the four
 softmax outputs corresponding to \numu CC (QE, RES, DIS, other).
@@ -185,7 +203,7 @@ Two measures of transverse momentum are used, one which is based
 on the reconstructed slices and another based on the reconstructed prongs
 described in \cite{niner2015thesis}.
 In the slice method, a unit vector is formed in the direction running
-from the start of the KalmanTrack to the energy centroid of the slice;
+from the start of the muon track to the energy centroid of the slice;
 the transverse momentum fraction reconstructed as the sine of the angle
 between that vector and the beam axis.
 The prong method is similar, except that the the momentum vector
@@ -297,8 +315,9 @@ In the spectrum, the true contained events is shown as a black distribution,
 which serves as the denominator for the efficiency distribution.
 
 Figure \ref{cut_flow_sig} shows distriutions for true signal
-evnets for the samples
-remaining after cuts (quality, containment, CNN classifier, CosmicTrack start
+events for the samples
+remaining after each cut (quality, containment, CNN classifier,
+CosmicTrack start
 $Y$, and the two transverse momentum cuts) are successively applied.
 Figure \ref{cut_flow_bkg} shows the same plots for the true background events.
 For the CNN classifier, the signal efficiency is generally higher (~70\%)
@@ -318,11 +337,11 @@ are the result of different selections rather than applied separately.
 The \textit{CNN + Cuts} sample uses the selection described here,
 while \textit{Muon ID + BDT} uses the selection described in
 \cite{nova2016numu}.
-That alternative selection uses the precence of an identified muon
+That alternative selection uses the presence of an identified muon
 to select \numu CC events, as well as a boosted decision tree (BDT)
 \cite{friedman2002stochastic} to reject cosmic-ray background.
-The CNN approach provides improved efficiency in the low energy region
-which is especially sensitivty to neutrino oscillation.
+The CNN approach provides improved efficiency in the low energy bins
+which are especially sensitive to neutrino oscillation.
 Losses in the high energy region are driven mainly by the CosmicTrack
 start $Y$ cut.
 Senitivity enhancement achieved by the CNN approach is quantified
@@ -584,7 +603,7 @@ Comparing ND data to the ND MC prediction provides a window on simulation
 performance.  The MC prediction is shown in red, with the background
 component shown in blue.
 The selected ND data are shown as black points.
-The muon track length is the length of the track from KalmanTrack (Section
+The muon track length is the length of the muon track (Section
 \ref{kalmantrack_section})
 with the highest muon ID score (Section \ref{remid_section}).
 }

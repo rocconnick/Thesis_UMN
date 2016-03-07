@@ -235,7 +235,8 @@ Sums were determined separately for signal and background spectra and
 for each detector.
 These sums can be visualized in Figure \ref{syst_param_sum_small_genie_fd} for
 the FD and Figure \ref{syst_param_sum_small_genie_nd} for the ND.
-The effect of the combined systematic can be seen in Figure
+The effect of the combined systematic uncertainty on the
+prediction and confidence intervals can be seen in Figure
 \ref{syst_fig_numuSumSmallGENIE}.
 
 
@@ -541,6 +542,7 @@ the effect of the systematic error.}
 \label{syst_fig_numuSumSmallGENIE}
 
 \end{figure}
+\clearpage
 
 \section{Particle Propagation Uncertainty}
 
@@ -555,12 +557,199 @@ The \geant package can be configured to operate with different
 models.
 In order to estimate the systematic uncertainty, the \nova MC was
 configured to run with four different alternative physics lists:
-QGSP_BIC_HP, FTF_BIC, FTFP_BERT, and QGSC_BERT.
+QGSP\_BIC\_HP, FTF\_BIC, FTFP\_BERT, and QGSC\_BERT.
 Each physics list is described in Section \ref{geant_section}.
 
 Using the sample generated with each physics list, an
 alternative ND MC prediction was generated.
-The beam peak was fit with a truncated gaussian in the range
+The beam peak was fit with a truncated normal distribution in the range
 of 1.25 GeV to 2.75 GeV to extract the mean and normalization.
 The parameters extracted were compared to the nominal ND MC
-prediction and used to parameterize the systematic error.
+prediction and used to estimate the effect of the systematic uncertainty.
+See Figure \ref{syst_param_nd_QGSP_BIC_HP} for the fit and prediction for
+QGSC\_BIC\_HP,
+Figure \ref{syst_param_nd_FTF_BIC} for FTF\_BIC,
+Figure \ref{syst_param_nd_FTFP_BERT} for FTFP\_BERT,
+and Figure \ref{syst_param_nd_QGSC_BERT} for QGSC\_BERT.
+The largest shifts came from QGSC\_BIC\_HP, which were just shy of 1\%.
+Thus, the systematic was included in the analysis framework as a 1\%
+shift in normalization weight and a 1\% energy shift.
+The effect of the scale shift on the prediction is displayed
+in Figure \ref{syst_fig_geantScale}
+and the normalization shift in Figure \ref{syst_fig_geantNorm}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/nd_FTF_BIC.pdf}
+\end{center}
+\caption{Systematically shifted spectrum alternative \geant
+physics list: FTF\_BIC}{
+The systematic uncertainty for particle propagation modeling was estimated
+by configuring \geant with alternative physics lists; in this case FTF\_BIC
+was used.
+The ND prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_nd_FTF_BIC}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/nd_FTFP_BERT.pdf}
+\end{center}
+\caption{Systematically shifted spectrum alternative \geant
+physics list: FTFP\_BERT}{
+The systematic uncertainty for particle propagation modeling was estimated
+by configuring \geant with alternative physics lists; in this case FTFP\_BERT
+was used.
+The ND prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_nd_FTFP_BERT}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/nd_QGSC_BERT.pdf}
+\end{center}
+\caption{Systematically shifted spectrum alternative \geant
+physics list: QGSC\_BERT}{
+The systematic uncertainty for particle propagation modeling was estimated
+by configuring \geant with alternative physics lists; in this case QGSC\_BERT
+was used.
+The ND prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_nd_QGSC_BERT}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/nd_QGSP_BIC_HP.pdf}
+\end{center}
+\caption{Systematically shifted spectrum alternative \geant
+physics list: QGSP\_BIC\_HP}{
+The systematic uncertainty for particle propagation modeling was estimated
+by configuring \geant with alternative physics lists; in this case QGSP\_BIC\_HP
+was used.
+The ND prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_nd_QGSP_BIC_HP}
+
+\end{figure}
+
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Physics List} & \textbf{Mean Ratio} & \textbf{Normalization Ratio} \\ \hline
+FTFP\_BERT & 1.001 &  0.999\\ \hline
+FTF\_BIC & 1.008 &  0.994 \\ \hline
+QGSC\_BERT & 0.999 &  0.998\\ \hline
+QGSP\_BIC\_HP & 0.993 &  0.991\\ \hline
+\end{tabular}
+\end{center}
+\caption{Shifts induced by alternative \geant physics lists}{
+The ND MC prediction was formed using alternative MC samples with altered
+\geant physics lists.
+The spectra were fit with a truncated normal distribution in order to
+parametrize the systematic uncertainty as a shift in mean and normalization.
+The second column shows ratio of the shifted mean to the nominal for each
+alternative sample; the third column shows the ratio of the normalization
+between the two.
+}
+\label{geant_shift_table}
+\end{table}
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_geantScale.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_geantScale.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_geantScale.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_geantScale.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of geantScale uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_geantScale}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_geantNorm.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_geantNorm.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_geantNorm.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_geantNorm.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of geantNorm uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_geantNorm}
+
+\end{figure}
+
+\clearpage
+
+\section{Scintillation Production Uncertainty}

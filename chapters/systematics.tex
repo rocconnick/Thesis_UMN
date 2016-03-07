@@ -55,16 +55,16 @@ In the Feldman-Cousins procedure \cite{feldman1998unified} (described
 in Section~\ref{feldman_cousins_section}) that shape
 is used for sampling the errors in the pseudo-experiments.
 
-\section{Flux Uncertainties}
+\section{Flux Uncertainty}
 \label{flux_syst_section}
 
 Come back to this one.
 
 
-\section{Cross Section Uncertainties}
+\section{Cross Section Uncertainty}
 
 \genie includes a built in utility for reweighting events based on
-uncertainties the free parameters of its cross section models
+uncertainties in the free parameters of its cross section models
 \cite{genie}.
 For each free parameter, event weights are determined by recalculating the
 cross section with that parameter altered;
@@ -72,16 +72,11 @@ the weight is taken to be the ratio of the altered cross section
 to the altered one.
 At analysis time, selected events in the ND and FD MC predictions can be
 reweighted on an event-by-event basis.
-
 There are 67 parameters which can be adjusted independently which are listed
 in Table~\ref{genie_reweight_knobs}.
-In particular, certain parameters are matched with shape-only
-and/or normalization-only counterparts.
-The shape-only and normalization-only parameters, listed in Table
- are excluded 
 
-
- \begin{longtable}{|p{0.4\textwidth}|p{0.6\textwidth}|}
+{
+ \begin{longtable}{|p{0.4\linewidth}|p{0.6\linewidth}|}
 \hline
 Parameter & Description \\
 \hline \hline
@@ -100,89 +95,87 @@ Parameter & Description \\
 \hline
 \endlastfoot
 
-
    \hline
- ReweightAGKY\_pT1pi & AGKY transverse momentum in single pion states \\ \hline
- ReweightAGKY\_xF1pi & AGKY Feynman x for single pion states \\ \hline
- ReweightAhtBY & Higher-twist parameter ($A_{HT}$) in Bodek-Yang model \\ \hline
- ReweightAhtBYshape & Higher-twist parameter ($A_{HT}$) in Bodek-Yang model, shape only \\ \hline
- ReweightBR1eta & Branching ratio for single-$\eta$ resonance decays \\ \hline
- ReweightBR1gamma & Branching ratio for radiative resonance decays \\ \hline
- ReweightBhtBY & Higher-twist parameter ($B_{HT}$) in Bodek-Yang model \\ \hline
- ReweightBhtBYshape & Highter-twist parameter ($B_{HT}$) in Bodek-Yang model, shape only \\ \hline
- ReweightCCQEMomDistroFGtoSF & CCQE Nucleon Momentum Distribution \\ \hline
- ReweightCCQEPauliSupViaKF & CCQE Pauli suppression (changes Fermi level $k_F$) \\ \hline
- ReweightCV1uBY & $C_{V1u}$  valence GRV98 PDF correction in Bodek-Yang Model \\ \hline
- ReweightCV1uBYshape & $C_{V1u}$  valence GRV98 PDF correction in Bodek-Yang Model, shape only \\ \hline
- ReweightCV2uBY & $C_{V2u}$  valence GRV98 PDF correction in Bodek-Yang Model \\ \hline
- ReweightCV2uBYshape & $C_{V2u}$  valence GRV98 PDF correction in Bodek-Yang Model, shape only \\ \hline
- ReweightDISNuclMod & DIS nuclear modification (shadowing, anti-shadowing, EMC) \\ \hline
- ReweightEtaNCEL & Strange axial form factor for NC elastic  \\ \hline
- ReweightFormZone & Formation zone \\ \hline
- ReweightFrAbs\_N & Nucleon absorption probability \\ \hline
- ReweightFrAbs\_pi &Pion absorption probability \\ \hline
- ReweightFrCEx\_N & Nucleon charge exchange probability \\ \hline
- ReweightFrCEx\_pi & Pion charge exchange probability \\ \hline
- ReweightFrElas\_N & Nucleon elastic reaction probability \\ \hline
- ReweightFrElas\_pi & Pion elastic reaction probabbility \\ \hline
- ReweightFrInel\_N & Nucleon inelastic reaction probability \\ \hline
- ReweightFrInel\_pi &Pion inelastic reaction probability \\ \hline
- ReweightFrPiProd\_N &Nucleon-pion production probability  \\ \hline
- ReweightFrPiProd\_pi &Pion-pion production probability \\ \hline
- ReweightMFP\_N & Nucleon mean free path \\ \hline
- ReweightMFP\_pi & Pion mean free path \\ \hline
- ReweightMaCCQE & Axial mass for CC quasi-elastic \\ \hline
- ReweightMaCCQEshape & Axial mass for CC quasi-elastic, shape only \\ \hline
- ReweightMaCCRES & Axial mass for CC resonance production \\ \hline
- ReweightMaCCRESshape & Axial mass for CC resonance production, shape only \\ \hline
- ReweightMaCOHpi & Axial mass for CC coherent pion production \\ \hline
- ReweightMaNCEL & Axial mass for NC elastic \\ \hline
- ReweightMaNCRES & Axial mass for NC resonance production \\ \hline
- ReweightMaNCRESshape & Axial mass for NC resonance production, shape only \\ \hline
- ReweightMvCCRES & Vector mass for CC quasi-elastic \\ \hline
- ReweightMvCCRESshape & Vector mass for CC quasi-elastic, shape only \\ \hline
- ReweightMvNCRES & Vector mass for CC resonance production \\ \hline
- ReweightMvNCRESshape & Vector mass for CC resonance production, shape only \\ \hline
- ReweightNC & NC scale... not implemented in same fashion as others, considered broken \\ \hline
- ReweightNormCCQE & CCQE normalization \\ \hline
- ReweightNormCCQEenu & CCQE normalization \\ \hline
- ReweightNormCCRES & CC resonance production, normalization \\ \hline
- ReweightNormDISCC & CC DIS production, normalization  \\ \hline
- ReweightNormNCRES & NC resonance production, normalization  \\ \hline
- ReweightR0COHpi & Nuclear size parameter controlling pion absorption  in Rein-Sehgal model  \\ \hline
- ReweightRnubarnuCC & $\nu\bar{\nu} $ CC ratio\\ \hline
- ReweightRvbarnCC1pi & Non resonance background in $ \bar{\nu} n CC 1\pi$ interactions \\ \hline
- ReweightRvbarnCC2pi & Non resonance background in $ \bar{\nu} n CC 2\pi$ interactions \\ \hline
- ReweightRvbarnNC1pi & Non resonance background in $ \bar{\nu} n NC 1\pi$ interactions \\ \hline
- ReweightRvbarnNC2pi & Non resonance background in $ \bar{\nu} n NC 2\pi$ interactions \\ \hline
- ReweightRvbarpCC1pi & Non resonance background in $ \bar{\nu} p CC 1\pi$ interactions \\ \hline
- ReweightRvbarpCC2pi & Non resonance background in $ \bar{\nu} p CC2\pi$ interactions \\ \hline
- ReweightRvbarpNC1pi & Non resonance background in $ \bar{\nu} p NC1\pi$ interactions \\ \hline
- ReweightRvbarpNC2pi & Non resonance background in $ \bar{\nu} p NC2\pi$ interactions \\ \hline
- ReweightRvnCC1pi & Non resonance background in $\nu n CC1\pi$ interactions \\ \hline
- ReweightRvnCC2pi & Non resonance background in $\nu n CC2\pi$ interactions \\ \hline
- ReweightRvnNC1pi & Non resonance background in $\nu n NC1\pi$ interactions \\ \hline
- ReweightRvnNC2pi & Non resonance background in $\nu n NC2\pi$ interactions  \\ \hline
- ReweightRvpCC1pi & Non resonance background in $\nu p CC1\pi$ interactions \\ \hline
- ReweightRvpCC2pi & Non resonance background in $\nu p CC2\pi$ interactions  \\ \hline
- ReweightRvpNC1pi & Non resonance background in $\nu p NC1\pi$ interactions \\ \hline
- ReweightRvpNC2pi & Non resonance background in $\nu p NC2\pi$ interactions \\ \hline
- ReweightTheta\_Delta2Npi & Pion angular distribution in Rein-Sehgal \\ \hline
- ReweightVecCCQEshape & Choice of CCQE vector form factors (BBA05/Dipole), shape only  \\ \hline
-\caption{ All reweightable free parameters in \genie }{
+ AGKY\_pT1pi & AGKY transverse momentum in single pion states \\ \hline
+ AGKY\_xF1pi & AGKY Feynman x for single pion states \\ \hline
+ AhtBY & Higher-twist parameter ($A_{HT}$) in Bodek-Yang model \\ \hline
+ AhtBYshape & Higher-twist parameter ($A_{HT}$) in Bodek-Yang model, shape only \\ \hline
+ BR1eta & Branching ratio for single-$\eta$ resonance decays \\ \hline
+ BR1gamma & Branching ratio for radiative resonance decays \\ \hline
+ BhtBY & Higher-twist parameter ($B_{HT}$) in Bodek-Yang model \\ \hline
+ BhtBYshape & Highter-twist parameter ($B_{HT}$) in Bodek-Yang model, shape only \\ \hline
+ CCQEMomDistroFGtoSF & CCQE Nucleon Momentum Distribution \\ \hline
+ CCQEPauliSupViaKF & CCQE Pauli suppression (changes Fermi level $k_F$) \\ \hline
+ CV1uBY & $C_{V1u}$  valence GRV98 PDF correction in Bodek-Yang Model \\ \hline
+ CV1uBYshape & $C_{V1u}$  valence GRV98 PDF correction in Bodek-Yang Model, shape only \\ \hline
+ CV2uBY & $C_{V2u}$  valence GRV98 PDF correction in Bodek-Yang Model \\ \hline
+ CV2uBYshape & $C_{V2u}$  valence GRV98 PDF correction in Bodek-Yang Model, shape only \\ \hline
+ DISNuclMod & DIS nuclear modification (shadowing, anti-shadowing, EMC) \\ \hline
+ EtaNCEL & Strange axial form factor for NC elastic  \\ \hline
+ FormZone & Formation zone \\ \hline
+ FrAbs\_N & Nucleon absorption probability \\ \hline
+ FrAbs\_pi &Pion absorption probability \\ \hline
+ FrCEx\_N & Nucleon charge exchange probability \\ \hline
+ FrCEx\_pi & Pion charge exchange probability \\ \hline
+ FrElas\_N & Nucleon elastic reaction probability \\ \hline
+ FrElas\_pi & Pion elastic reaction probabbility \\ \hline
+ FrInel\_N & Nucleon inelastic reaction probability \\ \hline
+ FrInel\_pi &Pion inelastic reaction probability \\ \hline
+ FrPiProd\_N &Nucleon-pion production probability  \\ \hline
+ FrPiProd\_pi &Pion-pion production probability \\ \hline
+ MFP\_N & Nucleon mean free path \\ \hline
+ MFP\_pi & Pion mean free path \\ \hline
+ MaCCQE & Axial mass for CC quasi-elastic \\ \hline
+ MaCCQEshape & Axial mass for CC quasi-elastic, shape only \\ \hline
+ MaCCRES & Axial mass for CC resonance production \\ \hline
+ MaCCRESshape & Axial mass for CC resonance production, shape only \\ \hline
+ MaCOHpi & Axial mass for CC coherent pion production \\ \hline
+ MaNCEL & Axial mass for NC elastic \\ \hline
+ MaNCRES & Axial mass for NC resonance production \\ \hline
+ MaNCRESshape & Axial mass for NC resonance production, shape only \\ \hline
+ MvCCRES & Vector mass for CC quasi-elastic \\ \hline
+ MvCCRESshape & Vector mass for CC quasi-elastic, shape only \\ \hline
+ MvNCRES & Vector mass for CC resonance production \\ \hline
+ MvNCRESshape & Vector mass for CC resonance production, shape only \\ \hline
+ NormCCQE & CCQE normalization \\ \hline
+ NormCCQEenu & CCQE normalization \\ \hline
+ NormCCRES & CC resonance production, normalization \\ \hline
+ NormDISCC & CC DIS production, normalization  \\ \hline
+ NormNCRES & NC resonance production, normalization  \\ \hline
+ R0COHpi & Nuclear size parameter controlling pion absorption  in Rein-Sehgal model  \\ \hline
+ RnubarnuCC & $\nu\bar{\nu} $ CC ratio\\ \hline
+ RvbarnCC1pi & Non resonance background in $ \bar{\nu} n CC 1\pi$ interactions \\ \hline
+ RvbarnCC2pi & Non resonance background in $ \bar{\nu} n CC 2\pi$ interactions \\ \hline
+ RvbarnNC1pi & Non resonance background in $ \bar{\nu} n NC 1\pi$ interactions \\ \hline
+ RvbarnNC2pi & Non resonance background in $ \bar{\nu} n NC 2\pi$ interactions \\ \hline
+ RvbarpCC1pi & Non resonance background in $ \bar{\nu} p CC 1\pi$ interactions \\ \hline
+ RvbarpCC2pi & Non resonance background in $ \bar{\nu} p CC2\pi$ interactions \\ \hline
+ RvbarpNC1pi & Non resonance background in $ \bar{\nu} p NC1\pi$ interactions \\ \hline
+ RvbarpNC2pi & Non resonance background in $ \bar{\nu} p NC2\pi$ interactions \\ \hline
+ RvnCC1pi & Non resonance background in $\nu n CC1\pi$ interactions \\ \hline
+ RvnCC2pi & Non resonance background in $\nu n CC2\pi$ interactions \\ \hline
+ RvnNC1pi & Non resonance background in $\nu n NC1\pi$ interactions \\ \hline
+ RvnNC2pi & Non resonance background in $\nu n NC2\pi$ interactions  \\ \hline
+ RvpCC1pi & Non resonance background in $\nu p CC1\pi$ interactions \\ \hline
+ RvpCC2pi & Non resonance background in $\nu p CC2\pi$ interactions  \\ \hline
+ RvpNC1pi & Non resonance background in $\nu p NC1\pi$ interactions \\ \hline
+ RvpNC2pi & Non resonance background in $\nu p NC2\pi$ interactions \\ \hline
+ Theta\_Delta2Npi & Pion angular distribution in Rein-Sehgal \\ \hline
+ VecCCQEshape & Choice of CCQE vector form factors (BBA05/Dipole), shape only  \\ \hline
+\end{longtable}
+{
+\captionof{table}{ All reweightable free parameters in \genie}{
 \genie includes a built-in utility for reweighting events to account
-for cross section uncertainties.
+for cross section uncertainties \cite{genie}.
 Free parameters are adjusted in order to calculate an alternative
 cross section; weights are formed by the ratio of the alternative cross
 section to the original cross section.
-This table shows the complete list of parameters which can be reweighted.
+This table shows the complete list of parameters which can be varied
+in order to produce event weights.
 }
 \label{genie_reweight_knobs}
-\end{longtable}
-
-
-
-
+}
+\clearpage
 
 \begin{table}
 \begin{center}
@@ -214,7 +207,341 @@ with which they are redundant.
 \label{redundant_genie_knobs}
 \end{table}
 
+Certain parameters are matched with shape-only
+and/or normalization-only counterparts to separately illustrate
+those effects.
+Since these effects would be redundant, these parameters
+are excluded from the reweighting process.
+All redundant parameters are listed in Table
+\ref{redundant_genie_knobs}.
+
+
+Marginalizing over the large number of free parameters in \genie
+would be an expensive operation.
+Rather than including all parameters, only the ones
+with the most significant effect were given an independent treatment.
+These parameters are MaCCQE, MaCCRES, MvCCRES, MaNCRES, and MaNCEL.
+The effect of MaCCQE on the prediction and confidence intervals
+can be seen in Figure \ref{syst_fig_MaCCQE},
+MaCCRES in Figure \ref{syst_fig_MaCCRES},
+MvCCRES in in Figure \ref{syst_fig_MvCCRES},
+MaNCRES in in Figure \ref{syst_fig_MaNCEL},
+and MaNCEL in in Figure \ref{syst_fig_MvNCRES}.
+
+The remaining parameters were grouped together by summing the
+$\pm1\sigma$  bin shifts in quadrature.
+Between $\pm$ shifts, the larger of the two was included in the sum.
+Sums were determined separately for signal and background spectra and
+for each detector.
+These sums can be visualized in Figure \ref{syst_param_sum_small_genie_fd} for
+the FD and Figure \ref{syst_param_sum_small_genie_nd} for the ND.
+The effect of the combined systematic can be seen in Figure
+\ref{syst_fig_numuSumSmallGENIE}.
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_MaCCQE.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_MaCCQE.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_MaCCQE.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_MaCCQE.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of MaCCQE uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_MaCCQE}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_MaCCRES.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_MaCCRES.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_MaCCRES.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_MaCCRES.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of MaCCRES uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_MaCCRES}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_MvCCRES.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_MvCCRES.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_MvCCRES.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_MvCCRES.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of MvCCRES uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_MvCCRES}
+
+\end{figure}
 
 
 
 
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_MaNCEL.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_MaNCEL.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_MaNCEL.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_MaNCEL.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of MaNCEL uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_MaNCEL}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_MaNCRES.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_MaNCRES.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_MaNCRES.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_MaNCRES.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of MaNCRES uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_MaNCRES}
+
+\end{figure}
+
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_MvNCRES.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_MvNCRES.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_MvNCRES.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_MvNCRES.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of MvNCRES uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_MvNCRES}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/params/fd_sig_genie_sum_errors.pdf}
+\end{subfigure}
+
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/params/fd_bkg_genie_sum_errors.pdf}
+\end{subfigure}
+\end{center}
+\caption{Summed \genie uncertainty band for FD}{
+The effects of free parameters with small systematic shifts were
+combined by summing the shifts in quadrature.
+The top pane shows the magnitude of the systematic uncertainty for the FD
+signal spectrum, while the bottom pane shows the uncertainty on the
+background spectrum.
+}
+\label{syst_param_sum_small_genie_fd}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/params/nd_sig_genie_sum_errors.pdf}
+\end{subfigure}
+
+\begin{subfigure}[c]{0.7\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/params/nd_bkg_genie_sum_errors.pdf}
+\end{subfigure}
+\end{center}
+\caption{Summed \genie uncertainty band for ND}{
+The effects of free parameters with small systematic shifts were
+combined by summing the shifts in quadrature.
+The top pane shows the magnitude of the systematic uncertainty for the ND
+signal spectrum, while the bottom pane shows the uncertainty on the
+background spectrum.
+}
+\label{syst_param_sum_small_genie_nd}
+
+\end{figure}
+
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_numuSumSmallGENIE.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_numuSumSmallGENIE.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_numuSumSmallGENIE.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_numuSumSmallGENIE.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of numuSumSmallGENIE uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_numuSumSmallGENIE}
+
+\end{figure}
+
+\section{Particle Propagation Uncertainty}

@@ -131,7 +131,9 @@ where $t_{mp}$ and $y_{mp}$ respectively correspond to the target and predicted 
 E = \sum_p \sum_m t_{mp} \ln(y_{mp}) + (1-t_{mp})\ln(1-y_{mp})
 \end{equation}
 
-Backpropagation can be applied to any feedforward network of nodes with differentiable nonlinearities.  A layered structure is not a required.  Therefore, the process can be described by idexing $w_{ij}$ as the weight \textit{from} node $j$ to node $i$.  A feedforward network implies $j>i$ is not allowed.  The forward pass thus defines the inner product for each node, $a_i$, as a function of the weights and upstream nodes
+Backpropagation can be applied to any feedforward network of nodes with differentiable nonlinearities.  A layered structure is not a required.
+Therefore, the process can be described by idexing $w_{ij}$ as the weight from node $j$ to node $i$.
+A feedforward network implies $j>i$ is not allowed.  The forward pass thus defines the inner product for each node, $a_i$, as a function of the weights and upstream nodes
 \begin{equation}
 a_i = \sum_{j<i} w_{ij} y_j.
 \end{equation}

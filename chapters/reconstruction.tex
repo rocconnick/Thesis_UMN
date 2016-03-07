@@ -236,7 +236,7 @@ with by enriching the sample with hits which have neighbors in adjacent planes.
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figures/plots/reco/calib_tricell}
 \end{center}
-\caption{Depiction of a tri-cell hit used for calibration.  The precence of
+\caption{Depiction of a tri-cell hit used for calibration.}{The precence of
 activity in the two adjacent cells helps ensure an accurate estimate of
 path length traversed by a muon through a cell.}
 \label{calib_tricell}
@@ -292,11 +292,18 @@ Examples of the final fits with LOWESS corrections can be seen in figure
 \ref{calib_atten}.
 
 \begin{figure}
-  \includegraphics[width=0.9\textwidth]{figures/plots/reco/calib_totfit_data_inX_151_051}
+\begin{center}
+  \includegraphics[width=0.85\textwidth]{figures/plots/reco/calib_totfit_data_inX_151_051}
 
-  \includegraphics[width=0.9\textwidth]{figures/plots/reco/calib_totfit_data_inX_419_219}
-  \caption[]{Example of a good Near (left) and Far (right) detector fit,
-  showing attenuation fits with LOWESS corrections.}\label{calib_atten}
+  \includegraphics[width=0.85\textwidth]{figures/plots/reco/calib_totfit_data_inX_419_219}
+  \end{center}
+  \caption[]{Example attenuation fits}{
+  Above are  good Near (left) and Far (right) detector fits,
+  showing attenuation fits with LOWESS corrections.  The fits account
+  for attenuation in the WLS fiber and effectively remove cell-to-cell
+  variations.
+  The LOWESS \cite{cleveland1981lowess} smoothing procedure
+  is used to correct for residuals in the fit.  }\label{calib_atten}
 \end{figure}
 
 The attenuation fits determine the mean response to cosmic ray muons is
@@ -325,8 +332,9 @@ to determine the absolute energy scale.
 \begin{center}
 \includegraphics[width=\textwidth]{figures/plots/reco/calib_dEdX.png}
 \end{center}
-\caption{2D histogram depicting deposited energy per path length (dE/dX) for
-cell hits after attenuation and cell-to-cell correction.  The color scale
+\caption{2D histogram depicting deposited energy per path length (\dedx)}{
+Each entry in the histogram above corresponds to the \dedx of a
+cell hit after attenuation and cell-to-cell correction.  The color scale
 indicates the number of measurements in each bin.  The rise in energy at the
 end of muon track (left) is well described by the Bethe-Bloch formula \cite{pdg}.}
 \label{calib_dEdX}
@@ -374,12 +382,12 @@ The library of examples which populates the hyperspace is taken from
 \nova simulation.
 
 The inputs which form the kNN hyperspace are track length, scattering
-log-likelihood, $dE/dx$ (energy deposition per unit
+log-likelihood, \dedx (energy deposition per unit
 path length) log-likelihood, and non-hadronic plane fraction
 \cite{raddatz2016thesis}.
 The track length is path length traversed by the track taken from
 summing between interpolated trajectory points.
-Log-likelihoods for both scattering and $dE/dx$ are constructed using
+Log-likelihoods for both scattering and \dedx are constructed using
 probability distributions taken from simulation for both muons and
 charged pions.
 The non-hadronic plane fraction is the fraction of track which remains

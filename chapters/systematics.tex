@@ -543,3 +543,24 @@ the effect of the systematic error.}
 \end{figure}
 
 \section{Particle Propagation Uncertainty}
+
+Simulating neutrino interactions in \nova includes propagating
+secondary particles\footnote{
+Particles produced in the neutrino interaction}
+through the detectors.
+This process is subject to uncertainties in the models involved, which mainly
+those involving interactions with atomic nuclei \cite{folger2004binary}.
+The \geant package can be configured to operate with different
+\textit{physics lists} which each represent a different set of interaction
+models.
+In order to estimate the systematic uncertainty, the \nova MC was
+configured to run with four different alternative physics lists:
+QGSP_BIC_HP, FTF_BIC, FTFP_BERT, and QGSC_BERT.
+Each physics list is described in Section \ref{geant_section}.
+
+Using the sample generated with each physics list, an
+alternative ND MC prediction was generated.
+The beam peak was fit with a truncated gaussian in the range
+of 1.25 GeV to 2.75 GeV to extract the mean and normalization.
+The parameters extracted were compared to the nominal ND MC
+prediction and used to parameterize the systematic error.

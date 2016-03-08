@@ -1,7 +1,7 @@
 # Muon Neutrino Disappearance in NOvA with a Deep Convolutional Neural Network Classifier
-## Ph.D Thesis by Dominick Rocco
+### Ph.D Thesis by Dominick Rocco
 
-### Abstract
+#### Abstract
 The NuMI Off-axis Neutrino Experiment (NOvA) is designed to study neutrino
 oscillations in the NuMI beam.
 Neutrinos at the Main Injector

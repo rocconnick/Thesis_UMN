@@ -779,7 +779,7 @@ the effect of the systematic error.}
 
 \section{Scintillation Production Uncertainty}
 
-\begin{table}[t]
+\begin{table}
 \begin{center}
 \begin{tabular}{|l|c|c|}
 \hline
@@ -1027,3 +1027,318 @@ the effect of the systematic error.}
 
 \section{Calorimetric Energy Uncertainty}
 \label{syst_cal_section}
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Alternative Sample} & \textbf{Mean Ratio} & \textbf{Normalization Ratio} \\ \hline
+$+5$\% Absolute Energy Scale & 1.020 & 0.981 \\ \hline
+$-5$\% Absolute Energy Scale& 0.980 & 1.013 \\ \hline
+Random cell-to-cell variations & 1.001 & 0.996 \\ \hline
+Attenuation slope adjustment & 1.009 & 0.995 \\ \hline
+\end{tabular}
+\end{center}
+\caption{Shifts induced in alternative calibration samples}{
+The ND MC prediction was formed using MC samples with altered calibration
+parameters.
+The spectrum for each alternative sample
+was fit with a truncated normal distribution in order to
+parametrize the systematic uncertainty as a shift in mean and normalization.
+The second column shows ratio of the shifted mean to the nominal for each
+alternative sample; the third column shows the ratio of the normalization
+between the shifted and nominal.
+}
+\label{calib_shift_table}
+\end{table}
+
+The calorimetric energy scale is determined independently for both detectors
+and both for data and MC.
+In the extrapolation procedure, it is assumed that the calorimetric energy
+scale between data and MC has been determined accurately.
+Studies of muon activity in the ND has shown that the calorimetric
+energy scales can differ by as much as 4\%.
+Accurate calorimetry also relies on the attenuation and
+cell-to-cell effects to have been properly calibrated out.
+In order to test the effects of such effects on the reconstruction,
+a suite of alternative calibration samples have been constructed.
+Two samples were created by adjusting the absolute energy scale
+up and down by 5\% \cite{lein2015thesis}.
+Another sample was produced by adjusting the attenuation curve for
+each cell up and down by a random factor drawn from a normal distribution
+with a spread of 0.8\%.
+The final sample was produced by modifying the slopes of the attenuation
+fits amounting to a 20\% deviation at the far end of the cell.
+
+
+Again, the systematic uncertainty has been estimated by observing
+the effect of these shifts.
+In each case, a truncated normal distribution was fit to the
+shifted FD MC prediction.
+The fit results are compared to a fit to the nominal FD prediction
+in Table~\ref{calib_shift_table}.
+The fit for the the $\pm$5\% shifts can be seen in Figures
+\ref{syst_param_flat105cal} and \ref{syst_param_flat095cal}, respectively.
+Figure \ref{syst_param_randomcal} shows the random calibration
+shift sample and Figure \ref{syst_param_slopecal} shows the slope
+shift sample.
+Both the random and slope shifts show small effects on
+the mean energy and normalization;
+this makes sense since the shifts can average out across the
+detector.
+The 5\% energy scale shifts, however, lead to a significant
+systematic effect.
+Both the normalization and energy scale were seen to deviate from the
+nominal prediction by $\pm2$\%.
+The energy scale shift is smaller than the full 5\% since calorimetry
+only enters in estimation of the hadronic energy;
+the energy of the muon track is estimated from range and thus insensitive
+to calorimetric energy variations.
+
+Thus, the calorimetric energy uncertainty is included in the analysis
+as a 2\% normalization shift and 2\% energy scale.
+Both of these are taken as both relative and absolute.
+The effects of the absolute and relative normalization shift
+can be seen in Figures \ref{syst_fig_calNormAbs} and
+\ref{syst_fig_calNormRel}, respectively.
+Similarly, the absolute and relative calibration scale
+can be seen respectively in Figures \ref{syst_fig_calScaleAbs} and
+\ref{syst_fig_calScaleRel}.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/fd_flat105cal.pdf}
+\end{center}
+\caption{Systematically shifted spectrum with $-5$\% absolute energy scale}{
+The systematic uncertainty for scintillation production propagation modeling
+was estimated by configuring the FD MC with alternative
+scintillation production properties.
+In this case the absolute energy scale was increased by 5\%.
+The FD prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_flat105cal}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/fd_flat095cal.pdf}
+\end{center}
+\caption{Systematically shifted spectrum with $-5$\% absolute energy scale}{
+The systematic uncertainty for scintillation production propagation modeling
+was estimated by configuring the FD MC with alternative
+scintillation production properties.
+In this case the absolute energy scale was decreased by 5\%.
+The FD prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_flat095cal}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/fd_randomcal.pdf}
+\end{center}
+\caption{Systematically shifted spectrum with random cell-to-cell variations}{
+The systematic uncertainty for scintillation production propagation modeling
+was estimated by configuring the FD MC with alternative
+scintillation production properties.
+In this case the response for each channel was randomly scaled
+by a normally distributed 8\%.
+The FD prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_randomcal}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/fd_slopecal.pdf}
+\end{center}
+\caption{Systematically shifted spectrum with artificial attenuation slopes}{
+The systematic uncertainty for scintillation production propagation modeling
+was estimated by configuring the FD MC with alternative
+scintillation production properties.
+In this case the attenuation slopes were altered with the effect
+of increasing the response at the far end of the cell by 20\%.
+The FD prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_slopecal}
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_calNormAbs.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_calNormAbs.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_calNormAbs.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_calNormAbs.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of calNormAbs uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_calNormAbs}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_calNormRel.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_calNormRel.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_calNormRel.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_calNormRel.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of calNormRel uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_calNormRel}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_calScaleAbs.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_calScaleAbs.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_calScaleAbs.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_calScaleAbs.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of calScaleAbs uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_calScaleAbs}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_calScaleRel.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_calScaleRel.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_calScaleRel.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_calScaleRel.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of calScaleRel uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_calScaleRel}
+
+\end{figure}
+
+\clearpage
+
+\section{Detector Mass Uncertainty}
+
+
+\section{Muon Range Uncertainty}
+
+
+\section{Hadronic Energy Uncertainty}
+
+
+\section{Negligible Uncertainties}
+
+

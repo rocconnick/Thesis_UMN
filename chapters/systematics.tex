@@ -20,7 +20,7 @@ must be tested and and their effect must be incorporated into the
 analysis framework.
 
 
-\section{Treatment of Systematic Errors}
+\section{Treatment of Systematic Uncertainties}
 
 Systematic errors are incorporated by allowing
 event records to be altered before they are handled by the
@@ -54,6 +54,30 @@ The interpolation gives the fitter a smooth profile for marginalization.
 In the Feldman-Cousins procedure \cite{feldman1998unified} (described
 in Section~\ref{feldman_cousins_section}) that shape
 is used for sampling the errors in the pseudo-experiments.
+
+\subsection{Relative vs. Absolute Uncertainties}
+
+In parametrizing systematic uncertainties between two detectors,
+there is a distinction between uncertainties which are
+correlated between detectors and those which have freedom to
+move independently.
+Neutrino cross section uncertainties, for instance, should be correlated
+between the ND and FD; the physics which governs neutrino interactions
+is not expected to change between Fermilab and northern Minnesota.
+Uncertainty in the calorimetric energy scale, however,
+might not be correlated between the two detectors.
+There are systematic effects in the MC simulation and calibration procedure
+which we have no evidence to believe behave similarly across
+detectors.
+In this analysis, systematic uncertainties which are correlated between
+are referred to as \textit{absolute} uncertainties as opposed to
+those which could be uncorrelated, which are called \textit{relative}
+uncertainties.
+Parameterized absolute uncertainties adjust the ND and FD prediction
+simultaneously by the same amount,
+Relative uncertainties, on the other hand, adjust the prediction by
+the same magnitude, but in opposite directions.
+
 
 \section{Flux Uncertainty}
 \label{flux_syst_section}
@@ -573,8 +597,8 @@ Figure \ref{syst_param_nd_FTFP_BERT} for FTFP\_BERT,
 and Figure \ref{syst_param_nd_QGSC_BERT} for QGSC\_BERT.
 The largest shifts came from QGSC\_BIC\_HP, which were just shy of 1\%.
 Thus, the systematic was included in the analysis framework as a 1\%
-shift in normalization weight and a 1\% energy shift.
-The effect of the scale shift on the prediction is displayed
+shift in normalization weight and a 1\% energy scale factor.
+The effect of the energy scale on the prediction is displayed
 in Figure \ref{syst_fig_geantScale}
 and the normalization shift in Figure \ref{syst_fig_geantNorm}.
 
@@ -660,10 +684,10 @@ the nominal and shifted prediction.
 \begin{tabular}{|l|c|c|}
 \hline
 \textbf{Physics List} & \textbf{Mean Ratio} & \textbf{Normalization Ratio} \\ \hline
-FTFP\_BERT & 1.001 &  0.999\\ \hline
-FTF\_BIC & 1.008 &  0.994 \\ \hline
-QGSC\_BERT & 0.999 &  0.998\\ \hline
-QGSP\_BIC\_HP & 0.993 &  0.991\\ \hline
+FTFP\_BERT  &  0.999 & 1.001\\ \hline
+FTF\_BIC &  0.994 & 1.008  \\ \hline
+QGSC\_BERT  &  0.998 & 0.999\\ \hline
+QGSP\_BIC\_HP  &  0.991 & 0.993\\ \hline
 \end{tabular}
 \end{center}
 \caption{Shifts induced by alternative \geant physics lists}{
@@ -673,10 +697,11 @@ The spectra were fit with a truncated normal distribution in order to
 parametrize the systematic uncertainty as a shift in mean and normalization.
 The second column shows ratio of the shifted mean to the nominal for each
 alternative sample; the third column shows the ratio of the normalization
-between the two.
+between the shifted and nominal.
 }
 \label{geant_shift_table}
 \end{table}
+
 
 
 \begin{figure}
@@ -753,3 +778,252 @@ the effect of the systematic error.}
 \clearpage
 
 \section{Scintillation Production Uncertainty}
+
+\begin{table}[t]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Alternative Sample} & \textbf{Mean Ratio} & \textbf{Normalization Ratio} \\ \hline
+$k_B = 0.02~\text{cm} / \text{MeV}$ & 0.981 & 0.977  \\ \hline
+$k_B = 0.01~\text{cm} / \text{MeV}$ & 0.996 & 0.983  \\ \hline
+\end{tabular}
+\end{center}
+\caption{Shifts induced by alternative scintillation production properties}{
+The ND MC prediction was formed using MC samples with alternative
+values for $k_B$ and $k_C$ set to 0.
+The spectrum for each alternative sample
+was fit with a truncated normal distribution in order to
+parametrize the systematic uncertainty as a shift in mean and normalization.
+The second column shows ratio of the shifted mean to the nominal for each
+alternative sample; the third column shows the ratio of the normalization
+between the shifted and nominal.
+}
+\label{birks_shift_table}
+\end{table}
+
+
+As discussed in Section \ref{geant_section}, \nova simulation
+models scintillation production using Birks' law \cite{birks1951scintillations}
+with a corrections from \cite{chou1952nature}:
+\begin{equation}
+\frac{dL}{dX} = L_0  \frac{\frac{dE}{dX}}{1+ k_B \frac{dE}{dX} + k_C \frac{dE}{dX}^2}.
+\end{equation}
+The free parameter $L_0$ sets the absolute scale for light production
+as a function of energy deposition per path length \dedx,
+while $k_B$ and $k_C$ are free to capture any nonlinearity.
+$L_0$ is effectively absorbed by downstream simulation and covered
+by the calorimetric energy uncertainty in Section \ref{syst_cal_section}.
+Uncertainty in $k_B$ and $k_C$, however, must be treated independently.
+The values
+ $k_B = 0.04~\text{cm} / \text{MeV}$ and $k_C = -0.0005~\text{cm}^2 / \text{MeV}^2$
+were tuned using comparisons between ND data and MC.
+Two alternative samples were generated with different samples of $k_B$ and
+$k_C$.  The first sample has $k_B = 0.02~\text{cm} / \text{MeV}$ and $k_C = 0$;
+the second has $k_B = 0.01~\text{cm} / \text{MeV}$ and $k_C = 0$.
+
+In a manner similar to the particle propagation uncertainty,
+the FD MC prediction for each shifted sample was fit
+with a truncated normal distribution;
+the mean and normalization
+were extracted from the fit and interpreted as an energy
+scale an normalization shift.
+A comparison of the fits is shown in Table \ref{birks_shift_table}.
+A 2\% uncertainty is taken on both the reconstructed energy scale
+and normalization.
+
+Since the tuning accured using ND data, we have no knowledge how well
+these parameters match FD data.
+As such, the energy scale and normalization factor are each
+represented by a separate relative and absolute uncertainty.
+The effect of the absolute normalization uncertainty is shown in
+Figure~\ref{syst_fig_birksNormRel},
+the relative normalization uncertainty in Figure~\ref{syst_fig_birksNormRel},
+the absolute energy scale uncertainty in Figure~\ref{syst_fig_birksScaleAbs},
+and the relative energy scale uncertainty Figure~\ref{syst_fig_birksScaleRel}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/fd_birksb.pdf}
+\end{center}
+\caption{Systematically shifted spectrum with $k_B = 0.02~\text{cm} / \text{MeV}$}{
+The systematic uncertainty for scintillation production propagation modeling
+was estimated by configuring the FD MC with alternative
+scintillation production properties.
+In this case $k_B = 0.02~\text{cm} / \text{MeV}$ was used.
+The FD prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_fd_birksb}
+
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/systs/params/fd_birksc.pdf}
+\end{center}
+\caption{Systematically shifted spectrum with $k_B = 0.01~\text{cm} / \text{MeV}$}{
+The systematic uncertainty for scintillation production propagation modeling
+was estimated by configuring the FD MC with alternative
+scintillation production properties.
+In this case $k_B = 0.01~\text{cm} / \text{MeV}$ was used.
+The FD prediction for each sample was compared to the nominal prediction
+by fitting both with a truncated normal distribution.
+The fits are overlaid as smooth curves on top of the spectra for both
+the nominal and shifted prediction.
+}
+\label{syst_param_fd_birksc}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_birksNormAbs.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_birksNormAbs.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_birksNormAbs.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_birksNormAbs.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of birksNormAbs uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_birksNormAbs}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_birksNormRel.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_birksNormRel.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_birksNormRel.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_birksNormRel.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of birksNormRel uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_birksNormRel}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_birksScaleAbs.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_birksScaleAbs.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_birksScaleAbs.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_birksScaleAbs.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of birksScaleAbs uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_birksScaleAbs}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_birksScaleRel.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_birksScaleRel.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_birksScaleRel.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_birksScaleRel.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of birksScaleRel uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_birksScaleRel}
+
+\end{figure}
+\clearpage
+
+\section{Calorimetric Energy Uncertainty}
+\label{syst_cal_section}

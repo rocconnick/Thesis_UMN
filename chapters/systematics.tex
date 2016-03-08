@@ -1533,10 +1533,98 @@ the effect of the systematic error.}
 
 \end{figure}
 
-
+\clearpage
 \section{Hadronic Energy Uncertainty}
 
+As shown in Figure~\ref{nd_selected_hadE}, the reconstructed hadronic
+energy distribution agrees poorly between the ND prediction and data.
+Hadronic energy enters directly in the reconstructed neutrino energy,
+which is also shown to disagree in Figure~\ref{nd_selected_numuE}.
+Depending on which is taken as the denominator,
+the means of the ND predicted and data hadronic energy spectra
+differ by 13-15\%.
+The source of this discrepancy is not understood.
+It may arise from an incomplete description of the interaction model
+in \genie which distorts the observed spectra.
+Alternatively, the discrepancy may be caused by improper detector modeling.
+Since the cause is not understood, we take this discrepancy as a
+systematic uncertainty.
+The effect is represented as 14\% uncertainty on the hadronic
+component of the reconstructed neutrino energy, both absolute and relative.
+The effect of the absolute uncertainty is shown in
+Figure~\ref{syst_fig_hadEAbs} and the relative uncertainty in
+Figure~\ref{syst_fig_hadERel}.
+The hadronic energy uncertainty is by far the largest uncertainty in this
+analysis.
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_hadEAbs.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_hadEAbs.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_hadEAbs.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_hadEAbs.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of hadEAbs uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_hadEAbs}
+
+\end{figure}
 
 
 
-\section{Negligible Uncertainties}
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_hadERel.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_hadERel.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_hadERel.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_hadERel.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of hadERel uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_hadERel}
+
+\end{figure}

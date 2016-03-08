@@ -1332,13 +1332,127 @@ the effect of the systematic error.}
 
 \section{Detector Mass Uncertainty}
 
+Proper modeling of detector mass is a requirement of the extrapolation
+procedure; if it were incorrect, exposure of the MC prediction could
+be inconsistent with data.
+The uncertainty has been estimated in \cite{raddatz2016thesis}
+by taking uncertainties on each detector component in terms of linear density.
+The result is shown in table \ref{detector_density_table}.
+In each detector, the uncertainty in density is 0.7\%.
+
+A separate accounting from \cite{musser2014mass} compared
+the total mass of both the simulated and physical FD.
+That study produced an discrepancy of 0.8\%
+
+Those two uncertainties have been combined as a
+1\% overall normalization uncertainty, both absolute and relative.
+The effect of the absolute uncertainty is shown in
+Figure \ref{syst_fig_massNormAbs} and the relative uncertainty in
+Figure~\ref{syst_fig_massNormRel}.
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+& \multicolumn{2}{C|}{FD} & \multicolumn{2}{c|}{ND} \\ \hline
+Component    & Mass (kg/m/cell)   & Percentage & Mass (kg/m/cell) & Percentage \\ \hline
+Extrusions   & 0.951 $\pm$ 0.016  & 36.4 $\pm$ 0.6  &  0.951 $\pm$ 0.016  & 36.2 $\pm$ 0.6 \\
+Scintillator & 1.641 $\pm$ 0.009  & 62.8 $\pm$ 0.3  &  1.653 $\pm$ 0.011  & 63.0 $\pm$ 0.4 \\
+Glue         & 0.019 $\pm$ 0.0003 & 0.07 $\pm$ 0.01 &  0.019 $\pm$ 0.0003 & 0.07 $\pm$ 0.01 \\
+Fiber        & 0.001 $\pm$ 0.0001 & 0.04 $\pm$ 0.04 &  0.001 $\pm$ 0.0001 & 0.04 $\pm$ 0.04 \\ \hline
+Total        & 2.612 $\pm$ 0.018  & 100.0 $\pm$ 0.7 &  2.624 $\pm$ 0.019  & 100.0 $\pm$ 0.07 \\ \hline
+\end{tabular}
+\end{center}
+\caption{Uncertianties in density of \nova cells}{
+Stuff about the table }
+\label{detector_density_table}
+
+\end{table}
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_massNormAbs.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_massNormAbs.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_massNormAbs.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_massNormAbs.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of massNormAbs uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_massNormAbs}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_massNormRel.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_massNormRel.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_massNormRel.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_massNormRel.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of massNormRel uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_massNormRel}
+
+\end{figure}
+
+\clearpage
+
 
 \section{Muon Range Uncertainty}
+
 
 
 \section{Hadronic Energy Uncertainty}
 
 
+
+
 \section{Negligible Uncertainties}
-
-

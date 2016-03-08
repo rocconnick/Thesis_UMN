@@ -1448,6 +1448,90 @@ the effect of the systematic error.}
 
 \section{Muon Range Uncertainty}
 
+The uncertainty in detector composition described in the previous section
+could induce discrepancy in the observed range traversed by muon tracks.
+As described in Section \ref{energy_section} length of the muon track enters
+directly into the reconstructed energy estimate.
+To compensate for this dependence, a systematic uncertainty
+of 1\% of the track energy estimate has been applied.
+In the ND, the effect is enhanced by a 2\% uncertainty on the
+amount of steel in the muon catcher \cite{raddatz2016thesis}.
+As such, the uncertainty in the ND is taken as 2\% rather than 1\%.
+The effect of the FD muon range uncertainty is visible in
+Figure~\ref{syst_fig_trkLenFD};
+the corresponding ND effect is shown in Figure~\ref{syst_fig_trkLenND}.
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_trkLenFD.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_trkLenFD.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_trkLenFD.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_trkLenFD.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of trkLenFD uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_trkLenFD}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_mc_prediction_trkLenND.pdf}
+\caption*{FD MC Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/nd_mc_prediction_trkLenND.pdf}
+\caption*{ND MC Prediction and Data}
+\end{subfigure}
+
+\vspace{20pt}
+
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_prediction_trkLenND.pdf}
+\caption*{Extrapolated FD Prediction}
+\end{subfigure}
+\begin{subfigure}[c]{0.49\textwidth}
+\includegraphics[width=\textwidth]{figures/systs/prediction/fd_extrap_contour_trkLenND.pdf}
+\caption*{90 hashtagpercent Confidence Interval}
+\end{subfigure}
+\end{center}
+\caption{Systematic effect of trkLenND uncertainty}{
+Systematic effects can be seen in the predictions and confidence intervals
+which result.
+The top left pane shows the FD prediction, while the top right shows the
+ND prediction and ND data overlaid in black.
+The result of the extrapolation is shown in the bottom left, in which
+systematic uncertainties can cancel.
+The bottom right pane shows 90 hashtagpercent confidence intervals with and without
+the effect of the systematic error.}
+\label{syst_fig_trkLenND}
+
+\end{figure}
 
 
 \section{Hadronic Energy Uncertainty}

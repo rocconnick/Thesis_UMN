@@ -32,7 +32,7 @@ on entries in the event record, such as MC truth information or
 the output of the reconstruction algorithms.
 For each systematic error, alternate versions of the FD prediction
 are generated corresponding to $\pm 1\sigma, \pm2\sigma,$ and
-$\pm3\sigma$ shifts.
+$\pm3\sigma$ shifts \cite{backhouse2015cafana}.
 
 The event records which are allowed to be shifted are populated by
 the output of the reconstruction algorithms,
@@ -44,7 +44,7 @@ correspond to some systematic change in the behavior of the
 simulation and/or reconstruction.
 The effect of that systematic change is then
 and parametrized in terms of some entry in the event record which
-captures the behavior.
+captures the behavior \cite{backhouse2015cafana}.
 
 For each systematic error, the shape of the
 $\pm 1\sigma, \pm2\sigma,$ and
@@ -53,7 +53,8 @@ $\pm3\sigma$ shifts is interpolated using a cubic spline
 The interpolation gives the fitter a smooth profile for marginalization.
 In the Feldman-Cousins procedure \cite{feldman1998unified} (described
 in Section~\ref{feldman_cousins_section}) that shape
-is used for sampling the errors in the pseudo-experiments.
+is used for sampling the errors in the pseudo-experiments
+\cite{backhouse2015cafana}.
 
 \subsection{Relative vs. Absolute Uncertainties}
 
@@ -82,7 +83,113 @@ the same magnitude, but in opposite directions.
 \section{Flux Uncertainty}
 \label{flux_syst_section}
 
-Come back to this one.
+The \numi beam simulation is used to predict the $\nu$ flux in both the
+ND and FD, as described in Section \ref{beam_sim_section}.
+Ultimately, these simulations enter in the analysis through the extrapolation
+of the ND spectrum to produce the FD prediction.
+It is thus necessary to estimate the systematic uncertainties in the flux
+prediction.
+
+Flux uncertainties are broken down into two categories; hadron-production
+uncertainties and beam-transport uncertainties \cite{radovic2015beam}.
+The hadron production uncertainty represents incompleteness in the modeling
+of hadrons produced in the target.
+The beam transport uncertainties, on the other hand, relate to mis-modeling
+of target facility components (horns, decay pipe, etc.) which could affect
+the flux prediction.
+
+Hadron-production uncertainty has been estimated by comparing the
+standard FLUKA cross-section model configuration to an alternative tune
+which resolves discrepancies between NA49 \cite{gazdzicki2004report} data
+and MC simulation \cite{radovic2015beam}.
+The shift between the output of the two configurations was used to produce
+band of systematic uncertainty as a function of true neutrino energy in both
+detectors.
+The FD uncertainty band can be seen in Figure \ref{syst_param_beam_had_band_fd},
+ND in Figure \ref{syst_param_beam_had_band_nd}, and the ratio
+of the two in Figure \ref{syst_param_beam_had_band_fd_nd_ratio}.
+While the FD and ND bands are relatively large, the systematic uncertainty
+cancels significantly in the ratio.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/systs/params/beam_had_band_fd.pdf}
+\end{center}
+\caption{FD hadron production uncertainty band}{
+The systematic uncertainty in the flux prediction has been estimated
+using an alternative configuration of the FLUKA generator which has been
+tuned to minimize the discrepancy between NA49 \cite{gazdzicki2004report}
+data and MC simulation.
+This alternative tune leads to a relatively large systematic error band
+in the flux prediction, shown above.
+}
+\label{syst_param_beam_had_band_fd}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/systs/params/beam_had_band_nd.pdf}
+\end{center}
+\caption{ND hadron production uncertainty band}{
+The systematic uncertainty in the flux prediction has been estimated
+using an alternative configuration of the FLUKA generator which has been
+tuned to minimize the discrepancy between NA49 \cite{gazdzicki2004report}
+data and MC simulation.
+This alternative tune leads to a relatively large systematic error band
+in the ND flux prediction, shown above.
+}
+\label{syst_param_beam_had_band_nd}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/systs/params/beam_had_band_fd_nd_ratio.pdf}
+\end{center}
+\caption{Hadron production uncertainty in FD/ND ratio }{
+The systematic uncertainty in the flux prediction has been estimated
+using an alternative configuration of the FLUKA generator which has been
+tuned to minimize the discrepancy between NA49 \cite{gazdzicki2004report}
+data and MC simulation.
+While the uncertainty in the FD and ND are respectively large,
+the correlation between the two leads to significant cancellation.
+}
+\label{syst_param_beam_had_band_fd_nd_ratio}
+\end{figure}
+
+The beam-transport uncertainties have been estimated in a similar fashion.
+Elements of the detector hall have been alternatively configured
+in order to estimate the resulting flux uncertainty \cite{radovic2015beam}.
+The following alternative configurations were tested:
+\begin{itemize}
+\item Horn current shifted by $\pm$1 kA (0.5\%)
+\item Horn 1 position shifted by $\pm$2 mm in both transverse dimensions
+\item Horn 1 position shifted by $\pm$2 mm in in both transverse dimensions
+\item Current distribution in horn switched from linear to exponential
+with skin depth 0.77 cm
+\item Beam position on target shifted by $\pm$0.5 mm in $X$ and $Y$
+\item Beam spot size on target shifted by $\pm$0.2 mm in $X$ and $Y$
+\item Target position shifted by $\pm$2 mm in longitudinal dimension
+\end{itemize}
+These alternative configurations have been used to produce systematic
+uncertainty bands analogous to the hadron production bands
+shown in Figures \ref{syst_param_beam_had_band_fd},
+\ref{syst_param_beam_had_band_nd}, and
+\ref{syst_param_beam_had_band_fd_nd_ratio}.
+
+For both the ND and FD, the systematic uncertainty bands have been combined
+to produce one total flux uncertainty band \cite{radovic2015beam}.
+The band is used to reweight the true energy spectrum
+in when forming the FD prediction.
+The effect of the flux uncertainty reweighting can be seen in
+Figure \ref{syst_fig_allBeam}.
+
+
+
 
 \begin{figure}
 \begin{center}
@@ -120,7 +227,7 @@ the effect of the systematic error.}
 \end{figure}
 
 
-
+\clearpage
 \section{Cross Section Uncertainty}
 
 \genie includes a built in utility for reweighting events based on

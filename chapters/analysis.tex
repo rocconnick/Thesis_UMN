@@ -106,9 +106,10 @@ imperfect energy energy resolution independently in each detector.
 This is accomplished by forming a 2D histogram of reconstructed energy
 vs. true energy in each detector, referred to as the \textit{reco-true matrix}.
 These histograms can be used to reweight between the reconstructed
-and true spectra in either detector.
+and true spectra in either detector \cite{lozier2015extrap}.
 
-Ultimately, extrapolation from ND to FD is performed in bins of true energy.
+Ultimately, extrapolation from ND to FD is performed in bins of true energy
+\cite{lozier2015extrap}.
 First, the ND data spectrum is reweighted (bin-by-bin)
 using the ND reco-true matrix
 to reproduce the observed ND spectrum in bins of true energy.
@@ -149,7 +150,8 @@ involved in this analysis, graphic only serves as a schematic overview.
 Only the \numu and $\bar{\nu}_\mu$ components are given the full extrapolation
 treatment.
 The beam-induced background components -- NC, \nue, $\bar{\nu}_e$, \nutau and
-$\bar{\nu}_\tau$ -- are all taken directly from the MC prediction.
+$\bar{\nu}_\tau$ -- are all taken directly from the MC prediction
+\cite{lozier2015extrap}.
 Since these components are small, taking these components does not incur
 a significant error.
 In practice, this means that the ND MC prediction for each background component
@@ -170,7 +172,7 @@ f = \frac{10~\mu\text{s}}{ 450~\mu\text{s} - 10~\mu\text{s}} = \frac{1}{44}
 \end{equation}
 Similar to the FD beam-induced background prediction, the cosmic-ray
 background prediction is added directly to the extrapolated FD signal
-prediction.
+prediction \cite{backhouse2015cafana}.
 
 
 \begin{figure}
@@ -279,7 +281,7 @@ the appropriate exposure to each detector configuration.
 
 A binned maximum-likelihood procedure is used to measure oscillation parameters
 \deltamtht and \thetatth by comparing the extrapolated FD prediction to the
-observed FD data.
+observed FD data \cite{backhouse2015cafana}.
 The prediction is cast as a function of the oscillation parameters
 through by applying oscillation probabilities to the FD true energy spectrum
 as described in Section \ref{sig_extrap_section}.

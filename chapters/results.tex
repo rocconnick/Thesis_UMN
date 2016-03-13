@@ -17,7 +17,7 @@ In the absence of neutrino oscillation, 222.0 \numi beam events would have been
 predicted.
 The selected spectrum was fit as described
 in Section \ref{fitting_section}; the best-fit parameters are
-$\sin^2(\thetatth) = 0.43$ (with a statistically-degenerate compliment at 0.60)
+$\sin^2(\thetatth) = 0.43$ (with a statistically-degenerate compliment at 0.6)
 and
 $|\deltamtht| = 2.48\times10^{-3}~\text{eV}^2$.
 The fit results will be discussed in more detail in Section
@@ -439,9 +439,111 @@ a CC DIS interaction.}
 \label{evd_dis_2}
 \end{figure}
 
+\clearpage
+
 \section{Fit Results}
-
-
-
 \label{fit_results_section}
+
+The FD data were fit with the extrapolated FD prediction
+\cite{lozier2015extrap}
+as described in Chapter \ref{analysis_chapter}.
+Systematic uncertainties, listed in Chapter \ref{systs_chapter},
+were included in the fit with a penalty term \cite{pdg,backhouse2015cafana}.
+Figure \ref{selected_spectrum_fit_systs} shows the
+best-fit prediction with and without uncertainties,
+overlaid with FD data and the predicted $1\sigma$ systematic
+uncertainty band.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/results/spectrum_fit_systs.pdf}
+\end{center}
+\caption{FD observed spectrum with best-fit and systematic uncertainties}{
+The distribution of the 39 selected FD events are shown shown as black points
+with associated Poisson error bars.
+The selected spectrum was fit to obtain the oscillation parameters used
+for the extrapolated prediction shown as a red line,
+with the $1\sigma$ uncertainty band shown as the red shaded region.
+The green spectrum is the best-fit prediction including the effects
+of systematic uncertainties.
+}
+\label{selected_spectrum_fit_systs}
+
+\end{figure}
+
+
+
+Confidence intervals have been extracted from the fit as described
+in Section \ref{fitting_section}.
+Figure \ref{measured_contour_systs} shows the 90\% confidence
+interval with and without the effect of systematic errors.
+the best-fit parameters are
+$|\deltamtht| = 2.48\times10^{-3}~\text{eV}^2$.
+and
+$\sin^2(\thetatth) = 0.43$.
+It should be noted that the parameter space is symmetric
+in the $\sin^2(\thetatth)$ dimension, which means that
+a statistically equivalent best-fit point is located
+at roughly $\sin^2(\thetatth) = 0.6$
+
+The confidence intervals from this analysis are compared to recent
+results from T2K \cite{abe2015measurements} and MINOS
+\cite{adamson2014combined} in Figure \ref{measured_contour_comparison}.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/results/fd_extrap_contour_full_syst.pdf}
+\end{center}
+\caption{Measured 90\% confidence interval with and without systematic uncertainties}{
+The confidence interval with the effect of systematic uncertainties is shown
+in red and without systematic uncertainties in black.
+The best-fit parameters are
+$\sin^2(\thetatth) = 0.43$ (with a statistically-degenerate compliment at 0.6)
+and
+$|\deltamtht| = 2.48\times10^{-3}~\text{eV}^2$.
+
+}
+\label{measured_contour_systs}
+
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/results/fd_extrap_contour_OverlayT2KMINOS.pdf}
+\end{center}
+\caption{Comparison of 90\% confidence interval to existing results}{
+The confidence interval from this analysis (including systematic uncertainties)
+is shown in black.
+Recent results from from T2K \cite{abe2015measurements} and
+MINOS \cite{adamson2014combined} are overlaid.
+}
+\label{measured_contour_comparison}
+
+\end{figure}
+
+\clearpage
+
+\section{Feldman-Cousins Confidence Interval}
+
+An alternative fitting procedure from
+\cite{feldman1998unified,backhouse2015cafana}
+has been used to produce frequentist confidence intervals
+with proper 90\% coverage.
+The procedure is described in Section \ref{feldman_cousins_section}.
+The results can be seen in Figure \ref{measured_contour_fc}.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/dummy/dummy}
+\end{center}
+\caption{Feldman-Cousins 90\% confidence interval}{
+caption
+}
+\label{measured_contour_fc}
+
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

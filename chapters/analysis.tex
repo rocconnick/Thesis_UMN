@@ -95,7 +95,7 @@ Selection effects induced by the detector size are handled by simulating
 with an accurately sized detector.
 The beam acceptance issue is covered well by the beam simulation described in
 Section \ref{beam_sim_section}; uncertainties in the beam situation are
-treated as a systematic error.
+treated as a systematic uncertainty.
 The discrepancy between the FD and ND spectra is shown in Figure
 \ref{ratioNDFD}.
 
@@ -151,8 +151,8 @@ treatment.
 The beam-induced background components -- NC, \nue, $\bar{\nu}_e$, \nutau and
 $\bar{\nu}_\tau$ -- are all taken directly from the MC prediction
 \cite{lozier2015extrap}.
-Since these components are small, taking these components does not incur
-a significant error.
+Since these components are small, taking the MC prediction does not incur
+a significant effect.
 In practice, this means that the ND MC prediction for each background component
 is subtracted from the ND data prior to extrapolation.
 Once the extrapolated FD prediction has been generated, each predicted MC
@@ -306,13 +306,13 @@ based on $\Delta \chi^2$ relative to the minimum value.
 The critical $\Delta \chi^2$ values for 68\% and 90\% confidence intervals
 in the case of both 1D and 2D contours can be found in \cite{pdg}.
 
-Systematic errors are included in the fit by adding a term to the likelihood
-function as follows \cite{pdg}:
+Systematic uncertainties are included in the fit by adding a term to the
+likelihood function as follows \cite{pdg}:
 \begin{equation}
 \chi^2 = 2 \sum_i e_i - o_i + o_i + \ln \bigg (\frac{o_i}{e_i} \bigg)
 + \sum_j \frac{s_j^2}{\sigma_j^2}.
 \end{equation}
-The sum over $j$ is over systematic contributions.  Each systematic error
+The sum over $j$ is over systematic contributions.  Each systematic uncertainty
 is allowed to shift each bin, with $\sigma_j$ reflecting our prior
 knowledge of the allowed freedom in that systematic shift.
 The value $s_j$ is determined by a process known as \textit{marginalization}.
@@ -324,7 +324,8 @@ which deviate strongly from our prior knowledge of the systematic parameter.
 The result of the marginalization process is to generally produce a better fit
 at each grid point, effectively reducing the depth of the $\chi^2$ surface.
 A shallower surface results in larger confidence intervals, which fits with
-the intuition that systematic errors reduce the confidence in a measurement.
+the intuition that systematic uncertainties
+reduce the confidence in a measurement.
 
 \subsection{The Feldman-Cousins Procedure}
 \label{feldman_cousins_section}

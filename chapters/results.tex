@@ -537,10 +537,19 @@ The results can be seen in Figure \ref{measured_contour_fc}.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{figures/dummy/dummy}
+\includegraphics[width=\textwidth]{figures/results/fc_compare.pdf}
 \end{center}
 \caption{Feldman-Cousins 90\% confidence interval}{
-caption
+The Feldman-Cousins procedure \cite{feldman1998unified}
+produces confidence intervals with proper coverage
+by running many pseudo-experiments, each with alternate
+statistical fluctuations.
+A surface critical $\chi^2$ values is determined based on the
+percentile of pseudo-experiments.
+Points on the likelihood surface are compared to the critical value
+at that point to determine inclusion in the confidence interval.
+In this case, the Feldman-Cousins confidence interval is quite similar
+to the standard Bayesian approach.
 }
 \label{measured_contour_fc}
 

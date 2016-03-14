@@ -1,43 +1,44 @@
 %!TEX root = ../thesis_phd.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% systematics.tex: systematic errors
+% systematics.tex: systematic uncertainties
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Systematic Uncertainties}
 \label{systs_chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The extrapolated prediction depends on our knowledge of particle propagation
-and detector propagation, mainly through MC simulation.
-Such dependencies introduce systematic errors when that knowledge is incomplete.
-The design of \nova and its reconstruction chain is aimed at mitigating
-systematic errors.
+and detector behavior, mainly through the MC simulation.
+Such dependencies introduce systematic uncertainties
+when that knowledge is incomplete.
+The design of \nova and its reconstruction chain is attempts to
+mitagate systematic uncertainties.
 For instance, a two detector design helps
 cancel flux and cross section uncertainties; estimating muon energy
-from range helps eliminate some dependence on precise calibration.
-Despite these efforts, the degree to which systematic errors are mitigated
-must be tested and and their effect must be incorporated into the
+from range helps eliminate some dependence on calibration accuracy.
+Despite these efforts, the degree to which systematic effects are mitigated
+must be tested and residual behavior must be incorporated into the
 analysis framework.
 
 
 \section{Treatment of Systematic Uncertainties}
 
-Systematic errors are incorporated by allowing
-event records to be altered before they are handled by the
-selection and analysis framework.
-This process allows the analysis framework to see the analysis as each
-event were different in some systematic fashion.
+Systematic uncertainties are incorporated by allowing
+event records to be altered in by an arbitrary procedure before
+they are handled by the selection and analysis framework.
+This process allows the analysis framework to produce selected spectra as if
+each event were different in some systematic fashion.
 Each event can also be assigned an alternate weight based
 on entries in the event record, such as MC truth information or
 the output of the reconstruction algorithms.
-For each systematic error, alternate versions of the FD prediction
+For each systematic effect, alternate versions of the FD prediction
 are generated corresponding to $\pm 1\sigma, \pm2\sigma,$ and
 $\pm3\sigma$ shifts \cite{backhouse2015cafana}.
 
 The event records which are allowed to be shifted are populated by
 the output of the reconstruction algorithms,
 not the raw hit-by-hit detector readout itself.
-Meanwhile, many of the systematic effects must be assessed by altering the
+Unfortunately, many of the systematic effects must be assessed by altering the
 hit-by-hit detector readout.
 In these cases, alternative MC samples are generated which
 correspond to some systematic change in the behavior of the
@@ -46,14 +47,14 @@ The effect of that systematic change is then
 and parametrized in terms of some entry in the event record which
 captures the behavior \cite{backhouse2015cafana}.
 
-For each systematic error, the shape of the
+For each systematic effect, the shape of the
 $\pm 1\sigma, \pm2\sigma,$ and
 $\pm3\sigma$ shifts is interpolated using a cubic spline
 \cite{atkinson1978introduction}.
 The interpolation gives the fitter a smooth profile for marginalization.
 In the Feldman-Cousins procedure \cite{feldman1998unified} (described
 in Section~\ref{feldman_cousins_section}) that shape
-is used for sampling the errors in the pseudo-experiments
+is used for sampling the uncertainties in the pseudo-experiments
 \cite{backhouse2015cafana}.
 
 \subsection{Relative vs. Absolute Uncertainties}
@@ -93,13 +94,14 @@ prediction.
 Flux uncertainties are broken down into two categories; hadron-production
 uncertainties and beam-transport uncertainties \cite{radovic2015beam}.
 The hadron production uncertainty represents incompleteness in the modeling
-of hadrons produced in the target.
+of hadrons produced in the \numi target.
 The beam transport uncertainties, on the other hand, relate to mis-modeling
 of target facility components (horns, decay pipe, etc.) which could affect
 the flux prediction.
 
 Hadron-production uncertainty has been estimated by comparing the
-standard FLUKA cross-section model configuration to an alternative tune
+standard FLUKA \cite{fluka}
+cross-section model configuration to an alternative tune
 which resolves discrepancies between NA49 \cite{gazdzicki2004report} data
 and MC simulation \cite{radovic2015beam}.
 The shift between the output of the two configurations was used to produce
@@ -121,7 +123,7 @@ The systematic uncertainty in the flux prediction has been estimated
 using an alternative configuration of the FLUKA generator which has been
 tuned to minimize the discrepancy between NA49 \cite{gazdzicki2004report}
 data and MC simulation.
-This alternative tune leads to a relatively large systematic error band
+This alternative tune leads to a relatively large uncertainty band
 in the flux prediction, shown above.
 }
 \label{syst_param_beam_had_band_fd}
@@ -138,7 +140,7 @@ The systematic uncertainty in the flux prediction has been estimated
 using an alternative configuration of the FLUKA generator which has been
 tuned to minimize the discrepancy between NA49 \cite{gazdzicki2004report}
 data and MC simulation.
-This alternative tune leads to a relatively large systematic error band
+This alternative tune leads to a relatively large uncertainty band
 in the ND flux prediction, shown above.
 }
 \label{syst_param_beam_had_band_nd}
@@ -171,8 +173,10 @@ The following alternative configurations were tested:
 \item Horn 1 position shifted by $\pm$2 mm in in both transverse dimensions
 \item Current distribution in horn switched from linear to exponential
 with skin depth 0.77 cm
-\item Beam position on target shifted by $\pm$0.5 mm in $X$ and $Y$
-\item Beam spot size on target shifted by $\pm$0.2 mm in $X$ and $Y$
+\item Beam position on target shifted by $\pm$0.5 mm in both
+transverse dimensions
+\item Beam spot size on target shifted by $\pm$0.2 mm in both
+transverse dimensions
 \item Target position shifted by $\pm$2 mm in longitudinal dimension
 \end{itemize}
 These alternative configurations have been used to produce systematic
@@ -184,7 +188,7 @@ shown in Figures \ref{syst_param_beam_had_band_fd},
 For both the ND and FD, the systematic uncertainty bands have been combined
 to produce one total flux uncertainty band \cite{radovic2015beam}.
 The band is used to reweight the true energy spectrum
-in when forming the FD prediction.
+in forming the FD prediction.
 The effect of the flux uncertainty reweighting can be seen in
 Figure \ref{syst_fig_allBeam}.
 
@@ -221,7 +225,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_allBeam}
 
 \end{figure}
@@ -437,7 +444,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_MaCCQE}
 
 \end{figure}
@@ -474,7 +484,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_MaCCRES}
 
 \end{figure}
@@ -511,7 +524,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_MvCCRES}
 
 \end{figure}
@@ -550,7 +566,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_MaNCEL}
 
 \end{figure}
@@ -587,7 +606,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_MaNCRES}
 
 \end{figure}
@@ -625,7 +647,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_MvNCRES}
 
 \end{figure}
@@ -705,7 +730,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_numuSumSmallGENIE}
 
 \end{figure}
@@ -725,7 +753,7 @@ models.
 In order to estimate the systematic uncertainty, the \nova MC was
 configured to run with four different alternative physics lists:
 QGSP\_BIC\_HP, FTF\_BIC, FTFP\_BERT, and QGSC\_BERT.
-Each physics list is described in Section \ref{geant_section}.
+Each of these physics lists is described in Section \ref{geant_section}.
 
 Using the sample generated with each physics list, an
 alternative ND MC prediction was generated.
@@ -877,7 +905,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_geantScale}
 
 \end{figure}
@@ -913,7 +944,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_geantNorm}
 
 \end{figure}
@@ -972,12 +1006,12 @@ the FD MC prediction for each shifted sample was fit
 with a truncated normal distribution;
 the mean and normalization
 were extracted from the fit and interpreted as an energy
-scale an normalization shift.
+scale and normalization shift.
 A comparison of the fits is shown in Table \ref{birks_shift_table}.
 A 2\% uncertainty is taken on both the reconstructed energy scale
 and normalization.
 
-Since the tuning accured using ND data, we have no knowledge how well
+Since the tuning was performed using ND data, we have no knowledge how well
 these parameters match FD data.
 As such, the energy scale and normalization factor are each
 represented by a separate relative and absolute uncertainty.
@@ -1054,7 +1088,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_birksNormAbs}
 
 \end{figure}
@@ -1091,7 +1128,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_birksNormRel}
 
 \end{figure}
@@ -1128,7 +1168,7 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.}
 \label{syst_fig_birksScaleAbs}
 
 \end{figure}
@@ -1165,7 +1205,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_birksScaleRel}
 
 \end{figure}
@@ -1358,7 +1401,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_calNormAbs}
 
 \end{figure}
@@ -1395,7 +1441,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_calNormRel}
 
 \end{figure}
@@ -1432,7 +1481,8 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+}
 \label{syst_fig_calScaleAbs}
 
 \end{figure}
@@ -1469,7 +1519,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_calScaleRel}
 
 \end{figure}
@@ -1482,7 +1535,8 @@ Proper modeling of detector mass is a requirement of the extrapolation
 procedure; if it were incorrect, exposure of the MC prediction could
 be inconsistent with data.
 The uncertainty has been estimated in \cite{raddatz2016thesis}
-by taking uncertainties on each detector component in terms of linear density.
+by taking uncertainties on each detector component in terms of linear density
+of cells.
 The result is shown in table \ref{detector_density_table}.
 In each detector, the uncertainty in density is 0.7\%.
 
@@ -1511,7 +1565,13 @@ Total        & 2.612 $\pm$ 0.018  & 100.0 $\pm$ 0.7 &  2.624 $\pm$ 0.019  & 100.
 \end{tabular}
 \end{center}
 \caption{Uncertianties in density of \nova cells}{
-Stuff about the table }
+The detector mass uncertainty was estimated by aggregating
+uncertainties density of composite materials.
+Shown above is the density of each component in both the
+ND and FD along with the corresponding uncertainty.
+The values are also displayed in terms of percent composition rather
+than absolute density.
+ }
 \label{detector_density_table}
 
 \end{table}
@@ -1547,7 +1607,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_massNormAbs}
 
 \end{figure}
@@ -1584,7 +1647,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_massNormRel}
 
 \end{figure}
@@ -1637,7 +1703,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_trkLenFD}
 
 \end{figure}
@@ -1674,7 +1743,10 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.
+The effect is small enough that the contour which incorporates
+the systematic effect (red) almost completely obscures the
+version without it.}
 \label{syst_fig_trkLenND}
 
 \end{figure}
@@ -1733,7 +1805,7 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.}
 \label{syst_fig_hadEAbs}
 
 \end{figure}
@@ -1770,7 +1842,7 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.}
 \label{syst_fig_hadERel}
 
 \end{figure}
@@ -1827,7 +1899,7 @@ ND prediction and ND data overlaid in black.
 The result of the extrapolation is shown in the bottom left, in which
 systematic uncertainties can cancel.
 The bottom right pane shows 90\% confidence intervals with and without
-the effect of the systematic error.}
+the effect of the systematic uncertainty.}
 \label{syst_fig_syst}
 
 \end{figure}

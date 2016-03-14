@@ -9,12 +9,11 @@
 A measurement of parameters \deltamtht and \thetatth is obtained from
 a likelihood fit to the FD data, namely the reconstructed energy spectrum.
 Performing such a fit requires a prediction of the FD spectrum which can be
-varied in terms of the oscillation parameters.
+varied in terms of oscillation parameters.
 A naive approach would be to generate a FD prediction straight from
 FD Monte Carlo (MC) simulation.
-That approach, however, would be quite sensitive to systematic errors,
-in particular due to uncertainties  in the \numi flux and neutrino
-cross sections.
+That approach, however, would be quite sensitive to systematic uncertainties,
+in particular those in \numi beam flux and neutrino cross sections.
 \nova's two-detector design is aimed precisely at mitigating the effects of
 such uncertainties; the ND can be used to determine the expected
 spectrum at the FD in a way which mostly cancels the large uncertainties the
@@ -40,11 +39,11 @@ The fitting procedure is described in Section \ref{fitting_section}.
 \caption{MC Prediction for ND and FD}{
 The observed ND and FD event energy specta display different characteristics
 primarily due to geometric effects.
-The small size of the ND a bias towards containment of lower energy events.
+The small size of the ND gives a bias towards containment of lower energy events.
 Also, proximity to the \numi source causes the ND to observe a wider
 range of solid angle, effectively broadening the energy peak.
-The top pane shows the overlaid ND and FD spectra taken from MC, with each
-histogram scaled to unit area to highlight shape differences.
+The top pane shows the MC prediction for both ND and FD overlaid, with each
+distribution scaled to unit area to highlight shape differences.
 The bottom pane shows the ratio of the two spectra.
 Note that the ratio is not used in the extrapolation procedure; instead,
 the ratio of the true spectra is used to transfer from ND to FD.
@@ -61,8 +60,8 @@ background components, and cosmic-ray background.
 As the dominant component, the \numu CC signal is extrapolated from
 ND data to take the observed spectrum into account.
 Beam backgrounds, on the other hand, are taken straight from MC simulation.
-The cosmic cosmic-ray background component is taken from data recorded
-in the absence of the \numi beam signal, referred to as the
+The cosmic-ray background component is taken from data recorded
+outside of the time window of \numi spills, referred to as the
 \textit{out-of-time sideband}.
 
 \subsection{\numu CC Signal Extrapolation}
@@ -72,7 +71,7 @@ could be directly interpreted as an oscillation probability.
 This naive approach is complicated by two factors.
 First, the ND and FD spectra are independently shaped by various geometric
 and other systematic effects.
-Second, the imperfect resolution of the energy estimator causes
+Second, the imperfect resolution in energy estimation causes
 distortion of the measured spectra which is inconsistent across detectors.
 The extrapolation procedure aims to mitigate both of these factors.
 
@@ -83,7 +82,7 @@ The energy spectrum observed by ND is thus shaped by the topologies
 of events which can be contained within the detector.
 As a result, the ND spectrum is biased towards events with
 smaller hadronic showers and shorter muon tracks, although the steel planes
-of the muon catcher helps to mitigate the latter problem.
+of the muon catcher helps to mitigate the latter effect.
 Additionally, even though the ND is considerably smaller than the FD,
 it subtends a much larger solid angle relative to the \numi source.
 As a result, it sees pions decaying over a wider range of off-axis angle
@@ -166,7 +165,7 @@ While each \numi beam spill spans only 10 $\mu$s, the functional readout window
 spans 450 $\mu$s.
 The excess data which surrounds the beam spill forms the out-of-time sideband.
 Sideband data is convenient for this purpose because it trivially
-matches the exposure of the in-time data using a simple factor $f$:
+matches the exposure of the in-time data scaling by a simple factor $f$:
 \begin{equation}
 f = \frac{10~\mu\text{s}}{ 450~\mu\text{s} - 10~\mu\text{s}} = \frac{1}{44}
 \end{equation}
@@ -304,8 +303,8 @@ Note that maximizing the likelihood actually corresponds to minimizing
 $\chi^2$.
 Confidence levels can be drawn in the two dimensional dimensional space
 based on $\Delta \chi^2$ relative to the minimum value.
-The critical $\Delta \chi^2$ for 68\% and 90\% confidence intervals
-in the case of both 1D and 2D contours are found in \cite{pdg}.
+The critical $\Delta \chi^2$ values for 68\% and 90\% confidence intervals
+in the case of both 1D and 2D contours can be found in \cite{pdg}.
 
 Systematic errors are included in the fit by adding a term to the likelihood
 function as follows \cite{pdg}:
@@ -334,7 +333,7 @@ An alternative fitting strategy is employed based on \cite{feldman1998unified}.
 This approach uses a Frequentist approach which is concerned with proper
 \textit{coverage}; that is, the notion that a 90\% confidence interval
 should include the true values in 90\% of trials if the experiment
-were to be repeated.
+were to be repeated many times.
 At each grid point, a large number of pseudo-experiments are generated.
 Each pseudo-experiment is based on the oscillated MC prediction, but with
 Poisson distributed fluctuations in each bin.
@@ -342,7 +341,8 @@ The $\chi^2$ is determined for each pseudo-experiment
 and 90th percentile forms the critical value at each grid point.
 When fitting the final data, the $\chi^2$ is compared to the grid points.
 Points in the data grid where the $\chi^2$ exceeds the critical value at that
-point grid are excluded from the contour, while which fall below are included.
+point grid are excluded from the contour, while those which fall below are
+included.
 In each pseudo-experiment, values of the systematic shift are chosen from their
 true distribution, rather than assuming a Gaussian shape.
 This method ensures proper coverage by construction, even in the presence

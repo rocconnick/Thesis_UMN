@@ -3,7 +3,7 @@
 
 #### Abstract
 The NuMI Off-axis Neutrino Experiment (NOvA) is designed to study neutrino
-oscillations in the NuMI beam.
+oscillation in the NuMI beam.
 Neutrinos at the Main Injector
 (NuMI) is currently being upgraded to provide 700 kW.
 NOvA observes neutrino oscillation using two detectors separated

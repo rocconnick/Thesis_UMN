@@ -1,0 +1,730 @@
+%!TEX program = xelatex
+% Compile with XeLaTeX
+
+\documentclass[10pt,professionalfonts,xcolor=table]{beamer}
+
+
+%%%%%%%%%%
+% Load style file, defaults  %
+%%%%%%%%%%
+
+\input{dom_style.tex}
+
+%%%%%%%%%%%
+% Cover slide info    %
+%%%%%%%%%%%
+
+\title[4N for 3M]{Neutrinos, \nova, and Neural Networks}
+\author[Rocco]{Dominick Rocco}
+\date{\today}
+\institute{University of Minnesota}
+
+\begin{document}
+
+\tikzstyle{block} = [rectangle, draw, fill=cyan!40,
+   text width=3.25cm, text centered, rounded corners, minimum height=4em, minimum width = 3cm]
+\tikzstyle{line}=[draw, ->, thick]
+\tikzstyle{lin}=[draw, -, thick]
+\tikzstyle{dot} = [minimum size=0.00pt,inner sep=0pt]
+\tikzstyle{cloud} = [draw, ellipse,fill=red!50, node distance=3cm,
+   minimum height=2em]
+
+\frame{\titlepage}
+
+\section[Outline]{}
+
+\frame
+{
+  \frametitle{Standard Model of Particle Physics}
+
+\begin{columns}[c]
+\column{0.6\textwidth}
+  \begin{itemize}
+  \bang The standard model enumerates all of the fundamental particles we ``know" of
+  \bang Fundamental: not comprised of other particles
+
+  \bang \textbf{Quarks}:
+    \begin{itemize}
+    \bing Make up protons and neutrons...
+    \bong ... and pions ($\pi$) and kaons ($K$)
+    \bong ... and much much more woah
+
+    \end{itemize}
+  \bang \textbf{Leptons}:
+    \begin{itemize}
+    \bing Include electron ($e$) and heavier cousins muon ($\mu$) and ($\tau$)
+    \bing Also includes a neutrino to compliment each one
+    \end{itemize}
+  \bang \textbf{Bosons}:
+    \begin{itemize}
+    \bing Force carriers -- mediate interactions between other particles
+    \end{itemize}
+
+  \end{itemize}
+\column{0.5\textwidth}
+    \begin{figure}
+  \includegraphics[width=\textwidth]{stdmod.jpg}
+  \end{figure}
+\end{columns}
+
+}
+
+\frame
+{
+  \frametitle{Neutrino Hypothesis  and Discovery}
+
+  \begin{columns}[c]
+  \column{0.5\textwidth}
+  \centering
+  \includegraphics[height=0.37\textheight]{betaPretty.png}
+  \column{0.5\textwidth}
+  \centering
+  \includegraphics[height=0.37\textheight]{betaspec.jpg}
+  \end{columns}
+  \gap
+  \begin{itemize}
+  \bang Beta decay originally ($\sim$1900) seen as two body decay: $p \rightarrow n + e^-$
+  \bang Conservation of momentum predicts single-valued energy spectrum for $e^-$
+  \bang The spectrum they measured was in fact continuous
+  \vspace{10pt}
+  \bang Wolfgang Pauli postulated an unseen third particle
+  \bang Enrico Fermi dubbed it neutrino, or ``little neutral one"
+  \bang Neutrinos from nuclear reactors were experimentally observed in 1956
+  \end{itemize}
+}
+
+
+\begin{frame}
+  \frametitle{Neutrino Interactions}
+
+  \bangon
+  \bang Neutrinos are very small
+    \bangon
+    \bing ... i.e. they rarely interact with ordinary matter
+    \bing Neutral to both electromagnetic and strong forces
+    \bing Billions of them are passing through you right now without interacting
+    \bing Could travel through a light-year of lead and probably not interact
+    \bangoff
+    \bangoff
+    \gap
+    \begin{columns}
+      \column{0.5\textwidth}
+  \centering
+  \textcolor{custom_red}{Charged Current}
+
+
+  \includegraphics[height=0.37\textheight, angle=-90]{ccMu.pdf}
+  \column{0.5\textwidth}
+  \centering
+   \textcolor{custom_red}{Neutral Current}
+
+
+  \includegraphics[height=0.37\textheight, angle=-90]{ncHad.pdf}
+  \end{columns}
+\gap
+    \bangon
+    \item Weak interactions involve either $W$ or $Z$ bozon
+      \bangon
+      \item $W$: charged current
+      \bong ~~~~ $\nu_e \rightarrow e$ ~~ or ~~ $\nu_\mu \rightarrow \mu$ ~~ or ~~ $\nu_\tau \rightarrow \tau$
+      \item $Z$: neutral current
+      \bong ~~~~ $\nu_e \rightarrow \nu_e$ ~~ or ~~ $\nu_\mu \rightarrow \nu_\mu$ ~~ or ~~ $\nu_\tau \rightarrow \nu_\tau$
+      \bangoff
+    \bangoff
+
+\end{frame}
+
+\frame
+{
+  \frametitle{Neutrino Oscillation}
+  \bangon
+  \bang Neutrinos change form as they travel
+	  \bangon
+	  \bing ... a.k.a. neutrino oscillation
+	  \bing What starts as a $\nu_\mu$ could later be observed as an $\nu_e$ or $\nu_\tau$
+	  \bing Probabilities of each changes based on distance travelled and neutrino energy
+	  \bangoff
+  \bangoff
+\gap
+\begin{columns}[c]
+\column{0.45\textwidth}
+\begin{equation*}
+P_{\nu_\mu \rightarrow \nu_\mu} = 1 - \sin^2(2\theta) \sin^2\bigg(\frac{\Delta m^2 L}{4 E}\bigg)
+\end{equation*}
+\gap
+\column{0.05\textwidth}
+\vspace{-70pt}
+
+\begin{equation*}
+\color{blue}
+\nu_\mu
+\end{equation*}
+\vspace{-20pt}
+\begin{equation*}
+\color{red}
+\nu_\tau
+\end{equation*}
+\vspace{-20pt}
+\begin{equation*}
+\nu_e
+\end{equation*}
+\gap
+
+\column{0.5\textwidth}
+\includegraphics[width=1\textwidth]{figures/osc_prob.png}
+
+\end{columns}
+
+
+}
+
+
+
+\frame
+{
+\frametitle{\nova}
+
+\begin{columns}[c]
+\column{0.6\textwidth}
+
+\begin{itemize}
+\bang  \textbf{NuMI} is a neutrino source at Fermilab
+\bong (Neutrinos at the Main Injector)
+  \bangon
+  \bing Mostly \numu
+  \bangoff
+\gap
+\bang \textbf{\nova} is a neutrino oscillation experiment
+\bong (NuMI Off-axis $\nu_e$ Appearance)
+  \bangon
+  \bing Two functionally identical detectors
+  \bing 14 mrad off-axis
+  \bing Narrow energy peak near 2 GeV
+
+  \bangoff
+\gap
+
+\end{itemize}
+\centering \footnotesize
+\gap
+\begin{tabular}{l | c | c}
+& Near Detector & Far Detector  \\ \hline
+Baseline (km)& 1  & 810   \\ \hline
+Mass (kton) & 0.3 & 14  \\ \hline
+%Channels & 20,192 & 344,064  \\ %\hline
+\end{tabular}
+
+%{ \centering
+%\includegraphics[width=1\textwidth]{figures/earth.png}}
+
+\column{0.4\textwidth}
+\centering
+\vspace{-5pt}
+\includegraphics[width=1\textwidth]{figures/map.png}
+
+\vspace{7pt}
+
+\includegraphics[width=1\textwidth]{figures/2detectors.png}
+
+\end{columns}
+
+
+}
+
+\frame
+{
+  \frametitle{NuMI}
+    \begin{itemize}
+	\bang High energy protons from are directed into a graphite target
+	\bang These collisions produce a shower of particles
+	\bang Shower is primarily pions and kaons
+	\bang Muons are absorbed in steel plates and rock to leave behind a beam of muon-neutrinos
+	\begin{figure} \includegraphics[width=0.85\textwidth]{numi.png} \end{figure}
+\end{itemize}
+
+}
+
+\frame
+{
+\frametitle{\nova Detectors}
+
+\bangon
+\bang Basic unit of \nova detectors is an extruded PVC cell
+\bang Cells are filled with liquid scintillator
+\bang Wavelength-shifting fiber transmits scintillation light to readout
+\bang Avalanche photo-diodes capture light output from fiber
+\bangoff
+
+\begin{columns}[c]
+\column{0.15\textwidth}
+ \includegraphics[width=1.4\textwidth]{figures/cell.jpeg}
+\column{0.02\textwidth}
+~
+\column{0.83\textwidth}
+
+\centering
+ \includegraphics[width=0.85\textwidth]{figures/schematic.jpg}
+
+ {\scriptsize Illustration courtesy of Fermilab}
+
+\end{columns}
+
+
+
+
+}
+
+
+
+
+\frame
+{
+  \frametitle{Far Detector}
+  \centering
+\begin{columns}[c]
+\column{0.5\textwidth}
+\centering
+ \includegraphics[height=0.85\textheight]{det_photos/det_front.jpg}
+
+\column{0.5\textwidth}
+\centering
+ \includegraphics[height=0.85\textheight]{det_photos/det_side.jpg}
+\end{columns}
+\gap
+{\scriptsize Photos courtesy of Fermilab}
+
+
+}
+
+\frame
+{
+  \frametitle{Near Detector}
+    \begin{itemize}
+	\bang The Near Detector is considerably smaller
+	\bang Installed in a 300 foot deep cavern at Fermilab
+
+\end{itemize}
+	\begin{figure} \includegraphics[height=0.55\textwidth]{det_photos/ND.jpg} \end{figure}
+}
+
+
+\frame
+{
+  \frametitle{Near Detector}
+	\begin{figure} \includegraphics[height=0.55\textwidth]{det_photos/meND_small.jpg} \end{figure}
+}
+
+\frame
+{
+  \frametitle{Event Topologies}
+
+ \begin{figure} \includegraphics[width=0.95\textwidth]{figures/eventtopology.pdf} \end{figure}
+}
+
+
+\frame
+{
+  \frametitle{Real Far Detector Data}
+
+ \begin{figure} \includegraphics[width=0.9\textwidth]{evd_steps/evd_top_side.png} \end{figure}
+}
+
+\frame
+{
+  \frametitle{Real Far Detector Data}
+
+ \begin{figure} \includegraphics[width=0.9\textwidth]{evd_steps/evd_beam_dir.png} \end{figure}
+}
+
+\frame
+{
+  \frametitle{Real Far Detector Data}
+
+ \begin{figure} \includegraphics[width=0.9\textwidth]{evd_steps/evd_beam_dir_nu.png} \end{figure}
+}
+
+\frame
+{
+  \frametitle{Real Far Detector Data}
+
+ \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{evd_steps/evd_oneslicehit.pdf} \end{figure}
+}
+
+
+\frame{
+\frametitle{Oscillation Analysis}
+\begin{tikzpicture}[]
+   % Place nodes
+   \node [block, fill=emerald] (reco) {Reconstruction \\ \footnotesize{Pattern Recognition}};
+   \node [block, right = 2.7cm, right of=reco, fill=emerald] (sel) {Event Selection \\ \footnotesize{Classification}};
+    \node [block, right = 2.7cm, right of=sel] (energy) {Energy Estimation};
+    \node [block, below = 1.0cm, below of=energy] (nd) {Near Detector Data};
+    \node [block, below = 2.5cm, below of=nd] (fd) {Far Detector Data};
+   \node [block, left = 2.7cm, left of=nd] (eff) {Extrapolation};
+   \node [block, left = 2.7cm, left of=eff] (extrap) {Prediction \\ \footnotesize{Depends on  oscillation parameters}};
+%   \node [cloud, below =-0.5cm, below of=extrap] (fit) {Likelihood Fit};
+\node[inner sep=0cm, below =2.5cm, below of=extrap, align=left] (fit)
+    { \includegraphics[width=.45\textwidth]{figures/spectrum.png}};
+    \node [dot, right = 1.0cm, right of=energy] (bre){};
+    \node [dot, right = 1.0cm, right of=fd] (brf){};
+     \node [dot, right = 1.0cm, right of=nd] (brn){};
+
+   % Draw edges
+   \path [line] (reco) |- (sel);
+    \path [line] (sel) |- (energy);
+    \path [lin] (energy) -- (bre);
+    \path [lin] (bre) -- (brf);
+    \path [line] (brf) |- (fd);
+    \path [line] (brn) |- (nd);
+    \path [line] (nd) -- (eff);
+    \path [line] (eff) -- (extrap);
+    \path [line] (extrap) -- (fit);
+    \path [line] (fd) -- (fit);
+
+
+\end{tikzpicture}
+
+}
+
+
+\begin{frame}
+
+\frametitle{Reconstruction}
+
+\bangon
+\item Pattern recognition algorithms produce useful information from raw data
+\gap
+\item First step is to resolve individual particle interactions
+\gap
+\item Use DBSCAN for clustering
+\gap
+\item Each hit pair assigned a neighbor score with time/space distance metric
+\begin{equation*}
+L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
+     \bigg( \frac{\Delta \vec{r}}{D} \bigg)^2
+\end{equation*}
+\begin{center}
+ ($D$ and $T$ are configurable, $c$ is speed of light)
+\end{center}
+\bangoff
+
+\begin{columns}[c]
+\column{0.3\textwidth}
+
+\centering
+
+\includegraphics[width=\textwidth]{figures/dbscan.png}
+
+\column{0.7\textwidth}
+\bangon
+\gap
+\item Pairs with score below threshold start a cluster
+\gap
+\item Cluster boundaries formed in low density regions
+
+\bangoff
+
+\end{columns}
+
+\end{frame}
+
+\frame
+{
+  \frametitle{Before Clustering}
+
+ \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{evd_steps/evd_hits.pdf} \end{figure}
+}
+
+\frame
+{
+  \frametitle{After Clustering}
+
+ \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{evd_steps/evd_slice.pdf} \end{figure}
+}
+
+\begin{frame}
+
+\frametitle{Further Reconstruction}
+
+\begin{columns}[c]
+\column{0.5\textwidth}
+  \bangon
+  \item Many reconstruction steps can be chained
+    \bangon
+    \item Hough transform
+    \item Kalman filtering
+    \item Elastic vertex finding
+    \item K-means clustering
+    \bangoff
+  \gap
+  \item Reconstructed features passed to multivariate classifiers
+    \bangon
+    \item Length
+    \item Direction
+    \item Gaps
+    \item Energy deposition characteristics
+    \bangoff
+  \gap
+  \item Low rate failures compound across multiple steps
+  \gap
+  \item Tuning for pathological failures can become tedious
+
+  \bangoff
+\column{0.5\textwidth}
+
+\centering
+
+\includegraphics[width=\textwidth]{evd_steps/slice.png}
+
+\includegraphics[width=\textwidth]{evd_steps/hough.png}
+
+\includegraphics[width=\textwidth]{evd_steps/vertex.png}
+
+\includegraphics[width=\textwidth]{evd_steps/prongs.png}
+
+\end{columns}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Image Classification}
+  \bangon
+  \item Classification with raw detector output is potentially less error prone
+  \bangon
+  \item Just use coarse clusters from DBSCAN
+  \item Cut out the rest of the reconstruction
+  \bangoff
+  \gap
+  \item Use methods from computer vision community
+  \bangon
+  \item Detector output is essentially top and side view image
+  \bangoff
+  \bangoff
+\end{frame}
+
+\begin{frame}
+\frametitle{Neural Networks}
+  \bangon
+  \bang Artificial neural networks (ANN) do well for classification of small images
+    \bangon
+    \item Each pixel used as input to neural network
+    \item Historically successful for optical character recognition (OCR)
+    \item[] ... but doesn't scale well above $\sim 100$ pixels
+    \bangoff
+  \gap
+  \item Image processing community finds success in modern ANN variants
+    \bangon
+    \item Convolutional neural networks (CNN) lead to position invariant feature extraction
+    \item New training strategies enable deeper architecture to learn high-level representations
+    \item GPU acceleration provides order(s) of magnitude improvement in training time
+    \bangoff
+  \bangoff
+
+\end{frame}
+
+\begin{frame}
+\frametitle{\nova Events as Images}
+
+\begin{columns}[c]
+\column{0.5\textwidth}
+
+\bangon
+\item Box is drawn around upstream side of slice
+\item Box centered on median cell
+\item X-view is on top, Y-view on bottom
+\bangoff
+
+\column{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{maps/PixelMap_r1000005_s76_e86.png}
+\end{columns}
+
+\vspace{-3pt}
+\begin{columns}[c]
+
+\column{0.5\textwidth}
+
+\includegraphics[width=1\textwidth]{maps/PixelMap_r1000005_s76_e87.png}
+
+\column{0.5\textwidth}
+
+\includegraphics[width=1\textwidth]{maps/PixelMap_r1000005_s76_e88.png}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Neural Networks}
+
+\bangon
+\bang A neural network is a ``feedforward graph" of layers, $i$
+  \bangon
+  \item Each node,  receives input only from previous layers
+  \item Nodes take input from each node in previous layer
+  \item Each node passes linear combination of inputs, $z$, through a nonlinearity, $g$
+  \bong \[ z_{i,j} = \sum_j w_{i,j} a_{i-1, j}; ~~~~~~~~ a_{i,j}  = g(z_{i,j}) \]
+  \bangoff
+\bangoff
+\vspace{-10pt}
+\begin{columns}[c]
+\column{0.5\textwidth}
+
+  \bangon
+  \item[(1)] Input layer: pixels from image
+  \item[(2)] Hidden layers: do the classification
+  \item[(3)] Output layer: classification result
+  \gap
+  \item Networks trained using ``backpropagation"
+    \bangon
+    \item Classification error is minimized in training
+    \item Gradient propagated to upstream layers
+    \bangoff
+  \bangoff
+\column{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{figures/nn.png}
+\end{columns}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Convolutional Layers}
+
+
+  \bangon
+  \item Convolutional layers have demonstrated significant enhancement for image classification
+  \bangoff
+  \begin{columns}[c]
+  \column{0.5\textwidth}
+  \centering \includegraphics[width=0.7\textwidth]{figures/conv.png}
+  \column{0.5\textwidth}
+  \centering \includegraphics[width=0.7\textwidth]{figures/conv3d.png}
+  \end{columns}
+  \bangon
+  \gap
+  \item Convolutional filters are trained to find features in patches of the image
+  \gap
+  \item Filters are scanned over the input image to produce a feature map
+    \bangon
+    \item Upshot: position independent feature extraction
+    \bangoff
+  \gap
+  \item Many filters of a particular size are trained in a each convolutional layer
+  \gap
+  \item Pooling is a common Down-sampling technique
+    \bangon
+    \item ``Max pooling" simply extracts the maximum pixel (filter output) from each patch
+    \bangoff
+  \bangoff
+
+\end{frame}
+
+\begin{frame}
+\frametitle{GoogLeNet}
+\framesubtitle{Network-in-Network, ``Inception"}
+
+
+  \bangon
+  \item Network-in-Network approaches are another recent enhancement
+  \bangoff
+  \begin{columns}[c]
+  \column{0.5\textwidth}
+  \centering \includegraphics[width=0.9\textwidth]{figures/inceptionnaive.pdf}
+  \column{0.5\textwidth}
+  \centering \includegraphics[width=0.9\textwidth]{figures/inceptionmodule.pdf}
+  \end{columns}
+  \bangon
+  \gap
+  \item GoogLeNet introduced the ``Inception module"
+  \gap
+  \item Convolutional layers are arranged side-by-side rather one after another
+  \gap
+  \item Sub-layers are concatenated and passed to downstream layers
+  \gap
+  \item Downstream layers simultaneously learn structure at different scales
+  \gap
+  \item $1\times1$ convolutions are just constant scale factors
+    \bangon
+    \item Output filters are linear combinations of input filters
+    \item Tool for dimensionality reduction
+    \bangoff
+  \bangoff
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\frametitle{Architecture}
+
+  \begin{columns}
+  \column{0.28\textwidth}
+   \includegraphics[height=0.9\textheight]{figures/arch.pdf}
+  \column{0.72\textwidth}
+  \begin{itemize}
+  \item Inspired by GoogLeNet, but much more compact
+  \bangon
+  \bong Szegedy, Christian, et al. ``Going deeper with convolutions." arXiv preprint arXiv:1409.4842 (2014).
+  \bangoff
+  \gap
+  \item Repeated convolution, pooling, inception structures
+  \gap
+  \item Local Response Normalization (LRN) for smoothing
+  \gap
+  \item Regularization to prevent overtraining
+    \bangon
+    \item Jitter tweaks pixel/hit intensity
+    \item Dropout cuts out information during training
+    \bangoff
+  \end{itemize}
+  \end{columns}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{Classifier Output}
+  \begin{center}
+   \includegraphics[height=0.7\textwidth, angle=-90]{ang_plots/ang_dist.pdf}
+  \end{center}
+
+  \bangon
+  \item Classifier output shows nice separation for beam backgrounds
+  \bangoff
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{Selection Comparison}
+  \begin{center}
+   \includegraphics[height=0.7\textwidth, angle=-90]{ang_plots/cosmic_sig_osc.pdf}
+  \end{center}
+  \gap
+  \bangon
+  \item Convolutional Neural Network is more efficient, especially at low energies
+  \bangoff
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Summary}
+\bangon
+\item \nova studies neutrino oscillations with a beam and two detectors
+\gap
+\item Reconstruction involves machine learning and pattern recognition algorithms
+\gap
+\item Treating data as images with a convolutional neural network has been successful
+\bangoff
+\end{frame}
+
+
+
+\end{document}

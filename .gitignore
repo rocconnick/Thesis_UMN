@@ -3,7 +3,6 @@ thesis_phd.pdf
 
 #Binary and Image
 *.exe
-*.jpg
 *.gif
 *.bmp
 *.jpeg

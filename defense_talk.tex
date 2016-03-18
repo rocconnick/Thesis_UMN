@@ -71,7 +71,7 @@
 
 \frame
 {
-  \frametitle{Neutrino Hypothesis  and Discovery}
+  \frametitle{Neutrino Hypothesis and Discovery}
 
   \begin{columns}[c]
   \column{0.5\textwidth}
@@ -232,7 +232,7 @@ s_{23}s_{12} - c_{12}c_{23}s_{13}e^{i\delta}	& -c_{12}s_{23} - s_{12}c_{23}s_{13
 	\end{equation*}
 	\bang For relativistic neutrinos, we approximate the energy and take $t \rightarrow L$, which we substitute into the time evolution:
 	\begin{equation*}
-		|\nu_l(L) \rangle = e^{-iEL} \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-i\frac{m_\alpha^2}{2E} L}|\nu_\alpha \rangle.
+		|\nu_l(L) \rangle = e^{-iEL} \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-i\frac{m_\alpha^2}{2E} L}|\nu_\alpha \rangle
 	\end{equation*}
   \gap
 	\bang The factor $e^{-i\frac{m_\alpha^2}{2E} L}$ gives rise to oscillation
@@ -247,9 +247,9 @@ s_{23}s_{12} - c_{12}c_{23}s_{13}e^{i\delta}	& -c_{12}s_{23} - s_{12}c_{23}s_{13
   \begin{itemize}
   \bang From the last slide
 	\begin{equation*}
-		|\nu_l(L) \rangle = e^{-iEL} \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-i\frac{m_\alpha^2}{2E} L}|\nu_\alpha \rangle.
+		|\nu_l(L) \rangle = e^{-iEL} \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-i\frac{m_\alpha^2}{2E} L}|\nu_\alpha \rangle
 	\end{equation*}
-\bang Osc prob is inner product
+\bang Oscillation probability is the inner product
   \begin{equation*}
 P_{l\rightarrow m} = 	 \langle \nu_m|\nu_l \rangle
 	\end{equation*}
@@ -258,7 +258,7 @@ P_{l\rightarrow m} = 	 \langle \nu_m|\nu_l \rangle
 P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alpha}U_{m\alpha}U^*_{l\beta}U_{m\beta}) \sin^2 \bigg(\frac{\Delta m_{\alpha\beta}^2}{4E} L\bigg) \\
  + 2  \sum_{\alpha>\beta}  \Im(U^*_{l\alpha}U_{m\alpha}U^*_{l\beta}U_{m\beta}) \sin\bigg(\frac{\Delta m_{\alpha\beta}^2}{2E}L\bigg)
 \end{split}\end{equation*}
-	\bang All time dependence is wrapped up in the $\sin$ terms, the prefactors are real constants that depend on the mixing angles
+	\bang Dynamic behavior is in sine terms, mixing angles enter through U
 
 
   \end{itemize}
@@ -269,23 +269,22 @@ P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alph
 {
   \frametitle{Current Oscillation Parameter Measurements}
     \begin{itemize}
-   \bang Solar neutrino experiments have measured $\sin^2(2 \theta_{12}) $ and $\Delta m_{21}^2$ .
-   \bang Long-baseline and atmospheric  neutrino experiments have measured $\sin^2(2 \theta_{23}) $ and $|\Delta m_{32}^2|$ .
-   \bang $\sin^2(2 \theta_{13})$ has recently been measured to be nonzero.
-\bang The CP-violating phase $\delta$ has never been measured.
-\bang The ordering of the mass hierarchy is unknown, that is, the sign of $\Delta m_{32}^2$.
+   \bang Solar neutrino experiments have measured $\sin^2(2 \theta_{12}) $ and $\Delta m_{21}^2$
+   \bang Long-baseline and atmospheric  neutrino experiments have measured $\sin^2(2 \theta_{23}) $ and $|\Delta m_{32}^2|$
+   \bang $\sin^2(2 \theta_{13})$ has recently been measured to be nonzero
+\bang The CP-violating phase $\delta$ has never been measured
+\bang The ordering of the mass hierarchy is unknown, that is, the sign of $\Delta m_{32}^2$
 \end{itemize}
 \begin{columns}[c]
 \column{0.5\textwidth} \footnotesize
-\begin{tabular}{ |c |  c| }
-\hline
+\centering
+\begin{tabular}{ c |  c }
 Parameter & PDG Average\footnotemark \\  \hline
-  $\sin^2\big(2 \theta_{12}\big)$&$  0.875 \pm0.024$  \\
-  $\sin^2\big(2 \theta_{23}\big)$&$  > 0.95                  $   \\
-  $\sin^2\big(2 \theta_{13}\big)$&$  0.098 \pm0.013$  \\
-    $\Delta m^2_{21}       $&$ (7.50 \pm 0.2) \times 10^{-5}$ eV${}^2$ \\
-  $|\Delta m^2_{32}|       $&$ (2.32^{+0.12}_{-0.08} ) \times 10^{-3}$ eV${}^2$  \\
-  \hline
+  $\sin^2\big(\theta_{12}\big)$&$  0.304 \pm0.014$  \\
+  $\sin^2\big(\theta_{23}\big)$&$  0.514_{-0.056}^{+0.055}                  $   \\
+  $\sin^2\big( \theta_{13}\big)$&$  0.0219 \pm0.0012$  \\
+    $\Delta m^2_{21}       $&$ (7.53 \pm 0.18) \times 10^{-5}$ eV${}^2$ \\
+  $|\Delta m^2_{32}|       $&$ (2.42 \pm 0.06 ) \times 10^{-3}$ eV${}^2$  \\
 \end{tabular}
 \column{0.5\textwidth}
  \begin{figure} \includegraphics[width=\textwidth]{figures/figures/hierarchy.jpg} \end{figure}
@@ -329,7 +328,7 @@ Parameter & PDG Average\footnotemark \\  \hline
 & Near Detector & Far Detector  \\ \hline
 Baseline (km)& 1  & 810   \\ \hline
 Mass (kton) & 0.3 & 14  \\ \hline
-%Channels & 20,192 & 344,064  \\ %\hline
+Channels & 20,192 & 344,064  \\ %\hline
 \end{tabular}
 
 %{ \centering
@@ -508,57 +507,60 @@ Mass (kton) & 0.3 & 14  \\ \hline
 \begin{frame}
 
 \frametitle{Reconstruction}
+\framesubtitle{Slicing}
 
 \bangon
-\item Pattern recognition algorithms produce useful information from raw data
-\gap
 \item First step is to resolve individual particle interactions
 \gap
-\item Use DBSCAN for clustering
-\gap
-\item Each hit pair assigned a neighbor score with time/space distance metric
-\begin{equation*}
-L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
-     \bigg( \frac{\Delta \vec{r}}{D} \bigg)^2
-\end{equation*}
-\begin{center}
- ($D$ and $T$ are configurable, $c$ is speed of light)
-\end{center}
+\item Activity is clustered in time and space to form \textit{slices}
 \bangoff
-
-\begin{columns}[c]
-\column{0.3\textwidth}
-
+\gap
+\gap
+\begin{columns}[b]
+\column{0.5\textwidth}
 \centering
+\textcolor{custom_red}{Before Slicing}
+\includegraphics[height=\textwidth, angle=-90]{figures/evd_steps/evd_hits.pdf}
 
-\includegraphics[width=\textwidth]{figures/figures/dbscan.png}
-
-\column{0.7\textwidth}
-\bangon
-\gap
-\item Pairs with score below threshold start a cluster
-\gap
-\item Cluster boundaries formed in low density regions
-
-\bangoff
+\column{0.5\textwidth}
+\centering
+\textcolor{custom_red}{After Slicing}
+\includegraphics[height=\textwidth, angle=-90]{figures/evd_steps/evd_slice.pdf}
 
 \end{columns}
 
 \end{frame}
 
-\frame
-{
-  \frametitle{Before Clustering}
+\begin{frame}
 
- \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{figures/evd_steps/evd_hits.pdf} \end{figure}
-}
+\frametitle{Reconstruction}
+\framesubtitle{Tracking}
 
-\frame
-{
-  \frametitle{After Clustering}
+\bangon
+\item Next step is to isolate separate particle tracks
+\gap
+\item Two algorithms for this:
+  \bangon
+  \item \textit{CosmicTrack}: basic least squares regression
+  \item \textit{KalmanTrack}: based on Kalman filtering
+  \bangoff
+\bangoff
+\gap
+\gap
+\gap
+\begin{columns}[c]
+\column{0.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/figures/tracking.jpg}
 
- \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{figures/evd_steps/evd_slice.pdf} \end{figure}
-}
+\column{0.6\textwidth}
+\centering
+\includegraphics[height=\textwidth, angle=-90]{figures/evd_steps/evd_track_zoom.pdf}
+
+\end{columns}
+
+\end{frame}
+
 
 \begin{frame}
 
@@ -834,4 +836,111 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
 
 
 
+\frame
+{
+  \frametitle{Oscillations in Matter}
+  \framesubtitle{Interactions}
+  \begin{itemize}
+  \bang In the presence of matter, neutrinos can undergo coherent scattering
+  \begin{columns}[c]
+  \column{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, angle=-90]{figures/feynman/ncElec.pdf}
+   \column{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth, angle=-90]{figures/feynman/ncHad.pdf}
+   \column{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth, angle=-90]{figures/feynman/ccElec.pdf}
+
+\end{columns}
+\bang The neutral-current scatterings affect $\nu_e$, $\nu_\mu$ and $\nu_\tau$ equally and do not affect oscillation probabilities
+\bang The charged-current interaction only occurs for $\nu_e$
+
+\end{itemize}
+}
+\frame
+{
+  \frametitle{Oscillations in Matter}
+\begin{itemize}
+  \framesubtitle{Effective potential}
+\bang The $\nu_e$ charged-current interaction gives rise to an effective potential:
+\begin{equation*}
+V_{CC} = \sqrt{2}G_F n_e
+\end{equation*}
+\bang The effective potential modifies the $\sin$ term in the oscillation probability:
+\begin{equation*}
+\sin\bigg(\frac{\Delta m_{\alpha\beta}^2}{2E}L\bigg) \rightarrow
+\frac{\Delta m_{\alpha\beta}^2}{\Delta m_{\alpha\beta}^2 \pm E V_{CC}/2} \sin\bigg(\big(\frac{\Delta m_{\alpha\beta}^2}{2E} \pm \frac{EV_{CC}}{2}\big)L \bigg)
+\end{equation*}
+\bang The $\pm$ corresponds to neutrinos/antineutrinos
+  \end{itemize}
+}
+
+\begin{frame}
+
+\frametitle{Slicing}
+
+\bangon
+\item First step is to resolve individual particle interactions
+\gap
+\item Use DBSCAN for clustering, A.K.A. slicing
+\gap
+\item Each hit pair assigned a neighbor score with time/space distance metric
+\begin{equation*}
+L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
+     \bigg( \frac{\Delta \vec{r}}{D} \bigg)^2
+\end{equation*}
+\begin{center}
+ ($D$ and $T$ are configurable, $c$ is speed of light)
+\end{center}
+\bangoff
+
+\begin{columns}[c]
+\column{0.3\textwidth}
+
+\centering
+
+\includegraphics[width=\textwidth]{figures/figures/dbscan.png}
+
+\column{0.7\textwidth}
+\bangon
+\gap
+\item Pairs with score below threshold start a cluster
+\gap
+\item Cluster boundaries formed in low density regions
+
+\bangoff
+
+\end{columns}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Calibration}
+
+\bangon
+\item Make a backup slide about this
+\bangoff
+\end{frame}
+
+
+
+
+
+\frame
+{
+  \frametitle{Before Clustering}
+
+ \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{figures/evd_steps/evd_hits.pdf} \end{figure}
+}
+
+\frame
+{
+  \frametitle{After Clustering}
+
+ \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{figures/evd_steps/evd_slice.pdf} \end{figure}
+}
 \end{document}

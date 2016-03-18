@@ -13,6 +13,7 @@
 %%%%%%%%%%%
 % Cover slide info    %
 %%%%%%%%%%%
+%\setbeamertemplate{sections/subsections in toc}[sections numbered]
 
 \title[\numu Disappearance CNN]{Muon Neutrino Disappearance in NOvA with a Deep Convolutional Neural Network Classifier}
 \author[D. Rocco]{Dominick Rocco}
@@ -31,7 +32,6 @@
 
 \frame{\titlepage}
 
-\section[Outline]{}
 
 \frame
 {
@@ -149,7 +149,7 @@
 \begin{columns}[c]
 \column{0.45\textwidth}
 \begin{equation*}
-P_{\nu_\mu \rightarrow \nu_\mu} = 1 - \sin^2(2\theta) \sin^2\bigg(\frac{\Delta m^2 L}{4 E}\bigg)
+P_{\color{blue}\nu_\mu \rightarrow \nu_\mu} = 1 - \sin^2(2\theta) \sin^2\bigg(\frac{\Delta m^2 L}{4 E}\bigg)
 \end{equation*}
 \gap
 \column{0.05\textwidth}
@@ -181,10 +181,9 @@ P_{\nu_\mu \rightarrow \nu_\mu} = 1 - \sin^2(2\theta) \sin^2\bigg(\frac{\Delta m
 
 
 
-\section{Neutrino Oscillations}
 \frame
 {
-  \frametitle{Neutrino Oscillations in Vacuum}
+  \frametitle{Neutrino Oscillation in Vacuum}
   \begin{itemize}
   \bang Neutrinos are neutral leptons that interact weakly, they are produced in one of the flavor states.
   \bang In fact, each flavor state, $l=e,\mu,\tau$,  is a superposition of three distinct mass states, $\nu_1$, $\nu_2$, $\nu_3$:
@@ -206,9 +205,9 @@ s_{23}s_{12} - c_{12}c_{23}s_{13}e^{i\delta}	& -c_{12}s_{23} - s_{12}c_{23}s_{13
 
 \frame
 {
-  \frametitle{Neutrino Oscillations in Vacuum}
+  \frametitle{Neutrino Oscillation in Vacuum}
   \begin{itemize}
-	\bang Oscillations are given by time evolution:
+	\bang Oscillation are given by time evolution:
 	\begin{equation*}
 		|\nu_l(t) \rangle = \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-iE_\alpha t}|\nu_\alpha(0) \rangle
 	\end{equation*}
@@ -216,7 +215,7 @@ s_{23}s_{12} - c_{12}c_{23}s_{13}e^{i\delta}	& -c_{12}s_{23} - s_{12}c_{23}s_{13
 	\begin{equation*}
 		|\nu_l(L) \rangle = e^{-iEL} \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-i\frac{m_\alpha^2}{2E} L}|\nu_\alpha(0) \rangle.
 	\end{equation*}
-	\bang The factor $e^{-i\frac{m_\alpha^2}{2E} L}$ gives rise to oscillations. 
+	\bang The factor $e^{-i\frac{m_\alpha^2}{2E} L}$ gives rise to oscillation. 
 	\bang We then find the oscillation probability:
 	\begin{equation*}\begin{split}
 P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alpha}U_{m\alpha}U^*_{l\beta}U_{m\beta}) \sin^2 \bigg(\frac{\Delta m_{\alpha\beta}^2}{4E} L\bigg) \\
@@ -228,7 +227,6 @@ P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alph
   \end{itemize}
 }
 
-\section{Oscillation Parameter Measurements}
 \frame
 {
   \frametitle{Current Oscillation Parameter Measurements}
@@ -243,7 +241,7 @@ P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alph
 \column{0.5\textwidth} \footnotesize
 \begin{tabular}{ |c |  c| }
 \hline  
-Parameter & PDG Average\footnote{J. Beringer et al. (Particle Data Group), Phys. Rev. D86, 010001 (2012)} \\  \hline  
+Parameter & PDG Average\footnotemark \\  \hline  
   $\sin^2\big(2 \theta_{12}\big)$&$  0.875 \pm0.024$  \\ 
   $\sin^2\big(2 \theta_{23}\big)$&$  > 0.95                  $   \\ 
   $\sin^2\big(2 \theta_{13}\big)$&$  0.098 \pm0.013$  \\ 
@@ -252,10 +250,10 @@ Parameter & PDG Average\footnote{J. Beringer et al. (Particle Data Group), Phys.
   \hline  
 \end{tabular}
 \column{0.5\textwidth}
- \begin{figure} \includegraphics[width=\textwidth]{hierarchy.jpg} \end{figure}
+ \begin{figure} \includegraphics[width=\textwidth]{figures/figures/hierarchy.jpg} \end{figure}
  \vspace{8pt} 
 \end{columns}
-
+\footnotetext{K. A. Olive et al. Review of Particle Physics. Chin. Phys., C38:090001, 2014.}
 }
 
 
@@ -788,7 +786,7 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
 \begin{frame}
 \frametitle{Summary}
 \bangon
-\item \nova studies neutrino oscillations with a beam and two detectors
+\item \nova studies neutrino oscillation with a beam and two detectors
 \gap
 \item Reconstruction involves machine learning and pattern recognition algorithms
 \gap

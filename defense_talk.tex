@@ -63,7 +63,7 @@
   \end{itemize}
 \column{0.5\textwidth}
     \begin{figure}
-  \includegraphics[width=\textwidth]{figures/figures/sm.png}
+  \includegraphics[width=\textwidth]{figures/figures/stdmod.jpg}
   \end{figure}
 \end{columns}
 
@@ -177,6 +177,88 @@ P_{\nu_\mu \rightarrow \nu_\mu} = 1 - \sin^2(2\theta) \sin^2\bigg(\frac{\Delta m
 
 
 }
+
+
+
+
+\section{Neutrino Oscillations}
+\frame
+{
+  \frametitle{Neutrino Oscillations in Vacuum}
+  \begin{itemize}
+  \bang Neutrinos are neutral leptons that interact weakly, they are produced in one of the flavor states.
+  \bang In fact, each flavor state, $l=e,\mu,\tau$,  is a superposition of three distinct mass states, $\nu_1$, $\nu_2$, $\nu_3$:
+  \begin{equation*}
+|\nu_l(0) \rangle = \sum_{\alpha = 1,}^3 U_{l\alpha}|\nu_\alpha(0) \rangle.
+  \end{equation*}
+  \bang $U_{l\alpha}$ is an element in the Pontecorvo-Maki-Nakagawa-Sakata (PMNS) matrix\footnote{$c_{ij}$ and $s_{ij}$ denote $\cos(\theta_{ij})$ and $\sin(\theta_{ij})$, respectively. \vspace{3pt}}: 
+  \begin{equation*}
+ U = \begin{pmatrix} \label{pmns} 
+c_{13}c_{12}              &    c_{13}s_{12} 	   	 & 		s_{13} e^{-i\delta} \\
+-s_{12}c_{23} - c_{12}s_{23}s_{13}e^{i\delta}	& c_{12}c_{23} - s_{12}s_{23}s_{13}e^{i\delta} 				& 		c_{13}s_{23}  \\
+s_{23}s_{12} - c_{12}c_{23}s_{13}e^{i\delta}	& -c_{12}s_{23} - s_{12}c_{23}s_{13}e^{i\delta} 				& 		c_{13}c_{23}  \\
+\end{pmatrix}_{.}
+\end{equation*}
+\bang $U$ is a unitary matrix representing a rotation in a complex 3 dimensional space.
+\bang $U$ depends on three Euler angles, $\theta_{12}$, $\theta_{23}$, $\theta_{13}$ and a phase $\delta$ representing CP violation.
+  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Neutrino Oscillations in Vacuum}
+  \begin{itemize}
+	\bang Oscillations are given by time evolution:
+	\begin{equation*}
+		|\nu_l(t) \rangle = \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-iE_\alpha t}|\nu_\alpha(0) \rangle
+	\end{equation*}
+	\bang For relativistic neutrinos, we approximate the energy and take $t \rightarrow L$, which we substitute into the time evolution:
+	\begin{equation*}
+		|\nu_l(L) \rangle = e^{-iEL} \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-i\frac{m_\alpha^2}{2E} L}|\nu_\alpha(0) \rangle.
+	\end{equation*}
+	\bang The factor $e^{-i\frac{m_\alpha^2}{2E} L}$ gives rise to oscillations. 
+	\bang We then find the oscillation probability:
+	\begin{equation*}\begin{split}
+P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alpha}U_{m\alpha}U^*_{l\beta}U_{m\beta}) \sin^2 \bigg(\frac{\Delta m_{\alpha\beta}^2}{4E} L\bigg) \\
+ + 2  \sum_{\alpha>\beta}  \Im(U^*_{l\alpha}U_{m\alpha}U^*_{l\beta}U_{m\beta}) \sin\bigg(\frac{\Delta m_{\alpha\beta}^2}{2E}L\bigg).
+\end{split}\end{equation*}
+	\bang All time dependence is wrapped up in the $\sin$ terms, the prefactors are real constants that depend on the mixing angles.  
+
+
+  \end{itemize}
+}
+
+\section{Oscillation Parameter Measurements}
+\frame
+{
+  \frametitle{Current Oscillation Parameter Measurements}
+    \begin{itemize}
+   \bang Solar neutrino experiments have measured $\sin^2(2 \theta_{12}) $ and $\Delta m_{21}^2$ .
+   \bang Long-baseline and atmospheric  neutrino experiments have measured $\sin^2(2 \theta_{23}) $ and $|\Delta m_{32}^2|$ .  
+   \bang $\sin^2(2 \theta_{13})$ has recently been measured to be nonzero.  
+\bang The CP-violating phase $\delta$ has never been measured.
+\bang The ordering of the mass hierarchy is unknown, that is, the sign of $\Delta m_{32}^2$.
+\end{itemize}
+\begin{columns}[c]
+\column{0.5\textwidth} \footnotesize
+\begin{tabular}{ |c |  c| }
+\hline  
+Parameter & PDG Average\footnote{J. Beringer et al. (Particle Data Group), Phys. Rev. D86, 010001 (2012)} \\  \hline  
+  $\sin^2\big(2 \theta_{12}\big)$&$  0.875 \pm0.024$  \\ 
+  $\sin^2\big(2 \theta_{23}\big)$&$  > 0.95                  $   \\ 
+  $\sin^2\big(2 \theta_{13}\big)$&$  0.098 \pm0.013$  \\ 
+    $\Delta m^2_{21}       $&$ (7.50 \pm 0.2) \times 10^{-5}$ eV${}^2$ \\
+  $|\Delta m^2_{32}|       $&$ (2.32^{+0.12}_{-0.08} ) \times 10^{-3}$ eV${}^2$  \\
+  \hline  
+\end{tabular}
+\column{0.5\textwidth}
+ \begin{figure} \includegraphics[width=\textwidth]{hierarchy.jpg} \end{figure}
+ \vspace{8pt} 
+\end{columns}
+
+}
+
+
 
 
 

@@ -73,15 +73,15 @@
 \begin{frame}
   \frametitle{Neutrino Interactions}
 
-  \bangon
+  \begin{itemize}
   \bang Neutrinos are very small
-    \bangon
+    \begin{itemize}
     \bing ... i.e. they rarely interact with ordinary matter
     \bing Neutral to both electromagnetic and strong forces
     \bing Billions of them are passing through you right now without interacting
     \bing Could travel through a light-year of lead and probably not interact
-    \bangoff
-    \bangoff
+    \end{itemize}
+    \end{itemize}
     \gap
     \begin{columns}
       \column{0.5\textwidth}
@@ -98,29 +98,29 @@
   \includegraphics[height=0.37\textheight, angle=-90]{figures/feynman/ncHad.pdf}
   \end{columns}
 \gap
-    \bangon
+    \begin{itemize}
     \item Weak interactions involve either $W$ or $Z$ bozon
-      \bangon
+      \begin{itemize}
       \item $W$: charged current
       \bong ~~~~ $\nu_e \rightarrow e$ ~~ or ~~ $\nu_\mu \rightarrow \mu$ ~~ or ~~ $\nu_\tau \rightarrow \tau$
       \item $Z$: neutral current
       \bong ~~~~ $\nu_e \rightarrow \nu_e$ ~~ or ~~ $\nu_\mu \rightarrow \nu_\mu$ ~~ or ~~ $\nu_\tau \rightarrow \nu_\tau$
-      \bangoff
-    \bangoff
+      \end{itemize}
+    \end{itemize}
 
 \end{frame}
 
 \frame
 {
   \frametitle{Neutrino Oscillation}
-  \bangon
+  \begin{itemize}
   \bang Neutrinos change form as they travel
-	  \bangon
+	  \begin{itemize}
 	  \bing ... a.k.a. neutrino oscillation
 	  \bing What starts as a $\nu_\mu$ could later be observed as an $\nu_e$ or $\nu_\tau$
 	  \bing Probabilities of each changes based on distance travelled and neutrino energy
-	  \bangoff
-  \bangoff
+	  \end{itemize}
+  \end{itemize}
 \begin{center}
   \begin{equation*}
   P_{\color{blue}\nu_\mu \rightarrow \nu_\mu} = 1 - \sin^2(2\theta) \sin^2\bigg(\frac{\Delta m^2 L}{4 E}\bigg)
@@ -283,18 +283,18 @@ Parameter & PDG Average\footnotemark \\  \hline
 \begin{itemize}
 \bang  \textbf{NuMI} is a neutrino source at Fermilab
 \bong (Neutrinos at the Main Injector)
-  \bangon
+  \begin{itemize}
   \bing Mostly \numu
-  \bangoff
+  \end{itemize}
 \gap
 \bang \textbf{\nova} is a neutrino oscillation experiment
 \bong (NuMI Off-axis $\nu_e$ Appearance)
-  \bangon
+  \begin{itemize}
   \bing Two functionally identical detectors
   \bing 14 mrad off-axis
   \bing Narrow energy peak near 2 GeV
 
-  \bangoff
+  \end{itemize}
 \gap
 
 \end{itemize}
@@ -341,12 +341,12 @@ Channels & 20,192 & 344,064  \\ %\hline
 {
 \frametitle{\nova Detectors}
 
-\bangon
+\begin{itemize}
 \bang Basic unit of \nova detectors is an extruded PVC cell
 \bang Cells are filled with liquid scintillator
 \bang Wavelength-shifting fiber transmits scintillation light to readout
 \bang Avalanche photo-diodes capture light output from fiber
-\bangoff
+\end{itemize}
 
 \begin{columns}[c]
 \column{0.15\textwidth}
@@ -485,11 +485,11 @@ Channels & 20,192 & 344,064  \\ %\hline
 \frametitle{Reconstruction}
 \framesubtitle{Slicing}
 
-\bangon
+\begin{itemize}
 \item First step is to resolve individual particle interactions
 \gap
 \item Activity is clustered in time and space to form \textit{slices}
-\bangoff
+\end{itemize}
 \gap
 \gap
 \begin{columns}[b]
@@ -512,15 +512,15 @@ Channels & 20,192 & 344,064  \\ %\hline
 \frametitle{Reconstruction}
 \framesubtitle{Tracking}
 
-\bangon
+\begin{itemize}
 \item Tracking locates discrete particle trajectories
 \gap
 \item Two algorithms produce distinct output:
-  \bangon
+  \begin{itemize}
   \item \textit{CosmicTrack}: basic least squares regression
   \item \textit{KalmanTrack}: based on Kalman filtering
-  \bangoff
-\bangoff
+  \end{itemize}
+\end{itemize}
 \gap
 \gap
 \gap
@@ -544,7 +544,7 @@ Channels & 20,192 & 344,064  \\ %\hline
 \framesubtitle{Prongs}
 \begin{columns}[c]
 \column{0.5\textwidth}
-  \bangon
+  \begin{itemize}
   \item Prongs can isolate trajectories which are less track-like
   \gap
   \item Hough transform used to find primary lines
@@ -553,7 +553,7 @@ Channels & 20,192 & 344,064  \\ %\hline
   \gap
   \item Prongs clustered in angular space around vertex
 
-  \bangoff
+  \end{itemize}
 \column{0.5\textwidth}
 
 \centering
@@ -579,19 +579,19 @@ Channels & 20,192 & 344,064  \\ %\hline
 \framesubtitle{Muon ID}
 \begin{columns}[c]
 \column{0.55\textwidth}
-  \bangon
+  \begin{itemize}
   \item Muons tracks are identified based on KalmanTrack output
   \gap
   \item Features are extracted from tracks
-    \bangon
+    \begin{itemize}
     \item Track length
     \item Energy deposition characteristic
     \item Scattering characteristic
-    \bangoff
+    \end{itemize}
   \gap
   \item k-Nearest Neighbors algorithm provides Muon ID score based on extracted features
 
-  \bangoff
+  \end{itemize}
 \column{0.45\textwidth}
 
 \centering
@@ -610,14 +610,14 @@ Channels & 20,192 & 344,064  \\ %\hline
 \frametitle{Energy Estimation}
 \begin{columns}[c]
 \column{0.55\textwidth}
-  \bangon
+  \begin{itemize}
   \item Energy estimate is combination of muon track and hadronic energy
   \gap
   \item Muon energy estimated based on track length
   \gap
   \item Hadronic energy estimated from deposited energy of non-muon activity in slice
 
-  \bangoff
+  \end{itemize}
 \column{0.45\textwidth}
 
 \centering
@@ -693,10 +693,10 @@ Channels & 20,192 & 344,064  \\ %\hline
 \frametitle{Neural Networks}
   \begin{itemize}
   \bang Artificial neural networks (ANN) do well for classification of small images
-    \bangon
+    \begin{itemize}
     \item e.g. optical character recognition (OCR)
     \item[] ... but doesn't scale well above $\sim 100$ pixels
-    \bangoff
+    \end{itemize}
   \end{itemize}
 \begin{center}
   \includegraphics[width=0.45\textwidth]{figures/figures/ocr_ann.png}
@@ -704,11 +704,11 @@ Channels & 20,192 & 344,064  \\ %\hline
 
   \begin{itemize}
   \item Image processing community harnessing new technology
-    \bangon
+    \begin{itemize}
     \item Convolutional neural networks: good for images
     \item New training strategies: deeper networks, less overtraining
     \item GPU acceleration
-    \bangoff
+    \end{itemize}
   \end{itemize}
 
 \end{frame}
@@ -717,30 +717,30 @@ Channels & 20,192 & 344,064  \\ %\hline
 \begin{frame}
 \frametitle{Neural Networks}
 
-\bangon
+\begin{itemize}
 \bang A neural network is a ``feedforward graph" of layers, $i$
-  \bangon
+  \begin{itemize}
   \item Each node,  receives input only from previous layers
   \item Nodes take input from each node in previous layer
   \item Each node passes linear combination of inputs, $z$, through a nonlinearity, $g$
   \bong \[ z_{ij} = \sum_j w_{ij} a_{(i-1)j}; ~~~~~~~~ a_{ij}  = g(z_{ij}) \]
-  \bangoff
-\bangoff
+  \end{itemize}
+\end{itemize}
 \vspace{20pt}
 \begin{columns}[c]
 \column{0.5\textwidth}
 
-  \bangon
+  \begin{itemize}
   \item Input layer: pixels from image
   \item Hidden layers: do the classification
   \item Output layer: classification result
   \gap
   \item Networks trained using ``backpropagation"
-    \bangon
+    \begin{itemize}
     \item Classification error is minimized in training
     \item Gradient propagated to upstream layers
-    \bangoff
-  \bangoff
+    \end{itemize}
+  \end{itemize}
 \column{0.5\textwidth}
 \centering
 \includegraphics[width=1\textwidth]{figures/figures/basicNN.png}
@@ -765,25 +765,25 @@ Output Layer
 \frametitle{Convolutional Layers}
 
 
-  \bangon
+  \begin{itemize}
   \item Convolutional layers work well for image classification
-  \bangoff
+  \end{itemize}
   \begin{columns}[c]
   \column{0.5\textwidth}
   \centering \includegraphics[width=0.7\textwidth]{figures/figures/conv.png}
   \column{0.5\textwidth}
   \centering \includegraphics[width=0.7\textwidth]{figures/figures/conv3d.png}
   \end{columns}
-  \bangon
+  \begin{itemize}
   \gap
   \item Convolutional filters are trained to find features in patches of the image
   \gap
   \item Filters are scanned over the input image to produce a feature map
-    \bangon
+    \begin{itemize}
     \item Upshot: position independent feature extraction
-    \bangoff
+    \end{itemize}
   \gap
-  \bangoff
+  \end{itemize}
 
 \end{frame}
 
@@ -794,9 +794,9 @@ Output Layer
   \item Many filters trained in a each convolutional layer
   \gap
   \item Pooling is a common Down-sampling technique
-    \bangon
+    \begin{itemize}
     \item ``Max pooling" simply extracts the maximum filter output (pixel intensity) from each patch
-    \bangoff
+    \end{itemize}
 
   \begin{center}
  \includegraphics[width=0.5\textwidth]{figures/figures/convnet.png}
@@ -810,22 +810,22 @@ Output Layer
 \begin{frame}
 \frametitle{GoogLeNet and \textit{Inception}}
 
-  \bangon
+  \begin{itemize}
   \item GoogLeNet introduced the ``Inception module"
-  \bangoff
+  \end{itemize}
   \begin{center}
  \includegraphics[width=0.5\textwidth]{figures/figures/inception/inception.pdf}
  \end{center}
-   \bangon
+   \begin{itemize}
   \gap
   \item Convolutional layers are arranged side-by-side rather one after another
   \item Downstream layers simultaneously learn structure at different scales
   \item $1\times1$ convolution is a tool for dimensionality reduction
-    \bangon
+    \begin{itemize}
     \item $1\times1$ convolution: constant scale factor
     \item Output filters are linear combinations of input filters
-    \bangoff
-  \bangoff
+    \end{itemize}
+  \end{itemize}
 
 \end{frame}
 
@@ -891,9 +891,9 @@ Output Layer
 
   {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
   \end{center}
-  \bangon
+  \begin{itemize}
   \item Select events with CNN output > 0.5
-  \bangoff
+  \end{itemize}
 \end{frame}
 
 
@@ -906,9 +906,9 @@ Output Layer
 
   {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
   \end{center}
-  \bangon
+  \begin{itemize}
   \item Select events with start $Y$ < 6.0 m
-  \bangoff
+  \end{itemize}
 \end{frame}
 
 
@@ -920,9 +920,9 @@ Output Layer
 
   {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
   \end{center}
-  \bangon
+  \begin{itemize}
   \item Select events with $P_T$ < 0.8
-  \bangoff
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -933,9 +933,9 @@ Output Layer
 
   {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
   \end{center}
-  \bangon
+  \begin{itemize}
   \item Select events with $P_T$ < 0.8
-  \bangoff
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -944,11 +944,11 @@ Output Layer
    \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/cosmic_sig_osc.pdf}
   \end{center}
   \gap
-  \bangon
+  \begin{itemize}
   \item Existing \nova analysis uses muon ID and boosted decision tree (BDT)
   \gap
   \item New CNN-based selection is more efficient, especially in low energy region
-  \bangoff
+  \end{itemize}
 \end{frame}
 
 
@@ -995,12 +995,12 @@ Output Layer
    \includegraphics[width=\textwidth]{figures/figures/extrap_schematic.png}
   \end{center}
 
-  \bangon
+  \begin{itemize}
   \item Extrapolation produces FD prediction based on ND data
   \item Accounts for for imperfect resolution in estimated energy
   \item ND/FD each have separate reco-true matrices
   \item FD/ND ratio taken from MC prediction (geometric correction)
-  \bangoff
+  \end{itemize}
 \end{frame}
 
 
@@ -1113,13 +1113,13 @@ Output Layer
 
 \begin{frame}
 \frametitle{}
-\bangon
+\begin{itemize}
 \item \nova studies neutrino oscillation with a beam and two detectors
 \gap
 \item Reconstruction involves machine learning and pattern recognition algorithms
 \gap
 \item Treating data as images with a convolutional neural network has been successful
-\bangoff
+\end{itemize}
 \end{frame}
 
 
@@ -1169,7 +1169,7 @@ V_{CC} = \sqrt{2}G_F n_e
 
 \frametitle{Slicing}
 
-\bangon
+\begin{itemize}
 \item First step is to resolve individual particle interactions
 \gap
 \item Use DBSCAN for clustering, A.K.A. slicing
@@ -1182,7 +1182,7 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
 \begin{center}
  ($D$ and $T$ are configurable, $c$ is speed of light)
 \end{center}
-\bangoff
+\end{itemize}
 
 \begin{columns}[c]
 \column{0.3\textwidth}
@@ -1192,13 +1192,13 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
 \includegraphics[width=\textwidth]{figures/figures/dbscan.png}
 
 \column{0.7\textwidth}
-\bangon
+\begin{itemize}
 \gap
 \item Pairs with score below threshold start a cluster
 \gap
 \item Cluster boundaries formed in low density regions
 
-\bangoff
+\end{itemize}
 
 \end{columns}
 
@@ -1209,28 +1209,28 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
 \begin{frame}
 \frametitle{Calibration}
 
-\bangon
+\begin{itemize}
 \item Make a backup slide about this
-\bangoff
+\end{itemize}
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Regularization}
 
-\bangon
+\begin{itemize}
 \item Make a backup slide about this
-\bangoff
+\end{itemize}
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Contour Improvement}
 
-\bangon
+\begin{itemize}
 \item Make a backup slide about this
 \item Include efficiency
-\bangoff
+\end{itemize}
 \end{frame}
 
 

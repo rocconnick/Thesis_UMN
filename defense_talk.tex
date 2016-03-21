@@ -33,6 +33,14 @@
 \frame{\titlepage}
 
 
+\begin{frame}
+\app{Neutrino (\textit{noun})}{An abundant particle which rarely interacts \\
+\gap
+e.g. \textit{Neutrinos are everywhere in the universe, billions of them are currently passing through this room undetected.}}
+\end{frame}
+
+
+
 \frame
 {
   \frametitle{Standard Model of Particle Physics}
@@ -40,7 +48,7 @@
 \begin{columns}[c]
 \column{0.6\textwidth}
   \begin{itemize}
-  \bang The standard model enumerates all of the fundamental particles we ``know" of
+  \bang The standard model enumerates fundamental particles
   \bang Fundamental: not comprised of other particles
 
   \bang \textbf{Quarks}:
@@ -184,6 +192,7 @@
   \frametitle{PMNS Matrix}
   \begin{itemize}
   \bang $U_{l\alpha}$ is an element in the Pontecorvo-Maki-Nakagawa-Sakata (PMNS) matrix
+  \end{itemize}
   \begin{equation*}
  U = \begin{pmatrix} \label{pmns}
 c_{13}c_{12}              &    c_{13}s_{12} 	   	 & 		s_{13} e^{-i\delta} \\
@@ -191,10 +200,19 @@ c_{13}c_{12}              &    c_{13}s_{12} 	   	 & 		s_{13} e^{-i\delta} \\
 s_{23}s_{12} - c_{12}c_{23}s_{13}e^{i\delta}	& -c_{12}s_{23} - s_{12}c_{23}s_{13}e^{i\delta} 				& 		c_{13}c_{23}  \\
 \end{pmatrix}
 \end{equation*}
+\begin{center}
+\footnotesize
+$c_{ij} = \cos(\theta_{ij})$
+
+$s_{ij} = \sin(\theta_{ij})$
+\end{center}
+ \gap
+  \begin{itemize}
+\bang Unitary matrix representing a rotation in a complex 3 dimensional space
 \gap
-\bang $U$ is a unitary matrix representing a rotation in a complex 3 dimensional space
+\bang Three Euler angles, $\theta_{12}$, $\theta_{23}$, $\theta_{13}$
 \gap
-\bang $U$ depends on three Euler angles, $\theta_{12}$, $\theta_{23}$, $\theta_{13}$ and a phase $\delta$ representing CP violation
+\bang Complex phase $\delta$: potential for CP violation
   \end{itemize}
 }
 
@@ -227,7 +245,7 @@ s_{23}s_{12} - c_{12}c_{23}s_{13}e^{i\delta}	& -c_{12}s_{23} - s_{12}c_{23}s_{13
 	\end{equation*}
 \bang Oscillation probability is the inner product
   \begin{equation*}
-P_{l\rightarrow m} = 	 \langle \nu_m|\nu_l \rangle
+P_{l\rightarrow m} = 	 |\langle \nu_m|\nu_l \rangle|^2
 	\end{equation*}
 	\bang We then find the oscillation probability:
 	\begin{equation*}\begin{split}
@@ -244,33 +262,66 @@ P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alph
 \frame
 {
   \frametitle{Current Oscillation Parameter Measurements}
-    \begin{itemize}
-   \bang Solar neutrino experiments have measured $\sin^2(2 \theta_{12}) $ and $\Delta m_{21}^2$
-   \bang Long-baseline and atmospheric  neutrino experiments have measured $\sin^2(2 \theta_{23}) $ and $|\Delta m_{32}^2|$
-   \bang $\sin^2(2 \theta_{13})$ has recently been measured to be nonzero
-\bang The CP-violating phase $\delta$ has never been measured
-\bang The ordering of the mass hierarchy is unknown, that is, the sign of $\Delta m_{32}^2$
+
+  \begin{columns}[c]
+    \column{0.57\textwidth}
+
+      \begin{itemize}
+   \bang Experiments have contrained mixing angles and mass differences
+\bang Unknown whether $\theta_{23}$ is exactly $45^\circ$
+\bang Mass ordering is unknown: sign of $\Delta m_{32}^2$
+\bang The CP-violating phase $\delta$ is not well constrained (matter/antimatter)
 \end{itemize}
-\begin{columns}[c]
-\column{0.5\textwidth} \footnotesize
-\centering
-\begin{tabular}{ c |  c }
-Parameter & PDG Average\footnotemark \\  \hline
+  \column{0.45\textwidth}
+  \footnotesize \centering
+  \begin{tabular}{ c |  c }
+Parameter & PDG Average \\  \hline
   $\sin^2\big(\theta_{12}\big)$&$  0.304 \pm0.014$  \\
   $\sin^2\big(\theta_{23}\big)$&$  0.514_{-0.056}^{+0.055}                  $   \\
   $\sin^2\big( \theta_{13}\big)$&$  0.0219 \pm0.0012$  \\
     $\Delta m^2_{21}       $&$ (7.53 \pm 0.18) \times 10^{-5}$ eV${}^2$ \\
   $|\Delta m^2_{32}|       $&$ (2.42 \pm 0.06 ) \times 10^{-3}$ eV${}^2$  \\
 \end{tabular}
-\column{0.5\textwidth}
+
+  \end{columns}
+  \gap
+  \gap
+\begin{columns}[c]
+
+  \column{0.45\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{figures/figures/osc_prob.png}
+  \column{0.05\textwidth}
+  \vspace{-50pt}
+
+  \begin{equation*}
+  \color{blue}
+  \nu_\mu
+  \end{equation*}
+  \vspace{-20pt}
+  \begin{equation*}
+  \color{red}
+  \nu_\tau
+  \end{equation*}
+  \vspace{-17pt}
+  \begin{equation*}
+  \nu_e
+  \end{equation*}
+  \gap
+  \column{0.05\textwidth}
+  ~
+
+\column{0.4\textwidth}
+\centering
  \begin{figure} \includegraphics[width=\textwidth]{figures/figures/hierarchy.jpg} \end{figure}
  \vspace{8pt}
 \end{columns}
-\footnotetext{K. A. Olive et al. Review of Particle Physics. Chin. Phys., C38:090001, 2014.}
 }
 
 
-
+\begin{frame}
+\app{\nova (\textit{noun})}{An experiment which aims to answer remaining questions surrounding neutrino oscillation}
+\end{frame}
 
 
 \frame
@@ -349,11 +400,14 @@ Channels & 20,192 & 344,064  \\ %\hline
 \end{itemize}
 
 \begin{columns}[c]
-\column{0.15\textwidth}
- \includegraphics[width=1.4\textwidth]{figures/figures/cell.png}
-\column{0.02\textwidth}
-~
-\column{0.83\textwidth}
+\column{0.08\textwidth}
+
+\column{0.2\textwidth}
+\centering
+ \includegraphics[width=0.8\textwidth]{figures/figures/apd_zoom.jpeg}
+
+ \includegraphics[width=1\textwidth]{figures/figures/cell.png}
+\column{0.8\textwidth}
 
 \centering
  \includegraphics[width=0.85\textwidth]{figures/figures/schematic.jpg}
@@ -411,7 +465,32 @@ Channels & 20,192 & 344,064  \\ %\hline
 {
   \frametitle{Event Topologies}
 
- \begin{figure} \includegraphics[width=0.95\textwidth]{figures/figures/event_topology_nue.pdf} \end{figure}
+ \begin{figure} \includegraphics[width=0.9\textwidth]{figures/figures/event_topology_nue.pdf} \end{figure}
+  \vspace{-15pt}
+ \begin{center}
+ \footnotesize Electromagnetic radiation length is $\sim$38 cm, \\
+ spans several cells (4 cm $\times$ 6 cm)
+ \end{center}
+
+}
+
+\frame
+{
+  \frametitle{Event Topologies}
+\begin{columns}[]
+\column{0.45\textwidth}
+\begin{itemize}
+\item Analysis signal: \numu charged-current events
+\gap
+\item Muon present
+\gap
+\item Hadron shower topology varies
+\end{itemize}
+\column{0.55\textwidth}
+ \begin{figure} \includegraphics[width=\textwidth]{figures/figures/event_topology_numu.pdf} \end{figure}
+
+\end{columns}
+
 }
 
 
@@ -419,28 +498,37 @@ Channels & 20,192 & 344,064  \\ %\hline
 {
   \frametitle{Real Far Detector Data}
 
- \begin{figure} \includegraphics[width=0.9\textwidth]{figures/evd_steps/evd_top_side.png} \end{figure}
+ \begin{figure} \includegraphics[width=0.85\textwidth]{figures/evd_steps/evd_top_side.png} \end{figure}
+ \centering \footnotesize $~$
+
 }
 
 \frame
 {
   \frametitle{Real Far Detector Data}
 
- \begin{figure} \includegraphics[width=0.9\textwidth]{figures/evd_steps/evd_beam_dir.png} \end{figure}
+ \begin{figure} \includegraphics[width=0.85\textwidth]{figures/evd_steps/evd_beam_dir.png} \end{figure}
+ \centering \footnotesize Analysis uses over 10 million beam spills, $\sim 2$ min exposure,  100 kHz cosmic ray rate
 }
 
 \frame
 {
   \frametitle{Real Far Detector Data}
 
- \begin{figure} \includegraphics[width=0.9\textwidth]{figures/evd_steps/evd_beam_dir_nu.png} \end{figure}
+ \begin{figure} \includegraphics[width=0.85\textwidth]{figures/evd_steps/evd_beam_dir_nu.png} \end{figure}
+
+ \centering \footnotesize $~$
+
 }
 
 \frame
 {
   \frametitle{Real Far Detector Data}
 
- \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{figures/evd_steps/evd_oneslicehit.pdf} \end{figure}
+ \begin{figure} \includegraphics[height=0.85\textwidth, angle=-90]{figures/evd_steps/evd_oneslicehit.pdf} \end{figure}
+  \centering \footnotesize $~$
+
+
 }
 
 
@@ -449,23 +537,23 @@ Channels & 20,192 & 344,064  \\ %\hline
 \begin{tikzpicture}[]
    % Place nodes
    \node [block] (reco) {Reconstruction};
-   \node [block, right = 2.7cm, right of=reco, fill=emerald] (sel) {Event Selection};
-    \node [block, right = 2.7cm, right of=sel] (energy) {Energy Estimation};
-    \node [block, below = 1.0cm, below of=energy] (nd) {Near Detector Data};
+    \node [block, right = 2.7cm, right of=reco] (energy) {Energy Estimation};
+   \node [block, right = 2.7cm, right of=energy, fill=emerald] (sel) {Event Selection};
+    \node [block, below = 1.0cm, below of=sel] (nd) {Near Detector Data};
     \node [block, below = 2.5cm, below of=nd] (fd) {Far Detector Data};
    \node [block, left = 2.7cm, left of=nd] (eff) {Extrapolation};
    \node [block, left = 2.7cm, left of=eff] (extrap) {Prediction \\ \footnotesize{Function of oscillation parameters}};
 %   \node [cloud, below =-0.5cm, below of=extrap] (fit) {Likelihood Fit};
 \node[inner sep=0cm, below =2.5cm, below of=extrap, align=left] (fit)
     { \includegraphics[width=.4\textheight, angle=-90]{figures/results/fd_data_mc_numi_plots/ccE_unblind_wUnosc.pdf}};
-    \node [dot, right = 1.0cm, right of=energy] (bre){};
+    \node [dot, right = 1.0cm, right of=sel] (bre){};
     \node [dot, right = 1.0cm, right of=fd] (brf){};
      \node [dot, right = 1.0cm, right of=nd] (brn){};
 
    % Draw edges
-   \path [line] (reco) |- (sel);
-    \path [line] (sel) |- (energy);
-    \path [lin] (energy) -- (bre);
+   \path [line] (reco) |- (energy);
+    \path [line] (energy) |- (sel);
+    \path [lin] (sel) -- (bre);
     \path [lin] (bre) -- (brf);
     \path [line] (brf) |- (fd);
     \path [line] (brn) |- (nd);
@@ -478,6 +566,11 @@ Channels & 20,192 & 344,064  \\ %\hline
 \end{tikzpicture}
 
 }
+
+
+\begin{frame}
+\app{Reconstruction (\textit{noun})}{Extraction of patterns in raw data to aid in physics measurements}
+\end{frame}
 
 
 \begin{frame}
@@ -514,12 +607,6 @@ Channels & 20,192 & 344,064  \\ %\hline
 
 \begin{itemize}
 \item Tracking locates discrete particle trajectories
-\gap
-\item Two algorithms produce distinct output:
-  \begin{itemize}
-  \item \textit{CosmicTrack}: basic least squares regression
-  \item \textit{KalmanTrack}: based on Kalman filtering
-  \end{itemize}
 \end{itemize}
 \gap
 \gap
@@ -545,11 +632,11 @@ Channels & 20,192 & 344,064  \\ %\hline
 \begin{columns}[c]
 \column{0.5\textwidth}
   \begin{itemize}
-  \item Prongs can isolate trajectories which are less track-like
+  \item Prongs are for fuzzier trajectories
   \gap
-  \item Hough transform used to find primary lines
+  \item Primary lines are found
   \gap
-  \item Vertex identified based on hough lines
+  \item Vertex located using primary lines
   \gap
   \item Prongs clustered in angular space around vertex
 
@@ -580,7 +667,7 @@ Channels & 20,192 & 344,064  \\ %\hline
 \begin{columns}[c]
 \column{0.55\textwidth}
   \begin{itemize}
-  \item Muons tracks are identified based on KalmanTrack output
+  \item Muons tracks can be identified
   \gap
   \item Features are extracted from tracks
     \begin{itemize}
@@ -589,8 +676,7 @@ Channels & 20,192 & 344,064  \\ %\hline
     \item Scattering characteristic
     \end{itemize}
   \gap
-  \item k-Nearest Neighbors algorithm provides Muon ID score based on extracted features
-
+  \item Muon ID score from k-Nearest Neighbors algorithm (machine learning)
   \end{itemize}
 \column{0.45\textwidth}
 
@@ -611,11 +697,11 @@ Channels & 20,192 & 344,064  \\ %\hline
 \begin{columns}[c]
 \column{0.55\textwidth}
   \begin{itemize}
-  \item Energy estimate is combination of muon track and hadronic energy
+  \item \numu CC: muon track + hadron shower
   \gap
-  \item Muon energy estimated based on track length
+  \item Muon energy from track length
   \gap
-  \item Hadronic energy estimated from deposited energy of non-muon activity in slice
+  \item Hadronic energy from remaining visible energy
 
   \end{itemize}
 \column{0.45\textwidth}
@@ -632,19 +718,33 @@ Channels & 20,192 & 344,064  \\ %\hline
 \end{frame}
 
 \begin{frame}
+\app{Event Selection (\textit{noun})}{Identification of interaction events which display some physics signal \\
+\gap
+e.g. \textit{Tony selected \numu charged-current interactions from heaps of background for his \numu disappearance analysis.}}
+\end{frame}
+
+
+
+\begin{frame}
 \frametitle{Event Classification and Selection}
 
 \begin{itemize}
 \item Goal: analyze \numu charged-current (CC) interaction events
 \gap
-\item Two primary sources of background must be rejected
+\item Two primary sources of background must be minimized
   \begin{itemize}
   \item Cosmic rays
   \item Other $\nu$ interactions from beam, i.e. NC and \nue CC
   \end{itemize}
-\gap
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Event Classification and Selection}
+
+\begin{itemize}
 \item Traditionally, classification is achieved using reconstructed features
-  \begin{itemize}
+   \begin{itemize}
   \item Criteria based on track length and other characteristics (e.g. Muon ID)
   \item Or, apply machine learning with those features
   \end{itemize}
@@ -654,6 +754,7 @@ Channels & 20,192 & 344,064  \\ %\hline
 \item Using raw detector output could be more robust
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{\nova Events as Images}
@@ -691,59 +792,32 @@ Channels & 20,192 & 344,064  \\ %\hline
 
 \begin{frame}
 \frametitle{Neural Networks}
-  \begin{itemize}
-  \bang Artificial neural networks (ANN) do well for classification of small images
-    \begin{itemize}
-    \item e.g. optical character recognition (OCR)
-    \item[] ... but doesn't scale well above $\sim 100$ pixels
-    \end{itemize}
-  \end{itemize}
-\begin{center}
-  \includegraphics[width=0.45\textwidth]{figures/figures/ocr_ann.png}
-\end{center}
-
-  \begin{itemize}
-  \item Image processing community harnessing new technology
-    \begin{itemize}
-    \item Convolutional neural networks: good for images
-    \item New training strategies: deeper networks, less overtraining
-    \item GPU acceleration
-    \end{itemize}
-  \end{itemize}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Neural Networks}
 
 \begin{itemize}
-\bang A neural network is a ``feedforward graph" of layers, $i$
+\bang A neural network is a ``feedforward graph" of layers
   \begin{itemize}
-  \item Each node,  receives input only from previous layers
-  \item Nodes take input from each node in previous layer
-  \item Each node passes linear combination of inputs, $z$, through a nonlinearity, $g$
-  \bong \[ z_{ij} = \sum_j w_{ij} a_{(i-1)j}; ~~~~~~~~ a_{ij}  = g(z_{ij}) \]
+  \item Each node, receives input \textit{only} from nodes in previous layers
+
   \end{itemize}
+\gap
+  \item Input layer: Example data to be classified
+  \item Hidden layers: do the classification
+  \item Output layer: classification result
+
 \end{itemize}
-\vspace{20pt}
+\vspace{30pt}
 \begin{columns}[c]
 \column{0.5\textwidth}
 
   \begin{itemize}
-  \item Input layer: pixels from image
-  \item Hidden layers: do the classification
-  \item Output layer: classification result
+  \item Supervised learning: network trained using labeled examples
   \gap
-  \item Networks trained using ``backpropagation"
+  \item ``Backpropagation": gradient-based minimization
     \begin{itemize}
-    \item Classification error is minimized in training
-    \item Gradient propagated to upstream layers
+    \item Network parameters are iteratively adjusted to minimize error
     \end{itemize}
   \end{itemize}
 \column{0.5\textwidth}
-\centering
-\includegraphics[width=1\textwidth]{figures/figures/basicNN.png}
 \begin{columns}[c]
 \column{0.3\textwidth}
 \centering \footnotesize
@@ -755,11 +829,45 @@ Hidden Layer
 \centering \footnotesize
 Output Layer
 \end{columns}
+\centering
+\includegraphics[width=1\textwidth]{figures/figures/basicNN.png}
 \end{columns}
 
 
 \end{frame}
 
+
+\begin{frame}
+\frametitle{Neural Networks}
+  \begin{itemize}
+  \bang Artificial neural networks (ANN) do well for classification of small images
+    \begin{itemize}
+    \item e.g. optical character recognition (OCR)
+    \end{itemize}
+  \end{itemize}
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{figures/figures/ocr_ann.png}
+\end{center}
+\begin{itemize}
+    \item But this doesn't scale well above $\sim100$ pixels
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Neural Networks}
+
+  \begin{itemize}
+  \item Image processing community harnessing new technology
+    \begin{itemize}
+    \item Convolutional neural networks: good for images
+    \item New training strategies: deeper networks, less overtraining
+    \item GPU acceleration
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
 
 \begin{frame}
 \frametitle{Convolutional Layers}
@@ -787,24 +895,31 @@ Output Layer
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Pooling Layers}
+\begin{itemize}
+  \item Pooling is a common down-sampling technique
+\gap
+  \item ``Max pooling" extracts the maximum filter output from each patch
+\end{itemize}
+\gap
+\gap
+\centering
+ \includegraphics[width=0.5\textwidth]{figures/figures/pooling.png}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Convolutional Networks}
 \begin{itemize}
   \item Many filters trained in a each convolutional layer
   \gap
-  \item Pooling is a common Down-sampling technique
-    \begin{itemize}
-    \item ``Max pooling" simply extracts the maximum filter output (pixel intensity) from each patch
-    \end{itemize}
 
   \begin{center}
- \includegraphics[width=0.5\textwidth]{figures/figures/convnet.png}
+ \includegraphics[width=0.8\textwidth]{figures/figures/convnet.png}
  \end{center}
 
 \end{itemize}
-
-
 \end{frame}
 
 \begin{frame}
@@ -814,10 +929,9 @@ Output Layer
   \item GoogLeNet introduced the ``Inception module"
   \end{itemize}
   \begin{center}
- \includegraphics[width=0.5\textwidth]{figures/figures/inception/inception.pdf}
+ \includegraphics[width=0.6\textwidth]{figures/figures/inception/inception.pdf}
  \end{center}
    \begin{itemize}
-  \gap
   \item Convolutional layers are arranged side-by-side rather one after another
   \item Downstream layers simultaneously learn structure at different scales
   \item $1\times1$ convolution is a tool for dimensionality reduction
@@ -849,7 +963,69 @@ Output Layer
   \end{columns}
 \end{frame}
 
+\begin{frame}
+\frametitle{CNN Filter}
 
+\begin{itemize}
+\item First convolution layer, $7\times7$
+\end{itemize}
+
+\begin{columns}[b]
+\column{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/cnn/conv1y.pdf}
+
+Filters
+\column{0.55\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/cnn/feat1_truetype2_caltype2_event274_y.pdf}
+
+Filtered output
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Inception Module Filters}
+
+\begin{columns}[t]
+
+\column{0.5\textwidth}
+\includegraphics[width=1\textwidth,viewport=10 13 170 115, clip=true]{figures/cnn/featurePlotNuMuDIS}
+\gap
+
+\includegraphics[width=1\textwidth,viewport=10 13 170 115, clip=true]{figures/cnn/featurePlotNuMuQE}
+
+
+\column{0.5\textwidth}
+\includegraphics[width=1\textwidth,viewport=10 13 170 115, clip=true]{figures/cnn/featurePlotNC}
+\gap
+\gap
+\begin{itemize}
+\item Output from inception module is more discerning
+\item Two particular filters in each pane
+\item Top finds hadronic shower
+\item Bottom finds muon tracks
+\end{itemize}
+
+
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{CNN Softmax Output}
+
+  \begin{center}
+\includegraphics[height=0.7\textwidth, angle=-90]{figures/cnn/numu_pid_dist.pdf}
+
+  \end{center}
+  \begin{itemize}
+  \item Strong discriminant for \numu CC events
+  \end{itemize}
+\end{frame}
 
 
 \begin{frame}
@@ -871,6 +1047,12 @@ Output Layer
  \includegraphics[width=0.7\textwidth]{figures/selection/cosmicmuons.png}
 \end{center}
 
+\end{frame}
+
+\begin{frame}
+\frametitle{Event Selection}
+
+
 \begin{itemize}
 \item Events are required to pass a extra few criteria
 \begin{itemize}
@@ -883,7 +1065,9 @@ Output Layer
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}
+
 \frametitle{CNN Output}
 
   \begin{center}
@@ -940,15 +1124,29 @@ Output Layer
 
 \begin{frame}
 \frametitle{Selection Comparison}
+
+\begin{columns}
+  \column{0.5\textwidth}
   \begin{center}
-   \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/cosmic_sig_osc.pdf}
+   \includegraphics[height=\textwidth, angle=-90]{figures/selection/cosmic_sig_osc.pdf}
   \end{center}
-  \gap
+
+  \column{0.5\textwidth}
+  \begin{center}
+   \includegraphics[height=\textwidth, angle=-90]{figures/selection/cosmic_sig_eff_osc.pdf}
+  \end{center}
+
+\end{columns}
+\gap
   \begin{itemize}
   \item Existing \nova analysis uses muon ID and boosted decision tree (BDT)
   \gap
   \item New CNN-based selection is more efficient, especially in low energy region
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+\app{Analysis (\textit{noun})}{Measurement of physical parameters by comparing data and prediction}
 \end{frame}
 
 
@@ -970,8 +1168,8 @@ Output Layer
 ~
 \column{0.4\textwidth}
 \begin{equation*}
-\chi^2 = 2 \sum_i e_i - o_i + o_i + \ln \big (\frac{o_i}{e_i} \big)
-+ \sum_j \frac{s_{ij}^2}{\sigma_{ij}^2} 
+\chi^2 = 2 \sum_i e_i - o_i + \ln \big (\frac{o_i}{e_i} \big)
++ \sum_j \frac{s_j^2}{\sigma_j^2}
 \end{equation*}
 \column{0.4\textwidth}
   \begin{itemize}
@@ -981,13 +1179,33 @@ Output Layer
   \item Prediction in each bin: $e_i$
   \item Observation in each bin: $o_i$
   \item Systematic uncertainties: $j$
-  \item Systematic shifts: $s_{ij}$
+  \item Systematic shifts: $s_j$
   \item Systematic constraint: $\sigma_{ij}$
   \end{itemize}
   \end{itemize}
 \end{columns}
 \end{frame}
 
+\begin{frame}
+\frametitle{Prediction}
+\begin{columns}[c]
+\column{0.5\textwidth}
+\begin{itemize}
+\item FD prediction is extrapolated from ND data
+\gap
+\item ND data controls systematic uncertainties, e.g. flux
+\gap
+\item ND and FD spectra are not identical (geometric effects)
+\end{itemize}
+\column{0.5\textwidth}
+\includegraphics[angle=-90, width=1\textwidth]{figures/plots/extrap/fd_nd_spec.pdf}
+
+
+\includegraphics[angle=-90, width=1\textwidth]{figures/plots/extrap/fd_nd_ratio.pdf}
+
+\end{columns}
+
+\end{frame}
 
 \begin{frame}
 \frametitle{Extrapolation}
@@ -1273,5 +1491,50 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
   \end{itemize}
 }
 
+\begin{frame}
+\frametitle{Neural Networks}
+
+\begin{itemize}
+\bang A neural network is a ``feedforward graph" of layers, $i$
+  \begin{itemize}
+  \item Each node,  receives input only from previous layers
+  \item Nodes take input from each node in previous layer
+  \item Each node passes linear combination of inputs, $z$, through a nonlinearity, $g$
+  \bong \[ z_{ij} = \sum_j w_{ij} a_{(i-1)j}; ~~~~~~~~ a_{ij}  = g(z_{ij}) \]
+  \end{itemize}
+\end{itemize}
+\vspace{20pt}
+\begin{columns}[c]
+\column{0.5\textwidth}
+
+  \begin{itemize}
+  \item Input layer: pixels from image
+  \item Hidden layers: do the classification
+  \item Output layer: classification result
+  \gap
+  \item Networks trained using ``backpropagation"
+    \begin{itemize}
+    \item Classification error is minimized in training
+    \item Gradient propagated to upstream layers
+    \end{itemize}
+  \end{itemize}
+\column{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{figures/figures/basicNN.png}
+\begin{columns}[c]
+\column{0.3\textwidth}
+\centering \footnotesize
+Input Layer
+\column{0.3\textwidth}
+\centering \footnotesize
+Hidden Layer
+\column{0.3\textwidth}
+\centering \footnotesize
+Output Layer
+\end{columns}
+\end{columns}
+
+
+\end{frame}
 
 \end{document}

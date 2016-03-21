@@ -472,16 +472,16 @@ Channels & 20,192 & 344,064  \\ %\hline
 \frametitle{Oscillation Analysis}
 \begin{tikzpicture}[]
    % Place nodes
-   \node [block] (reco) {Reconstruction \\ \footnotesize{Pattern Recognition}};
-   \node [block, right = 2.7cm, right of=reco, fill=emerald] (sel) {Event Selection \\ \footnotesize{Classification}};
+   \node [block] (reco) {Reconstruction};
+   \node [block, right = 2.7cm, right of=reco, fill=emerald] (sel) {Event Selection};
     \node [block, right = 2.7cm, right of=sel] (energy) {Energy Estimation};
     \node [block, below = 1.0cm, below of=energy] (nd) {Near Detector Data};
     \node [block, below = 2.5cm, below of=nd] (fd) {Far Detector Data};
    \node [block, left = 2.7cm, left of=nd] (eff) {Extrapolation};
-   \node [block, left = 2.7cm, left of=eff] (extrap) {Prediction \\ \footnotesize{Depends on  oscillation parameters}};
+   \node [block, left = 2.7cm, left of=eff] (extrap) {Prediction \\ \footnotesize{Function of oscillation parameters}};
 %   \node [cloud, below =-0.5cm, below of=extrap] (fit) {Likelihood Fit};
 \node[inner sep=0cm, below =2.5cm, below of=extrap, align=left] (fit)
-    { \includegraphics[width=.4\textheight, angle=-90]{figures/results/fd_data_mc_numi_plots/calE_unblind_wUnosc.pdf}};
+    { \includegraphics[width=.4\textheight, angle=-90]{figures/results/fd_data_mc_numi_plots/ccE_unblind_wUnosc.pdf}};
     \node [dot, right = 1.0cm, right of=energy] (bre){};
     \node [dot, right = 1.0cm, right of=fd] (brf){};
      \node [dot, right = 1.0cm, right of=nd] (brn){};
@@ -537,9 +537,9 @@ Channels & 20,192 & 344,064  \\ %\hline
 \framesubtitle{Tracking}
 
 \bangon
-\item Next step is to isolate separate particle tracks
+\item Tracking locates discrete particle trajectories
 \gap
-\item Two algorithms for this:
+\item Two algorithms produce distinct output:
   \bangon
   \item \textit{CosmicTrack}: basic least squares regression
   \item \textit{KalmanTrack}: based on Kalman filtering
@@ -549,11 +549,11 @@ Channels & 20,192 & 344,064  \\ %\hline
 \gap
 \gap
 \begin{columns}[c]
-\column{0.4\textwidth}
+\column{0.35\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figures/figures/tracking.jpg}
 
-\column{0.6\textwidth}
+\column{0.65\textwidth}
 \centering
 \includegraphics[height=\textwidth, angle=-90]{figures/evd_steps/evd_track_zoom.pdf}
 
@@ -564,30 +564,18 @@ Channels & 20,192 & 344,064  \\ %\hline
 
 \begin{frame}
 
-\frametitle{Further Reconstruction}
-
+\frametitle{Reconstruction}
+\framesubtitle{Prongs}
 \begin{columns}[c]
 \column{0.5\textwidth}
   \bangon
-  \item Many reconstruction steps can be chained
-    \bangon
-    \item Hough transform
-    \item Kalman filtering
-    \item Elastic vertex finding
-    \item K-means clustering
-    \bangoff
+  \item Prongs can isolate trajectories which are less track-like
   \gap
-  \item Reconstructed features passed to multivariate classifiers
-    \bangon
-    \item Length
-    \item Direction
-    \item Gaps
-    \item Energy deposition characteristics
-    \bangoff
+  \item Hough transform used to find primary lines
   \gap
-  \item Low rate failures compound across multiple steps
+  \item Vertex identified based on hough lines
   \gap
-  \item Tuning for pathological failures can become tedious
+  \item Prongs clustered in angular space around vertex
 
   \bangoff
 \column{0.5\textwidth}
@@ -607,40 +595,88 @@ Channels & 20,192 & 344,064  \\ %\hline
 
 \end{frame}
 
+
+
 \begin{frame}
-\frametitle{Image Classification}
+
+\frametitle{Reconstruction}
+\framesubtitle{Muon ID}
+\begin{columns}[c]
+\column{0.55\textwidth}
   \bangon
-  \item Classification with raw detector output is potentially less error prone
-  \bangon
-  \item Just use coarse clusters from DBSCAN
-  \item Cut out the rest of the reconstruction
-  \bangoff
+  \item Muons tracks are identified based on KalmanTrack output
   \gap
-  \item Use methods from computer vision community
+  \item Features are extracted from tracks
+    \bangon
+    \item Track length
+    \item Energy deposition characteristic
+    \item Scattering characteristic
+    \bangoff
+  \gap
+  \item k-Nearest Neighbors algorithm provides Muon ID score based on extracted features
+
+  \bangoff
+\column{0.45\textwidth}
+
+\centering
+
+\includegraphics[height=\textwidth, angle=-90]{figures/plots/reco/remid_trk_len.pdf}
+
+\includegraphics[height=\textwidth, angle=-90]{figures/plots/reco/remid_dedxll.pdf}
+
+\end{columns}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Energy Estimation}
+\begin{columns}[c]
+\column{0.55\textwidth}
   \bangon
-  \item Detector output is essentially top and side view image
+  \item Energy estimate is combination of muon track and hadronic energy
+  \gap
+  \item Muon energy estimated based on track length
+  \gap
+  \item Hadronic energy estimated from deposited energy of non-muon activity in slice
+
   \bangoff
-  \bangoff
+\column{0.45\textwidth}
+
+\centering
+
+\includegraphics[height=\textwidth, angle=-90]{figures/plots/reco/numu_energy_muon_fit.pdf}
+
+\includegraphics[height=\textwidth, angle=-90]{figures/plots/reco/numu_energy_had_fit.pdf}
+
+\end{columns}
+
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Neural Networks}
-  \bangon
-  \bang Artificial neural networks (ANN) do well for classification of small images
-    \bangon
-    \item Each pixel used as input to neural network
-    \item Historically successful for optical character recognition (OCR)
-    \item[] ... but doesn't scale well above $\sim 100$ pixels
-    \bangoff
-  \gap
-  \item Image processing community finds success in modern ANN variants
-    \bangon
-    \item Convolutional neural networks (CNN) lead to position invariant feature extraction
-    \item New training strategies enable deeper architecture to learn high-level representations
-    \item GPU acceleration provides order(s) of magnitude improvement in training time
-    \bangoff
-  \bangoff
+\frametitle{Event Classification and Selection}
 
+\begin{itemize}
+\item Goal: analyze \numu charged-current (CC) interaction events
+\gap
+\item Two primary sources of background must be rejected
+  \begin{itemize}
+  \item Cosmic rays
+  \item Other $\nu$ interactions from beam, i.e. NC and \nue CC
+  \end{itemize}
+\gap
+\item Traditionally, classification is achieved using reconstructed features
+  \begin{itemize}
+  \item Criteria based on track length and other characteristics (e.g. Muon ID)
+  \item Or, apply machine learning with those features
+  \end{itemize}
+\gap
+\item But perfect reconstruction is difficult!
+\gap
+\item Using raw detector output could be more robust
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -649,13 +685,19 @@ Channels & 20,192 & 344,064  \\ %\hline
 \begin{columns}[b]
 \column{0.5\textwidth}
 
-\bangon
-\item Box is drawn around upstream side of slice
-\item Box centered on median cell
-\bangoff
-\vspace{30pt}
 \centering
-\includegraphics[width=0.85\textwidth]{figures/cnn/view_truetype6_caltype6_event155_y.pdf}
+\begin{itemize}
+\item \nova events are just images
+  \begin{itemize}
+  \item[] (two really, $X$-view and $Y$-view)
+  \end{itemize}
+\gap
+\item Discrete pixels
+\gap
+\item Grayscale intensity
+\end{itemize}
+\vspace{20pt}
+\includegraphics[width=0.85\textwidth]{figures/cnn/view_truetype6_caltype6_event155_x.pdf}
 
 
 \column{0.5\textwidth}
@@ -670,6 +712,32 @@ Channels & 20,192 & 344,064  \\ %\hline
 \end{columns}
 \end{frame}
 
+
+\begin{frame}
+\frametitle{Neural Networks}
+  \begin{itemize}
+  \bang Artificial neural networks (ANN) do well for classification of small images
+    \bangon
+    \item e.g. optical character recognition (OCR)
+    \item[] ... but doesn't scale well above $\sim 100$ pixels
+    \bangoff
+  \end{itemize}
+\begin{center}
+  \includegraphics[width=0.45\textwidth]{figures/figures/ocr_ann.png}
+\end{center}
+
+  \begin{itemize}
+  \item Image processing community harnessing new technology
+    \bangon
+    \item Convolutional neural networks: good for images
+    \item New training strategies: deeper networks, less overtraining
+    \item GPU acceleration
+    \bangoff
+  \end{itemize}
+
+\end{frame}
+
+
 \begin{frame}
 \frametitle{Neural Networks}
 
@@ -679,17 +747,17 @@ Channels & 20,192 & 344,064  \\ %\hline
   \item Each node,  receives input only from previous layers
   \item Nodes take input from each node in previous layer
   \item Each node passes linear combination of inputs, $z$, through a nonlinearity, $g$
-  \bong \[ z_{i,j} = \sum_j w_{i,j} a_{i-1, j}; ~~~~~~~~ a_{i,j}  = g(z_{i,j}) \]
+  \bong \[ z_{ij} = \sum_j w_{ij} a_{(i-1)j}; ~~~~~~~~ a_{ij}  = g(z_{ij}) \]
   \bangoff
 \bangoff
-\vspace{-10pt}
+\vspace{20pt}
 \begin{columns}[c]
 \column{0.5\textwidth}
 
   \bangon
-  \item[(1)] Input layer: pixels from image
-  \item[(2)] Hidden layers: do the classification
-  \item[(3)] Output layer: classification result
+  \item Input layer: pixels from image
+  \item Hidden layers: do the classification
+  \item Output layer: classification result
   \gap
   \item Networks trained using ``backpropagation"
     \bangon
@@ -700,6 +768,17 @@ Channels & 20,192 & 344,064  \\ %\hline
 \column{0.5\textwidth}
 \centering
 \includegraphics[width=1\textwidth]{figures/figures/basicNN.png}
+\begin{columns}[c]
+\column{0.3\textwidth}
+\centering \footnotesize
+Input Layer
+\column{0.3\textwidth}
+\centering \footnotesize
+Hidden Layer
+\column{0.3\textwidth}
+\centering \footnotesize
+Output Layer
+\end{columns}
 \end{columns}
 
 
@@ -711,7 +790,7 @@ Channels & 20,192 & 344,064  \\ %\hline
 
 
   \bangon
-  \item Convolutional layers have demonstrated significant enhancement for image classification
+  \item Convolutional layers work well for image classification
   \bangoff
   \begin{columns}[c]
   \column{0.5\textwidth}
@@ -728,23 +807,34 @@ Channels & 20,192 & 344,064  \\ %\hline
     \item Upshot: position independent feature extraction
     \bangoff
   \gap
-  \item Many filters of a particular size are trained in a each convolutional layer
-  \gap
-  \item Pooling is a common Down-sampling technique
-    \bangon
-    \item ``Max pooling" simply extracts the maximum pixel (filter output) from each patch
-    \bangoff
   \bangoff
 
 \end{frame}
 
-\begin{frame}
-\frametitle{GoogLeNet}
-\framesubtitle{Network-in-Network, ``Inception"}
 
+\begin{frame}
+\frametitle{Convolutional Networks}
+\begin{itemize}
+  \item Many filters trained in a each convolutional layer
+  \gap
+  \item Pooling is a common Down-sampling technique
+    \bangon
+    \item ``Max pooling" simply extracts the maximum filter output (pixel intensity) from each patch
+    \bangoff
+
+  \begin{center}
+ \includegraphics[width=0.5\textwidth]{figures/figures/convnet.png}
+ \end{center}
+
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{GoogLeNet and \textit{Inception}}
 
   \bangon
-  \item Network-in-Network approaches are another recent enhancement
   \item GoogLeNet introduced the ``Inception module"
   \bangoff
   \begin{center}
@@ -753,12 +843,11 @@ Channels & 20,192 & 344,064  \\ %\hline
    \bangon
   \gap
   \item Convolutional layers are arranged side-by-side rather one after another
-  \item Sub-layers are concatenated and passed to downstream layers
   \item Downstream layers simultaneously learn structure at different scales
-  \item $1\times1$ convolutions are just constant scale factors
+  \item $1\times1$ convolution is a tool for dimensionality reduction
     \bangon
+    \item $1\times1$ convolution: constant scale factor
     \item Output filters are linear combinations of input filters
-    \item Tool for dimensionality reduction
     \bangoff
   \bangoff
 
@@ -768,27 +857,18 @@ Channels & 20,192 & 344,064  \\ %\hline
 
 \begin{frame}
 
-\frametitle{Architecture}
+\frametitle{\nova CNN Architecture}
 
   \begin{columns}
   \column{0.28\textwidth}
-   \includegraphics[height=0.9\textheight]{figures/arch/arch.pdf}
+   \includegraphics[height=0.95\textheight]{figures/arch/arch.pdf}
   \column{0.72\textwidth}
   \begin{itemize}
-  \item Inspired by GoogLeNet, but much more compact
-  \bangon
-  \bong Szegedy, Christian, et al. ``Going deeper with convolutions." arXiv preprint arXiv:1409.4842 (2014).
-  \bangoff
+  \item Separate branches for $X$ and $Y$ views
   \gap
   \item Repeated convolution, pooling, inception structures
   \gap
   \item Local Response Normalization (LRN) for smoothing
-  \gap
-  \item Regularization to prevent overtraining
-    \bangon
-    \item Jitter tweaks pixel/hit intensity
-    \item Dropout cuts out information during training
-    \bangoff
   \end{itemize}
   \end{columns}
 \end{frame}
@@ -796,35 +876,267 @@ Channels & 20,192 & 344,064  \\ %\hline
 
 
 
+\begin{frame}
+\frametitle{Event Selection}
+
+\begin{itemize}
+\item Event selection serves two purposes:
+  \begin{itemize}
+  \item Quality: need sufficient information to estimate energy
+  \item Background rejection: need clean sample of \numu CC
+  \end{itemize}
+\item Containment is important for both purposes
+  \begin{itemize}
+  \item Events which escape detector have missing energy
+  \item Cosmic rays commonly traverse entire detector (i.e. touch edges)
+  \end{itemize}
+\end{itemize}
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{figures/selection/cosmicmuons.png}
+\end{center}
+
+\begin{itemize}
+\item Events are required to pass a extra few criteria
+\begin{itemize}
+\item CNN Output
+\item CosmicTrack Max-Y
+\item Transverse momentum estimated from slice
+\item Transverse momentum estimated from prongs
+
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{CNN Output}
+
+  \begin{center}
+  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_cvnnumu.pdf}
+
+  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
+  \end{center}
+  \bangon
+  \item Select events with CNN output > 0.5
+  \bangoff
+\end{frame}
+
 
 
 \begin{frame}
-\frametitle{Classifier Output}
-  \begin{center}
-   \includegraphics[height=0.7\textwidth, angle=-90]{figures/cnn/numu_pid_dist.pdf}
-  \end{center}
+\frametitle{CosmicTrack start $Y$ position}
 
+  \begin{center}
+  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_cosStartY.pdf}
+
+  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
+  \end{center}
   \bangon
-  \item Classifier output shows nice separation for beam backgrounds
+  \item Select events with start $Y$ < 6.0 m
   \bangoff
 \end{frame}
 
 
 \begin{frame}
+\frametitle{Transverse momentum from slice mean}
 
+  \begin{center}
+  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_tranMom.pdf}
+
+  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
+  \end{center}
+  \bangon
+  \item Select events with $P_T$ < 0.8
+  \bangoff
+\end{frame}
+
+\begin{frame}
+\frametitle{Transverse momentum from prongs}
+
+  \begin{center}
+  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_pngptp.pdf}
+
+  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
+  \end{center}
+  \bangon
+  \item Select events with $P_T$ < 0.8
+  \bangoff
+\end{frame}
+
+\begin{frame}
 \frametitle{Selection Comparison}
   \begin{center}
    \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/cosmic_sig_osc.pdf}
   \end{center}
   \gap
   \bangon
-  \item Convolutional Neural Network is more efficient, especially at low energies
+  \item Existing \nova analysis uses muon ID and boosted decision tree (BDT)
+  \gap
+  \item New CNN-based selection is more efficient, especially in low energy region
   \bangoff
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Summary}
+\frametitle{Analysis}
+\begin{center}
+\vspace{-10pt}
+\includegraphics[width=.45\textheight, angle=-90]{figures/results/spectrum_fit_systs.pdf}
+\end{center}
+
+\begin{itemize}
+
+\item FD spectrum is fit to prediction
+\gap
+\item Log-likelihood for binned, Poisson distributed data
+\end{itemize}
+\begin{columns}[c]
+\column{0.05\textwidth}
+~
+\column{0.4\textwidth}
+\begin{equation*}
+\chi^2 = 2 \sum_i e_i - o_i + o_i + \ln \big (\frac{o_i}{e_i} \big)
++ \sum_j \frac{s_{ij}^2}{\sigma_{ij}^2} 
+\end{equation*}
+\column{0.4\textwidth}
+  \begin{itemize}
+  \item[] ~
+  \begin{itemize}
+  \item Bins: $i$
+  \item Prediction in each bin: $e_i$
+  \item Observation in each bin: $o_i$
+  \item Systematic uncertainties: $j$
+  \item Systematic shifts: $s_{ij}$
+  \item Systematic constraint: $\sigma_{ij}$
+  \end{itemize}
+  \end{itemize}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Extrapolation}
+  \begin{center}
+   \includegraphics[width=\textwidth]{figures/figures/extrap_schematic.png}
+  \end{center}
+
+  \bangon
+  \item Extrapolation produces FD prediction based on ND data
+  \item Accounts for for imperfect resolution in estimated energy
+  \item ND/FD each have separate reco-true matrices
+  \item FD/ND ratio taken from MC prediction (geometric correction)
+  \bangoff
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Systematic Uncertainties}
+\begin{itemize}
+\item List them all
+\item Talk about how analysis framework allows event records to be shifted
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Flux Uncertainty}
+\begin{itemize}
+\item Dem plots
+\item Extrap?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cross Section Uncertainty}
+\begin{itemize}
+\item Make the combined one
+\item Extrap?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Particle Propagation Uncertainty}
+\begin{itemize}
+\item Slide with spectra/fits, and table
+\item Another slide with combined extrap?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Scintillation Production Uncertainty}
+\begin{itemize}
+\item Slide with spectra/fits, and table
+\item Another slide with combined extrap?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Calibration Uncertainty}
+\begin{itemize}
+\item Slide with spectra/fits, and table
+\item Another slide with combined extrap?
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Detector Mass Uncertainty}
+\begin{itemize}
+\item Table with uncertainties
+\item Muon catcher
+\item Implementation
+\item Another slide with combined extrap?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Total Uncertainty}
+\begin{itemize}
+\item Total bands, extrapolated, prediction
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Results}
+\begin{itemize}
+\item Prediction without osc, with osc
+\item Plot
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Event displays}
+\begin{itemize}
+\item Show the six from the thesis
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Result}
+\begin{itemize}
+\item Show spectra and contour w, w/o systs
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Feldman-Cousins}
+\begin{itemize}
+\item Show alternative contour
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Future}
+\begin{itemize}
+\item Show future contour
+\item Discuss improvements
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{}
 \bangon
 \item \nova studies neutrino oscillation with a beam and two detectors
 \gap
@@ -838,7 +1150,7 @@ Channels & 20,192 & 344,064  \\ %\hline
 
 \frame
 {
-  \frametitle{Oscillations in Matter}
+  \frametitle{Oscillation in Matter}
   \framesubtitle{Interactions}
   \begin{itemize}
   \bang In the presence of matter, neutrinos can undergo coherent scattering
@@ -861,7 +1173,7 @@ Channels & 20,192 & 344,064  \\ %\hline
 }
 \frame
 {
-  \frametitle{Oscillations in Matter}
+  \frametitle{Oscillation in Matter}
 \begin{itemize}
   \framesubtitle{Effective potential}
 \bang The $\nu_e$ charged-current interaction gives rise to an effective potential:
@@ -927,7 +1239,23 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Regularization}
 
+\bangon
+\item Make a backup slide about this
+\bangoff
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Contour Improvement}
+
+\bangon
+\item Make a backup slide about this
+\item Include efficiency
+\bangoff
+\end{frame}
 
 
 \frame
@@ -943,4 +1271,7 @@ L = \bigg( \frac{\Delta t - \Delta \vec{r} / c }{T} \bigg)^2 +
 
  \begin{figure} \includegraphics[height=0.9\textwidth, angle=-90]{figures/evd_steps/evd_slice.pdf} \end{figure}
 }
+
+
+
 \end{document}

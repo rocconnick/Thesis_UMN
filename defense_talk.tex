@@ -213,6 +213,9 @@ $s_{ij} = \sin(\theta_{ij})$
 \bang Three Euler angles, $\theta_{12}$, $\theta_{23}$, $\theta_{13}$
 \gap
 \bang Complex phase $\delta$: potential for CP violation
+  \begin{itemize}
+  \item Could be answer to matter/antimatter asymmetry
+  \end{itemize}
   \end{itemize}
 }
 
@@ -220,11 +223,11 @@ $s_{ij} = \sin(\theta_{ij})$
 {
   \frametitle{Neutrino Oscillation in Vacuum}
   \begin{itemize}
-	\bang Oscillation is a result of time evolution:
+	\bang Oscillation is a result of time evolution
 	\begin{equation*}
 		|\nu_l(t) \rangle = \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-iE_\alpha t}|\nu_\alpha \rangle
 	\end{equation*}
-	\bang For relativistic neutrinos, we approximate the energy and take $t \rightarrow L$, which we substitute into the time evolution:
+	\bang For relativistic neutrinos, take $t \rightarrow L$ and expand $E_\alpha$ about $m_\alpha$
 	\begin{equation*}
 		|\nu_l(L) \rangle = e^{-iEL} \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-i\frac{m_\alpha^2}{2E} L}|\nu_\alpha \rangle
 	\end{equation*}
@@ -239,15 +242,11 @@ $s_{ij} = \sin(\theta_{ij})$
 {
   \frametitle{Neutrino Oscillation in Vacuum}
   \begin{itemize}
-  \bang From the last slide
-	\begin{equation*}
-		|\nu_l(L) \rangle = e^{-iEL} \sum_{\alpha = 1,}^3 U_{l\alpha}e^{-i\frac{m_\alpha^2}{2E} L}|\nu_\alpha \rangle
-	\end{equation*}
 \bang Oscillation probability is the inner product
   \begin{equation*}
 P_{l\rightarrow m} = 	 |\langle \nu_m|\nu_l \rangle|^2
 	\end{equation*}
-	\bang We then find the oscillation probability:
+	\bang We then find the oscillation probability
 	\begin{equation*}\begin{split}
 P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alpha}U_{m\alpha}U^*_{l\beta}U_{m\beta}) \sin^2 \bigg(\frac{\Delta m_{\alpha\beta}^2}{4E} L\bigg) \\
  + 2  \sum_{\alpha>\beta}  \Im(U^*_{l\alpha}U_{m\alpha}U^*_{l\beta}U_{m\beta}) \sin\bigg(\frac{\Delta m_{\alpha\beta}^2}{2E}L\bigg)
@@ -268,9 +267,9 @@ P_{l\rightarrow m}(L) =  \delta_{lm} - 4  \sum_{\alpha > \beta}  \Re(U^*_{l\alph
 
       \begin{itemize}
    \bang Experiments have contrained mixing angles and mass differences
+\bang CP phase $\delta$ is not well constrained
 \bang Unknown whether $\theta_{23}$ is exactly $45^\circ$
 \bang Mass ordering is unknown: sign of $\Delta m_{32}^2$
-\bang The CP-violating phase $\delta$ is not well constrained (matter/antimatter)
 \end{itemize}
   \column{0.45\textwidth}
   \footnotesize \centering
@@ -379,9 +378,8 @@ Channels & 20,192 & 344,064  \\ %\hline
 {
   \frametitle{NuMI}
     \begin{itemize}
-	\bang High energy protons from are directed into a graphite target
-	\bang These collisions produce a shower of particles
-	\bang Shower is primarily pions and kaons
+	\bang High energy protons incident upon graphite target
+	\bang Collisions induce a shower, mostly pions, decay to muons
 	\bang Muons are absorbed in steel plates and rock to leave behind a beam of muon-neutrinos
 	\begin{figure} \includegraphics[width=0.85\textwidth]{figures/figures/numi.png} \end{figure}
 \end{itemize}
@@ -545,7 +543,7 @@ Channels & 20,192 & 344,064  \\ %\hline
    \node [block, left = 2.7cm, left of=eff] (extrap) {Prediction \\ \footnotesize{Function of oscillation parameters}};
 %   \node [cloud, below =-0.5cm, below of=extrap] (fit) {Likelihood Fit};
 \node[inner sep=0cm, below =2.5cm, below of=extrap, align=left] (fit)
-    { \includegraphics[width=.4\textheight, angle=-90]{figures/results/fd_data_mc_numi_plots/ccE_unblind_wUnosc.pdf}};
+    { \includegraphics[width=.4\textheight, angle=-90]{figures/figures/toy_spec.pdf}};
     \node [dot, right = 1.0cm, right of=sel] (bre){};
     \node [dot, right = 1.0cm, right of=fd] (brf){};
      \node [dot, right = 1.0cm, right of=nd] (brn){};
@@ -718,9 +716,8 @@ Channels & 20,192 & 344,064  \\ %\hline
 \end{frame}
 
 \begin{frame}
-\app{Event Selection (\textit{noun})}{Identification of interaction events which display some physics signal \\
+\app{Event Selection (\textit{noun})}{Identification of interaction events which display some physics signal}
 \gap
-e.g. \textit{Tony selected \numu charged-current interactions from heaps of background for his \numu disappearance analysis.}}
 \end{frame}
 
 
@@ -1225,68 +1222,72 @@ Filtered output
 \begin{frame}
 \frametitle{Systematic Uncertainties}
 \begin{itemize}
-\item List them all
-\item Talk about how analysis framework allows event records to be shifted
+\item Systematic effects shift prediction
+\item Events can be reweighted or energy estimate can be shifted
+\item Two forms:
+  \begin{itemize}
+  \item Absolute: correlated between detectors (cancels well)
+  \item Relative: anti-correlated between detectors (doesn't cancel well)
+  \end{itemize}
 \end{itemize}
+\gap
+\begin{center}
+\small
+\begin{tabular}{ l | l }
+ \textcolor{custom_red}{Uncertainty} & \textcolor{custom_red}{Shift} \\ \hline
+Flux & True energy bin reweight \\ \hline
+Cross section & Event reweight for each model uncertainty \\ \hline
+Particle propagation & 1\% absolute energy scale  \\
+&  1\% absolute normalization scale \\ \hline
+Scintillator nonlinearity & 2\% energy scale (absolute and relative)  \\
+&  2\% normalization scale (absolute and relative) \\ \hline
+Calorimetric energy & 2\% energy scale (absolute and relative)  \\
+&  2\% normalization scale (absolute and relative) \\ \hline
+Detector mass &  1\% normalization scale (absolute and relative) \\ \hline
+Muon track length &  FD: 0.7\% scale on track component of energy\\
+ &  ND: 0.7\% scale on track component of energy\\ \hline
+Hadronic energy scale &  12\% scale on hadronic component of energy \\
+& (absolute and relative)\\
+\end{tabular}
+
+\end{center}
+
+
 \end{frame}
 
-
-\begin{frame}
-\frametitle{Flux Uncertainty}
-\begin{itemize}
-\item Dem plots
-\item Extrap?
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Cross Section Uncertainty}
-\begin{itemize}
-\item Make the combined one
-\item Extrap?
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Particle Propagation Uncertainty}
-\begin{itemize}
-\item Slide with spectra/fits, and table
-\item Another slide with combined extrap?
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Scintillation Production Uncertainty}
-\begin{itemize}
-\item Slide with spectra/fits, and table
-\item Another slide with combined extrap?
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Calibration Uncertainty}
-\begin{itemize}
-\item Slide with spectra/fits, and table
-\item Another slide with combined extrap?
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Detector Mass Uncertainty}
-\begin{itemize}
-\item Table with uncertainties
-\item Muon catcher
-\item Implementation
-\item Another slide with combined extrap?
-\end{itemize}
-\end{frame}
 
 \begin{frame}
 \frametitle{Total Uncertainty}
-\begin{itemize}
-\item Total bands, extrapolated, prediction
-\end{itemize}
+\begin{columns}[t]
+\column{0.5\textwidth}
+\centering
+\textcolor{custom_red}{FD MC Prediction}
+\vspace{-10pt}
+
+\includegraphics[angle=-90, width=0.85\textwidth]{figures/systs/prediction/fd_mc_prediction_full_syst.pdf}
+\vspace{15pt}
+\textcolor{custom_red}{Extrapolated FD Prediction}
+\vspace{-10pt}
+
+\includegraphics[angle=-90, width=0.85\textwidth]{figures/systs/prediction/fd_extrap_prediction_full_syst.pdf}
+
+\column{0.5\textwidth}
+\centering
+\textcolor{custom_red}{ND MC Prediction and Data}
+\vspace{-10pt}
+
+\includegraphics[angle=-90, width=0.85\textwidth]{figures/systs/prediction/nd_mc_prediction_full_syst.pdf}
+
+\vspace{15pt}
+\textcolor{custom_red}{90\% Confidence Interval}
+\vspace{-10pt}
+
+\includegraphics[angle=-90, width=0.85\textwidth]{figures/systs/prediction/fd_extrap_contour_full_syst.pdf}
+
+
+\end{columns}
+
+
 \end{frame}
 
 
@@ -1535,6 +1536,166 @@ Output Layer
 \end{columns}
 
 
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Flux Uncertainty}
+\begin{columns}[b]
+\column{0.5\textwidth}
+\includegraphics[width=1\textwidth]{figures/systs/params/beam_had_band_nd.pdf}
+
+\includegraphics[width=1\textwidth]{figures/systs/params/beam_had_band_fd.pdf}
+\column{0.5\textwidth}
+\begin{itemize}
+\item Flux uncertainty is reweighted in bins of true energy
+\item Left: top is ND, bottom is FD
+\item Uncertainty mostly cancels in ratio, below
+\end{itemize}
+\gap
+\gap
+\includegraphics[width=1\textwidth]{figures/systs/params/beam_had_band_fd_nd_ratio.pdf}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Particle Propagation Uncertainty}
+
+\begin{columns}[c]
+
+\column{0.4\textwidth}
+
+\includegraphics[angle=-90, width=1\textwidth]{figures/systs/params/nd_QGSP_BIC_HP.pdf}
+
+\column{0.6\textwidth}
+
+\begin{center}
+\small
+\begin{tabular}{|l|c|c|}
+\hline
+Physics List & Mean Ratio & Norm. Ratio \\ \hline
+FTFP\_BERT  &  0.999 & 1.001\\ \hline
+FTF\_BIC &  0.994 & 1.008  \\ \hline
+QGSC\_BERT  &  0.998 & 0.999\\ \hline
+QGSP\_BIC\_HP  &  0.991 & 0.993\\ \hline
+\end{tabular}
+\end{center}
+
+
+
+
+\end{columns}
+
+\begin{itemize}
+\item Alternative samples generated with different physics lists
+\item Beam peak fit with normal distribution
+\item Ratio of fit mean and normalization used to parameterize mean and normalization shift
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Scintillation Production Uncertainty}
+\begin{columns}[c]
+
+\column{0.4\textwidth}
+
+\includegraphics[angle=-90, width=\textwidth]{figures/systs/params/fd_birksb.pdf}
+
+\column{0.6\textwidth}
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+$k_B (\text{cm} / \text{MeV})$ & Mean Ratio & Norm. Ratio \\ \hline
+$0.02 $ & 0.981 & 0.977  \\ \hline
+$0.01 $ & 0.996 & 0.983  \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+
+\end{columns}
+
+\begin{itemize}
+\item Alternative samples generated with different Birks-Chou parameters
+\begin{equation}
+\frac{dL}{dX} = L_0  \frac{\frac{dE}{dX}}{1+ k_B \frac{dE}{dX} + k_C \frac{dE}{dX}^2}.
+\end{equation}
+\item Beam peak fit with normal distribution
+\item Ratio of fit mean and normalization used to parameterize mean and normalization shift
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Calibration Uncertainty}
+
+\begin{columns}[c]
+
+\column{0.4\textwidth}
+
+
+\includegraphics[angle=-90, width=1\textwidth]{figures/systs/params/fd_flat105cal.pdf}
+
+\column{0.6\textwidth}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Sample & Mean Ratio & Norm. Ratio \\ \hline
+$+5$\% Scale & 1.020 & 0.981 \\ \hline
+$-5$\% Scale& 0.980 & 1.013 \\ \hline
+Random & 1.001 & 0.996 \\ \hline
+Atten. slope & 1.009 & 0.995 \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+\end{columns}
+
+\begin{itemize}
+\item Alternative samples generated with altered calibration
+\item Beam peak fit with normal distribution
+\item Ratio of fit mean and normalization used to parameterize mean and normalization shift
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Detector Mass Uncertainty}
+\begin{center}
+\small
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+& \multicolumn{2}{c|}{FD} & \multicolumn{2}{c|}{ND} \\ \hline
+Component    & Mass (kg/m/cell)   & Percentage & Mass (kg/m/cell) & Percentage \\ \hline
+Extrusions   & 0.951 $\pm$ 0.016  & 36.4 $\pm$ 0.6  &  0.951 $\pm$ 0.016  & 36.2 $\pm$ 0.6 \\
+Scintillator & 1.641 $\pm$ 0.009  & 62.8 $\pm$ 0.3  &  1.653 $\pm$ 0.011  & 63.0 $\pm$ 0.4 \\
+Glue         & 0.019 $\pm$ 0.0003 & 0.07 $\pm$ 0.01 &  0.019 $\pm$ 0.0003 & 0.07 $\pm$ 0.01 \\
+Fiber        & 0.001 $\pm$ 0.0001 & 0.04 $\pm$ 0.04 &  0.001 $\pm$ 0.0001 & 0.04 $\pm$ 0.04 \\ \hline
+Total        & 2.612 $\pm$ 0.018  & 100.0 $\pm$ 0.7 &  2.624 $\pm$ 0.019  & 100.0 $\pm$ 0.07 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Material uncertainties propagated
+\item 1\% normalization in ND
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\nova Reach}
+
+\begin{itemize}
+\item backup slide on this
+\end{itemize}
 \end{frame}
 
 \end{document}

@@ -1151,13 +1151,14 @@ Filtered output
 \frametitle{Analysis}
 \begin{center}
 \vspace{-10pt}
-\includegraphics[width=.45\textheight, angle=-90]{figures/results/spectrum_fit_systs.pdf}
+\includegraphics[angle=-90, width=0.45\textwidth]{figures/systs/prediction/fd_extrap_prediction_full_syst_mock_data.pdf}
+\includegraphics[angle=-90, width=0.45\textwidth]{figures/systs/prediction/fd_extrap_contour_full_syst.pdf}
 \end{center}
+
 
 \begin{itemize}
 
 \item FD spectrum is fit to prediction
-\gap
 \item Log-likelihood for binned, Poisson distributed data
 \end{itemize}
 \begin{columns}[c]
@@ -1168,9 +1169,10 @@ Filtered output
 \chi^2 = 2 \sum_i e_i - o_i + \ln \big (\frac{o_i}{e_i} \big)
 + \sum_j \frac{s_j^2}{\sigma_j^2}
 \end{equation*}
-\column{0.4\textwidth}
+\column{0.5\textwidth}
   \begin{itemize}
   \item[] ~
+  \vspace{-15pt}
   \begin{itemize}
   \item Bins: $i$
   \item Prediction in each bin: $e_i$

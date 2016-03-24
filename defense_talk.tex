@@ -60,7 +60,7 @@ behavior is shrouded in mystery.}
     \begin{itemize}
     \bing Make up protons and neutrons...
     \bong ... and pions ($\pi$) and kaons ($K$)
-    \bong ... and much much more woah
+    \bong ... and much much more
 
     \end{itemize}
   \bang \textbf{Leptons}:
@@ -91,8 +91,7 @@ behavior is shrouded in mystery.}
     \begin{itemize}
     \bing ... i.e. they rarely interact with ordinary matter
     \bing Neutral to both electromagnetic and strong forces
-    \bing Billions of them are passing through you right now without interacting
-    \bing Could travel through a light-year of lead and probably not interact
+    \bing Billions of them are passing through the room now without interacting
     \end{itemize}
     \end{itemize}
     \gap
@@ -393,11 +392,13 @@ Channels & 20,192 & 344,064  \\ %\hline
   \frametitle{NuMI}
     \begin{itemize}
 	\bang High energy protons incident upon graphite target
-	\bang Collisions induce a shower, mostly pions, decay to muons
-	\bang Muons are absorbed in steel plates and rock to leave behind a beam of muon-neutrinos
-	\begin{figure} \includegraphics[width=0.85\textwidth]{figures/figures/numi.png} \end{figure}
+  \gap
+	\bang Collisions induce a shower, mostly pions, decay to muons and \numu
+  \gap
+	\bang Muons are absorbed, \numu form beam
 \end{itemize}
-
+\gap
+\begin{figure} \includegraphics[width=0.85\textwidth]{figures/figures/numi.png} \end{figure}
 }
 
 \frame
@@ -1061,77 +1062,24 @@ Filtered output
 \end{frame}
 
 \begin{frame}
-\frametitle{Event Selection}
-
+\frametitle{Background Rejection}
 
 \begin{itemize}
-\item Events are required to pass a extra few criteria
+\item CNN output handles beam background well; also most cosmic rays
+\gap
+\item A few additional criteria for cosmic-ray background
 \begin{itemize}
-\item CNN Output
 \item CosmicTrack Max-Y
 \item Transverse momentum estimated from slice
 \item Transverse momentum estimated from prongs
-
 \end{itemize}
 \end{itemize}
+
+\includegraphics[height=0.5\textwidth, angle=-90]{figures/selection/n1_cvnnumu.pdf}
+\includegraphics[height=0.5\textwidth, angle=-90]{figures/selection/n1_cosStartY.pdf}
+
 \end{frame}
 
-
-\begin{frame}
-
-\frametitle{CNN Output}
-
-  \begin{center}
-  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_cvnnumu.pdf}
-
-  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
-  \end{center}
-  \begin{itemize}
-  \item Select events with CNN output > 0.5
-  \end{itemize}
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{CosmicTrack start $Y$ position}
-
-  \begin{center}
-  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_cosStartY.pdf}
-
-  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
-  \end{center}
-  \begin{itemize}
-  \item Select events with start $Y$ < 6.0 m
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Transverse momentum from slice mean}
-
-  \begin{center}
-  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_tranMom.pdf}
-
-  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
-  \end{center}
-  \begin{itemize}
-  \item Select events with $P_T$ < 0.8
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Transverse momentum from prongs}
-
-  \begin{center}
-  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_pngptp.pdf}
-
-  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
-  \end{center}
-  \begin{itemize}
-  \item Select events with $P_T$ < 0.8
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
 \frametitle{Selection Comparison}
@@ -1172,7 +1120,7 @@ Filtered output
 
 \begin{itemize}
 
-\item FD spectrum is fit to prediction
+\item FD prediction is fit to observed spectrum
 \item Log-likelihood for binned, Poisson distributed data
 \end{itemize}
 \begin{columns}[c]
@@ -1248,7 +1196,7 @@ e_i = e_i(\sin(\theta_{23}), ~\Delta m_{32}^2,~\vec{s} )
 \item Two forms:
   \begin{itemize}
   \item Absolute: correlated between detectors (cancels well)
-  \item Relative: anti-correlated between detectors (doesn't cancel well)
+  \item Relative: not correlated between detectors (doesn't cancel well)
   \end{itemize}
 \end{itemize}
 \gap
@@ -1320,6 +1268,9 @@ Hadronic energy scale &  12\% scale on hadronic component of energy \\
 \begin{frame}
 \frametitle{Results}
 \centering
+Analyzed 2.74$\times 10^{20}$ POT (14 kt equivalent) -- 7\% of \nova design exposure
+\gap
+
 \begin{tabular}{c c }
  \textcolor{custom_red}{Scenario} & \textcolor{custom_red}{Prediction (events)} \\ \hline
 Without oscillation & 222.0 \\
@@ -1368,6 +1319,11 @@ Observed & 39
 \begin{itemize}
 \item Selected spectrum pulls toward non-maximal mixing
 \item Fit is not confident at 90\%, especially with systematics
+\item Best fit:
+  \begin{itemize}
+  \item $\sin^2(\theta_{23}) = 0.43$
+  \item $|\Delta m^2_{32}| = 2.48\times10^{-3}~\text{eV}^2$.
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -1400,7 +1356,7 @@ Observed & 39
 \begin{frame}
 \frametitle{Future Sensitivity}
 \centering
-\textcolor{custom_red}{90\% Confidence Region, \nova Design Exposure}
+\textcolor{custom_red}{90\% Confidence Region, 6 Year Design Exposure}
 \vspace{-15pt}
 \includegraphics[angle=-90, width=0.85\textwidth]{figures/results/contours6yr.pdf}
 
@@ -1761,7 +1717,19 @@ Total        & 2.612 $\pm$ 0.018  & 100.0 $\pm$ 0.7 &  2.624 $\pm$ 0.019  & 100.
 
 \begin{frame}
 \frametitle{\nova Reach}
+\begin{columns}[c]
+\column{0.5\textwidth}
+\centering
+\textcolor{custom_red}{Hierarchy Sensitivity}
 
+\includegraphics[width=\textwidth]{figures/plots/nova/hie_sens.pdf}
+\column{0.5\textwidth}
+\centering
+\textcolor{custom_red}{CP Violation Sensitivity}
+
+\includegraphics[width=\textwidth]{figures/plots/nova/cpv_sens_t2k.pdf}
+
+\end{columns}
 \begin{itemize}
 \item backup slide on this
 \end{itemize}
@@ -1773,10 +1741,68 @@ Total        & 2.612 $\pm$ 0.018  & 100.0 $\pm$ 0.7 &  2.624 $\pm$ 0.019  & 100.
 \includegraphics[angle=-90, width=0.9\textwidth]{figures/results/fc_compare.pdf}
 \end{frame}
 
+
+\begin{frame}
+
+\frametitle{CNN Output}
+
+  \begin{center}
+  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_cvnnumu.pdf}
+
+  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
+  \end{center}
+  \begin{itemize}
+  \item Select events with CNN output > 0.5
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{CosmicTrack start $Y$ position}
+
+  \begin{center}
+  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_cosStartY.pdf}
+
+  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
+  \end{center}
+  \begin{itemize}
+  \item Select events with start $Y$ < 6.0 m
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Transverse momentum from slice mean}
+
+  \begin{center}
+  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_tranMom.pdf}
+
+  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
+  \end{center}
+  \begin{itemize}
+  \item Select events with $P_T$ < 0.8
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Transverse momentum from prongs}
+
+  \begin{center}
+  \includegraphics[height=0.7\textwidth, angle=-90]{figures/selection/n1_pngptp.pdf}
+
+  {\footnotesize(``$n-1$'' histogram -- only events which pass all other criteria)}
+  \end{center}
+  \begin{itemize}
+  \item Select events with $P_T$ < 0.8
+  \end{itemize}
+\end{frame}
+
 \begin{frame}
 \frametitle{Contour Improvement}
 \centering
 \includegraphics[angle=-90, width=0.9\textwidth]{figures/selection/contoursfhc1cosmic.pdf}
 \end{frame}
+
 
 \end{document}

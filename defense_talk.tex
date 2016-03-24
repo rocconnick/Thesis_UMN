@@ -101,25 +101,34 @@ behavior is shrouded in mystery.}
   \centering
   \textcolor{custom_red}{Charged Current}
 
-
   \includegraphics[height=0.37\textheight, angle=-90]{figures/feynman/ccNumu.pdf}
+
+  \small
+  Exchange $W$ boson
+
+  $\nu_e \rightarrow e$
+
+  $\nu_\mu \rightarrow \mu$
+
+  $\nu_\tau \rightarrow \tau$
+
   \column{0.5\textwidth}
   \centering
    \textcolor{custom_red}{Neutral Current}
 
 
   \includegraphics[height=0.37\textheight, angle=-90]{figures/feynman/ncHad.pdf}
+
+  \small
+  Exchange $Z$ boson
+
+  $\nu_e \rightarrow \nu_e$
+
+  $\nu_\mu \rightarrow \nu_\mu$
+
+  $\nu_\tau \rightarrow \nu_\tau$
+
   \end{columns}
-\gap
-    \begin{itemize}
-    \item Weak interactions involve either $W$ or $Z$ bozon
-      \begin{itemize}
-      \item $W$: charged current
-      \bong ~~~~ $\nu_e \rightarrow e$ ~~ or ~~ $\nu_\mu \rightarrow \mu$ ~~ or ~~ $\nu_\tau \rightarrow \tau$
-      \item $Z$: neutral current
-      \bong ~~~~ $\nu_e \rightarrow \nu_e$ ~~ or ~~ $\nu_\mu \rightarrow \nu_\mu$ ~~ or ~~ $\nu_\tau \rightarrow \nu_\tau$
-      \end{itemize}
-    \end{itemize}
 
 \end{frame}
 
@@ -324,7 +333,7 @@ Parameter & PDG Average \\  \hline
 
 
 \begin{frame}
-\app{\nova (\textit{noun})}{An experiment which aims to explore neutrino oscillation}
+\app{\nova (\textit{noun})}{An experiment which explores neutrino oscillation}
 \end{frame}
 
 
@@ -880,9 +889,9 @@ Output Layer
   \end{itemize}
   \begin{columns}[c]
   \column{0.5\textwidth}
-  \centering \includegraphics[width=0.7\textwidth]{figures/figures/conv.png}
-  \column{0.5\textwidth}
   \centering \includegraphics[width=0.7\textwidth]{figures/figures/conv3d.png}
+  \column{0.5\textwidth}
+  \centering \includegraphics[width=0.7\textwidth]{figures/figures/conv.png}
   \end{columns}
   \begin{itemize}
   \gap
@@ -1172,7 +1181,7 @@ Filtered output
 \column{0.4\textwidth}
 \vspace{-5pt}
 \begin{equation*}
-\chi^2 = 2 \sum_i e_i - o_i + \ln \big (\frac{o_i}{e_i} \big)
+\chi^2 = 2 \sum_i e_i - o_i + o_i\ln \big (\frac{o_i}{e_i} \big)
 + \sum_j \frac{s_j^2}{\sigma_j^2}
 \end{equation*}
 \vspace{-5pt}
@@ -1257,7 +1266,7 @@ Calorimetric energy & 2\% energy scale (absolute and relative)  \\
 &  2\% normalization scale (absolute and relative) \\ \hline
 Detector mass &  1\% normalization scale (absolute and relative) \\ \hline
 Muon track length &  FD: 0.7\% scale on track component of energy\\
- &  ND: 0.7\% scale on track component of energy\\ \hline
+ &  ND: 2\% scale on track component of energy\\ \hline
 Hadronic energy scale &  12\% scale on hadronic component of energy \\
 & (absolute and relative)\\
 \end{tabular}
@@ -1312,8 +1321,8 @@ Hadronic energy scale &  12\% scale on hadronic component of energy \\
 \frametitle{Results}
 \centering
 \begin{tabular}{c c }
-Scenario & Prediction (events) \\ \hline
-No neutrino oscillation & 222.0 \\
+ \textcolor{custom_red}{Scenario} & \textcolor{custom_red}{Prediction (events)} \\ \hline
+Without oscillation & 222.0 \\
 Maximal mixing & 38.1 \\ \hline
 Observed & 39
 
@@ -1381,7 +1390,7 @@ Observed & 39
 \gap
 \item \nova studies neutrino oscillation with a beam and two detectors
 \gap
-\item Convolutional neural network event classifier outperforms reconstruction-based methods
+\item Convolutional neural network event classifier outperforms traditional reconstruction-based methods
 \gap
 \item Results are compelling, despite using just 7\% of \nova design exposure
 \end{itemize}

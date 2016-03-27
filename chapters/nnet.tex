@@ -12,7 +12,8 @@ In other words, given some set of input variables, predict some set of output va
 It is also common to separate machine learning approaches into two categories: supervised and unsupervised \cite{lecun2015deep}.
 The supervised approach involves training an algorithm using a collection of examples for which the function output is known.  In unsupervised learning, algorithms can work to extract meaningful output from data where the function output is not known.
 
-The approach presented in this dissertation applies a supervised learning strategy for both classification of signal events.
+The approach presented in this dissertation applies a supervised learning
+strategy for classification of signal events.
 
 
 
@@ -32,7 +33,7 @@ An artificial neural network is a common tool used in classification and regress
 \end{figure}
 
 Artificial neural networks are designed to crudely approximate the structure of a biological nervous system \cite{reed1999neural}.  The basic unit of a neural network is called a \textit{node}.  Each is a function which computes an output value from a set of inputs.  Nodes are arranged into \textit{layers}, as seen in Figure \ref{nnet}.  In graph theory terms, a neural network is a \textit{feedforward graph}, implying that information is passed forward to subsequent layers, but not backward.  Input variables to the classification or regression problem are passed through \textit{input layer}.  Any number of downstream \textit{hidden layers} can be trained to perfrom the classification or regression task.  The predicted output is then extracted from the final \textit{output layer}.  For multivariate regression, the output is a vector of decimal values.  For multi-class classification, the output is ususally a vector of as many values as there are classes, each ranging between zero and one.
-Each value can beinterpreted as how well the inputs represent that particular
+Each value can beinterpreted as how well the input represents that particular
 class.
 
 Each node in a layer can receive input from all nodes in the previous layer, although more sparesely connected networks have been investigated

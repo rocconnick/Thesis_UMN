@@ -10,12 +10,14 @@ places two detectors for observation of neutrinos, one near the source and anoth
 of particle interactions.
 
 \nova aims to measure and \thetatth, $\delta$, and the neutrino
-mass hierarchy though sensitivity to the probabilities $P(\nu_\mu \rightarrow \nu_\mu)$ and $P(\nu_\mu \rightarrow \nu_e)$.  Preliminary measurements of nonzero measurement of \thetaoth are consistent with measurements from Daya Bay, RENO and T2K \cite{nova2016nue}.  It is also hoped that \nova will  hone the measurement of \thetatth to determine whether it is greater or less than $45^\circ$.  This work aims to further techniques which will aid in both of these efforts, although we focus on the applicaiton to muon neutrino identification for meaurement of \thetatth and $|\Delta m^2_{32}|$.
+mass hierarchy though sensitivity to the probabilities $P(\nu_\mu \rightarrow \nu_\mu)$ and $P(\nu_\mu \rightarrow \nu_e)$.  Preliminary measurements of nonzero measurement of \thetaoth are consistent with measurements from Daya Bay, RENO and T2K \cite{nova2016nue}.  It is also hoped that \nova will  hone the measurement of \thetatth to determine whether it is greater or less than $45^\circ$.  This work aims to further techniques which will aid in both of these efforts, although we focus on the
+application to muon neutrino identification for measurement
+of \thetatth and $|\Delta m^2_{32}|$.
 
 The \numi beam can run in modes which predominantly produce either neutrinos
 or antineutrinos.
 As described in Section~\ref{matOsc}, matter effects lead to differences
-in the oscillation probabilities observed neutrinos and antineutrinos.
+in the oscillation probabilities observed for neutrinos and antineutrinos.
 By comparing the respective appearance probabilities, it could be possible to determine whether the mass hierarchy is normal or inverted.  The difference between neutrinos and antineutrinos could also be used to measure the CP violating phase, $\delta$.
 
 Oscillation analysis requires determination of the flavor state of an
@@ -26,7 +28,7 @@ which leave a charged lepton in the final state; an electron in the case
 of \nue or muon in the case of \numu.
 Neutral-current (NC) interactions, on the other hand, bear no flavor signature
 and serve as a background in \nue appearance or \numu disappearance analyses,
-although they can serve as signal in more exotic searches.
+although they can serve as a signal in more exotic searches.
 Such identification is at the core of the \nova detector design.
 
 
@@ -37,13 +39,16 @@ In a process similar to the Brookhaven experiment that discovered the muon neutr
 Protons from the Main Injector are directed into a graphite target producing a shower of hadrons including pions and kaons.  The hadron showers are focused into a beam by the magnetic field produced in ``focusing horns,'' which are tuned to select charged pions by steering them forward while steering other particles out of the beam.
 The magnetic field in the horns reaches a peak strength of 30 kG resulting from
 a horn current of 200 kA.
-Downstream of the focusing horns, particles are free to decay in flight inside a 675 m decay pipe.  Muon neutrinos are then produced when charged pions decay as shown in equation \eqref{pions}.  Alternatively, anti-pions can be focused by switching the direction of the electric current in the focusing horns, thus \numi can serve as either a neutrino or antineutrino beam.  A small component of kaons and other heavier mesons which pass through the focusing horns.  Heavy mesons can decay to electrons and \nue at higher rates, which introduces electron neutrino background in the predominantly \numu beam.
+Downstream of the focusing horns, particles are free to decay in flight inside a 675 m decay pipe.  Muon neutrinos are then produced when charged pions decay as shown in equation \eqref{pions}.  Alternatively, anti-pions can be focused by switching the direction of the electric current in the focusing horns, thus \numi can serve as either a neutrino or antineutrino beam.
+In addition pions, a small component of kaons and other heavier mesons pass
+through the focusing horns.
+Heavy mesons can decay to electrons and \nue at higher rates, which introduces electron neutrino background in the predominantly \numu beam.
 Electron neutrinos are also introduced into the beam through the decay of
 muons in the decay pipe.
 Charged particles such as muons and electrons produced in the decay pipe are absorbed in rock upstream of the \nova Near Detector, eliminating them as background.
 The \numi facility can achieve an intensity of 700 kW by delivering spills of
 $4.9 \times 10^{13}$ protons to the target every 1.3 seconds \cite{tdr}.
-Each beam spill is lasts a duration of 10 $\mu$s.
+Each beam spill spans a duration of 10 $\mu$s.
 
 \begin{figure}
   \begin{center}
@@ -125,15 +130,15 @@ The ND, on the other hand, is roughly 300 m underground at Fermilab in Illinois.
 \label{cell_section}
  The rigid structure of the cells is comprised of tubular \textit{cells} extruded from poly-vinyl chloride (PVC) resin.  Each cell is approximately 4 cm wide and 6 cm deep; FD cells are nearly 15 m long, while ND cells are about 4 m long.
  Cells are arrayed into planes, with adjacent planes alternating between horizontal and vertical alignment.
- Configured in this way, cells allow Cartesian coordinates to be inferred; vertical cells provide a measurement of the $X$-coordinate, horizontal cells they $Y$-coordinate, and planes the $Z$-coordinate.  A visualization of the detector topology can be seen in Figure \ref{detector}.
+ Configured in this way, cells allow Cartesian coordinates to be inferred; vertical cells provide a measurement of the $X$-coordinate, horizontal cells the $Y$-coordinate, and planes the $Z$-coordinate.  A visualization of the detector topology can be seen in Figure \ref{detector}.
  Planes are arranged transverse to the beam direction, which implies the
  $Z$-axis is directed roughly along the beam axis.
- More precisely, the $Z$-axis is in the plane of the the horizon,
+ More precisely, the $Z$-axis is in the plane of the horizon,
  and the beam is directed about $3^\circ$ above the horizon.
  As such, the $Y$-axis is aligned with the zenith and $X$-axis chosen to
  complete a right handed coordinate system \cite{tdr}.
 
-Cells are aligned side-by-side (along the 6 cm side) into units of 32 cells referred to as a modules.  Planes are thus a collection of adjacent modules which are glued face-to-face to produce detector \textit{blocks}.  In the FD, planes are 12 modules wide, blocks contain 32 planes, and the complete detector is 28 blocks.  The ND has three blocks of 24 planes, each of which is 3 modules wide.  Additionally, the ND is augmented with an extra downstream block known as the \textit{muon catcher}.  As its name suggests, this block is designed to
+Cells are aligned side-by-side (along the 6 cm side) into units of 32 cells referred to as a module.  Planes are thus a collection of adjacent modules which are glued face-to-face to produce detector \textit{blocks}.  In the FD, planes are 12 modules wide, blocks contain 32 planes, and the complete detector is 28 blocks.  The ND has three blocks of 24 planes, each of which is 3 modules wide.  Additionally, the ND is augmented with an extra downstream block known as the \textit{muon catcher}.  As its name suggests, this block is designed to
 \textit{range-out} (or stop) muons, which can traverse a range of several
 meters from the \numu CC interactions seen  in \nova.
 Interleaved between each pair of horizontal and vertical modules in the muon catcher is a 10 cm thick steel plane.
@@ -148,13 +153,28 @@ Muon catcher planes are three modules wide for vertical planes, but only two mod
 
 Each cell is filled with scintillator-doped mineral oil to produce light in the presence of swiftly moving charged particles.  The mixture is roughly 95\% mineral oil by mass, blended with a primary scintillant which produces UV light and two wavelength shifting components \cite{mufson2015liquid}.  A strand of wavelength-shifting fiber runs up and down the length of each cell with both ends of fiber emerging at one end of the cell, visualized in figure~\ref{cell}.  The fiber serves the purpose of capturing and transmitting the scintillation light in two steps; first by lengthening its wavelength through molecular absorption and reemission, and then trapping it within the fiber by total internal reflection.
 
-At the end of the cells, photons trapped in the WLS fiber are converted to photo-electrons on an avalanche photodiode (APD) to produce an electrical signal.  The signal One APD board contains 32 pixels to read out each cell of module separately.  APD signals are read out by four electronic components built into a front end board (FEB) designed specifically for \nova.  An application specific integrated circuit (ASIC) shapes the pulses.  The ASIC is CR-RC circuit which amplifies and widens the signals in time to better distinguish physics signals from noise.   Shaped pulses are passed to an analog-to-digital converter (ADC) which samples at 64 MHz time-to-digital (TDC) clock-ticks.  The sampling of the 32 pixels is multiplexed, eight-fold in the FD and two-fold in the ND.  Zero suppression of the ADC samples is performed by a field programmable gate array (FPGA) which employs a dual correlated sampling (DCS) technique to trigger a hit to be passed to the data acquisition (DAQ) system.  Under the DCS scheme, each ADC sample the third latest sample.  If the difference between those two samples is greater than a fixed threshold, a hit is passed along to be recorded by the DAQ.
+At the end of the cells, photons trapped in the WLS fiber are converted to photo-electrons on an avalanche photodiode (APD) to produce an electrical signal.
+One APD board contains 32 pixels to read out each cell of module separately.  APD signals are read out by four electronic components built into a front end board (FEB) designed specifically for \nova.  An application-specific integrated circuit (ASIC) shapes the pulses.  The ASIC is CR-RC circuit which amplifies and widens the signals in time to better distinguish physics signals from noise.   Shaped pulses are passed to an analog-to-digital converter (ADC) which samples at 64 MHz time-to-digital (TDC) clock-ticks.  The sampling of the 32 pixels is multiplexed, eight-fold in the FD and two-fold in the ND.  Zero suppression of the ADC samples is performed by a field programmable gate array (FPGA) which employs a dual correlated sampling (DCS) technique to trigger a hit to be passed to the data acquisition (DAQ) system.
+Under the DCS scheme, each ADC sample is compared to
+the third latest sample.
+If the difference between those two samples is greater than a fixed threshold,
+a hit is passed along to be recorded by the DAQ.
 
 \subsection{Data Acquisition}
 
-The \nova data concentrator module (DCM) is responsible for collecting data from up to 64 APD/FEB pairs.   A DCM is a device mounted on the detector with an embedded CPU running Linux and custom \nova DAQ software.  Input and output is transmitted using a standard CAT5e link network link.  Output from a DCM is transmitted to a buffer farm over 200 compute nodes.  These nodes are arranged to store data in a circular ring buffer, or in other words, when new data arrives, the oldest data is overwritten.  The buffer farm is capable of storing FD data for upwards of several minutes, during which time any subset of the buffered data can be written to disk and stored permanently.  Trigger decisions are issued through the custom \nova global trigger software, which can receive external triggers as well as data-driven triggers based analysis of data stored in the buffer farm.  This work primarily relies on external triggers.  Neutrino data is recorded in the ND and FD by the so-called \numi trigger, which records 550 $\mu$s of data centered around the 10 $\mu$s \numi beam spill.  FD cosmic-ray data -- used for calibration and background estimation -- is recorded using a 10 Hz minimum bias trigger, commonly referred to as the cosmic trigger.   Cosmic events in the ND are a commodity since the detector is underground; a minimum bias trigger at any sampling rate simply does not record enough activity.  In place such a trigger, an simple activity based data-driven trigger is used to collect cosmic-ray data in the ND.  This trigger reads out data whenever certain number of hits are recorded above a certain threshold.
+The \nova data concentrator module (DCM) is responsible for collecting data from up to 64 APD/FEB pairs.   A DCM is a device mounted on the detector with an embedded CPU running Linux and custom \nova DAQ software.  Input and output is transmitted using a standard CAT5e link network link.
+Output from a DCM is transmitted to a buffer farm over 200 computing nodes.
+These nodes are arranged to store data in a circular ring buffer, or in other words, when new data arrives, the oldest data is overwritten.  The buffer farm is capable of storing FD data for upwards of several minutes, during which time any subset of the buffered data can be written to disk and stored permanently.  Trigger decisions are issued through the custom \nova global trigger software, which can receive external triggers as well as data-driven triggers based on analysis of data stored in the buffer farm.  This work primarily relies on external triggers.  Neutrino data is recorded in the ND and FD by the so-called \numi trigger, which records 550 $\mu$s of data centered around the 10 $\mu$s \numi beam spill.  FD cosmic-ray data -- used for calibration and background estimation -- is recorded using a 10 Hz minimum bias trigger, commonly referred to as the cosmic trigger.   Cosmic events in the ND are a commodity since the detector is underground; a minimum bias trigger at any sampling rate simply does not record enough activity.
+In place of such a trigger, an simple activity-based data-driven trigger is
+used to collect cosmic-ray data in the ND.
+This trigger reads out data whenever a
+certain number of hits are recorded above a certain threshold.
 
-Data is written to computer hard disks at the respective ND and FD sites.  Each site is capable of storing many days worth of data.  Ultimately, the data is transfered to Fermilab for permanent storage, where it is archived on tape and made available for offline reconstruction and physics analysis.
+Data is written to computer hard disks at the respective ND and FD sites.
+Each site is capable of storing roughly one month worth of data.
+Ultimately, the data is transferred to Fermilab for permanent storage,
+where it is archived on tape and made available for offline reconstruction
+and physics analysis.
 
 
 \subsection{Event Topologies in \nova}
@@ -168,9 +188,10 @@ Data is written to computer hard disks at the respective ND and FD sites.  Each 
 visible activity from a proton.  An electron shower from a \nue CC interaction
 is visible in the middle pane.  The third pane shows a NC interaction
 with a neutral pion decaying to two photons, which forms the dominant
-background in \nova's \nue appearance search.The electromagnetic
+background in \nova's \nue appearance search.
+The electromagnetic
 radiation length in \nova is relatively long compared to the size of a cell,
-which aids in distingusing such events.}
+which aids in distinguishing such events.}
 \label{eventtopnue}
 \end{figure}
 
@@ -192,8 +213,8 @@ Hadrons are prone to interactions with atomic nuclei, leading to
 hard scatters along their trajectory in addition to the standard energy loss
 from ionization.  Exploiting these characteristic differences is essential
 to measuring oscillation parameters with \nova since the $\nu$ flavor signature
-is the presence and type of charged lepton in the final state of an
-interaction.
+is indicated by the presence and type of charged lepton in the final state of
+an interaction.
 
 Cosmic rays are a prevalent background in the \nova FD.
 The vast majority of cosmic-ray activity is the result of muons which traverse
@@ -211,8 +232,8 @@ An example event display can be seen in Figure~\ref{eventDisplay}.
 The largest component in the event display is the cell-hit readout itself,
 shown separately through the $X$-$Z$ (vertical module) and $Y$-$Z$ (horizontal
 module) views.
-Additionally, the event display shows information about the data collection,
-for instance a timestamp and trigger information.
+Additionally, the event display shows information about the data collection;
+for instance, a timestamp and trigger information.
 The event display also shows histograms depicting the time and charge
 distributions for the hits displayed.
 Hits are typically colored by their time relative to the start of the readout
@@ -241,7 +262,7 @@ The important measures of exposure for \nova are livetime,
 protons on-target (POT), and detector mass.
 Livetime is used for scaling constant processes
 like cosmic rays and electronic noise.
-Exposure to neutrinos, however, is prortional to the number decayed pions
+Exposure to neutrinos, however, is proportional to the number of decayed pions
 in the \numi beam.
 The number of pions depends on the number of protons delivered to the target,
 which is tracked spill-by-spill and recorded in a database.

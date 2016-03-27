@@ -36,10 +36,10 @@ The extrapolation procedure will be described in detail in Section
 difference in the fluxes seen between the two detectors arise from geometric
 effects.
 The ND is close to the \numi source; despite its relatively small size,
-it subtends a much larger solid angle, leading broader spectrum of incident
+it subtends a much larger solid angle, and thus a spectrum of incident
 neutrino angle and energy.
-Also note that the detectors themselves do not observe the neutrino flux,
-directly but rather its convolution with cross section, which is discussed
+Also note that the detectors themselves do not observe the neutrino flux
+directly, but rather its convolution with cross section, which is discussed
 in the following section.
 
 A detailed representation of the \numi target facility forms the basis
@@ -56,7 +56,7 @@ through the hadronization chain to the primary proton which interacted in the
 target.
 Such precision allows detailed studies to estimate uncertainties based
 on particle production and interaction models.
-The FLUKA/FLUGG simulation has been cross checked by an independent
+The FLUKA/FLUGG simulation has been cross-checked by an independent
 \geant simulation (based on the same geometry) and shown to produce
 comparable results.
 Comparisons have also been made to data both from the NA49
@@ -73,7 +73,7 @@ seen in Figure \ref{beam_flux_fig}.
 \includegraphics[width=\textwidth]{figures/plots/nova/beam_flux_log.pdf}
 \end{center}
 \caption{Simulated spectrum of observed FD events}{
-The observed neutrino event spectum in \nova is the convolution
+The observed neutrino event spectrum in \nova is the convolution
 of \numi beam flux and neutrino interaction cross section.
 The spectra here show the predicted rate of neutrino interactions
 in \nova as a function of interaction energy.
@@ -97,7 +97,7 @@ the energy which would be deposited in the detector.
 
 \genie is a comprehensive neutrino MC generator for the experimental physics community.
 According to the \genie collaboration mission statement, the
-generator aims to simulate processes  for all neutrino species and all nuclear targets, from the MeV to PeV scale.  The input to GENIE is the simulated detector flux from FLUKA/FLUGG; the output is a collection of neutrino interactions described as \genie event records.  \genie event records catalog the the flavor and kinematics of the incoming neutrino, struck nucleus, and daughter particles which leave the nucleus.
+generator aims to simulate processes  for all neutrino species and all nuclear targets, from the MeV to PeV scale.  The input to GENIE is the simulated detector flux from FLUKA/FLUGG; the output is a collection of neutrino interactions described as \genie event records.  \genie event records catalog the flavor and kinematics of the incoming neutrino, struck nucleus, and daughter particles which leave the nucleus.
 
 Nuclear structure is at the core of neutrino interaction simulation, for which
 \genie uses the Relativistic Fermi Gas model of Bodek and Ritchie
@@ -114,7 +114,9 @@ energy spectra as a separate process and stores the interpolated result
 based upon cubic splines \cite{atkinson1978introduction}.
 For each generated event, the energy splines are sampled to select the interaction energy, but differential cross sections are used to sample the remaining kinematics.
 
-While \genie employs several cross section models, only few are important for this work.  The selected \numu CC events in \nova are dominated by just three interaction modes: Quasi-Eleastic scattering (QE),  baryon resonance production (RES) and deep-inelastic scattering (DIS).
+While \genie employs several cross section models, only a
+few are important for this work.
+The selected \numu CC events in \nova are dominated by just three interaction modes: Quasi-Elastic scattering (QE),  baryon resonance production (RES) and deep-inelastic scattering (DIS).
 QE interactions can be interpreted as a neutrino scattering off a single
 nucleon, RES interactions involve an excitation
 of the nucleus by the neutrino, and DIS represented as an interaction
@@ -122,7 +124,9 @@ with the entire nucleus which can induce complete
 nuclear disintegration.
 QE events dominate the low energy tail of the energy spectrum, while DIS events account for most of the high energy tail.
 
-The QE model in \genie is an implementation of the Llewellyn-Smith model \cite{LlewellynSmith} with a dipole form factor.  In that implementation, the axial vector mass is the sole free parameter.  RES events are generated using from the Rein-Segal model \cite{rein1981neutrino}, which employs the Feynman-Kislinger-Ravndal (FKR) model of baryon resonances \cite{feynman1971current}.  FKR parameterizes resonance wavefuctions as excited states of a 3-quark system in a relativistic harmonic oscillator potential.  The \genie implementation of Rein-Segal neglects interference between resonances as well as outgoing lepton masses.  Similar to the QE model, this RES implementation leaves the axial vector mass.  For DIS interactions, \genie uses a leading order model with corrections from Bodek and Yang \cite{bodek2003higher} to better describe the low $Q^2$ region.  This crossover energy region where DIS interactions begin to dominate is of principal importance to \nova since it accounts for most of the events on the high side of the energy peak.  \genie calculates DIS cross sections at the parton level, or in other words, the cross section involves all sea and valence quarks.  This implementation of DIS involves many free parameters, although most of them have small effects on the \numu CC event selection in \nova.
+The QE model in \genie is an implementation of the Llewellyn-Smith model \cite{LlewellynSmith} with a dipole form factor.  In that implementation, the axial vector mass is the sole free parameter.  RES events are generated using from the Rein-Segal model \cite{rein1981neutrino}, which employs the Feynman-Kislinger-Ravndal (FKR) model of baryon resonances \cite{feynman1971current}.  FKR parameterizes resonance
+wave functions as excited states of a 3-quark system in a relativistic harmonic
+oscillator potential.  The \genie implementation of Rein-Segal neglects interference between resonances as well as outgoing lepton masses.  Similar to the QE model, this RES implementation leaves the axial vector mass.  For DIS interactions, \genie uses a leading order model with corrections from Bodek and Yang \cite{bodek2003higher} to better describe the low $Q^2$ region.  This crossover energy region where DIS interactions begin to dominate is of principal importance to \nova since it accounts for most of the events on the high side of the energy peak.  \genie calculates DIS cross sections at the parton level, or in other words, the cross section involves all sea and valence quarks.  This implementation of DIS involves many free parameters, although most of them have small effects on the \numu CC event selection in \nova.
 
 Free parameters in \genie will be discussed further in chapter \ref{systs_chapter}.  For now, it is important to note that \genie includes a reweighting feature or all free parameters in the models it includes.  For any given event, a weight can be determined by calculating the cross section with a modification of one of the free parameters.  The weights are calculated simply by taking the ratio of this modified cross section to the original cross section.
 
@@ -136,7 +140,7 @@ those particles through matter.  \geant is thus responsible for the energy
 deposition, interaction and decay of those particles within the detector and
 surrounding materials.
 
-This propagation relies on a detailed representation of the detector geometry which the describes position of assorted materials.
+This propagation relies on a detailed representation of the detector geometry which the describes the position of assorted materials.
 The locations of the blocks have been taken from the as-built locations measured by a laser scan system, although it does not include the precisely measured tilt and stager on a plane-by-plane basis.
 Certain features are impossible or difficult to measure and incorporate into
 the geometry, for instance the location of the fiber within the cells and glue voids between modules.  The geometry also includes materials surrounding the detector.  These materials include the steel support structure around the detectors, the rock and concrete comprising the detector halls, as well as the overburden above the FD.
@@ -172,7 +176,7 @@ and an index of refraction of 1.46 for the mineral oil
 Photons are captured in fiber with a characteristic length of 30.66 cm, which is tuned based on studies of cosmic ray muon attenuation curves to provide the best data/MC agreement.  The ray tracing model produces a two dimensional collection rate  distribution as a function of energy deposition and position along the fiber relative to where the energy was deposited.  From this template distribution, the number of photons collected is modeled for each particle energy deposition produced by \geant.  Since the ends of the cells are not reflective, the template distributions are truncated at the point where the cell ends.
 An overall scale factor for the number of photons produced per unit of deposited energy is a free parameter in the simulation.
 
-Once the number of collected photons is is determined, the next step is propagate each of those photons through the fiber.  The collected photons are divided in two to be sent in either direction along the fiber.  An attenuation curve is used to determine the mean number of photons which would arrive as a function of the position of capture.  Measurements of the attenuation length have been taken from the quality control data generated at the time of module construction.  Finally, a Poisson smearing and 85\% quantum efficiency is applied to produce the final number of photons which arrive at the APD.
+Once the number of collected photons is determined, the next step is propagate each of those photons through the fiber.  The collected photons are divided in two to be sent in either direction along the fiber.  An attenuation curve is used to determine the mean number of photons which would arrive as a function of the position of capture.  Measurements of the attenuation length have been taken from the quality control data generated at the time of module construction.  Finally, a Poisson smearing and 85\% quantum efficiency is applied to produce the final number of photons which arrive at the APD.
 
 \section{Electronic Readout}
 

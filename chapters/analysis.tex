@@ -16,7 +16,7 @@ That approach, however, would be quite sensitive to systematic uncertainties,
 in particular those in \numi beam flux and neutrino cross sections.
 \nova's two-detector design is aimed precisely at mitigating the effects of
 such uncertainties; the ND can be used to determine the expected
-spectrum at the FD in a way which mostly cancels the large uncertainties the
+spectrum at the FD in a way which mostly cancels the large uncertainties
 the MC prediction.
 The procedure of generating the FD prediction in terms of the observed
 ND spectrum, referred to as \textit{extrapolation}, is described in Section
@@ -66,7 +66,7 @@ outside of the time window of \numi spills, referred to as the
 
 \subsection{\numu CC Signal Extrapolation}
 \label{sig_extrap_section}
-Naively, one might expect that the ratio of the FD spectrum to the ND spectrum
+One might expect that the ratio of the FD spectrum to the ND spectrum
 could be directly interpreted as an oscillation probability.
 This naive approach is complicated by two factors.
 First, the ND and FD spectra are independently shaped by various geometric
@@ -101,7 +101,7 @@ The discrepancy between the FD and ND spectra is shown in Figure
 
 
 The extrapolation procedure also aims to capture the smearing effect of
-imperfect energy energy resolution independently in each detector.
+imperfect energy resolution independently in each detector.
 This is accomplished by forming a 2D histogram of reconstructed energy
 vs. true energy in each detector, referred to as the \textit{reco-true matrix}.
 These histograms can be used to reweight between the reconstructed
@@ -282,7 +282,7 @@ A binned maximum-likelihood procedure is used to measure oscillation parameters
 \deltamtht and \thetatth by comparing the extrapolated FD prediction to the
 observed FD data \cite{backhouse2015cafana}.
 The prediction is cast as a function of the oscillation parameters
-through by applying oscillation probabilities to the FD true energy spectrum
+by applying oscillation probabilities to the FD true energy spectrum
 as described in Section \ref{sig_extrap_section}.
 Oscillation probabilities are calculated using the full three-flavor
 formulation.
@@ -295,7 +295,7 @@ for the parameters $|\Delta m^2_{32}|$ and $\sin^2(\theta_{23})$.
 The likelihood function used is the log-likelihood for Poisson distributed
 data \cite{pdg}:
 \begin{equation}
-\chi^2 = 2 \sum_i e_i - o_i + o_i + \ln \bigg (\frac{o_i}{e_i} \bigg),
+\chi^2 = 2 \sum_i e_i - o_i + o_i\ln \bigg (\frac{o_i}{e_i} \bigg),
 \end{equation}
 where the sum runs over bins $i$, $e_i$ is the predicted number of events
 in that bin, and $o_i$ is the observed number of events in FD data.
@@ -309,7 +309,7 @@ in the case of both 1D and 2D contours can be found in \cite{pdg}.
 Systematic uncertainties are included in the fit by adding a term to the
 likelihood function as follows \cite{pdg}:
 \begin{equation}
-\chi^2 = 2 \sum_i e_i - o_i + o_i + \ln \bigg (\frac{o_i}{e_i} \bigg)
+\chi^2 = 2 \sum_i e_i - o_i + o_i\ln \bigg (\frac{o_i}{e_i} \bigg)
 + \sum_j \frac{s_j^2}{\sigma_j^2}.
 \end{equation}
 The sum over $j$ is over systematic contributions.  Each systematic uncertainty

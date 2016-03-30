@@ -17,6 +17,7 @@
 %            If Dedication page alone is present please uncomment line 406   - Sriram Doraiswamy
 % 11/23/2010 Fixed the problem where additional pages of Acknowledgement were not correctly numbered - Sriram Doraiswamy
 % 11/25/2010 Name of the advisor and Master of Arts or Science appears properly - Sriram Doraiswamy
+% 05/05/2015 - Moved the template into git; see `git log` for changes - Alex Gude
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -24,16 +25,15 @@
 % Summary of New Commands (many are not used outside of the style file)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %The following are primarily for the titlepage et al....
-%\draft			(this invokes the macro \draftrue)
-%\copyrightpage		(make a copyright page)
-%\figurespage		(make a page for list of figures)
-%\tablespage		(make a page for list of tables)
-%\title{thesis title}	(this is defined by the report style)
-%\author{author's name}	(this is defined by the report style)
-%\phd			(if invoked then \phdtrue is set.)
-%\degree{degree type}	(Default "Master of Science")
+%\draft                 (this invokes the macro \draftrue)
+%\copyrightpage         (make a copyright page)
+%\figurespage           (make a page for list of figures)
+%\tablespage            (make a page for list of tables)
+%\title{thesis title}   (this is defined by the report style)
+%\author{author's name} (this is defined by the report style)
+%\phd                   (if invoked then \phdtrue is set.)
+%\ms                    (if invoked then \phdfalse is set.)
 %
-%\words{words in abstract}
 %\abstract{the body of the abstract}
 %\acknowledgements{the body of the acknowledgments}
 %\dedication{the body of the dedication}
@@ -44,21 +44,22 @@
 %\begin-end{vita}  (begin single spacing after this point for the vita)
 %
 %       ******* Booleans *******
-%\ifpagestyletopright	(invoke \pagestyle{topright})
-%\ifdraft		(Will do some things differently if draft. Set by \draft)
-%\ifcopyright		(Add a copyright notice? (Set by \copyrightpage)
-%\ifabstract		(set if command \abstract invoked)
-%\ifpreface		(set if command \preface invoked)
-%\ifextra		(set if command \extra invoked)
-%\ifacknowledgements	(set by \acknowledgements)
-%\ifabstract		(set by \abstract)
+%\ifpagestyletopright   (invoke \pagestyle{topright})
+%\ifdraft               (Will do some things differently if draft. Set by \draft)
+%\ifcopyright           (Add a copyright notice, set by \copyrightpage)
+%\ifccby                (Add a copyright notice with Creative Commons CC-BY 4.0 license, set by \copyrightpageccby)
+%\ifccbysa              (Add a copyright notice with Creative Commons CC-BY-SA 4.0 license, set by \copyrightpageccbysa)
+%\ifabstract            (set if command \abstract invoked)
+%\ifpreface             (set if command \preface invoked)
+%\ifextra               (set if command \extra invoked)
+%\ifacknowledgements    (set by \acknowledgements)
 %\iffigures
 %\iftables
-%\ifafterpreface (afterpreface sections pagenumber must be at topright
-%               corner. If user has chosen a header then it must be overridden.)
-%               (Produce a List of figures? The default is to do so.)
+%\ifafterpreface        (afterpreface sections pagenumber must be at topright
+%                       corner. If user has chosen a header then it must be overridden.)
+%                       (Produce a List of figures? The default is to do so.)
 %\tablestrue
-%               (Produce a List of tables?)
+%                       (Produce a List of tables?)
 %\begin/end{descriptionlist} (Basically a modified  \description.)
 %\fullpagefigure Creates a figure where the page is a vbox whose
 %                height is \textheight.
@@ -199,16 +200,28 @@
 % User commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\draft{\drafttrue}
-\def\copyrightpage{\copyrighttrue}
+\def\copyrightpage{
+    \copyrighttrue
+    \ccbysafalse
+    \ccbyfalse
+}
+\def\copyrightpageccby{
+    \copyrightfalse
+    \ccbysafalse
+    \ccbytrue
+}
+\def\copyrightpageccbysa{
+    \copyrightfalse
+    \ccbysatrue
+    \ccbyfalse
+}
 \def\figurespage{\figurestrue}
 \def\tablespage{\tablestrue}
 \def\phd{
-  \phdtrue\def\@degree{Doctor Of Philosophy}
-  \def\@initials{Ph.D.}
+  \phdtrue\def\@degree{DOCTOR OF PHILOSOPHY}
 }
 \def\ms{
-  \phdfalse\def\@degree{Master Of Science}
-  \def\@initials{M.S.}
+  \phdfalse\def\@degree{MASTER OF SCIENCE}
 }
 \long\def\abstract#1{\abstracttrue\gdef\@abstract{#1}}
 \long\def\preface#1{\prefacetrue\gdef\@preface{#1}}
@@ -217,27 +230,16 @@
 \long\def\dedication#1{\dedicationtrue\gdef\@dedication{#1}}
 \def\abbreviations#1{\abbreviationspagetrue\gdef\@abbreviations{#1}}
 
-\def\initials#1{\gdef\@initials{#1}}
 \def\degree#1{\phdfalse\gdef\@degree{#1}}
-\def\program#1{\gdef\@program{#1}}
-\def\words#1{\gdef\@words{#1}}
-\def\campus#1{\gdef\@campus{#1}}
 \def\director#1{\gdef\@director{#1}}
-\def\words#1{\gdef\@words{#1}}
 \def\approvals#1{\gdef\@approvals{#1}}
 \def\submissionmonth#1{\gdef\@month{#1}}
 \def\submissionyear#1{\gdef\@year{#1}}
 
 % defaults
-\def\@initials{Ph.D.}
-\def\@degree{Doctor of Philosophy}
-\def\@campus{University of Minnesota}
 \def\@title{}
 \def\@author{}
-\def\@program{}
-\def\@words{34}
 \def\@director{}
-\def\@words{}
 \def\@month{
   \ifcase\the\month\or
   January\or February\or March\or April\or May\or June\or
@@ -246,19 +248,21 @@
 \def\@year{\number\the\year}
 
 % conditionals and defaults
-\newif\ifdraft			\draftfalse
-\newif\ifafterpreface		\afterprefacefalse
-\newif\ifcopyright		\copyrightfalse
-\newif\iffigures		\figuresfalse
-\newif\iftables			\tablesfalse
-\newif\ifabstract		\abstractfalse
-\newif\ifpreface		\prefacefalse
-\newif\ifextra			\extrafalse
-\newif\ifacknowledgements	\acknowledgementsfalse
-\newif\ifdedication		\dedicationfalse
-\newif\ifabbreviationspage	\abbreviationspagefalse
-\newif\ifphd			\phdfalse
-\newif\ifpagestyletopright	\pagestyletoprighttrue
+\newif\ifdraft              \draftfalse
+\newif\ifafterpreface       \afterprefacefalse
+\newif\ifcopyright          \copyrightfalse
+\newif\ifccby               \ccbyfalse
+\newif\ifccbysa             \ccbysafalse
+\newif\iffigures            \figuresfalse
+\newif\iftables             \tablesfalse
+\newif\ifabstract           \abstractfalse
+\newif\ifpreface            \prefacefalse
+\newif\ifextra              \extrafalse
+\newif\ifacknowledgements   \acknowledgementsfalse
+\newif\ifdedication         \dedicationfalse
+\newif\ifabbreviationspage  \abbreviationspagefalse
+\newif\ifphd                \phdfalse
+\newif\ifpagestyletopright  \pagestyletoprighttrue
 
 \newcommand\titlep {
   \vbox to \textheight {
@@ -274,8 +278,8 @@
       \centering\bf
       \ifdraft {
         DRAFT VERSION CREATED ON \uppercase\expandafter{\today}\\
-      }\else 
-        A DISSERTATION \\
+      }\else
+        A \ifphd{DISSERTATION}\else{THESIS}\fi\ \\
         SUBMITTED TO THE FACULTY OF THE GRADUATE SCHOOL \\
         OF THE UNIVERSITY OF MINNESOTA \\
         BY \\
@@ -287,8 +291,7 @@
         \vskip 2ex plus 2ex minus 2ex
         IN PARTIAL FULFILLMENT OF THE REQUIREMENTS \\
         FOR THE DEGREE OF\\
-%       \ifphd{Doctor of Philosophy}\else{Master of Science}\fi\ \\
-        \ifphd{Doctor of Philosophy}\else \@degree          \fi\ \\
+        \@degree \\
         \vskip 1ex plus 1ex minus 1ex
         \@director\par
         \vskip 1ex plus 1ex minus 1ex
@@ -305,6 +308,39 @@
   \begin{center}
   \bf\large\copyright\ \@author\ \ \@year\ \\
   ALL RIGHTS RESERVED
+  \end{center}
+  \vfil\newpage
+}
+
+\newcommand\ccbytp {
+  \typeout{Copyright}
+  \null\vfil
+  \begin{center}
+  \bf\large\copyright\ \@author\ \ \@year\
+  \\[0.25cm]
+  \includegraphics[width=1cm]{cc_icons/by.pdf}
+  \includegraphics[width=1cm]{cc_icons/cc.pdf}
+  \\
+  The text of this work is licensed under a
+  \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons
+  Attribution International license}.
+  \end{center}
+  \vfil\newpage
+}
+
+\newcommand\ccbysatp {
+  \typeout{Copyright}
+  \null\vfil
+  \begin{center}
+  \bf\large\copyright\ \@author\ \ \@year\
+  \\[0.25cm]
+  \includegraphics[width=1cm]{cc_icons/by.pdf}
+  \includegraphics[width=1cm]{cc_icons/cc.pdf}
+  \includegraphics[width=1cm]{cc_icons/sa.pdf}
+  \\
+  The text of this work is licensed under a
+  \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
+  Attribution-ShareAlike 4.0 International license}.
   \end{center}
   \vfil\newpage
 }
@@ -328,7 +364,7 @@
 % The signature, title, copywrite, and abstract pages
 \newcommand\beforepreface {
 %  \ifabstract {
-  \ifacknowledgements {  
+  \ifacknowledgements {
     \c@page1 % set page counter so that next is 1
     \pagestyle{empty}
 
@@ -336,15 +372,28 @@
 % Title page
     \titlep
 
-% Copywrite page
-    \ifcopyright\copyrightp\fi
+% Copyright page
+    % Normal copyright
+    \ifcopyright
+        \copyrightp
+    \fi
 
-%Acknowledgements 
+    % Copyright with Creative Commons Attribution license
+    \ifccby
+        \ccbytp
+    \fi
 
-  \pagenumbering{roman}    
-  \pagestyle{plain} 
+    % Copyright with Creative Commons Attribution Share-alike license
+    \ifccbysa
+        \ccbysatp
+    \fi
+
+%Acknowledgements
+
+  \pagenumbering{roman}
+  \pagestyle{plain}
   \ifacknowledgements
-  
+
     \unnumberedsection{Acknowledgements}
 
 %    \addcontentsline{toc}{chapter}{Acknowledgements}
@@ -356,15 +405,15 @@
 %    \end{center}
 %    \vskip 8bp
 
-    \@acknowledgements\fi   
-  \vfil\newpage  
-  }  
+    \@acknowledgements\fi
+  \vfil\newpage
+  }
 
 %Dedication
 
-% \pagenumbering{roman}     
+% \pagenumbering{roman}
   \ifdedication
-  
+
     \unnumberedsection{Dedication}
 
 %    \addcontentsline{toc}{chapter}{Dedication}
@@ -376,9 +425,9 @@
 %    \end{center}
 %    \vskip 8bp
 
-    \@dedication\fi   
-  \vfil\newpage  
-    
+    \@dedication\fi
+  \vfil\newpage
+
 
 
 % An abstract to be bound into the thesis
@@ -416,7 +465,7 @@
 %    \unnumberedsection{Acknowledgements}
 %    \@acknowledgements
 %  \fi
-%  \ifdedication 
+%  \ifdedication
 %    \unnumberedsection{Dedication}
 %    \@dedication
 %   \fi
@@ -445,8 +494,8 @@
     \listoftables
     \let\addvspace=\saveaddvspace
   \fi
-  
- 
+
+
   \iffigures
     \addvspace{10bp}
     \let\saveaddvspace=\addvspace
@@ -454,7 +503,7 @@
     \listoffigures
     \let\addvspace=\saveaddvspace
   \fi
-  
+
   \ifabbreviationspage {
     \def\baselinestretch{1}
     \@normalsize
@@ -563,7 +612,7 @@
   \if@restonecol\twocolumn\fi
 }
 
-\renewcommand{\bibname}{References} 
+\renewcommand{\bibname}{References}
 \renewenvironment{thebibliography}[1]
      {\chapter*{\bibname}%
       \addcontentsline{toc}{chapter}{\bibname}

@@ -275,7 +275,7 @@
       \ifdraft {
         DRAFT VERSION CREATED ON \uppercase\expandafter{\today}\\
       }\else 
-        A \ifphd{DISSERTATION}\else{THESIS}\fi\ \\
+        A DISSERTATION \\
         SUBMITTED TO THE FACULTY OF THE GRADUATE SCHOOL \\
         OF THE UNIVERSITY OF MINNESOTA \\
         BY \\
